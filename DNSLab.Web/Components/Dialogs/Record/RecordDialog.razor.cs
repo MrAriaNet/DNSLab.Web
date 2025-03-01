@@ -13,7 +13,7 @@ partial class RecordDialog
     [Inject] IDDNSRepository _DDNSRepository { get; set; }
 
     [Parameter] public ZoneDTO Zone { get; set; }
-    [Parameter] public BaseRecordDTO Record { get; set; } = new() { Type = Enums.RecordTypeEnum.A , TTL = 3600 };
+    [Parameter] public BaseRecordDTO Record { get; set; } = new() { Name = String.Empty, Type = Enums.RecordTypeEnum.A, TTL = 3600 };
     [Parameter] public bool IsDDNS { get; set; } = false;
 
     ARecordDTO _ARecord = new();
@@ -110,7 +110,7 @@ partial class RecordDialog
                 }
             }
         }
-        
+
 
     }
 

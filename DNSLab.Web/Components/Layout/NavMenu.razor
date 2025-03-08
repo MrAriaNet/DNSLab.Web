@@ -25,7 +25,6 @@
                     <MudNavLink Href="@AllRoutes.WalletTransactions">تراکنش ها</MudNavLink>
                     <MudNavLink Href="@AllRoutes.Payments">پرداخت ها</MudNavLink>
                 </MudNavGroup>
-                <MudNavLink Href="@AllRoutes.MyAccount" Icon="@Icons.Material.Filled.AccountBox">حساب کاربری</MudNavLink>
             </MudNavMenu>
             <MudSpacer />
         </Authorized>
@@ -39,6 +38,7 @@
         <MudNavLink Icon="@Icons.Material.Rounded.Computer" Href="@AllRoutes.About">درباره ما</MudNavLink>
         <AuthorizeView>
             <Authorized>
+                <MudNavLink Href="@AllRoutes.MyAccount" Icon="@Icons.Material.Filled.AccountBox">حساب کاربری</MudNavLink>
                 <MudNavLink Href="@AllRoutes.Logout" Icon="@Icons.Material.Filled.Logout" IconColor="Color.Error">خروج</MudNavLink>
             </Authorized>
         </AuthorizeView>

@@ -9,8 +9,8 @@ public sealed class GlobalSettings
     public const string Version = "1.0.11.0";
 
 #if DEBUG
-    //public const string APIBaseAddress = "https://localhost:7046/";
-    public const string APIBaseAddress = "https://api.dnslab.link/";
+    public const string APIBaseAddress = "https://localhost:7046/";
+    //public const string APIBaseAddress = "https://api.dnslab.link/";
 
 #else
     public const string APIBaseAddress = "https://api.dnslab.link/";
@@ -38,7 +38,7 @@ public static class DNSSettings
 
 public sealed class AuthorizeRoles
 {
-    public const string Admin = "Admin";
-    public const string Writer = "Writer";
     public const string User = "User";
+    public const string Admin = "Admin";
+    public const string Development = "Development";
 }

@@ -13,7 +13,6 @@ namespace DNSLab.Web.Components.Pages.DynamicDNSs
         [Inject] IDDNSRepository _DDNSRepository { get; set; }
         [Inject] IRecordRepository _RecordRepository { get; set; }
         [Inject] IDialogService _DialogService { get; set; }
-        [Inject] ISnackbar _Snackbar { get; set; }
 
         IEnumerable<Tuple<ZoneDTO, IEnumerable<BaseRecordDTO>>>? _AllRecords { get; set; }
 
@@ -54,8 +53,6 @@ namespace DNSLab.Web.Components.Pages.DynamicDNSs
             if (_continue && await _RecordRepository.DisableRecord(record.Type, record.Id))
             {
                 record.Disable = !record.Disable;
-
-                _Snackbar.Add($"رکورد {record.Name}.{zoneName} {(record.Disable ? "غیر فعال" : "فعال")} شد", record.Disable ? Severity.Warning : Severity.Success);
             }
         }
 
@@ -76,7 +73,6 @@ namespace DNSLab.Web.Components.Pages.DynamicDNSs
             {
                 if (await _RecordRepository.DeleteRecord(record.Type, record.Id))
                 {
-                    _Snackbar.Add($"رکورد {record.Name}.{zoneName} حذف شد", Severity.Success);
                     await Refresh();
                 }
             }

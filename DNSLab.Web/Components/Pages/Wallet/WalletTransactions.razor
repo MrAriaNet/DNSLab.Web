@@ -21,9 +21,7 @@
                     <PropertyColumn Property="x=>x.TransactionType" Title="نوع" />
                     <TemplateColumn Title="مبغ(ريال)">
                         <CellTemplate>
-                            <MudAlert Severity="@(@context.Item.Incremental ? Severity.Success : Severity.Error)" Variant="Variant.Text" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                <MudText>@context.Item.Amount.Separate3Digits().EnglishToPersianNumbers()</MudText>
-                            </MudAlert>
+                            <MudText Color="@(@context.Item.Incremental ? Color.Success : Color.Error)">@context.Item.Amount.Separate3Digits().EnglishToPersianNumbers()</MudText>
                         </CellTemplate>
                     </TemplateColumn>
                     <PropertyColumn Property="x=>x.Description" Title="توضیحات" />

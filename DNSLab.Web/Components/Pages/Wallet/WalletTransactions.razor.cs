@@ -1,7 +1,7 @@
-﻿using DNSLab.Web.DTOs.Repositories.Wallet;
+﻿using DNSLab.Web.DTOs.Repositories.Shared;
+using DNSLab.Web.DTOs.Repositories.Wallet;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
-using static MudBlazor.CategoryTypes;
 
 namespace DNSLab.Web.Components.Pages.Wallet;
 
@@ -9,43 +9,17 @@ partial class WalletTransactions
 {
     [Inject] IWalletRepository _WalletRepository { get; set; }
 
-    int? _TotalTransactionsCount { get; set; }
+    PagedResult<WalletTransactionDTO>? _AllTransactions;
     protected override async Task OnInitializedAsync()
     {
-        _TotalTransactionsCount = await _WalletRepository.GetWalletTransactionsCount();
+        _AllTransactions = await _WalletRepository.GetWalletTransactions();
     }
 
-    bool _IsFirstLoad = true;
-    private async Task<GridData<WalletTransactionDTO>> ServerDataFunc(GridStateVirtualize<WalletTransactionDTO> gridState, CancellationToken token)
+    bool _Loading = false;
+    async Task PageChanged(int page)
     {
-        try
-        {
-            if (_IsFirstLoad)
-            {
-                _IsFirstLoad = false;
-            }
-            else
-            {
-                await Task.Delay(300, token);
-            }
-
-            var walletTransactions = await _WalletRepository.GetWalletTransactions(gridState.StartIndex, gridState.Count);
-
-            if (walletTransactions != null)
-            {
-                return new GridData<WalletTransactionDTO>
-                {
-                    Items = walletTransactions,
-                    TotalItems = _TotalTransactionsCount!.Value
-                };
-            }
-        }
-        catch { }
-
-        return new GridData<WalletTransactionDTO>
-        {
-            Items = [],
-            TotalItems = 0
-        };
+        _Loading = true;
+        _AllTransactions = await _WalletRepository.GetWalletTransactions(page);
+        _Loading = false;
     }
 }

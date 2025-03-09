@@ -9,35 +9,33 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        <MudDataGrid T="WalletTransactionDTO" VirtualizeServerData="ServerDataFunc" Virtualize Dense Hover Bordered Outlined FixedHeader SortMode="SortMode.None" Height="70vh" Striped ItemSize="55">
-            <NoRecordsContent>
-                <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                    <MudText Typo="Typo.caption">هیچ تراکنشی یافت نشد</MudText>
-                </MudAlert>
-            </NoRecordsContent>
-            <Columns>
-                <PropertyColumn Property="x=>x.TransactionType" Title="نوع" />
-                <TemplateColumn Title="مبغ(ريال)">
-                    <CellTemplate>
-                        <MudAlert Severity="@(@context.Item.Incremental ? Severity.Success : Severity.Error)" Variant="Variant.Text" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                            <MudText>@context.Item.Amount.Separate3Digits().EnglishToPersianNumbers()</MudText>
-                        </MudAlert>
-                    </CellTemplate>
-                </TemplateColumn>
-                <PropertyColumn Property="x=>x.Description" Title="توضیحات" />
-                <PropertyColumn Property="x=>x.CreateDate" Title="زمان">
-                    <CellTemplate>
-                        <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime().EnglishToPersianNumbers()</MudText>
-                    </CellTemplate>
-                </PropertyColumn>
-            </Columns>
-            <RowLoadingContent>
-                <tr class="mud-table-row" style="height:55px">
-                    <td class="mud-table-cell" colspan="1000">
-                        در حال بارگذازی...
-                    </td>
-                </tr>
-            </RowLoadingContent>
-        </MudDataGrid>
+        @if (_AllTransactions != null)
+        {
+            <MudDataGrid T="WalletTransactionDTO" Items="_AllTransactions.Results" Dense Hover Bordered Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+                <NoRecordsContent>
+                    <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                        <MudText Typo="Typo.caption">هیچ تراکنشی یافت نشد</MudText>
+                    </MudAlert>
+                </NoRecordsContent>
+                <Columns>
+                    <PropertyColumn Property="x=>x.TransactionType" Title="نوع" />
+                    <TemplateColumn Title="مبغ(ريال)">
+                        <CellTemplate>
+                            <MudAlert Severity="@(@context.Item.Incremental ? Severity.Success : Severity.Error)" Variant="Variant.Text" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
+                                <MudText>@context.Item.Amount.Separate3Digits().EnglishToPersianNumbers()</MudText>
+                            </MudAlert>
+                        </CellTemplate>
+                    </TemplateColumn>
+                    <PropertyColumn Property="x=>x.Description" Title="توضیحات" />
+                    <PropertyColumn Property="x=>x.CreateDate" Title="زمان">
+                        <CellTemplate>
+                            <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime().EnglishToPersianNumbers()</MudText>
+                        </CellTemplate>
+                    </PropertyColumn>
+                </Columns>
+            </MudDataGrid>
+
+            <MudPagination Rectangular="true" Variant="Variant.Filled" Count="_AllTransactions.PageCount" Class="mt-2" SelectedChanged="PageChanged" />
+        }
     </MudCardContent>
 </MudCard>

@@ -1,5 +1,6 @@
 ﻿using DNSLab.Web.Components.Pages.Defaults;
 using DNSLab.Web.DTOs.Repositories.Payment;
+using DNSLab.Web.DTOs.Repositories.Shared;
 using DNSLab.Web.Interfaces.Providers;
 using DNSLab.Web.Interfaces.Repositories;
 
@@ -9,19 +10,14 @@ namespace DNSLab.Web.Repositories
     {
         const string APIController = "Payment";
 
-        public async Task<IEnumerable<PaymentDTO>?> GetAllPayments(int startIndex, int count)
+        public async Task<PagedResult<PaymentDTO>?> GetAllPayments(int page = 1, int pageSize = 10)
         {
-            return await _HttpServiceProvider.Get<IEnumerable<PaymentDTO>?>($"{APIController}/GetAllPayments?startIndex={startIndex}&count={count}");
+            return await _HttpServiceProvider.Get<PagedResult<PaymentDTO>?>($"{APIController}/GetAllPayments?page={page}&pageSize={pageSize}");
         }
 
-        public async Task<int?> GetAllPaymentsCount()
+        public async Task<PagedResult<PaymentDTO>?> GetPayments(int page = 1, int pageSize = 10)
         {
-            return await _HttpServiceProvider.Get<int?>($"{APIController}/GetAllPaymentsCount");
-        }
-
-        public async Task<IEnumerable<PaymentDTO>?> GetPayments(int startIndex, int count)
-        {
-            return await _HttpServiceProvider.Get<IEnumerable<PaymentDTO>?>($"{APIController}/GetPayments?startIndex={startIndex}&count={count}");
+            return await _HttpServiceProvider.Get<PagedResult<PaymentDTO>?>($"{APIController}/GetPayments?page={page}&pageSize={pageSize}");
         }
 
         public async Task<int?> GetPaymentsCount()

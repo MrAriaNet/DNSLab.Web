@@ -38,15 +38,10 @@
                         </TemplateColumn>
                         <TemplateColumn>
                             <CellTemplate>
-                                <MudStack Row Justify="Justify.FlexEnd">
-                                    <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
-                                        <MudMenuItem Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Icon="@Icons.Material.Rounded.TableRows">مدیریت رکوردها</MudMenuItem>
-                                        <MudMenuItem OnClick="() => DisableZone(context.Item)" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)">@(context.Item.Disable ? "فعال سازی" : "غیر فعال سازی")</MudMenuItem>
-                                        <MudMenuItem Disabled />
-                                        <MudMenuItem OnClick="() => DeleteZone(context.Item)" IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete">
-                                            <MudText Color="Color.Error" Typo="Typo.caption">حذف</MudText>
-                                        </MudMenuItem>
-                                    </MudMenu>
+                                <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
+                                    <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.TableRows" />
+                                    <BaseIconButton OnClick="()=> DisableZone(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
+                                    <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                                 </MudStack>
                             </CellTemplate>
                         </TemplateColumn>

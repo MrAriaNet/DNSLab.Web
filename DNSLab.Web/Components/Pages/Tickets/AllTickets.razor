@@ -8,9 +8,6 @@
         <CardHeaderContent>
             <MudText Typo="Typo.h5">تیکت ها</MudText>
         </CardHeaderContent>
-        <CardHeaderActions>
-            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@Icons.Material.Rounded.Add" OnClick="AddTicket">ثبت تیکت جدید</MudButton>
-        </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
         <MudDataGrid T="TicketDTO" Items="_Tickets?.OrderByDescending(x=>x.CreateDate)" Dense Hover Bordered Outlined Loading="_IsLoading">
@@ -38,10 +35,8 @@
                 </PropertyColumn>
                 <TemplateColumn>
                     <CellTemplate>
-                        <MudStack Row Justify="Justify.FlexEnd">
-                            <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
-                                <MudMenuItem Href="@(AllRoutes.TicketMessages+"/"+context.Item.Id)" Icon="@Icons.Material.Rounded.Message">مشاهده</MudMenuItem>
-                            </MudMenu>
+                        <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
+                            <BaseIconButton Href="@(AllRoutes.TicketMessages+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.OpenInFull" />
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>

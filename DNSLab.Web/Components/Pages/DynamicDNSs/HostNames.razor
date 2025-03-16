@@ -9,7 +9,7 @@
 }
 else
 {
-    <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense Class="mb-2"> 
+    <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense Class="mb-2">
         <MudText>هزینه بروزرسانی یک هاست نیم رایگان میباشد.</MudText>
         <MudText Typo="Typo.caption">در صورتی که تعداد هاست نِیم های شما بیشتر از یک عدد باشد ، به ازای هر بروزرسانی هزینه ای از کیف پول شما کسر خواهد شد.</MudText>
     </MudAlert>
@@ -73,15 +73,10 @@ else
                             </PropertyColumn>
                             <TemplateColumn>
                                 <CellTemplate>
-                                    <MudStack Row Justify="Justify.FlexEnd">
-                                        <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
-                                            <MudMenuItem OnClick="()=> EditRecord(context.Item, zone.Item1)" Icon="@Icons.Material.Rounded.Edit">ویرایش</MudMenuItem>
-                                            <MudMenuItem OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)">@(context.Item.Disable ? "فعال سازی" : "غیر فعال سازی")</MudMenuItem>
-                                            <MudMenuItem Disabled />
-                                            <MudMenuItem OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete">
-                                                <MudText Color="Color.Error" Typo="Typo.caption">حذف</MudText>
-                                            </MudMenuItem>
-                                        </MudMenu>
+                                    <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
+                                        <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                                        <BaseIconButton OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
+                                        <BaseIconButton OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                                     </MudStack>
                                 </CellTemplate>
                             </TemplateColumn>

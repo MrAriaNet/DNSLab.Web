@@ -120,17 +120,12 @@
                         </MudAlert>
                     </CellTemplate>
                 </PropertyColumn>
-                <TemplateColumn>
+                <TemplateColumn StickyLeft>
                     <CellTemplate>
-                        <MudStack Row Justify="Justify.FlexEnd">
-                            <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
-                                <MudMenuItem OnClick="()=> EditRecord(context.Item)" Icon="@Icons.Material.Rounded.Edit">ویرایش</MudMenuItem>
-                                <MudMenuItem OnClick="()=> DisableRecord(context.Item)" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)">@(context.Item.Disable ? "فعال سازی" : "غیر فعال سازی")</MudMenuItem>
-                                <MudMenuItem Disabled />
-                                <MudMenuItem OnClick="()=> DeleteRecord(context.Item)" IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete">
-                                    <MudText Color="Color.Error" Typo="Typo.caption">حذف</MudText>
-                                </MudMenuItem>
-                            </MudMenu>
+                        <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
+                            <BaseIconButton OnClick="()=> EditRecord(context.Item)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                            <BaseIconButton OnClick="()=> DisableRecord(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
+                            <BaseIconButton OnClick="()=>  DeleteRecord(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>

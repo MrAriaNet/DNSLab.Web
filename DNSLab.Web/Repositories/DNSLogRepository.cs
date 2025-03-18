@@ -11,5 +11,10 @@ namespace DNSLab.Web.Repositories
         {
             return await _HttpServiceProvider.Get<IEnumerable<QueryLogDTO>?>($"{APIController}/GetLastQueries?zoneId={zoneId}");
         }
+
+        public async Task<IEnumerable<QueryCountDTO>?> GetQueriesChart(Guid zoneId)
+        {
+            return await _HttpServiceProvider.Get<IEnumerable<QueryCountDTO>?>($"{APIController}/GetQueriesChart?zoneId={zoneId}");
+        }
     }
 }

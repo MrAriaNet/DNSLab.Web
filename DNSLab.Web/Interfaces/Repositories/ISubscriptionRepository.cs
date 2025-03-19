@@ -6,5 +6,7 @@ namespace DNSLab.Web.Interfaces.Repositories
     {
         Task<IEnumerable<PlanSectionDTO>?> GetPlans();
         Task<bool> Subscribe(int planId, int discountId);
+        Task<IEnumerable<SubscriptionDTO>?> GetSubscribes();
+        Task<IEnumerable<SubscriptionDTO>?> GetAllSubscribes();  
     }
 }

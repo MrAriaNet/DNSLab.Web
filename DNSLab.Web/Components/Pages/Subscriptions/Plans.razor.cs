@@ -1,4 +1,6 @@
-﻿using DNSLab.Web.DTOs.Repositories.Subscription;
+﻿using DNSLab.Web.Components.Dialogs;
+using DNSLab.Web.DTOs.Repositories.Subscription;
+using DNSLab.Web.Helpers;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
 
@@ -7,6 +9,8 @@ namespace DNSLab.Web.Components.Pages.Subscriptions;
 partial class Plans
 {
     [Inject] ISubscriptionRepository _SubscriptionRepository { get; set; }
+    [Inject] ISnackbar _Snackbar { get; set; }
+    [Inject] NavigationManager _NavigationManager { get; set; }
 
     IEnumerable<PlanSectionDTO>? _PlanSections { get; set; }
 
@@ -27,6 +31,22 @@ partial class Plans
             }
 
             return null;
+        }
+    }
+
+    MudDialog _SubscribeDialog { get; set; }
+    async Task DiscountOnChange(PlanDiscountDTO discount)
+    {
+        _SelectedPlanDiscount = discount;
+        await _SubscribeDialog.ShowAsync();
+    }
+
+    async Task Subscriptionn()
+    {
+        if (await _SubscriptionRepository.Subscribe(_SelectedPlan.Id, _SelectedPlanDiscount!.Id))
+        {
+            _Snackbar.Add($"پلن {_SelectedPlan.Name} به مدت {_SelectedPlanDiscount.Duration.Description} برای شما فعال شد", Severity.Success);
+            _NavigationManager.NavigateTo(AllRoutes.Dashboard);
         }
     }
 }

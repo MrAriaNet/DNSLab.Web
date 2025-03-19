@@ -11,5 +11,10 @@ namespace DNSLab.Web.Repositories
         {
             return _HttpServiceProvider.Get<IEnumerable<PlanSectionDTO>?>($"{APIController}/GetPlans");
         }
+
+        public Task<bool> Subscribe(int planId, int discountId)
+        {
+            return _HttpServiceProvider.Post<bool>($"{APIController}/Subscribe?planId={planId}&discountId={discountId}");
+        }
     }
 }

@@ -30,7 +30,7 @@
                 </PropertyColumn>
                 <PropertyColumn Property="x=>x.CreateDate" Title="تاریخ ثبت">
                     <CellTemplate>
-                        <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime().EnglishToPersianNumbers()</MudText>
+                        <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
                     </CellTemplate>
                 </PropertyColumn>
                 <TemplateColumn>

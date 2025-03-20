@@ -3,7 +3,8 @@
 
 @if (_Page != null)
 {
-    <PageTitle>@_Page.Title</PageTitle>
+    <SeoProvider Title="@_Page.Title" Meta_Description="@_Page.Description" />
+
     <MudCard Elevation="0">
         <MudCardHeader>
             <CardHeaderContent>

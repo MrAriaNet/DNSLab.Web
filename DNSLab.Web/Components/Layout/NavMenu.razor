@@ -30,15 +30,13 @@
                     <MudNavLink Href="@AllRoutes.LastQueryLogs">آخرین کوئری‌ها</MudNavLink>
                     <MudNavLink Href="@AllRoutes.QueryCountChart">تعداد کوئری‌ها</MudNavLink>
                 </MudNavGroup>
+                <MudNavLink Icon="@Icons.Material.Filled.WorkspacePremium" Href="@AllRoutes.MySubscriptions">اشتراک‌ها</MudNavLink>
             </MudNavMenu>
             <MudSpacer />
         </Authorized>
     </AuthorizeView>
     <MudNavMenu>
-        <MudNavGroup Icon="@Icons.Material.Rounded.Verified" Title="اشتراک">
-            <MudNavLink Href="@AllRoutes.Plans">پلن ها</MudNavLink>
-            <MudNavLink Href="@AllRoutes.MySubscriptions">اشتراک‌ها</MudNavLink>
-        </MudNavGroup>
+        <MudNavLink Icon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">پلن ها</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.Construction" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.SupportAgent" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.Web" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>

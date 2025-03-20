@@ -87,7 +87,14 @@
                     </MudText>
                     <MudDivider />
                     <MudText Typo="Typo.caption">توضیحات</MudText>
-                    <MarkdownViewer MarkdownText="@_SelectedPlan.Description" />
+                    <MudStack Spacing="0" AlignItems="AlignItems.Start">
+                        @foreach (var feature in _SelectedPlan.Features)
+                        {
+                            <MudTooltip Text="@feature.Description">
+                                <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@(feature.Supported ? Icons.Material.Rounded.CheckBox : Icons.Material.Rounded.Close)" IconColor="@(feature.Supported ? Color.Success : Color.Error)" Color="Color.Default">@feature.Name @(feature.FeatureValue == null ? String.Empty : $" : {feature.FeatureValue}")</MudChip>
+                            </MudTooltip>
+                        }
+                    </MudStack>
                     <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
                         <MudText Typo="Typo.caption" class="mt-2">
                             شما در حال تهیه اشتراک @_SelectedPlanDiscount!.Duration.Description برای پلن @_SelectedPlan.Name میباشید و در صورت تایید مبلغ (@((_SelectedPlanDiscount.Duration.DurationInMonth * (_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100))).Separate3Digits()) ريال) از کیف پول شما کسر خواهد شد.

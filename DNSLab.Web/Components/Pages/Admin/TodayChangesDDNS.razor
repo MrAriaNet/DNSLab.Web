@@ -1,6 +1,7 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Record
 @attribute [Route(AllRoutes.TodayChangesDDNS)]
 @attribute [Authorize(Roles = AuthorizeRoles.Admin)]
+<SeoProvider Title="تغییرات امروز" />
 
 
 @if (_AllRecords == null)

@@ -24,14 +24,21 @@
                                 <MudCard Outlined Style="height: 100%;">
                                     <MudCardHeader>
                                         <CardHeaderContent>
-                                            <MudText>@plan.Name</MudText>
+                                            <MudText Typo="Typo.h3">@plan.Name</MudText>
                                         </CardHeaderContent>
                                         <CardHeaderActions>
                                             <MudText Color="Color.Info">@plan.BasePrice.Separate3Digits() ريال</MudText>
                                         </CardHeaderActions>
                                     </MudCardHeader>
                                     <MudCardContent>
-                                        <MarkdownViewer MarkdownText="@plan.Description" />
+                                        <MudStack Spacing="0" AlignItems="AlignItems.Start">
+                                            @foreach (var feature in plan.Features)
+                                            {
+                                                <MudTooltip Text="@feature.Description">
+                                                    <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@(feature.Supported ? Icons.Material.Rounded.CheckBox : Icons.Material.Rounded.Close)" IconColor="@(feature.Supported ? Color.Success : Color.Error)" Color="Color.Default">@feature.Name @(feature.FeatureValue == null ? String.Empty : $" : {feature.FeatureValue}")</MudChip>
+                                                </MudTooltip>
+                                            }
+                                        </MudStack>
                                         @if (plan.Discounts.Count() > 0)
                                         {
                                             <MudDivider DividerType="DividerType.Middle" Class="mt-5 mb-2" />

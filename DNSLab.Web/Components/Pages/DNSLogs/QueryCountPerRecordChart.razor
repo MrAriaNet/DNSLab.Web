@@ -49,7 +49,7 @@
                 {
                     foreach (var item in _Counts.GroupBy(x => x.Type))
                     {
-                        <ApexPointSeries SeriesType="SeriesType.Line" Items="item" Name="@item.Key.ToString()" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
+                        <ApexPointSeries SeriesType="SeriesType.Bar" Items="item" Name="@item.Key.ToString()" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
                     }
                 }
             </ApexChart>

@@ -78,7 +78,7 @@
                                 <PropertyColumn Property="x=>x.ClientIP" Title="آی پی" />
                                 <TemplateColumn Title="%">
                                     <CellTemplate>
-                                        <MudText> @(context.Item.Count * 100 / _ClientIPAndCounts.Sum(x => x.Count))%</MudText>
+                                        <MudText> @(Math.Round((context.Item.Count * 100F / _ClientIPAndCounts.Sum(x => x.Count)),3))%</MudText>
                                     </CellTemplate>
                                 </TemplateColumn>
                                 <PropertyColumn Property="x=>x.Count.Separate3Digits()" Title="تعداد" />

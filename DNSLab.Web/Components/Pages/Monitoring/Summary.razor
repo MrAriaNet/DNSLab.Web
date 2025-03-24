@@ -81,7 +81,7 @@
                                         <MudText> @(context.Item.Count * 100 / _ClientIPAndCounts.Sum(x => x.Count))%</MudText>
                                     </CellTemplate>
                                 </TemplateColumn>
-                                <PropertyColumn Property="x=>x.Count" Title="تعداد" />
+                                <PropertyColumn Property="x=>x.Count.Separate3Digits()" Title="تعداد" />
                             </Columns>
                         </MudDataGrid>
                     }

@@ -8,7 +8,12 @@ namespace DNSLab.Web.Repositories
     public class DNSLogRepository(IHttpServiceProvider _HttpServiceProvider) : IDNSLogRepository
     {
         const string APIController = "DNSLog";
-    
+
+        public async Task<IEnumerable<ClientIPAndCountDTO>?> GetClientIPAndCounts(string qName)
+        {
+            return await _HttpServiceProvider.Get<IEnumerable<ClientIPAndCountDTO>?>($"{APIController}/GetClientIPAndCounts?qName={qName}");
+        }
+
         public async Task<long?> GetTotalRequest(string qName)
         {
             return await _HttpServiceProvider.Get<long?>($"{APIController}/GetTotalRequest?qName={qName}");

@@ -7,5 +7,6 @@ namespace DNSLab.Web.Interfaces.Repositories
     {
         Task<long?> GetTotalRequest(string qName);
         Task<IEnumerable<TimeAndCountDTO>?> GetTotalRequestChartByTime(string qName);
+        Task<IEnumerable<ClientIPAndCountDTO>?> GetClientIPAndCounts(string qName);
     }
 }

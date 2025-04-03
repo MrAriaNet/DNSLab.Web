@@ -5,6 +5,5 @@
         Task<int?> GetZonesCount();
         Task<int?> GetRecordsCount();
         Task<int?> GetDDNSsCount();
-        Task<int?> GetTodayDDNSIpChangesCount();
     }
 }

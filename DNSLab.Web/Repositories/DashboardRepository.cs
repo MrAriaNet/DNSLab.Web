@@ -16,11 +16,6 @@ namespace DNSLab.Web.Repositories
             return await _HttpServiceProvider.Get<int>($"{APIController}/GetRecordsCount");
         }
 
-        public async Task<int?> GetTodayDDNSIpChangesCount()
-        {
-            return await _HttpServiceProvider.Get<int>($"{APIController}/GetTodayDDNSIpChangesCount");
-        }
-
         public async Task<int?> GetZonesCount()
         {
             return await _HttpServiceProvider.Get<int>($"{APIController}/GetZonesCount");

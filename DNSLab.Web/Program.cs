@@ -23,7 +23,7 @@ builder.Services.AddScoped<IZoneRepository, ZoneRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 builder.Services.AddScoped<IDNSClientRepository, DNSClientRepository>();
 builder.Services.AddScoped<IDDNSRepository, DDNSRepository>();
-builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IStaticRepository, StaticRepository>();
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<IPageRepository, PageRepository>();

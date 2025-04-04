@@ -6,21 +6,21 @@
 <MudText Align="Align.Center" Class="mt-5">اگه میخوای یه سرور درست کنی ، بصورت راه دور کار کنی و غیره ما اینجا هستیم تا IP متغییر رو ردیابی کنیم تا دیگه نگران تغییر IP پویا نباشی.</MudText>
 
 <MudGrid Spacing="1" Class="mt-10">
-    <MudItem xs="12" md="3">
-        <MudText>کاربران</MudText>
-        <MudText Typo="Typo.h3">@((_AllUsersCount ?? 0).Separate3Digits())</MudText>
+    <MudItem xs="6" md="3">
+        <MudText Align="Align.Center">کاربران</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllUsersCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
-    <MudItem xs="12" md="3">
-        <MudText>کاربران پرمیوم</MudText>
-        <MudText Typo="Typo.h3">@((_AllPremiumUsersCount ?? 0).Separate3Digits())</MudText>
+    <MudItem xs="6" md="3">
+        <MudText Align="Align.Center">کاربران پرمیوم</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllPremiumUsersCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
-    <MudItem xs="12" md="3">
-        <MudText>رکورد ها</MudText>
-        <MudText Typo="Typo.h3">@((_AllDDNSsCount ?? 0).Separate3Digits())</MudText>
+    <MudItem xs="6" md="3">
+        <MudText Align="Align.Center">رکورد ها</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllDDNSsCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
-    <MudItem xs="12" md="3">
-        <MudText>تغییرات رکورد در 24 ساعت</MudText>
-        <MudText Typo="Typo.h3">@((_AllTodayChangesCount ?? 0).Separate3Digits())</MudText>
+    <MudItem xs="6" md="3">
+        <MudText Align="Align.Center">تغییرات رکورد در 24 ساعت</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllTodayChangesCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
 </MudGrid>
 

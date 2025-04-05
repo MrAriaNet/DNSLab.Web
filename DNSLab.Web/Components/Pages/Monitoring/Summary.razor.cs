@@ -9,8 +9,17 @@ namespace DNSLab.Web.Components.Pages.Monitoring;
 
 partial class Summary
 {
-    [Inject] public IDDNSRepository _DDNSRepository { get; set; }
+    [Inject] IDDNSRepository _DDNSRepository { get; set; }
     [Inject] IDNSLogRepository _DNSLogRepository { get; set; }
+    [Inject] ISubscriptionRepository _SubscriptionRepository { get; set; }
+
+    bool? _IsSubscribeThisFeature { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _IsSubscribeThisFeature = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.Monitoring);
+    }
+
     IEnumerable<Tuple<ZoneDTO, IEnumerable<BaseRecordDTO>>>? _AllRecords { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -16,9 +16,11 @@
     <MudCardContent>
         @if (_IsSubscribeThisFeature != null)
         {
-            <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" Absolute="true" Style="height:100vh">
-                <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
-                <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+            <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
+                <MudContainer>
+                    <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
+                    <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+                </MudContainer>
             </MudOverlay>
 
             @if (_IsSubscribeThisFeature == true)

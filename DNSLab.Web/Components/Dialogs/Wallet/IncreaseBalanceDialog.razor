@@ -1,7 +1,8 @@
-﻿<MudDialog ContentClass="py-2">
+﻿@using System.Globalization
+<MudDialog ContentClass="py-2">
     <DialogContent>
-        <MudText>لطفا منبلغ خود را به صورت ریالی وارد نمایید</MudText>
-        <MudTextField T="int" @bind-Value="_Amount" Placeholder="50000 ریال" Class="mud-ltr" FullWidth />
+        <MudText Class="mb-1">لطفا منبلغ خود را به صورت ریالی وارد نمایید</MudText>
+        <MudTextField T="long" Variant="Variant.Outlined" Text="@_DisplayAmount" TextChanged="OnAmountTextChanged" TextUpdateSuppression="false" Immediate="true" ErrorText="@_ErrorMessage" Error="!String.IsNullOrEmpty(_ErrorMessage)" />
     </DialogContent>
     <DialogActions>
         <BaseButton OnClick="()=>_MudDialog.Close()">انصراف</BaseButton>

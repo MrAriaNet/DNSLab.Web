@@ -60,7 +60,11 @@ else
                                     </MudText>
                                 </CellTemplate>
                             </PropertyColumn>
-                            <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
+                            <PropertyColumn Property="x=>x.LastModified" Title="آخرین تغییر">
+                                <CellTemplate>
+                                    <MudText Typo="Typo.caption">@(context.Item.LastModified.HasValue ? context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime() : "بدون تغییر")</MudText>
+                                </CellTemplate>
+                            </PropertyColumn>
                             <PropertyColumn Property="x=>x.Disable" Title="وضعیت">
                                 <CellTemplate>
                                     <MudAlert Severity="@(context.Item.Disable ? Severity.Warning : Severity.Success)" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
@@ -68,6 +72,7 @@ else
                                     </MudAlert>
                                 </CellTemplate>
                             </PropertyColumn>
+                            <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
                             <TemplateColumn>
                                 <CellTemplate>
                                     <MudStack Row Justify="Justify.FlexEnd" Spacing="1">

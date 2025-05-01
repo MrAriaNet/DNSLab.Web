@@ -1,6 +1,7 @@
 ﻿using DNSLab.Web.DTOs.Repositories.Page;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
+using System;
 
 namespace DNSLab.Web.Components.Pages.Pages;
 
@@ -12,8 +13,12 @@ partial class Page
 
     PageDTO _Page = new();
 
+    IEnumerable<PageTypeDTO>? _Types { get; set; } = null;
+
     protected override async Task OnInitializedAsync()
     {
+        _Types = await _PageRepository.GetPageTypes();
+
         if (PageId != Guid.Empty)
         {
             var existPage = await _PageRepository.GetPage(PageId);

@@ -46,6 +46,7 @@
         public const string AllPages = "/pages/all";
         public const string Page = "/pages/page";
         public const string Blog = "/blog";
+        public const string KnowledgeBase = "/knowledge-base";
         public const string AllBlogs = "/blog/all";
 
         public const string CallBackPayment = "payment/callback";

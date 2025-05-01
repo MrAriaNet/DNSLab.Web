@@ -13,5 +13,6 @@
         public virtual UserInfoDTO? User { get; set; }
         public DateTime CreateDate { set; get; } = DateTime.UtcNow;
         public DateTime? UpdateDate { set; get; }
+        public PageTypeDTO Type { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace DNSLab.Web.Components.Pages.Pages;
 
-partial class Blog
+partial class PageGenerator
 {
     [Inject] IPageRepository _PageRepository { get; set; }
     [Inject] IMemoryCache _MemoryCache { get; set; }

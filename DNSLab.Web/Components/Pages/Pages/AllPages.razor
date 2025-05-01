@@ -20,6 +20,7 @@
                 </MudAlert>
             </NoRecordsContent>
             <Columns>
+                <PropertyColumn Property="x=>x.Type.Name" Title="نوع" StickyRight />
                 <PropertyColumn Property="x=>x.Title" Title="عنوان" StickyRight />
                 <PropertyColumn Property="x=>x.VisitCount.ToString()" Title="تعداد بازدید" />
                 <PropertyColumn Property="x=>x.URL" Title="URL" />
@@ -51,7 +52,7 @@
                             <BaseIconButton Href="@(AllRoutes.Page+"/"+context.Item.Id)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
                             @if (context.Item.IsPublished)
                             {
-                                <BaseIconButton Href="@($"{AllRoutes.Blog}/{context.Item.URL}")" Color="Color.Success" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.OpenInBrowser" />
+                                <BaseIconButton Href="@($"{context.Item.Type.Url}/{context.Item.URL}")" Color="Color.Success" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.OpenInBrowser" />
                             }
                             <BaseIconButton OnClick="()=> DeletePage(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                         </MudStack>

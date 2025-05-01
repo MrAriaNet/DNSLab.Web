@@ -1,4 +1,5 @@
-﻿using DNSLab.Web.DTOs.Repositories.Page;
+﻿using DNSLab.Shared.Enums;
+using DNSLab.Web.DTOs.Repositories.Page;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
 
@@ -12,6 +13,6 @@ partial class AllBlogs
 
     protected override async Task OnInitializedAsync()
     {
-        _Pages = await _PageRepository.GetLastPages();
+        _Pages = await _PageRepository.GetPagesByType(PageTypeEnum.KnowledgeBase);
     }
 }

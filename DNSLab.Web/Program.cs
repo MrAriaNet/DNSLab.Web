@@ -49,15 +49,18 @@ builder.Services.AddApexCharts();
 // Add MudBlazor services
 builder.Services.AddMudServices(config =>
 {
-    config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomEnd;
+    config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopCenter;
 
     config.SnackbarConfiguration.PreventDuplicates = false;
+    config.SnackbarConfiguration.BackgroundBlurred = true;
     config.SnackbarConfiguration.NewestOnTop = true;
-    config.SnackbarConfiguration.ShowCloseIcon = true;
+    config.SnackbarConfiguration.ShowCloseIcon = false;
+    config.SnackbarConfiguration.MaxDisplayedSnackbars = 3;
+    config.SnackbarConfiguration.IconSize = MudBlazor.Size.Small;
     config.SnackbarConfiguration.VisibleStateDuration = 10000;
     config.SnackbarConfiguration.HideTransitionDuration = 500;
     config.SnackbarConfiguration.ShowTransitionDuration = 500;
-    config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
+    config.SnackbarConfiguration.SnackbarVariant = Variant.Text;
 });
 
 // Add services to the container.

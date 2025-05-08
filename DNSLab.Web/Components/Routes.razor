@@ -2,7 +2,7 @@
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
             <Authorizing>
-                <MudText>Please wait, we are authorizing you...</MudText>
+                <MudText>در حال احراز هویت ، منتظر بمانید ...</MudText>
             </Authorizing>
             <NotAuthorized>
                 @if (context.User.Identity == null)

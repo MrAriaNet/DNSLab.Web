@@ -12,6 +12,7 @@ partial class RecordDialog
     [Inject] IRecordRepository _RecordRepository { get; set; }
     [Inject] IDDNSRepository _DDNSRepository { get; set; }
     [Inject] IHttpContextAccessor _HttpContextAccessor { get; set; }
+    [Inject] ISubscriptionRepository _SubscriptionRepository { get; set; }
 
     [Parameter] public ZoneDTO Zone { get; set; }
     [Parameter] public BaseRecordDTO Record { get; set; } = new() { Name = String.Empty, Type = Enums.RecordTypeEnum.A, TTL = 3600 };
@@ -23,6 +24,11 @@ partial class RecordDialog
     CNAMERecordDTO _CNAMERecord = new();
     MXRecordDTO _MXRecord = new();
 
+    bool _IsAbleToChangeTTL = false;
+    protected override async Task OnInitializedAsync()
+    {
+        _IsAbleToChangeTTL = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.Monitoring);
+    }
     protected override void OnInitialized()
     {
         if (Record.RData != null)
@@ -50,7 +56,7 @@ partial class RecordDialog
         }
         else
         {
-            Record.TTL = (uint)(IsDDNS ? 60 : 3600);
+            Record.TTL = (uint)(IsDDNS ? 300 : 3600);
         }
     }
 

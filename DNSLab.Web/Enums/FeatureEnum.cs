@@ -9,6 +9,7 @@ namespace DNSLab.Web.Enums
     public enum FeatureEnum
     {
         RecordCount = 1,
+        AbleToChangeTTL = 2,
         Monitoring = 3,
     }
 }

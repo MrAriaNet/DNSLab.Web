@@ -8,6 +8,11 @@ namespace DNSLab.Web.Repositories
     {
         const string APIController = "Tool";
 
+        public async Task<bool> IsPortOpen(string host, int port)
+        {
+            return await _HttpServiceProvider.Get<bool>($"{APIController}/IsPortOpen?host={host}&port={port}");
+        }
+
         public async Task<string?> Ping(string host)
         {
             return await _HttpServiceProvider.Get<string?>($"{APIController}/Ping?host={host}");

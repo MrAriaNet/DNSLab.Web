@@ -31,9 +31,7 @@ else
                             <PropertyColumn Property="x=>x.Name" Title="نام" />
                             <PropertyColumn Property="x=>x.Type" Title="نوع">
                                 <CellTemplate>
-                                    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                        <MudText Typo="Typo.caption">@context.Item.Type</MudText>
-                                    </MudAlert>
+                                    <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">@context.Item.Type</MudChip>
                                 </CellTemplate>
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.TTL" Title="TTL" />
@@ -62,22 +60,12 @@ else
                                     <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
                                 </CellTemplate>
                             </PropertyColumn>
-                            <PropertyColumn Property="x=>x.LastModified" Title="آخرین ویرایش">
+                            <PropertyColumn Property="x=>x.LastModified" Title="آخرین تغییر">
                                 <CellTemplate>
-                                    @if (context.Item.LastModified != null)
-                                    {
-                                        <MudText>@context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime()</MudText>
-                                    }
+                                    <MudText Typo="Typo.caption">@(context.Item.LastModified.HasValue ? context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime() : "بدون تغییر")</MudText>
                                 </CellTemplate>
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
-                            <PropertyColumn Property="x=>x.Disable" Title="وضعیت">
-                                <CellTemplate>
-                                    <MudAlert Severity="@(context.Item.Disable ? Severity.Warning : Severity.Success)" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                        <MudText Typo="Typo.caption">@(context.Item.Disable ? "غیر فعال" : "فعال")</MudText>
-                                    </MudAlert>
-                                </CellTemplate>
-                            </PropertyColumn>
                         </Columns>
                     </MudDataGrid>
                 }

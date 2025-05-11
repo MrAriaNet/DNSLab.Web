@@ -10,7 +10,7 @@
 }
 else
 {
-    @foreach (var zone in _AllRecords.OrderByDescending(x=>x.Item2.Count()))
+    @foreach (var zone in _AllRecords.OrderByDescending(x => x.Item2.Count()))
     {
         <MudCard Class="mb-2" Elevation="0">
             <MudCardHeader>
@@ -24,7 +24,7 @@ else
             <MudCardContent>
                 @if (zone.Item2.Count() > 0)
                 {
-                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2" Dense Hover Outlined HorizontalScrollbar>
+                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderBy(x=>x.Name)" Dense Hover Outlined HorizontalScrollbar>
                         <NoRecordsContent>
                             <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                                 <MudText Typo="Typo.caption">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
@@ -34,9 +34,7 @@ else
                             <PropertyColumn Property='x=>$"{x.Name}.{zone.Item1.Name}"' Title="نام" />
                             <PropertyColumn Property="x=>x.Type" Title="نوع">
                                 <CellTemplate>
-                                    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                        <MudText Typo="Typo.caption">@context.Item.Type</MudText>
-                                    </MudAlert>
+                                    <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">@context.Item.Type</MudChip>
                                 </CellTemplate>
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.TTL" Title="TTL" />
@@ -67,9 +65,14 @@ else
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.Disable" Title="وضعیت">
                                 <CellTemplate>
-                                    <MudAlert Severity="@(context.Item.Disable ? Severity.Warning : Severity.Success)" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                        <MudText Typo="Typo.caption">@(context.Item.Disable ? "غیر فعال" : "فعال")</MudText>
-                                    </MudAlert>
+                                    @if (context.Item.Disable)
+                                    {
+                                        <MudChip T="string" Color="Color.Warning" Size="Size.Small" Label="true">غیرفعال</MudChip>
+                                    }
+                                    else
+                                    {
+                                        <MudChip T="string" Color="Color.Success" Size="Size.Small" Label="true">فعال</MudChip>
+                                    }
                                 </CellTemplate>
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />

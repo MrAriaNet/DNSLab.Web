@@ -23,9 +23,7 @@
                 <PropertyColumn Property="x=>x.Name" Title="نام" />
                 <TemplateColumn Title="کلید">
                     <CellTemplate>
-                        <MudAlert Variant="Variant.Filled" Icon="@Icons.Material.Filled.Key" Dense ContentAlignment="HorizontalAlignment.Center">
-                            <MudText Typo="Typo.caption">@context.Item.Key</MudText>
-                        </MudAlert>
+                        <MudChip T="string" Color="Color.Default" Size="Size.Small" Label="true" Icon="@Icons.Material.Rounded.Key">@context.Item.Key</MudChip>
                     </CellTemplate>
                 </TemplateColumn>
                 @if (!IsSelectableList)

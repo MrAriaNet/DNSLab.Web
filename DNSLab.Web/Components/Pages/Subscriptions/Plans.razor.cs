@@ -34,11 +34,11 @@ partial class Plans
         }
     }
 
-    MudDialog _SubscribeDialog { get; set; }
-    async Task DiscountOnChange(PlanDiscountDTO discount)
+    bool _SubscribeDialogVisible { get; set; } = false;
+    void DiscountOnChange(PlanDiscountDTO discount)
     {
         _SelectedPlanDiscount = discount;
-        await _SubscribeDialog.ShowAsync();
+        _SubscribeDialogVisible = true;
     }
 
     async Task Subscriptionn()

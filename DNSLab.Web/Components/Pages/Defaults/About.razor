@@ -2,25 +2,21 @@
 <SeoProvider Title="درباره ما" Meta_Description="درباره سایت DNSLab" />
 
 <MudText Typo="Typo.h1">درباره ما</MudText>
-<MudText>به DNSLab خوش آمدید!</MudText>
+<MudText Typo="Typo.h2" Class="my-2">به DNSLab خوش آمدید!</MudText>
 <MudText>من اکبر هستم، توسعه‌دهنده و مالک این سایت. DNSLab با هدف ارائه سرویس‌های دینامیک (DDNS) قابل اعتماد و کارآمد برای کاربران ایرانی راه‌اندازی شده است. از اسفند ۱۴۰۱ این سایت بصورت عمومی در اختیار کاربران قرار گرفته است و توانسته‌ایم بستری را فراهم کنیم که کاربران ما بتوانند به راحتی و با اطمینان از خدمات اینترنتی ما استفاده کنند.</MudText>
 <MudText Class="my-3">ماموریت ما در DNSLab این است که ابزارها و خدماتی را ارائه دهیم که به شما در مدیریت و دسترسی به آدرس‌های IP دینامیک خود کمک کند. با استفاده از تکنولوژی‌های پیشرفته و نوآوری‌های مستمر، ما سعی داریم تا تجربه‌ای بی‌نقص و بهینه را برای شما فراهم کنیم.</MudText>
-<MudText>ما به طور مستمر در حال بهبود و گسترش سرویس‌های خود هستیم و تعهد ما به کیفیت و رضایت شما اولویت اول ماست. با انتخاب DNSLab، شما به جامعه‌ای می‌پیوندید که بر اساس اعتماد، کیفیت و نوآوری بنا شده است.</MudText>
+<MudText>🚀 ما به طور مستمر در حال بهبود و گسترش سرویس‌های خود هستیم و تعهد ما به کیفیت و رضایت شما اولویت اول ماست. با انتخاب DNSLab، شما به جامعه‌ای می‌پیوندید که بر اساس اعتماد، کیفیت و نوآوری بنا شده است.</MudText>
 <MudText Typo="Typo.h2" Class="mt-3">تماس با ما</MudText>
 <MudText Class="mb-2">اگر سوالی دارید میتونید از طریق راه های ارتباطی زیر با من در ارتباط باشید.</MudText>
 
-<MudButton Color="Color.Info" StartIcon="@Icons.Custom.Brands.Telegram" Variant="Variant.Outlined" Href="https://t.me/AkbarAsghari">
-    <MudText Class="mud-ltr">
-        @("@AkbarAsghari")
-    </MudText>
-</MudButton>
-<MudButton Color="Color.Info" StartIcon="@Icons.Material.Rounded.Mail" Variant="Variant.Outlined" Href="mailto:AkbarAsghari@outlook.com">
-    <MudText Class="mud-ltr">
-        @("AkbarAsghari@outlook.com")
-    </MudText>
-</MudButton>
-<MudButton Color="Color.Info" StartIcon="@Icons.Custom.Brands.GitHub" Variant="Variant.Outlined" Href="https://github.com/AkbarAsghari">
-    <MudText Class="mud-ltr">
-        @("AkbarAsghari")
-    </MudText>
-</MudButton>
+<MudStack Row AlignItems="AlignItems.Center" Justify="Justify.Center">
+    <MudLink Href="https://t.me/AkbarAsghari" Underline="Underline.None">
+        <MudIconButton Color="Color.Primary" Variant="Variant.Filled" Icon="@Icons.Custom.Brands.Telegram" />
+    </MudLink>
+    <MudLink Href="mailto:AkbarAsghari@outlook.com" Underline="Underline.None">
+        <MudIconButton Color="Color.Primary" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Mail" />
+    </MudLink>
+    <MudLink Href="https://github.com/AkbarAsghari" Underline="Underline.None">
+        <MudIconButton Color="Color.Primary" Variant="Variant.Filled" Icon="@Icons.Custom.Brands.GitHub" />
+    </MudLink>
+</MudStack>

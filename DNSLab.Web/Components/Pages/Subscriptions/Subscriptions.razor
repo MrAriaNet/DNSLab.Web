@@ -15,7 +15,7 @@
     <MudCardContent>
         @if (_Subscriptions != null)
         {
-            <MudDataGrid T="SubscriptionDTO" Items="_Subscriptions" Dense Hover Bordered Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+            <MudDataGrid T="SubscriptionDTO" Items="_Subscriptions" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                         <MudText Typo="Typo.caption">هیچ تراکنشی یافت نشد</MudText>

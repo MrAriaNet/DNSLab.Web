@@ -5,7 +5,7 @@
 <SeoProvider Title="کیف پول" />
 
 <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense Class="mb-2">
-    <MudText>در صورت نیاز به افزایش موجودی کیف پول از دکمه افزایش موجودی استفاده نمایید.</MudText>
+    <MudText Typo="Typo.body2">در صورت نیاز به افزایش موجودی کیف پول از دکمه افزایش موجودی استفاده نمایید.</MudText>
 </MudAlert>
 <MudCard Elevation="0">
     <MudCardHeader>
@@ -26,7 +26,7 @@
                     @if (_Wallet != null)
                     {
                         <MudText Typo="Typo.h3">@_Wallet.Balance.Separate3Digits()</MudText>
-                        <MudText Typo="Typo.caption">ريال</MudText>
+                        <MudText Typo="Typo.body2">ريال</MudText>
                     }
                 </MudStack>
             </MudItem>
@@ -50,8 +50,8 @@
                 {
                     <MudDataGrid T="WalletTransactionDTO" Items="_WalletTransactions.Results" Loading="_IsLoading" Dense Hover Outlined>
                         <NoRecordsContent>
-                            <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                                <MudText Typo="Typo.caption">هیچ تراکنشی یافت نشد</MudText>
+                            <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                                <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
                             </MudAlert>
                         </NoRecordsContent>
                         <Columns>

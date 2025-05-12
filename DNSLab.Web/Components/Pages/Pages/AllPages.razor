@@ -15,8 +15,8 @@
     <MudCardContent>
         <MudDataGrid T="PageInfoDTO" Items="_Pages?.OrderByDescending(x=>x.UpdateDate?? x.CreateDate)" Loading="_IsLoading" Dense Hover Outlined HorizontalScrollbar>
             <NoRecordsContent>
-                <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                    <MudText Typo="Typo.caption">تا به حال هیچ صفحه‌ای ثبت نشده است!</MudText>
+                <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                    <MudText Typo="Typo.body2">تا به حال هیچ صفحه‌ای ثبت نشده است!</MudText>
                 </MudAlert>
             </NoRecordsContent>
             <Columns>

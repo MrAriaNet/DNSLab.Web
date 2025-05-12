@@ -19,7 +19,7 @@
         {
             <MudAlert ContentAlignment="HorizontalAlignment.Start" Severity="@(IsVerified == true ? Severity.Success : Severity.Warning)">
                 <MudText>@(IsVerified == true ? "موفق" : "نا موفق")</MudText>
-                <MudText Typo="Typo.caption">توضیحات : @Result</MudText>
+                <MudText Typo="Typo.body2">توضیحات : @Result</MudText>
             </MudAlert>
         }
     </MudCardContent>

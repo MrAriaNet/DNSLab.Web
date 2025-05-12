@@ -27,21 +27,21 @@
                                         <MudStack Spacing="0">
                                             <MudStack Row Spacing="1">
                                                 <MudIcon Icon="@Icons.Material.Rounded.AccountBox" Size="Size.Small" />
-                                                <MudText Typo="Typo.caption">@item.User.FullName</MudText>
+                                                <MudText Typo="Typo.body2">@item.User.FullName</MudText>
                                             </MudStack>
                                             <MudStack Row Spacing="1">
                                                 <MudIcon Icon="@Icons.Material.Rounded.CalendarMonth" Size="Size.Small" />
-                                                <MudText Typo="Typo.caption">@item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
+                                                <MudText Typo="Typo.body2">@item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
                                             </MudStack>
                                             <MudStack Row Spacing="1">
                                                 <MudIcon Icon="@Icons.Material.Rounded.Visibility" Size="Size.Small" />
-                                                <MudText Typo="Typo.caption">@item.VisitCount</MudText>
+                                                <MudText Typo="Typo.body2">@item.VisitCount</MudText>
                                             </MudStack>
                                         </MudStack>
                                     </CardHeaderActions>
                                 </MudCardHeader>
                                 <MudCardContent>
-                                    <MudText Typo="Typo.caption">@item.Description</MudText>
+                                    <MudText Typo="Typo.body2">@item.Description</MudText>
                                 </MudCardContent>
                             </MudCard>
                         </MudLink>

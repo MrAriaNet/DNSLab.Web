@@ -25,8 +25,11 @@
 
             @if (_IsSubscribeThisFeature == true)
             {
-                <MudAlert Class="mb-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
-                    <MudText>در این بخش 24 ساعت اخیر نمایش داده میشود.</MudText>
+                <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
+                    <MudText Typo="Typo.body2">در این بخش، می‌توانید ببینید که هرکدام از نام‌های میزبان (هاست نِیم) شما چه تعداد درخواست دریافت کرده‌اند. بیشتر این درخواست ها مربوط به ارائه‌دهندگان خدمات اینترنتی (ISP) هستند.</MudText>
+                </MudAlert>
+                <MudAlert Class="mb-2" Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Start">
+                    <MudText Typo="Typo.body2">این اطلاعات حداکثر تا 48 ساعت در سرور های DNSLab ذخیره میگردد.</MudText>
                 </MudAlert>
                 <MudGrid>
                     <MudItem xs="12" sm="6" md="4">
@@ -56,16 +59,16 @@
                 {
                     <MudGrid Spacing="3" Class="mt-1">
                         <MudItem xs="12" lg="4">
-                            <MudText Typo="Typo.caption">تعداد کل درخواست ها</MudText>
+                            <MudText Typo="Typo.body2">تعداد کل درخواست ها</MudText>
                             <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
 
-                            <MudText Typo="Typo.caption" Class="mt-3">جدول تعداد درخواست نسبت به آی پی</MudText>
+                            <MudText Typo="Typo.body2" Class="mt-3">جدول تعداد درخواست نسبت به آی پی</MudText>
                             @if (_ClientIPAndCounts != null)
                             {
                                 <MudDataGrid T="ClientIPAndCountDTO" Items="_ClientIPAndCounts" Height="25vh" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_IsLoading">
                                     <NoRecordsContent>
-                                        <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                                            <MudText Typo="Typo.caption">هیچ موردی یافت نشد</MudText>
+                                        <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                                            <MudText Typo="Typo.body2">هیچ موردی یافت نشد</MudText>
                                         </MudAlert>
                                     </NoRecordsContent>
                                     <Columns>
@@ -81,7 +84,7 @@
                             }
                         </MudItem>
                         <MudItem xs="12" lg="8">
-                            <MudText Typo="Typo.caption">نمودار تعداد کوئری بر حسب زمان</MudText>
+                            <MudText Typo="Typo.body2">نمودار تعداد کوئری بر حسب زمان</MudText>
                             @if (_IsLoading)
                             {
                                 <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />

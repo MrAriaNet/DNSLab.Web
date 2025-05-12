@@ -2,9 +2,9 @@
 
 <SeoProvider Title="Ping - پینگ" Meta_Description="آدرس هاست مورد نظر خود را با استفاده از این ابزار پینگ بگیرید" />
 
-<MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
-    <MudText>برای بررسی پورت لطفا آدرس آی‌پی یا هاست و پورت مورد نظر خود را وارد نمایید</MudText>
-    <MudText>توجه فرمایید که عملیات بررسی پورت توسط سرور DNSLab انجام میشود</MudText>
+<MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
+    <MudText Typo="Typo.body2">برای بررسی پورت لطفا آدرس آی‌پی یا هاست و پورت مورد نظر خود را وارد نمایید</MudText>
+    <MudText Typo="Typo.body2">توجه فرمایید که عملیات بررسی پورت توسط سرور DNSLab انجام میشود</MudText>
 </MudAlert>
 <MudGrid>
     <MudItem sm="4" xs="12">
@@ -22,11 +22,11 @@
     <MudAlert Severity="@(_Result == true ? Severity.Success : Severity.Error)" Dense NoIcon>
         @if (_Result == true)
         {
-            <MudText>Port @_Port is open</MudText>
+            <MudText Typo="Typo.body2">Port @_Port is open</MudText>
         }
         else
         {
-            <MudText>Port @_Port is closed</MudText>
+            <MudText Typo="Typo.body2">Port @_Port is closed</MudText>
         }
     </MudAlert>
 }

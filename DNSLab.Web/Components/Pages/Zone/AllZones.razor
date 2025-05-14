@@ -1,4 +1,6 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Zone
+@using DNSLab.Web.Enums
+
 @attribute [Route(AllRoutes.AllZones)]
 @attribute [Authorize]
 <SeoProvider Title="دامنه ها" />
@@ -26,6 +28,29 @@
                         <TemplateColumn Title="نوع">
                             <CellTemplate>
                                 <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">Primary</MudChip>
+                            </CellTemplate>
+                        </TemplateColumn>
+                        <TemplateColumn Title="وضعیت نیم سرور">
+                            <CellTemplate>
+                                <MudTooltip Text="@context.Item.Status.Description">
+                                    @switch ((ZoneStatusEnum)context.Item.Status.Id)
+                                    {
+                                        case ZoneStatusEnum.Pending:
+                                            <MudChip T="string" Color="Color.Default" Size="Size.Small" Label="true">@context.Item.Status.Name</MudChip>
+                                            break;
+                                        case ZoneStatusEnum.Active:
+                                            <MudChip T="string" Color="Color.Success" Size="Size.Small" Label="true">@context.Item.Status.Name</MudChip>
+                                            break;
+                                        case ZoneStatusEnum.Warning:
+                                            <MudChip T="string" Color="Color.Warning" Size="Size.Small" Label="true">@context.Item.Status.Name</MudChip>
+                                            break;
+                                        case ZoneStatusEnum.Expired:
+                                        case ZoneStatusEnum.Deleted:
+                                        case ZoneStatusEnum.Suspended:
+                                            <MudChip T="string" Color="Color.Error" Size="Size.Small" Label="true">@context.Item.Status.Name</MudChip>
+                                            break;
+                                    }
+                                </MudTooltip>
                             </CellTemplate>
                         </TemplateColumn>
                         <TemplateColumn Title="وضعیت">

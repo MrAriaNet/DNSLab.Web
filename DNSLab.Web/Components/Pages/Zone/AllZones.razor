@@ -5,18 +5,30 @@
 @attribute [Authorize]
 <SeoProvider Title="دامنه ها" />
 
-<AuthorizeView Roles="@($"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")" Context="AuthCtx">
-    <Authorized>
-        <MudCard Elevation="0">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h5">دامنه ها</MudText>
-                </CardHeaderContent>
-                <CardHeaderActions>
-                    <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="NewZone" EndIcon="@Icons.Material.Rounded.Add">افزودن دامنه</MudButton>
-                </CardHeaderActions>
-            </MudCardHeader>
-            <MudCardContent>
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">دامنه ها</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @if (_IsSubscribeThisFeature == true)
+            {
+                <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="NewZone" EndIcon="@Icons.Material.Rounded.Add">افزودن دامنه</MudButton>
+            }
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        @if (_IsSubscribeThisFeature != null)
+        {
+            <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
+                <MudContainer>
+                    <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
+                    <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+                </MudContainer>
+            </MudOverlay>
+
+            @if (_IsSubscribeThisFeature == true)
+            {
                 <MudDataGrid T="ZoneDTO" Items="_Zones?.OrderBy(x=>x.Name)" Loading="_IsLoading" Dense Hover Outlined>
                     <NoRecordsContent>
                         <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
@@ -68,9 +80,11 @@
                         <TemplateColumn>
                             <CellTemplate>
                                 <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                                    <MudTooltip Arrow Text="ویرایش رکورد ها">
-                                        <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
-                                    </MudTooltip>
+                                    <AuthorizeView Roles="@($"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")" Context="authCTX">
+                                        <MudTooltip Arrow Text="ویرایش رکورد ها">
+                                            <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                                        </MudTooltip>
+                                    </AuthorizeView>
                                     <BaseIconButton OnClick="()=> DisableZone(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
                                     <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                                 </MudStack>
@@ -78,10 +92,8 @@
                         </TemplateColumn>
                     </Columns>
                 </MudDataGrid>
-            </MudCardContent>
-        </MudCard>
-    </Authorized>
-    <NotAuthorized>
-        <ItIsUnderDevelopment />
-    </NotAuthorized>
-</AuthorizeView>
+            }
+        }
+
+    </MudCardContent>
+</MudCard>

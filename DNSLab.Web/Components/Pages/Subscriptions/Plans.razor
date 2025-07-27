@@ -39,9 +39,9 @@
                                             </MudTooltip>
                                         }
                                     </MudStack>
+                                    <MudDivider DividerType="DividerType.Middle" Class="mt-5 mb-2" />
                                     @if (plan.Discounts.Count() > 0)
                                     {
-                                        <MudDivider DividerType="DividerType.Middle" Class="mt-5 mb-2" />
                                         @foreach (var discount in plan.Discounts)
                                         {
                                             <MudLink Underline="Underline.None" OnClick="()=>DiscountOnChange(discount)">
@@ -65,6 +65,12 @@
                                                 </MudPaper>
                                             </MudLink>
                                         }
+                                    }
+                                    else
+                                    {
+                                        <MudAlert Dense Severity="Severity.Info" Variant="Variant.Outlined" Class="py-14" ContentAlignment="HorizontalAlignment.Start">
+                                            <MudText Typo="Typo.caption">این پلن بصورت پیش فرض برای همه کاربران فعال میباشد</MudText>
+                                        </MudAlert>
                                     }
                                 </MudCardContent>
                             </MudCard>

@@ -1,5 +1,5 @@
 ﻿<MudAppBar Elevation="0" Class="baackdrop-bluered" Style="z-index: calc(var(--mud-zindex-appbar) + 2);">
-    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="MenuOnClick" />
+    <MudIconButton Icon="@DNSLabIcons.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="MenuOnClick" />
     <MudStack Spacing="0" AlignItems="AlignItems.Center">
         <MudLink Href="@AllRoutes.Home" Underline="Underline.None" Color="Color.Inherit">
             <MudText Typo="Typo.h5">@GlobalSettings.ApplicationName</MudText>
@@ -7,11 +7,11 @@
         <MudText Typo="Typo.body2" Class="mt-n2">@GlobalSettings.Version</MudText>
     </MudStack>
     <MudSpacer />
-    <MudIconButton Href="https://github.com/AkbarAsghari/DNSLab.Web" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+    <MudIconButton Href="https://github.com/AkbarAsghari/DNSLab.Web" Icon="@DNSLabIcons.Github" Color="Color.Inherit" />
     <AuthorizeView>
         <NotAuthorized>
-            <BaseButton Class="mr-3" Variant="Variant.Text" EndIcon="@Icons.Material.Filled.Login" Href="@AllRoutes.Login">ورود</BaseButton>
-            <BaseButton Variant="Variant.Text" EndIcon="@Icons.Material.Filled.AppRegistration" Href="@AllRoutes.RegisterAccount">ثبت نام</BaseButton>
+            <BaseButton Class="mr-3" Variant="Variant.Text" EndIcon="@DNSLabIcons.Login" Href="@AllRoutes.Login">ورود</BaseButton>
+            <BaseButton Variant="Variant.Text" EndIcon="@DNSLabIcons.PersonAdd" Href="@AllRoutes.RegisterAccount">ثبت نام</BaseButton>
         </NotAuthorized>
     </AuthorizeView>
 </MudAppBar>

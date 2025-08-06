@@ -3,10 +3,10 @@
     <AuthorizeView Context="_AuthCTX">
         <Authorized>
             <MudNavMenu>
-                <MudNavLink Href="@AllRoutes.Dashboard" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">داشبورد</MudNavLink>
+                <MudNavLink Href="@AllRoutes.Dashboard" Match="NavLinkMatch.All" Icon="@DNSLabIcons.Dashboard">داشبورد</MudNavLink>
                 @if (_AuthCTX.User.IsInRole(AuthorizeRoles.Admin))
                 {
-                    <MudNavGroup Title="مدیریت" Icon="@Icons.Material.Filled.AdminPanelSettings">
+                    <MudNavGroup Title="مدیریت" Icon="@DNSLabIcons.Management">
                         <MudNavLink Href="@AllRoutes.AllTickets">تیکت ها</MudNavLink>
                         <MudNavLink Href="@AllRoutes.AllPages">مطالب سایت</MudNavLink>
                         <MudNavLink Href="@AllRoutes.TodayChangesDDNS">تغییرات DDNS امروز</MudNavLink>
@@ -14,35 +14,35 @@
                         <MudNavLink Href="@AllRoutes.AllSubscriptions">اشتراک‌ها</MudNavLink>
                     </MudNavGroup>
                 }
-                <MudNavLink Icon="@Icons.Material.Filled.Cloud" Href="@AllRoutes.AllZones">دامنه‌ ها</MudNavLink>
-                <MudNavGroup Title="Dynamic DNS" Icon="@Icons.Material.Filled.CloudSync">
+                <MudNavLink Icon="@DNSLabIcons.Domain" Href="@AllRoutes.AllZones">دامنه‌ ها</MudNavLink>
+                <MudNavGroup Title="Dynamic DNS" Icon="@DNSLabIcons.DNS">
                     <MudNavLink Href="@AllRoutes.DDNSHostNames">هاست‌نیم ها</MudNavLink>
                     <MudNavLink Href="@AllRoutes.UpdateTokens">کلید ها</MudNavLink>
                     <MudNavLink Href="@AllRoutes.RouterSettings">تنظیمات مودم (روتر)</MudNavLink>
                     <MudNavLink Href="@AllRoutes.MikroTikSettings">تنظیمات MikroTik</MudNavLink>
                     <MudNavLink Href="@AllRoutes.RaspberryPiSettings">تنظیمات Raspberry Pi</MudNavLink>
                 </MudNavGroup>
-                <MudNavGroup Title="کیف پول" Icon="@Icons.Material.Filled.Wallet">
+                <MudNavGroup Title="کیف پول" Icon="@DNSLabIcons.Wallet">
                     <MudNavLink Href="@AllRoutes.MyWallet">موجودی</MudNavLink>
                     <MudNavLink Href="@AllRoutes.WalletTransactions">تراکنش ها</MudNavLink>
                     <MudNavLink Href="@AllRoutes.Payments">پرداخت ها</MudNavLink>
                 </MudNavGroup>
-                <MudNavLink Href="@AllRoutes.Monitoring" Icon="@Icons.Material.Filled.MonitorHeart">مانیتورینگ</MudNavLink>
-                <MudNavLink Icon="@Icons.Material.Filled.WorkspacePremium" Href="@AllRoutes.MySubscriptions">اشتراک‌ها</MudNavLink>
+                <MudNavLink Href="@AllRoutes.Monitoring" Icon="@DNSLabIcons.Monitoring">مانیتورینگ</MudNavLink>
+                <MudNavLink Icon="@DNSLabIcons.Premium" Href="@AllRoutes.MySubscriptions">اشتراک‌ها</MudNavLink>
             </MudNavMenu>
             <MudSpacer />
         </Authorized>
     </AuthorizeView>
     <MudNavMenu>
-        <MudNavLink Icon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">پلن ها</MudNavLink>
-        <MudNavLink Icon="@Icons.Material.Rounded.Construction" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
-        <MudNavLink Icon="@Icons.Material.Rounded.SupportAgent" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>
-        <MudNavLink Icon="@Icons.Material.Rounded.Web" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
-        <MudNavLink Icon="@Icons.Material.Rounded.Computer" Href="@AllRoutes.About">درباره ما</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">پلن ها</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Tools" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Support" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Blog" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Info" Href="@AllRoutes.About">درباره ما</MudNavLink>
         <AuthorizeView>
             <Authorized>
-                <MudNavLink Href="@AllRoutes.MyAccount" Icon="@Icons.Material.Filled.AccountBox">حساب کاربری</MudNavLink>
-                <MudNavLink Href="@AllRoutes.Logout" Icon="@Icons.Material.Filled.Logout" IconColor="Color.Error">خروج</MudNavLink>
+                <MudNavLink Href="@AllRoutes.MyAccount" Icon="@DNSLabIcons.ManageAccount">حساب کاربری</MudNavLink>
+                <MudNavLink Href="@AllRoutes.Logout" Icon="@DNSLabIcons.Logout" IconColor="Color.Error">خروج</MudNavLink>
             </Authorized>
         </AuthorizeView>
     </MudNavMenu>

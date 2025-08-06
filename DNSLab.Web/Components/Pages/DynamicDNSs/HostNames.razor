@@ -18,7 +18,7 @@ else
                     <MudText Typo="Typo.h5">@zone.Item1.Name</MudText>
                 </CardHeaderContent>
                 <CardHeaderActions>
-                    <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@Icons.Material.Rounded.Add" OnClick="()=> NewRecord(zone.Item1)">افزودن هاست نِیم</MudButton>
+                    <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Add" OnClick="()=> NewRecord(zone.Item1)">افزودن هاست نِیم</MudButton>
                 </CardHeaderActions>
             </MudCardHeader>
             <MudCardContent>
@@ -79,10 +79,10 @@ else
                             <TemplateColumn StickyLeft>
                                 <CellTemplate>
                                     <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                                        <BaseIconButton OnClick="()=> CopyLink(context.Item, zone.Item1)" Color="Color.Tertiary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.ContentCopy" />
-                                        <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                                        <BaseIconButton OnClick="()=> CopyLink(context.Item, zone.Item1)" Color="Color.Tertiary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Copy" />
+                                        <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
                                         <BaseIconButton OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
-                                        <BaseIconButton OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
+                                        <BaseIconButton OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                                     </MudStack>
                                 </CellTemplate>
                             </TemplateColumn>

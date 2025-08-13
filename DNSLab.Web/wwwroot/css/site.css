@@ -19,6 +19,13 @@
     backdrop-filter: blur(2px) !important
 }
 
+.dnslab-ltr input,
+.dnslab-ltr .mud-typography,
+.dnslab-ltr .mud-checkbox {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
 /* Typewriter effect 1 */
 @keyframes typing {
   0.0000%, 27.3488% { content: ""; }

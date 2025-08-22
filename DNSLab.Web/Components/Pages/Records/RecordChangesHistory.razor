@@ -29,7 +29,7 @@
                         </MudAlert>
                     </NoRecordsContent>
                     <Columns>
-                        <PropertyColumn Property="x=>x.TimeStamp.ToPersianDateTime()" Title="زمان" StickyRight />
+                        <PropertyColumn Property="x=>x.TimeStamp.ToLocalTime().ToPersianDateTime()" Title="زمان" StickyRight />
                         <PropertyColumn Property="x=>x.OperationId" Title="عملیات">
                             <CellTemplate>
                                 @switch ((RecordChangeOperationEnum)context.Item.OperationId)

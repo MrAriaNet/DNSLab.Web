@@ -20,6 +20,7 @@
 }
 
 .dnslab-ltr input,
+.dnslab-ltr textarea,
 .dnslab-ltr .mud-typography,
 .dnslab-ltr .mud-checkbox {
     direction: ltr !important;

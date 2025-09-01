@@ -19,22 +19,25 @@
     <MudCardContent>
         @if (_IsSubscribeThisFeature != null || RecordId is null)
         {
-            <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
-                <MudContainer>
-                    <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
-                    <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
-                </MudContainer>
-            </MudOverlay>
-            <MudAlert Class="mb-2" Dense Severity="Severity.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
-                <MudText Typo="Typo.body2">در این بخش تاریخچه تغییرات رکورد ها نمایش داده میشود</MudText>
-                <MudText Typo="Typo.body2">
-                    در صورت اعمال روی سرور ها با علامت
-                    <MudChip T="string" Icon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" Label="true">اعمال شده</MudChip>
-                    و در صورتی که در حال انجام باشد با علامت
-                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true">در حال اعمال</MudChip>
-                    مشخص میگردد
-                </MudText>
-            </MudAlert>
+            @if (RecordId is not null)
+            {
+                <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
+                    <MudContainer>
+                        <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
+                        <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+                    </MudContainer>
+                </MudOverlay>
+                <MudAlert Class="mb-2" Dense Severity="Severity.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
+                    <MudText Typo="Typo.body2">در این بخش تاریخچه تغییرات رکورد ها نمایش داده میشود</MudText>
+                    <MudText Typo="Typo.body2">
+                        در صورت اعمال روی سرور ها با علامت
+                        <MudChip T="string" Icon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" Label="true">اعمال شده</MudChip>
+                        و در صورتی که در حال انجام باشد با علامت
+                        <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true">در حال اعمال</MudChip>
+                        مشخص میگردد
+                    </MudText>
+                </MudAlert>
+            }
             @if (_IsSubscribeThisFeature == true || RecordId is null)
             {
                 <MudDataGrid T="RecordChangeDTO" Items="_RecordChanges?.OrderByDescending(x=>x.TimeStamp)" Loading="_Loading" Dense Hover Outlined>

@@ -2,6 +2,6 @@
 {
     public abstract class BaseRecordDataDTO
     {
-
+        public string Name { get; set; }
     }
 }

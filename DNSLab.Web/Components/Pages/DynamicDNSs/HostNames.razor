@@ -80,7 +80,7 @@ else
                                 <CellTemplate>
                                     <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
                                         <BaseIconButton OnClick="()=> CopyLink(context.Item, zone.Item1)" Color="Color.Tertiary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Copy" />
-                                        <BaseIconButton Href="@(AllRoutes.RecordsHistory+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.History" />
+                                        <BaseIconButton Href="@(AllRoutes.RecordsHistory+"?RecordId="+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.History" />
                                         <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
                                         <BaseIconButton OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
                                         <BaseIconButton OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />

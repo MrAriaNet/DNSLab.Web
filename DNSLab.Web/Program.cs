@@ -31,6 +31,7 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IDNSLogRepository, DNSLogRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<IToolRepository, ToolRepository>();
+builder.Services.AddScoped<IReverseProxyRepository, ReverseProxyRepository>();
 
 
 builder.Services.AddHttpContextAccessor();

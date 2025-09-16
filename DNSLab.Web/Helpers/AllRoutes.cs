@@ -58,5 +58,7 @@
         public const string TodayChangesDDNS = "/admin/today-changes-ddns";
 
         public const string Monitoring = "/monitoring/summary";
+
+        public const string ReverseProxy = "/reverse-proxy";
     }
 }

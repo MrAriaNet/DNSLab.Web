@@ -42,19 +42,4 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Components\Pages\DynamicDNSs\MikroTikSettings.razor" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\statics\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Content Update="wwwroot\statics\DNSLab-engine.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\statics\dnslab.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 </Project>

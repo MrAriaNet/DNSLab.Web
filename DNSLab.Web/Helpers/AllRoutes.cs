@@ -59,6 +59,7 @@
 
         public const string Monitoring = "/monitoring/summary";
 
-        public const string ReverseProxy = "/reverse-proxy";
+        public const string ReverseProxy = "/reverse-proxy/config";
+        public const string ActiveTunnels = "/reverse-proxy/active-tunnels";
     }
 }

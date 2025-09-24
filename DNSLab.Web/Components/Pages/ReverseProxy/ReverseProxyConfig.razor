@@ -1,4 +1,5 @@
 ﻿@attribute [Route(AllRoutes.ReverseProxy)]
+@attribute [Authorize]
 <SeoProvider Title="Reverse Proxy" />
 
 <MudCard Class="mb-2" Elevation="0">
@@ -48,6 +49,9 @@
         <MudText Typo="Typo.caption">
             📥 ابتدا فایل کلاینت را دانلود کنید. در حال حاضر این کلاینت فقط روی ویندوز قابل اجراست.
         </MudText>
+        <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+            <MudText Typo="Typo.caption">در حال حاضر این ابزار فقط در ویندوز قابل استفاده میباشد اما به زودی در سیستم عامل های لینوکس و مک نیز در دسترس قرار خواهد گرفت</MudText>
+        </MudAlert>
         <MudFlexBreak />
         <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Primary" Variant="Variant.Filled" Href="https://cdn.dnslab.link/dnslab.exe">
             DNSLab windows .exe

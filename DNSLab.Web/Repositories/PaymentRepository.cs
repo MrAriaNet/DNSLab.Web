@@ -25,7 +25,7 @@ namespace DNSLab.Web.Repositories
             return await _HttpServiceProvider.Get<int?>($"{APIController}/GetPaymentsCount");
         }
 
-        public async Task<string?> RequestPaymentUrl(int amount)
+        public async Task<string?> RequestPaymentUrl(long amount)
         {
             return await _HttpServiceProvider.Get<string?>($"{APIController}/RequestPaymentUrl?Amount={amount}");
         }

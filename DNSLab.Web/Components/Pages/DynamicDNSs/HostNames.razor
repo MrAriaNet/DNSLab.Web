@@ -24,7 +24,7 @@ else
             <MudCardContent>
                 @if (zone.Item2.Count() > 0)
                 {
-                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderBy(x=>x.Name)" Dense Hover Outlined HorizontalScrollbar>
+                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderBy(x=>x.Name)" Dense Hover Outlined>
                         <NoRecordsContent>
                             <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                                 <MudText Typo="Typo.caption">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
@@ -78,7 +78,7 @@ else
                             <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
                             <TemplateColumn StickyLeft>
                                 <CellTemplate>
-                                    <MudStack Row Spacing="1">
+                                    <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
                                         <BaseIconButton OnClick="()=> CopyLink(context.Item, zone.Item1)" Color="Color.Tertiary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.ContentCopy" />
                                         <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
                                         <BaseIconButton OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />

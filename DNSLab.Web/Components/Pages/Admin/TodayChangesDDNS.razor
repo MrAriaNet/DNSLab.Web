@@ -21,7 +21,7 @@ else
             <MudCardContent>
                 @if (zone.Item2.Count() > 0)
                 {
-                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderByDescending(x=> x.CreateDate)" Dense Hover Outlined Loading="false" HorizontalScrollbar>
+                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderByDescending(x=> x.CreateDate)" Dense Hover Outlined Loading="false">
                         <NoRecordsContent>
                             <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                                 <MudText Typo="Typo.caption">تا به حال هیچ رکوردی ثبت نشده است!</MudText>

@@ -1,5 +1,6 @@
 ﻿using ApexCharts;
 using DNSLab.Web.Components.Dialogs.Wallet;
+using DNSLab.Web.DTOs.Repositories.Shared;
 using DNSLab.Web.DTOs.Repositories.Wallet;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
@@ -12,7 +13,7 @@ partial class MyWallet
     [Inject] IDialogService _DialogService { get; set; }
 
     WalletDTO? _Wallet { get; set; }
-    IEnumerable<WalletTransactionDTO>? _WalletTransactions { get; set; }
+    PagedResult<WalletTransactionDTO>? _WalletTransactions { get; set; }
 
     IEnumerable<Tuple<DateTime, int>>? _Last30DaysTransactionsChartDataChartData;
 
@@ -22,7 +23,7 @@ partial class MyWallet
     {
         _IsLoading = true;
         _Wallet = await _WalletRepository.GetWallet();
-        _WalletTransactions = await _WalletRepository.GetWalletTransactions(0, 5);
+        _WalletTransactions = await _WalletRepository.GetWalletTransactions(1, 5);
         _Last30DaysTransactionsChartDataChartData = await _WalletRepository.GetLast30DaysTransactionsChartData();
         _IsLoading = false;
     }

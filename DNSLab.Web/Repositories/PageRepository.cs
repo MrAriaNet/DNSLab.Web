@@ -1,6 +1,9 @@
-﻿using DNSLab.Web.DTOs.Repositories.Page;
+﻿using DNSLab.Shared.Enums;
+using DNSLab.Web.DTOs.Repositories.Page;
 using DNSLab.Web.Interfaces.Providers;
 using DNSLab.Web.Interfaces.Repositories;
+using System;
+using System.Collections.Generic;
 
 namespace DNSLab.Web.Repositories
 {
@@ -22,9 +25,9 @@ namespace DNSLab.Web.Repositories
             return _HttpServiceProvider.Get<IEnumerable<PageInfoDTO>?>($"{APIController}/GetAllPages");
         }
 
-        public Task<IEnumerable<PageInfoDTO>?> GetLastPages()
+        public Task<IEnumerable<PageInfoDTO>?> GetPagesByType(PageTypeEnum type)
         {
-            return _HttpServiceProvider.Get<IEnumerable<PageInfoDTO>?>($"{APIController}/GetLastPages", false);
+            return _HttpServiceProvider.Get<IEnumerable<PageInfoDTO>?>($"{APIController}/GetPagesByType?type={(int)type}", false);
         }
 
         public Task<PageDTO?> GetPage(Guid id)
@@ -35,6 +38,11 @@ namespace DNSLab.Web.Repositories
         public Task<PageDTO?> GetPageByUrl(string url)
         {
             return _HttpServiceProvider.Get<PageDTO?>($"{APIController}/GetPageByUrl?url={url}", false);
+        }
+
+        public Task<IEnumerable<PageTypeDTO>?> GetPageTypes()
+        {
+            return _HttpServiceProvider.Get<IEnumerable<PageTypeDTO>?>($"{APIController}/GetPageTypes", false);
         }
 
         public Task<bool> UpdatePage(PageDTO model)

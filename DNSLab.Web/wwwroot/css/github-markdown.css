@@ -16,7 +16,7 @@
         /* dark */
         color-scheme: dark;
         --focus-outlineColor: #1f6feb;
-        --fgColor-default: #f0f6fc;
+        --fgColor-default: var(--mud-palette-text-primary);
         --fgColor-muted: #9198a1;
         --fgColor-accent: #4493f8;
         --fgColor-success: #3fb950;
@@ -73,14 +73,14 @@
         /* light */
         color-scheme: light;
         --focus-outlineColor: #0969da;
-        --fgColor-default: #1f2328;
+        --fgColor-default: var(--mud-palette-text-primary);
         --fgColor-muted: #59636e;
         --fgColor-accent: #0969da;
         --fgColor-success: #1a7f37;
         --fgColor-attention: #9a6700;
         --fgColor-danger: #d1242f;
         --fgColor-done: #8250df;
-        --bgColor-default: #ffffff;
+        --bgColor-default: transparent;
         --bgColor-muted: #f6f8fa;
         --bgColor-neutral-muted: #818b981f;
         --bgColor-attention-muted: #fff8c5;

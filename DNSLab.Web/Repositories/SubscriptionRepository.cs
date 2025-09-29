@@ -1,4 +1,5 @@
 ﻿using DNSLab.Web.DTOs.Repositories.Subscription;
+using DNSLab.Web.Enums;
 using DNSLab.Web.Interfaces.Providers;
 using DNSLab.Web.Interfaces.Repositories;
 
@@ -7,6 +8,11 @@ namespace DNSLab.Web.Repositories
     public class SubscriptionRepository(IHttpServiceProvider _HttpServiceProvider) : ISubscriptionRepository
     {
         const string APIController = "Subscription";
+
+        public Task<bool> CheckSbscriptionFeature(FeatureEnum feature)
+        {
+            return _HttpServiceProvider.Get<bool>($"{APIController}/CheckSbscriptionFeature?feature={(int)feature}");
+        }
 
         public Task<IEnumerable<SubscriptionDTO>?> GetAllSubscribes()
         {

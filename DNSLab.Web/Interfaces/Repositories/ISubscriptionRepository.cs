@@ -1,4 +1,5 @@
 ﻿using DNSLab.Web.DTOs.Repositories.Subscription;
+using DNSLab.Web.Enums;
 
 namespace DNSLab.Web.Interfaces.Repositories
 {
@@ -7,6 +8,7 @@ namespace DNSLab.Web.Interfaces.Repositories
         Task<IEnumerable<PlanSectionDTO>?> GetPlans();
         Task<bool> Subscribe(int planId, int discountId);
         Task<IEnumerable<SubscriptionDTO>?> GetSubscribes();
-        Task<IEnumerable<SubscriptionDTO>?> GetAllSubscribes();  
+        Task<IEnumerable<SubscriptionDTO>?> GetAllSubscribes();
+        Task<bool> CheckSbscriptionFeature(FeatureEnum feature);
     }
 }

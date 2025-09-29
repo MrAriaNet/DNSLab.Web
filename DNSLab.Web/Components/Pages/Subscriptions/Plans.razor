@@ -14,62 +14,67 @@
         </MudAlert>
         @if (_PlanSections != null)
         {
-            <MudRadioGroup T="PlanDiscountDTO" ValueChanged="DiscountOnChange">
-                @foreach (var sectionItem in _PlanSections.Where(x => x.Id == 1))
-                {
-                    <MudText Typo="Typo.h2" Align="Align.Center" Class="mb-5">@sectionItem.Name</MudText>
-                    <MudGrid Spacing="1">
-                        @foreach (var plan in sectionItem.Plans)
-                        {
-                            <MudItem xs="12" sm="6" md="4" lg="3">
-                                <MudCard Outlined Style="height: 100%;">
-                                    <MudCardHeader>
-                                        <CardHeaderContent>
-                                            <MudText Typo="Typo.h3">@plan.Name</MudText>
-                                        </CardHeaderContent>
-                                        <CardHeaderActions>
-                                            <MudText Color="Color.Info">@plan.BasePrice.Separate3Digits() ريال</MudText>
-                                        </CardHeaderActions>
-                                    </MudCardHeader>
-                                    <MudCardContent>
-                                        <MudStack Spacing="0" AlignItems="AlignItems.Start">
-                                            @foreach (var feature in plan.Features)
-                                            {
-                                                <MudTooltip Text="@feature.Description" Arrow>
-                                                    <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@(feature.Supported ? Icons.Material.Rounded.CheckBox : Icons.Material.Rounded.Close)" IconColor="@(feature.Supported ? Color.Success : Color.Error)" Color="Color.Default">@feature.Name @(feature.FeatureValue == null ? String.Empty : $" : {feature.FeatureValue}")</MudChip>
-                                                </MudTooltip>
-                                            }
-                                        </MudStack>
-                                        @if (plan.Discounts.Count() > 0)
+            @foreach (var sectionItem in _PlanSections.Where(x => x.Id == 1))
+            {
+                <MudText Typo="Typo.h2" Align="Align.Center" Class="mb-5">@sectionItem.Name</MudText>
+                <MudGrid Spacing="1">
+                    @foreach (var plan in sectionItem.Plans)
+                    {
+                        <MudItem xs="12" sm="6" md="4" lg="3">
+                            <MudCard Outlined Style="height: 100%;">
+                                <MudCardHeader>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.h3">@plan.Name</MudText>
+                                    </CardHeaderContent>
+                                    <CardHeaderActions>
+                                        <MudText Color="Color.Info">@plan.BasePrice.Separate3Digits() ريال</MudText>
+                                    </CardHeaderActions>
+                                </MudCardHeader>
+                                <MudCardContent>
+                                    <MudStack Spacing="0" AlignItems="AlignItems.Start">
+                                        @foreach (var feature in plan.Features)
                                         {
-                                            <MudDivider DividerType="DividerType.Middle" Class="mt-5 mb-2" />
-                                            @foreach (var discount in plan.Discounts)
-                                            {
-                                                <MudRadio Value="discount" Size="Size.Small" Color="Color.Success" CheckedIcon="@Icons.Material.Rounded.CheckCircle" UncheckedColor="Color.Default">
-                                                    <MudText>
-                                                        @discount.Duration.DurationInMonth ماهه
-                                                        @if (discount.Duration.DurationInMonth > 1)
-                                                        {
-                                                            <text>(@((discount.Duration.DurationInMonth * (plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100))).Separate3Digits()))</text>
-                                                        }
-                                                    </MudText>
-                                                    @if (discount.Duration.DurationInMonth > 1)
-                                                    {
-                                                        <MudText Color="Color.Success" Typo="Typo.caption" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits()))</MudText>
-                                                    }
-                                                </MudRadio>
-                                            }
+                                            <MudTooltip Text="@feature.Description" Arrow>
+                                                <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@(feature.Supported ? Icons.Material.Rounded.CheckBox : Icons.Material.Rounded.Close)" IconColor="@(feature.Supported ? Color.Success : Color.Error)" Color="Color.Default">@feature.Name @(feature.FeatureValue == null ? String.Empty : $" : {feature.FeatureValue}")</MudChip>
+                                            </MudTooltip>
                                         }
-                                    </MudCardContent>
-                                </MudCard>
-                            </MudItem>
-                        }
-                    </MudGrid>
-                }
-            </MudRadioGroup>
+                                    </MudStack>
+                                    @if (plan.Discounts.Count() > 0)
+                                    {
+                                        <MudDivider DividerType="DividerType.Middle" Class="mt-5 mb-2" />
+                                        @foreach (var discount in plan.Discounts)
+                                        {
+                                            <MudLink Underline="Underline.None" OnClick="()=>DiscountOnChange(discount)">
+                                                <MudPaper Outlined Class="pa-1 my-1">
+                                                    <MudStack AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Row Spacing="0">
+                                                        <MudStack AlignItems="AlignItems.Center" Spacing="1">
+                                                            <MudText>
+                                                                @discount.Duration.DurationInMonth ماهه
+                                                                @if (discount.Duration.DurationInMonth > 1)
+                                                                {
+                                                                    <text>(@((discount.Duration.DurationInMonth * (plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100))).Separate3Digits()))</text>
+                                                                }
+                                                            </MudText>
+                                                            @if (discount.Duration.DurationInMonth > 1)
+                                                            {
+                                                                <MudText Color="Color.Info" Typo="Typo.caption" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits()))</MudText>
+                                                            }
+                                                        </MudStack>
+                                                        <MudChip T="object" Label="true" Variant="Variant.Text" Icon="@Icons.Material.Rounded.CheckBox" Color="Color.Success">انتخاب</MudChip>
+                                                    </MudStack>
+                                                </MudPaper>
+                                            </MudLink>
+                                        }
+                                    }
+                                </MudCardContent>
+                            </MudCard>
+                        </MudItem>
+                    }
+                </MudGrid>
+            }
 
 
-            <MudDialog Options="new DialogOptions{MaxWidth = MaxWidth.ExtraSmall, FullWidth = true , CloseButton = true}" @ref="_SubscribeDialog" ContentClass="pa-1 ma-3">
+            <MudDialog Options="new DialogOptions{MaxWidth = MaxWidth.ExtraSmall, FullWidth = true , CloseButton = true}" Visible="_SubscribeDialogVisible" VisibleChanged="(v)=> _SubscribeDialogVisible = v" ContentClass="pa-1 ma-3">
                 <TitleContent>
                     <MudText>پلن انتخابی : @_SelectedPlan.Name</MudText>
                 </TitleContent>

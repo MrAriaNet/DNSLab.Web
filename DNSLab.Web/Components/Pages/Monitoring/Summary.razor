@@ -50,7 +50,7 @@
             <MudCard Elevation="0">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.caption">تعداد کل درخواست ها 24 ساعت اخیر</MudText>
+                        <MudText Typo="Typo.caption">تعداد کل درخواست ها</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
@@ -106,7 +106,7 @@
                             <ApexChart Options="_LineOptions" @ref="_Chart">
                                 @if (_TimeAndCounts != null)
                                 {
-                                    <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" Name="تعداد" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
+                                    <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" Name="تعداد" XValue='x=> new DateTime(x.Time.Ticks).ToLocalTime().ToString("HH:mm")' YValue="x=>x.Count" />
                                 }
                             </ApexChart>
                         </MudPaper>

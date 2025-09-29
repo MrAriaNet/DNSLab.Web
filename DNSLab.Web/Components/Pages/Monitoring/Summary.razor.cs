@@ -23,6 +23,7 @@ partial class Summary
 
     long? _TotalRequests { get; set; } = null;
     IEnumerable<TimeAndCountDTO>? _TimeAndCounts { get; set; }
+    IEnumerable<ClientIPAndCountDTO>? _ClientIPAndCounts { get; set; }
     bool _IsLoading = false;
     string _LastSelectedQName = String.Empty;
     async Task QueryOnChange(string? qName = null)
@@ -35,6 +36,7 @@ partial class Summary
         _LastSelectedQName = qName;
         _TotalRequests = await _DNSLogRepository.GetTotalRequest(qName);
         _TimeAndCounts = await _DNSLogRepository.GetTotalRequestChartByTime(qName);
+        _ClientIPAndCounts = await _DNSLogRepository.GetClientIPAndCounts(qName);
         _IsLoading = false;
     }
 
@@ -50,6 +52,7 @@ partial class Summary
         {
             Theme = Mode.Dark
         },
+        Xaxis = new XAxis { Labels = new XAxisLabels { Rotate = 0 } },
         Grid = new Grid
         {
             Yaxis = new GridYAxis

@@ -38,27 +38,81 @@
                 }
             </MudItem>
         </MudGrid>
-
-        @if (!String.IsNullOrEmpty(_LastSelectedQName))
-        {
-            <MudStack Row AlignItems="AlignItems.Center">
-                <MudText>تعداد کل درخواست ها 24 ساعت اخیر :</MudText>
-                <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
-            </MudStack>
-            @if (_IsLoading)
-            {
-                <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
-            }
-            else
-            {
-                <ApexChart Options="_LineOptions" @ref="_Chart">
-                    @if (_TimeAndCounts != null)
-                    {
-                        <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" Name="تعداد" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
-                    }
-                </ApexChart>
-            }
-        }
-
     </MudCardContent>
 </MudCard>
+
+
+
+@if (!String.IsNullOrEmpty(_LastSelectedQName))
+{
+    <MudGrid Spacing="1" Class="mt-1">
+        <MudItem xs="12" lg="4">
+            <MudCard Elevation="0">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.caption">تعداد کل درخواست ها 24 ساعت اخیر</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudStack Row AlignItems="AlignItems.Center">
+                        <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
+                    </MudStack>
+                </MudCardContent>
+            </MudCard>
+            <MudCard Elevation="0" Class="mt-1">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.caption">جدول تعداد درخواست نسبت به آی پی</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    @if (_ClientIPAndCounts != null)
+                    {
+                        <MudDataGrid T="ClientIPAndCountDTO" Items="_ClientIPAndCounts" Height="25vh" Dense Hover Bordered Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_IsLoading">
+                            <NoRecordsContent>
+                                <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                                    <MudText Typo="Typo.caption">هیچ موردی یافت نشد</MudText>
+                                </MudAlert>
+                            </NoRecordsContent>
+                            <Columns>
+                                <PropertyColumn Property="x=>x.ClientIP" Title="آی پی" />
+                                <TemplateColumn Title="%">
+                                    <CellTemplate>
+                                        <MudText> @(context.Item.Count * 100 / _ClientIPAndCounts.Sum(x => x.Count))%</MudText>
+                                    </CellTemplate>
+                                </TemplateColumn>
+                                <PropertyColumn Property="x=>x.Count" Title="تعداد" />
+                            </Columns>
+                        </MudDataGrid>
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" lg="8">
+            <MudCard Elevation="0">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.caption">نمودار تعداد کوئری بر حسب زمان</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    @if (_IsLoading)
+                    {
+                        <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
+                    }
+                    else
+                    {
+                        <MudPaper Height="30vh">
+                            <ApexChart Options="_LineOptions" @ref="_Chart">
+                                @if (_TimeAndCounts != null)
+                                {
+                                    <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" Name="تعداد" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
+                                }
+                            </ApexChart>
+                        </MudPaper>
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+}

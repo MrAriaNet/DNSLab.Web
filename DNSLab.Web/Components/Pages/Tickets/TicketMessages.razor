@@ -1,6 +1,7 @@
 ﻿@using DNSLab.Web.Utilities
 @attribute [Route(AllRoutes.TicketMessages + "/{TicketId:guid}")]
 @attribute [Authorize]
+<SeoProvider Title="جزئیات تیکت" />
 
 @if (_Ticket != null)
 {

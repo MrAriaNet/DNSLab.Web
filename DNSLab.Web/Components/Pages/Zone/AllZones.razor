@@ -1,6 +1,7 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Zone
 @attribute [Route(AllRoutes.AllZones)]
 @attribute [Authorize]
+<SeoProvider Title="دامنه ها" />
 
 <AuthorizeView Roles="@($"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")" Context="AuthCtx">
     <Authorized>

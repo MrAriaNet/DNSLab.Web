@@ -9,11 +9,17 @@
     <MudCard Elevation="0">
         <MudCardHeader>
             <CardHeaderContent>
-                <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexEnd">
-                    <MudText Typo="Typo.body2">تاریخ انتشار : @_Page.PublishDate?.ToLocalTime().ToPersianDateTime()</MudText>
-                    <MudText Typo="Typo.body2">آخرین بروزرسانی : @_Page.UpdateDate?.ToLocalTime().ToPersianDateTime()</MudText>
-                    <MudText Typo="Typo.body2">تعداد بازدید : @_Page.VisitCount.ToString()</MudText>
-                </MudStack>
+                <MudGrid Justify="Justify.SpaceBetween" Spacing="1">
+                    <MudItem xs="12" lg="4">
+                        <MudText Typo="Typo.body2">تاریخ انتشار : @_Page.PublishDate?.ToLocalTime().ToPersianDateTime()</MudText>
+                    </MudItem>
+                    <MudItem xs="12" lg="4">
+                        <MudText Typo="Typo.body2">آخرین بروزرسانی : @_Page.UpdateDate?.ToLocalTime().ToPersianDateTime()</MudText>
+                    </MudItem>
+                    <MudItem xs="12" lg="4">
+                        <MudText Typo="Typo.body2">تعداد بازدید : @_Page.VisitCount.ToString()</MudText>
+                    </MudItem>
+                </MudGrid>
             </CardHeaderContent>
         </MudCardHeader>
         <MudCardContent>

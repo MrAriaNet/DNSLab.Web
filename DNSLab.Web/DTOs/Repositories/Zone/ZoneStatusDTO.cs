@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace DNSLab.Web.DTOs.Repositories.Zone
 {
-    public class ZoneDTO
+    public class ZoneStatusDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public bool Disable { get; set; }
-        public ZoneStatusDTO? Status { get; set; }
+        public string Description { get; set; }
     }
 }

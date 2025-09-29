@@ -49,5 +49,7 @@
         public const string AllPayments = "/payment/all-payments";
 
         public const string TodayChangesDDNS = "/admin/today-changes-ddns";
+
+        public const string LastQueryLogs = "/log/last-queries";
     }
 }

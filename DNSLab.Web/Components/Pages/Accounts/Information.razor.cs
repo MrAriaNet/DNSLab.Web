@@ -6,6 +6,7 @@ namespace DNSLab.Web.Components.Pages.Accounts;
 partial class Information
 {
     [Inject] IAccountRepository _AccountRepository { get; set; }
+    [Inject] ISnackbar _Snackbar { get; set; }
 
     UserDTO? _CurrentUser;
     protected override async Task OnInitializedAsync()
@@ -23,6 +24,7 @@ partial class Information
                 FirstName = _CurrentUser.FirstName,
                 LastName = _CurrentUser.LastName,
             });
+            _Snackbar.Add("تغییرات با موفقیت اعمال شد", Severity.Success);
         }
     }
 

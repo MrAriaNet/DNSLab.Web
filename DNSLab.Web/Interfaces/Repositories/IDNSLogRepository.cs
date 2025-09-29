@@ -1,4 +1,5 @@
 ﻿using DNSLab.Web.DTOs.Repositories.DNSLog;
+using DNSLab.Web.Enums;
 
 namespace DNSLab.Web.Interfaces.Repositories
 {
@@ -6,5 +7,6 @@ namespace DNSLab.Web.Interfaces.Repositories
     {
         Task<IEnumerable<QueryLogDTO>?> GetLastQueries(Guid zoneId);
         Task<IEnumerable<QueryCountDTO>?> GetQueriesChart(Guid zoneId);
+        Task<IEnumerable<QueryCountDTO>?> GetQueriesByRecordChart(Guid recordId , RecordTypeEnum recordType);
     }
 }

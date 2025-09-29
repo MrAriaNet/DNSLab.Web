@@ -1,0 +1,59 @@
+﻿@using ApexCharts
+@using DNSLab.Web.DTOs.Repositories.DNSLog
+@using DNSLab.Web.DTOs.Repositories.Zone
+@using DNSLab.Web.Enums
+@attribute [Route(AllRoutes.QueryCountPerRecordChart)]
+@attribute [Authorize]
+<SeoProvider Title="نمودار تعداد کوئری ها بر اساس هاست نیم" />
+
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">تعداد کوئری بر اساس هاست نیم یک ساعت اخیر</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudAlert Class="mb-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
+            <MudText>در این بخش تعداد کوئری های یک ساعت اخیر نمایش داده میشود.</MudText>
+        </MudAlert>
+        @if (_AllRecords != null)
+        {
+            <MudGrid>
+                <MudItem xs="12" sm="9" md="6" lg="4" Class="mb-2">
+                    <MudStack Row Spacing="0" AlignItems="AlignItems.Center">
+                        <MudSelect Class="my-2" T="Tuple<Guid,RecordTypeEnum>" Label="هاست نِیم" Margin="Margin.Dense" Variant="Variant.Outlined" ValueChanged="RecordOnChanged">
+                            @foreach (var zone in _AllRecords.Where(x => x.Item2.Count() > 0))
+                            {
+                                @foreach (var record in zone.Item2)
+                                {
+                                    <MudSelectItem T="Tuple<Guid,RecordTypeEnum>" Value="@(new Tuple<Guid, RecordTypeEnum>(record.Id , record.Type))">@($"{record.Name}.{zone.Item1.Name}")</MudSelectItem>
+                                }
+                            }
+                        </MudSelect>
+                        @if (_LastSelectedRecord != null)
+                        {
+                            <BaseIconButton Color="MudBlazor.Color.Primary" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Refresh" OnClick="Refresh" />
+                        }
+                    </MudStack>
+                </MudItem>
+            </MudGrid>
+        }
+        @if (_IsLoading)
+        {
+            <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
+        }
+        else
+        {
+            <ApexChart Options="_LineOptions" @ref="_Chart">
+                @if (_Counts != null)
+                {
+                    foreach (var item in _Counts.GroupBy(x => x.Type))
+                    {
+                        <ApexPointSeries SeriesType="SeriesType.Line" Items="item" Name="@item.Key.ToString()" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
+                    }
+                }
+            </ApexChart>
+        }
+
+    </MudCardContent>
+</MudCard>

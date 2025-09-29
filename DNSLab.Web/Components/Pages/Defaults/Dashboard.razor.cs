@@ -10,13 +10,11 @@ partial class Dashboard
     int? ZoneCount { get; set; }
     int? RecordsCount { get; set; }
     int? DDNSsCount { get; set; }
-    int? TodayDDNSIpChangesCount { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         ZoneCount = await _DashboardRepository.GetZonesCount();
         RecordsCount = await _DashboardRepository.GetRecordsCount();
         DDNSsCount = await _DashboardRepository.GetDDNSsCount();
-        TodayDDNSIpChangesCount = await _DashboardRepository.GetTodayDDNSIpChangesCount();
     }
 }

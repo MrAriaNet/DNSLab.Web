@@ -31,7 +31,7 @@ else
                             </MudAlert>
                         </NoRecordsContent>
                         <Columns>
-                            <PropertyColumn Property="x=>x.Name" Title="نام" />
+                            <PropertyColumn Property='x=>$"{x.Name}.{zone.Item1.Name}"' Title="نام" />
                             <PropertyColumn Property="x=>x.Type" Title="نوع">
                                 <CellTemplate>
                                     <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">

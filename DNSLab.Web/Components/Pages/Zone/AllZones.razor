@@ -20,6 +20,12 @@
     <MudCardContent>
         @if (_IsSubscribeThisFeature != null)
         {
+            <MudAlert Class="mb-2" Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
+                <MudText Typo="Typo.body2">شما می‌توانید در این بخش دامنه اختصاصی خود را اضافه کنید و رکوردهای Dynamic DNS را با این دامنه تنظیم نمایید.</MudText>
+            </MudAlert>
+            <MudAlert Class="mb-2" Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Start">
+                <MudText Typo="Typo.body2">توجه کنید که بعد از تعریف رکورد حتما نِیم سرور (Name Server) های دامنه خود را به jupiter.ns.dnslab.link ویرایش نمایید.</MudText>
+            </MudAlert>
             <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
                 <MudContainer>
                     <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace DNSLab.Web.Components.Pages.ReverseProxy;
 
-partial class ReverseProxy
+partial class ReverseProxyConfig
 {
     [Inject] IReverseProxyRepository _ReverseProxyRepository { get; set; }
     [Inject] IDialogService _DialogService { get; set; }

@@ -34,11 +34,12 @@
         </Authorized>
     </AuthorizeView>
     <MudNavMenu>
-        <MudNavLink Icon="@Icons.Material.Rounded.Web" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
+        <MudNavGroup Icon="@Icons.Material.Rounded.Verified" Title="اشتراک">
+            <MudNavLink Href="@AllRoutes.Plans">پلن ها</MudNavLink>
+        </MudNavGroup>
         <MudNavLink Icon="@Icons.Material.Rounded.Construction" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
-        <MudNavLink Icon="@Icons.Material.Rounded.Code" Href="@AllRoutes.ItIsUnderDevelopment">API</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.SupportAgent" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>
-        <MudNavLink Icon="@Icons.Material.Rounded.Money" Href="@AllRoutes.Plans">پلن ها</MudNavLink>
+        <MudNavLink Icon="@Icons.Material.Rounded.Web" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.Computer" Href="@AllRoutes.About">درباره ما</MudNavLink>
         <AuthorizeView>
             <Authorized>

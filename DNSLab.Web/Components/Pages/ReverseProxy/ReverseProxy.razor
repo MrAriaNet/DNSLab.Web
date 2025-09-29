@@ -7,11 +7,6 @@
         <CardHeaderContent>
             <MudText Typo="Typo.h5">Reverse Proxy</MudText>
         </CardHeaderContent>
-        <CardHeaderActions>
-            <MudStack Row>
-                <MudTextField T="string" Variant="Variant.Filled" ReadOnly @bind-Value="_Token" Margin="Margin.Dense" Label="کلید (token)" AdornmentIcon="@DNSLabIcons.Refresh" OnAdornmentClick="RevokeClientToken" Adornment="Adornment.End"></MudTextField>
-            </MudStack>
-        </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
         <MudText Typo="Typo.caption">
@@ -63,11 +58,19 @@
         </MudText>
         <MudText Class="mt-1">3️⃣ وارد کردن توکن</MudText>
         <MudText Typo="Typo.caption">
-            🔐 توکن اختصاصی خود را (که در بالای صفحه نمایش داده شده) با دستور روبرو وارد کنید:
+            🔐 توکن اختصاصی خود را با دستور روبرو وارد کنید:
         </MudText>
         <MudText Typo="Typo.caption" Color="Color.Primary" Class="dnslab-ltr">
-            DNSLab.exe --token XXXXXXX-XX-XXXXXXXX
+            DNSLab.exe --token @_Token
         </MudText>
+        <MudFlexBreak />
+        <MudText Typo="Typo.caption" Color="Color.Warning" Class="dnslab-ltr">
+            ⚠️ در صورت نیاز میتوانید با لینک روبرو کلید خود را تغییر دهید :
+            <MudLink OnClick="RevokeClientToken" Typo="Typo.caption">
+                تغییر کلید
+            </MudLink>
+        </MudText>
+
         <MudText Class="mt-1">4️⃣ تونل کردن پورت دلخواه</MudText>
         <MudText Typo="Typo.caption">
             برای ایجاد تونل روی پورت مورد نظر (مثلاً پورت 80)، از دستور روبرو استفاده کنید:

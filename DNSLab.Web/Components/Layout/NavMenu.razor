@@ -1,5 +1,5 @@
 ﻿ @inject IHttpContextAccessor httpContextAccessor;
-<MudDrawer @bind-Open="_drawerOpen" Overlay="false" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
+<MudDrawer @bind-Open="_drawerOpen" Overlay="true" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
     <AuthorizeView Context="_AuthCTX">
         <Authorized>
             <MudNavMenu>

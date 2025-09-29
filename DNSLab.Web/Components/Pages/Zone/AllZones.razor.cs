@@ -12,7 +12,6 @@ namespace DNSLab.Web.Components.Pages.Zone
     partial class AllZones
     {
         [Inject] IZoneRepository _ZoneRepository { get; set; }
-        [Inject] ISnackbar _Snackbar { get; set; }
         [Inject] IDialogService _DialogService { get; set; }
 
         IEnumerable<ZoneDTO>? _Zones { get; set; }
@@ -65,7 +64,6 @@ namespace DNSLab.Web.Components.Pages.Zone
             {
                 if (await _ZoneRepository.DeleteZone(zone.Id))
                 {
-                    _Snackbar.Add($"دامنه {zone.Name} حذف شد", Severity.Success);
                     await Refresh();
                 }
             }
@@ -98,8 +96,6 @@ namespace DNSLab.Web.Components.Pages.Zone
             if (_continue && await _ZoneRepository.DisableZone(zone.Id))
             {
                 zone.Disable = !zone.Disable;
-
-                _Snackbar.Add($"دامنه {zone.Name} {(zone.Disable ? "غیر فعال" : "فعال")} شد", zone.Disable ? Severity.Warning : Severity.Success);
             }
         }
     }

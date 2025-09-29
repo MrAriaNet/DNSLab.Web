@@ -6,7 +6,6 @@ namespace DNSLab.Web.Components.Pages.Accounts;
 partial class Information
 {
     [Inject] IAccountRepository _AccountRepository { get; set; }
-    [Inject] ISnackbar _Snackbar { get; set; }
 
     UserDTO? _CurrentUser;
     protected override async Task OnInitializedAsync()
@@ -18,15 +17,12 @@ partial class Information
     {
         if (_CurrentUser != null)
         {
-            if (await _AccountRepository.UpdateAsync(new UpdateUserPersonalInfoDTO
+            await _AccountRepository.UpdateAsync(new UpdateUserPersonalInfoDTO
             {
                 Company = _CurrentUser.Company,
                 FirstName = _CurrentUser.FirstName,
                 LastName = _CurrentUser.LastName,
-            }))
-            {
-                _Snackbar.Add("اطلاعات با موفقیت ذخیره شد", Severity.Success);
-            }
+            });
         }
     }
 
@@ -62,7 +58,6 @@ partial class Information
                 _CurrentUser!.Mobile = _NewMobile;
                 _NewMobile = String.Empty;
                 _EditMobileDialogVisible = false;
-                _Snackbar.Add("شماره همراه شما با موفقیت تغییر یافت.", Severity.Success);
             }
         }
     }
@@ -84,7 +79,6 @@ partial class Information
             {
                 _ChangePasswordDTO = new();
                 _EditPasswordDialogVisible = false;
-                _Snackbar.Add("رمز عبور شما با موفقیت تغییر یافت", Severity.Success);
             }
         }
     }
@@ -114,7 +108,6 @@ partial class Information
                 _CurrentUser!.Email = _NewEmailAddress;
                 _NewEmailAddress = String.Empty;
                 _EditEmailDialogVisible = false;
-                _Snackbar.Add("ایمیل شما با موفقیت تغییر یافت . کد تایید به ایمیل شما ارسال شد", Severity.Success);
                 await OnInitializedAsync();
             }
         }
@@ -141,14 +134,6 @@ partial class Information
             _CurrentUser!.Username = _NewUsername;
             _NewUsername = String.Empty;
             _EditUsernameDialogVisible = false;
-            if (String.IsNullOrEmpty(_CurrentUser!.Username))
-            {
-                _Snackbar.Add($"نام کاربری شما با موفقیت خذف شد و از این پس باید با آدرس ایمیل {_CurrentUser!.Email} وارد شوید", Severity.Success);
-            }
-            else
-            {
-                _Snackbar.Add($"نام کاربری شما با موفقیت به  {_CurrentUser!.Username} تغییر یافت شما میتوانید از این پس با این نام کاربری نیز وارد شوید", Severity.Success);
-            }
         }
     }
 }

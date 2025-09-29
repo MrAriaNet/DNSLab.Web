@@ -14,7 +14,6 @@ partial class UpdateTokens
 {
     [Inject] IDDNSRepository _DDNSRepository { get; set; }
     [Inject] IDialogService _DialogService { get; set; }
-    [Inject] ISnackbar _Snackbar { get; set; }
     [Inject] IJSRuntime _JSRuntime { get; set; }
 
     [Parameter] public bool IsSelectableList { get; set; }
@@ -49,7 +48,6 @@ partial class UpdateTokens
         var result = await dialog.Result;
         if (!result!.Canceled)
         {
-            _Snackbar.Add("کلید جدید با موفقیت اضافه شد", Severity.Success);
             await Refresh();
         }
     }
@@ -66,7 +64,6 @@ partial class UpdateTokens
         var result = await dialog.Result;
         if (!result!.Canceled)
         {
-            _Snackbar.Add("کلید با موفقیت ویرایش شد", Severity.Success);
             await Refresh();
         }
     }
@@ -88,7 +85,6 @@ partial class UpdateTokens
         {
             if (await _DDNSRepository.DeleteToken(token.Id))
             {
-                _Snackbar.Add($"کلید {token.Name} حذف شد", Severity.Success);
                 await Refresh();
             }
         }
@@ -112,7 +108,6 @@ partial class UpdateTokens
             var newKey = await _DDNSRepository.RevokeTokenKey(token.Id);
             if (!String.IsNullOrEmpty(newKey))
             {
-                _Snackbar.Add($"کلید {token.Name} با موفقیت به {newKey} تغییر یافت", Severity.Success);
                 token.Key = newKey;
             }
         }
@@ -122,10 +117,7 @@ partial class UpdateTokens
 
     async Task CopyLink(UpdateTokenDTO token)
     {
-        if (await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"https://api.dnslab.link/DDNS/U?k={token.Key}"))
-        {
-            _Snackbar.Add("لینک کپی شد", Severity.Info);
-        }
+        await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"https://api.dnslab.link/DDNS/U?k={token.Key}");
     }
 
     async Task DownloadScript(Guid tokenId, int i)

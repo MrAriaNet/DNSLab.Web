@@ -9,7 +9,6 @@ namespace DNSLab.Web.Components.Pages.Pages;
 partial class AllPages
 {
     [Inject] IPageRepository _PageRepository { get; set; }
-    [Inject] ISnackbar _Snackbar { get; set; }
     [Inject] IDialogService _DialogService { get; set; }
 
     IEnumerable<PageInfoDTO>? _Pages { get; set; }
@@ -45,7 +44,6 @@ partial class AllPages
         {
             if (await _PageRepository.DeletePage(page.Id))
             {
-                _Snackbar.Add($"صفحه {page.Title} حذف شد", Severity.Success);
                 await OnAfterRenderAsync(true);
             }
         }

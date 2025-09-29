@@ -13,7 +13,6 @@ partial class AllRecords
     [Inject] IZoneRepository _ZoneRepository { get; set; }
     [Inject] IRecordRepository _RecordRepository { get; set; }
     [Inject] IDialogService _DialogService { get; set; }
-    [Inject] ISnackbar _Snackbar { get; set; }
 
     [Parameter] public Guid ZoneId { get; set; }
 
@@ -78,8 +77,6 @@ partial class AllRecords
         if (_continue && await _RecordRepository.DisableRecord(record.Type, record.Id))
         {
             record.Disable = !record.Disable;
-
-            _Snackbar.Add($"رکورد {record.Name}.{_Zone!.Name} {(record.Disable ? "غیر فعال" : "فعال")} شد", record.Disable ? Severity.Warning : Severity.Success);
         }
     }
 
@@ -100,7 +97,6 @@ partial class AllRecords
         {
             if (await _RecordRepository.DeleteRecord(record.Type, record.Id))
             {
-                _Snackbar.Add($"رکورد {record.Name}.{_Zone!.Name} حذف شد", Severity.Success);
                 await Refresh();
             }
         }

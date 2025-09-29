@@ -7,7 +7,6 @@ namespace DNSLab.Web.Components.Pages.Pages;
 partial class Page
 {
     [Inject] IPageRepository _PageRepository { get; set; }
-    [Inject] ISnackbar _Snackbar { get; set; }
 
     [Parameter] public Guid PageId { get; set; } = Guid.Empty;
 
@@ -29,17 +28,11 @@ partial class Page
     {
         if (PageId == Guid.Empty)
         {
-            if (await _PageRepository.CreatePage(_Page))
-            {
-                _Snackbar.Add("صفحه اینجاد شد", Severity.Success);
-            }
+            await _PageRepository.CreatePage(_Page);
         }
         else
         {
-            if (await _PageRepository.UpdatePage(_Page))
-            {
-                _Snackbar.Add("صفحه ویرایش شد", Severity.Success);
-            }
+            await _PageRepository.UpdatePage(_Page);
         }
     }
 }

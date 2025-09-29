@@ -22,7 +22,7 @@
             <Columns>
                 <PropertyColumn Property="x=>x.Name" Title="آدرس">
                     <CellTemplate>
-                        <MudLink Href='@($"http://tcp.dnslab.ir:{@context.Item.RemotePort}")' Underline="Underline.None">http://tcp.dnslab.ir:@context.Item.RemotePort</MudLink>
+                        <MudLink Href='@($"http://tcp.dnslab.ir:{@context.Item.RemotePort}")' Target="_blank" Underline="Underline.None">http://tcp.dnslab.ir:@context.Item.RemotePort</MudLink>
                     </CellTemplate>
                 </PropertyColumn>
                 <PropertyColumn Property="x=>x.LocalIp" Title="آی پی محلی" />

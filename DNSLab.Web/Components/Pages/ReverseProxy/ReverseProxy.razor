@@ -1,0 +1,84 @@
+﻿@attribute [Route(AllRoutes.ReverseProxy)]
+@attribute [Authorize(Roles = $"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")]
+<SeoProvider Title="Reverse Proxy" />
+
+<MudCard Class="mb-2" Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">Reverse Proxy</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudStack Row>
+                <MudTextField T="string" Variant="Variant.Filled" ReadOnly @bind-Value="_Token" Margin="Margin.Dense" Label="کلید (token)" AdornmentIcon="@DNSLabIcons.Refresh" Adornment="Adornment.End"></MudTextField>
+            </MudStack>
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.caption">
+            Reverse Proxy به شما این امکان رو می‌ده که از پشت NAT یا فایروال، به سرویس‌های TCP روی دستگاه‌های داخلی دسترسی داشته باشید — بدون نیاز به IP عمومی یا تنظیمات پیچیده.
+        </MudText>
+        <MudGrid>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.h6" Class="mt-3 mb-2">
+                    ✨با TCP Reverse Proxy می‌تونید:
+                </MudText>
+                <MudText Typo="Typo.caption">
+                    ✅ اتصال به سرورهای داخلی مثل SSH، RDP، یا دیتابیس از هر جای دنیا
+                    <MudFlexBreak />
+                    ✅ دور زدن NAT و فایروال بدون نیاز به Port Forwarding
+                    <MudFlexBreak />
+                    ✅ ارائه سرویس‌های محلی روی دامنه یا پورت عمومی
+                    <MudFlexBreak />
+                    ✅ مدیریت چند تونل همزمان با تنظیمات ساده و قابل اسکریپت‌نویسی
+                    <MudFlexBreak />
+                    ✅ رمزنگاری و احراز هویت برای امنیت بیشتر در انتقال داده
+                </MudText>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.h6" Class="mt-3 mb-2">
+                    🎯 مناسب برای:
+                </MudText>
+                <MudText Typo="Typo.caption">
+                    ✅ توسعه‌دهندگان، مدیران سیستم، و تیم‌های DevOps
+                    <MudFlexBreak />
+                    ✅ کنترل و مانیتورینگ سرورهای خانگی یا شرکتی از راه دور
+                    <MudFlexBreak />
+                    ✅ ارائه API یا سرویس‌های TCP به مشتریان بدون تغییر در زیرساخت شبکه
+                </MudText>
+            </MudItem>
+        </MudGrid>
+        <MudText Typo="Typo.h6" Class="mt-3 mb-2">
+            🔧 روش راه‌اندازی سرویس
+        </MudText>
+        <MudText Class="mt-1">1️⃣ دانلود کلاینت</MudText>
+        <MudText Typo="Typo.caption">
+            📥 ابتدا فایل کلاینت را دانلود کنید. در حال حاضر این کلاینت فقط روی ویندوز قابل اجراست.
+        </MudText>
+        <MudLink Href="https://labs.storage.c2.liara.space/DNSLab.exe" Underline="Underline.Hover">
+            <MudText Typo="Typo.caption" Color="Color.Primary">برای دانلود کلیک کنید</MudText>
+        </MudLink>
+        <MudText Class="mt-1">2️⃣ باز کردن CMD در مسیر فایل</MudText>
+        <MudText Typo="Typo.caption">
+            📂 وارد پوشه‌ای شوید که فایل DNSLab.exe در آن قرار دارد، سپس در همان مسیر پنجره CMD را باز کنید.
+        </MudText>
+        <MudText Class="mt-1">3️⃣ وارد کردن توکن</MudText>
+        <MudText Typo="Typo.caption">
+            🔐 توکن اختصاصی خود را (که در بالای صفحه نمایش داده شده) با دستور روبرو وارد کنید:
+        </MudText>
+        <MudText Typo="Typo.caption" Color="Color.Primary" Class="dnslab-ltr">
+            DNSLab.exe --token XXXXXXX-XX-XXXXXXXX
+        </MudText>
+        <MudText Class="mt-1">4️⃣ تونل کردن پورت دلخواه</MudText>
+        <MudText Typo="Typo.caption">
+            برای ایجاد تونل روی پورت مورد نظر (مثلاً پورت 80)، از دستور روبرو استفاده کنید:
+        </MudText>
+        <MudText Typo="Typo.caption" Color="Color.Primary" Class="dnslab-ltr">
+            DNSLab.exe tcp 80
+        </MudText>
+        <MudFlexBreak />
+        <MudText Typo="Typo.caption">
+            ✅ در صورت صحیح بودن مراحل یک آدرس به همراه پورت به شما نمایش داده خواهد شد که با این مراحل، سرویس داخلی شما از طریق اینترنت قابل دسترسی خواهد بود — بدون نیاز به IP عمومی یا Port Forwarding.
+        </MudText>
+
+    </MudCardContent>
+</MudCard>

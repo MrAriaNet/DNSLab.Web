@@ -23,6 +23,10 @@
                     <MudNavLink Href="@AllRoutes.MikroTikSettings" Icon="@DNSLabIcons.Mikrotik">تنظیمات MikroTik</MudNavLink>
                     <MudNavLink Href="@AllRoutes.RaspberryPiSettings" Icon="@DNSLabIcons.RaspberryPi">تنظیمات Raspberry Pi</MudNavLink>
                 </MudNavGroup>
+                @if (_AuthCTX.User.IsInRole(AuthorizeRoles.Admin) || _AuthCTX.User.IsInRole(AuthorizeRoles.Development))
+                {
+                    <MudNavLink Icon="@DNSLabIcons.NAT" Href="@AllRoutes.ReverseProxy">Reverse Proxy</MudNavLink>
+                }
                 <MudNavGroup Title="کیف پول" Icon="@DNSLabIcons.Wallet">
                     <MudNavLink Href="@AllRoutes.MyWallet">موجودی</MudNavLink>
                     <MudNavLink Href="@AllRoutes.WalletTransactions">تراکنش ها</MudNavLink>

@@ -15,8 +15,8 @@
         public const string AllTools = "/tools/all";
         public const string DNSLookup = "/tools/dnslookup";
         public const string Ping = "/tools/ping";
-        public const string ReverseLookup = "/tools/reverselookup";
-        public const string PortChecker = "/tools/portchecker";
+        public const string ReverseLookup = "/tools/reverse-lookup";
+        public const string PortChecker = "/tools/port-checker";
 
         public const string DDNSHostNames = "/ddns/hostnames";
         public const string UpdateTokens = "/ddns/update-tokens";

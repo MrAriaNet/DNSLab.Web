@@ -1,8 +1,8 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Record
 @using DNSLab.Web.Enums
-@attribute [Route(AllRoutes.RecordsHistory + "/{RecordId:guid}")]
+@attribute [Route(AllRoutes.RecordsHistory)]
 @attribute [Authorize]
-<SeoProvider Title="رکورد های دامنه" />
+<SeoProvider Title="تاریخچه تغییرات رکورد های دامنه" />
 
 <MudCard Elevation="0">
     <MudCardHeader>
@@ -10,14 +10,14 @@
             <MudText Typo="Typo.h5">تاریخچه تغییرات</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            @if (_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true)
+            @if ((_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true) || RecordId is null)
             {
                 <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Refresh" OnClick="OnInitializedAsync">بروزرسانی</BaseButton>
             }
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        @if (_IsSubscribeThisFeature != null)
+        @if (_IsSubscribeThisFeature != null || RecordId is null)
         {
             <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
                 <MudContainer>
@@ -35,7 +35,7 @@
                     مشخص میگردد
                 </MudText>
             </MudAlert>
-            @if (_IsSubscribeThisFeature == true)
+            @if (_IsSubscribeThisFeature == true || RecordId is null)
             {
                 <MudDataGrid T="RecordChangeDTO" Items="_RecordChanges?.OrderByDescending(x=>x.TimeStamp)" Loading="_Loading" Dense Hover Outlined>
                     <NoRecordsContent>
@@ -68,7 +68,9 @@
                             <CellTemplate>
                                 @if (context.Item.PreviousData is not null)
                                 {
-                                    <MudText Typo="Typo.body2">
+                                    <MudText Typo="Typo.caption">
+                                        <text>Name : @(context.Item.PreviousData.Name)</text>
+                                        <MudFlexBreak />
                                         @switch (context.Item.PreviousData.Type)
                                         {
                                             case Enums.RecordTypeEnum.A:
@@ -101,7 +103,9 @@
                             <CellTemplate>
                                 @if (context.Item.CurrentData is not null)
                                 {
-                                    <MudText Typo="Typo.body2">
+                                    <MudText Typo="Typo.caption">
+                                        <text>Name : @(context.Item.CurrentData.Name)</text>
+                                        <MudFlexBreak />
                                         @switch (context.Item.CurrentData.Type)
                                         {
                                             case Enums.RecordTypeEnum.A:

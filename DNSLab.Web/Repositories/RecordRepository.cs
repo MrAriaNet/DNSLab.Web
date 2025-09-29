@@ -36,6 +36,11 @@ namespace DNSLab.Web.Repositories
             return await _HttpServiceProvider.Get<IEnumerable<BaseRecordDTO>?>($"{APIController}/GetRecords?ZoneId={zoneId}");
         }
 
+        public async Task<IEnumerable<RecordChangeDTO>?> GetTodayRecordChangesHistory()
+        {
+            return await _HttpServiceProvider.Get<IEnumerable<RecordChangeDTO>?>($"{APIController}/GetTodayRecordChangesHistory");
+        }
+
         public async Task<bool> UpdateRecord(BaseRecordDTO model)
         {
             return await _HttpServiceProvider.Put<BaseRecordDTO, bool>($"{APIController}/UpdateRecord",model);

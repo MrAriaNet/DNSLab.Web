@@ -12,7 +12,7 @@
     <MudCardContent>
         @if (_AllPayments != null)
         {
-            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Bordered Outlined FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
+            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Outlined FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
                 <NoRecordsContent>
                     <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                         <MudText Typo="Typo.caption">هیچ تراکنشی یافت نشد</MudText>

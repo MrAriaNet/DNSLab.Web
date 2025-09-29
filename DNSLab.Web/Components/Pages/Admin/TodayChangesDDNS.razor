@@ -10,6 +10,9 @@
 }
 else
 {
+    <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+        <MudText>تعداد رکورد های تغییر یافته : @_AllRecords.SelectMany(x => x.Item2).Count()</MudText>
+    </MudAlert>
     @foreach (var zone in _AllRecords.OrderByDescending(x => x.Item2.Count() > 0 ? x.Item2.Max(c => c.CreateDate) : DateTime.UtcNow))
     {
         <MudCard Class="mb-2" Elevation="0">

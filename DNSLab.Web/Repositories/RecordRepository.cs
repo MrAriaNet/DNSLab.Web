@@ -26,6 +26,11 @@ namespace DNSLab.Web.Repositories
             return await _HttpServiceProvider.Put<bool>($"{APIController}/DisableRecord?Type={(int)type}&Id={Id}");
         }
 
+        public async Task<IEnumerable<RecordChangeDTO>?> GetRecordChangesHistory(Guid id)
+        {
+            return await _HttpServiceProvider.Get<IEnumerable<RecordChangeDTO>?>($"{APIController}/GetRecordChangesHistory?id={id}");
+        }
+
         public async Task<IEnumerable<BaseRecordDTO>?> GetRecords(Guid zoneId)
         {
             return await _HttpServiceProvider.Get<IEnumerable<BaseRecordDTO>?>($"{APIController}/GetRecords?ZoneId={zoneId}");

@@ -11,6 +11,7 @@
 
         public const string AllZones = "/zones/all";
         public const string AllRecords = "/records";
+        public const string RecordsHistory = "/records/history";
 
         public const string AllTools = "/tools/all";
         public const string DNSLookup = "/tools/dnslookup";

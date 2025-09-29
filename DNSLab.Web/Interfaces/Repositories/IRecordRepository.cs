@@ -9,6 +9,7 @@ namespace DNSLab.Web.Interfaces.Repositories
         Task<bool> DeleteRecord(RecordTypeEnum type, Guid Id);
         Task<bool> DisableRecord(RecordTypeEnum type, Guid Id);
         Task<IEnumerable<BaseRecordDTO>?> GetRecords(Guid zoneId);
+        Task<IEnumerable<RecordChangeDTO>?> GetRecordChangesHistory(Guid id);
         Task<bool> UpdateRecord(BaseRecordDTO model);
     }
 }

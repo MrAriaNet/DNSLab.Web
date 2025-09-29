@@ -5,6 +5,7 @@ using DNSLab.Web.Interfaces.Repositories;
 using DNSLab.Web.Repositories;
 using Microsoft.AspNetCore.Components;
 using DNSLab.Web.DTOs.Repositories.Zone;
+using Microsoft.JSInterop;
 
 namespace DNSLab.Web.Components.Pages.DynamicDNSs
 {
@@ -13,6 +14,7 @@ namespace DNSLab.Web.Components.Pages.DynamicDNSs
         [Inject] IDDNSRepository _DDNSRepository { get; set; }
         [Inject] IRecordRepository _RecordRepository { get; set; }
         [Inject] IDialogService _DialogService { get; set; }
+        [Inject] IJSRuntime _JSRuntime { get; set; }
 
         IEnumerable<Tuple<ZoneDTO, IEnumerable<BaseRecordDTO>>>? _AllRecords { get; set; }
 
@@ -106,5 +108,9 @@ namespace DNSLab.Web.Components.Pages.DynamicDNSs
             }
         }
 
+        async Task CopyLink(BaseRecordDTO record, ZoneDTO zone)
+        {
+            await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"http://{record.Name}.{zone.Name}".ToLower());
+        }
     }
 }

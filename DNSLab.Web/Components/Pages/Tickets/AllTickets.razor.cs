@@ -31,18 +31,6 @@ partial class AllTickets
         }
     }
 
-    async Task AddTicket()
-    {
-        var options = new DialogOptions() { CloseButton = true, FullWidth = true, MaxWidth = MaxWidth.Medium };
-
-        var dialog = await _DialogService.ShowAsync<AddTicket>("اضافه کردن تیکت جدید", options);
-        var result = await dialog.Result;
-        if (!result!.Canceled)
-        {
-            await OnAfterRenderAsync(true);
-        }
-    }
-
     async Task OnStatusChanged(TicketDTO ticket, TicketStatusEnum status)
     {
         if (await _TicketRepository.ChangeTicketStatus(ticket.Id, status)) 

@@ -22,35 +22,46 @@
                 <PropertyColumn Property="x=>x.Name" Title="نام" />
                 <TemplateColumn Title="کلید">
                     <CellTemplate>
-                        <MudAlert Severity="Severity.Normal" Variant="Variant.Filled" Icon="@Icons.Material.Filled.Key" Dense ContentAlignment="HorizontalAlignment.Center">
+                        <MudAlert Variant="Variant.Filled" Icon="@Icons.Material.Filled.Key" Dense ContentAlignment="HorizontalAlignment.Center">
                             <MudText Typo="Typo.caption">@context.Item.Key</MudText>
                         </MudAlert>
                     </CellTemplate>
                 </TemplateColumn>
+                @if (!IsSelectableList)
+                {
+                    <TemplateColumn>
+                        <CellTemplate>
+                            <MudGrid Justify="Justify.Center" Spacing="1">
+                                <MudItem>
+                                    <BaseButton OnClick="()=> CopyLink(context.Item)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Material.Rounded.ContentCopy">
+                                        <MudText Typo="Typo.caption">Link</MudText>
+                                    </BaseButton>
+                                </MudItem>
+                                <MudItem>
+                                    <BaseButton OnClick="()=> DownloadScript(context.Item.Id,1)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Custom.FileFormats.FileDocument">
+                                        <MudText Typo="Typo.caption">Shell (Wget)</MudText>
+                                    </BaseButton>
+                                </MudItem>
+                                <MudItem>
+                                    <BaseButton OnClick="()=> DownloadScript(context.Item.Id,2)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Custom.FileFormats.FileDocument">
+                                        <MudText Typo="Typo.caption">Shell (Curl)</MudText>
+                                    </BaseButton>
+                                </MudItem>
+                                <MudItem>
+                                    <BaseButton OnClick="()=> DownloadScript(context.Item.Id,3)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Custom.FileFormats.FileDocument">
+                                        <MudText Typo="Typo.caption">PowerShell (RestMethod)</MudText>
+                                    </BaseButton>
+                                </MudItem>
+                            </MudGrid>
+                        </CellTemplate>
+                    </TemplateColumn>
+                }
                 <TemplateColumn>
                     <CellTemplate>
-                        <MudStack Row Justify="Justify.FlexEnd">
-                            <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
-                                <MudMenuItem OnClick="()=> EditToken(context.Item)" Icon="@Icons.Material.Rounded.Edit">ویرایش</MudMenuItem>
-                                <MudMenuItem OnClick="()=> RevokeTokenKey(context.Item)" Icon="@Icons.Material.Rounded.Key">تغییر کلید</MudMenuItem>
-                                @if (!IsSelectableList)
-                                {
-                                    <MudMenuItem OnClick="()=> CopyLink(context.Item)" Icon="@Icons.Material.Filled.Link">کپی لینک بروزرسانی</MudMenuItem>
-                                    <MudMenuItem Disabled />
-                                    <MudMenuItem OnClick="()=> DownloadScript(context.Item.Id,1)" Icon="@Icons.Custom.FileFormats.FileCode">Shell (Wget)</MudMenuItem>
-                                    <MudMenuItem OnClick="()=> DownloadScript(context.Item.Id,2)" Icon="@Icons.Custom.FileFormats.FileCode">Shell (Curl)</MudMenuItem>
-                                    <MudMenuItem OnClick="()=> DownloadScript(context.Item.Id,3)" Icon="@Icons.Custom.FileFormats.FileCode">PowerShell (RestMethod)</MudMenuItem>
-                                }
-                                <MudMenuItem Disabled />
-                                <MudMenuItem OnClick="()=> DeleteToken(context.Item)" IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete">
-                                    <MudText Color="Color.Error" Typo="Typo.caption">حذف</MudText>
-                                </MudMenuItem>
-                            </MudMenu>
-
-                            @if (IsSelectableList)
-                            {
-                                <BaseButton EndIcon="@Icons.Material.Rounded.Check" Color="Color.Success" Variant="Variant.Filled" OnClick="()=>SelectToken(context.Item)">انتخاب</BaseButton>
-                            }
+                        <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
+                            <BaseIconButton OnClick="()=> EditToken(context.Item)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                            <BaseIconButton OnClick="()=> RevokeTokenKey(context.Item)" Color="Color.Info" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.ChangeCircle" />
+                            <BaseIconButton OnClick="()=> DeleteToken(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>

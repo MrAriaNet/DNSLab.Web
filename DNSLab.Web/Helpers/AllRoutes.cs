@@ -51,5 +51,6 @@
         public const string TodayChangesDDNS = "/admin/today-changes-ddns";
 
         public const string LastQueryLogs = "/log/last-queries";
+        public const string QueryCountChart = "/log/query-count-chart";
     }
 }

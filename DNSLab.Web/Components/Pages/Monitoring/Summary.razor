@@ -6,29 +6,23 @@
 @attribute [Authorize]
 <SeoProvider Title="مانیتورینگ" />
 
-@if (_IsSubscribeThisFeature == null)
-{
-    <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
-}
-else
-{
-    if (_IsSubscribeThisFeature == false)
-    {
-        <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start">
-            <MudText>اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
-            <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
 
-        </MudAlert>
-    }
-    else
-    {
-        <MudCard Elevation="0">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h5">مانیتورینگ</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">مانیتورینگ</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        @if (_IsSubscribeThisFeature != null)
+        {
+            <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" Absolute="true" Style="height:100vh">
+                <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
+                <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+            </MudOverlay>
+
+            @if (_IsSubscribeThisFeature == true)
+            {
                 <MudAlert Class="mb-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
                     <MudText>در این بخش 24 ساعت اخیر نمایش داده میشود.</MudText>
                 </MudAlert>
@@ -54,32 +48,16 @@ else
                         }
                     </MudItem>
                 </MudGrid>
-            </MudCardContent>
-        </MudCard>
 
-        @if (!String.IsNullOrEmpty(_LastSelectedQName))
-        {
-            <MudGrid Spacing="1" Class="mt-1">
-                <MudItem xs="12" lg="4">
-                    <MudCard Elevation="0">
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.caption">تعداد کل درخواست ها</MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                        <MudCardContent>
-                            <MudStack Row AlignItems="AlignItems.Center">
-                                <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
-                            </MudStack>
-                        </MudCardContent>
-                    </MudCard>
-                    <MudCard Elevation="0" Class="mt-1">
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.caption">جدول تعداد درخواست نسبت به آی پی</MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                        <MudCardContent>
+
+                @if (!String.IsNullOrEmpty(_LastSelectedQName))
+                {
+                    <MudGrid Spacing="3" Class="mt-1">
+                        <MudItem xs="12" lg="4">
+                            <MudText Typo="Typo.caption">تعداد کل درخواست ها</MudText>
+                            <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
+
+                            <MudText Typo="Typo.caption" Class="mt-3">جدول تعداد درخواست نسبت به آی پی</MudText>
                             @if (_ClientIPAndCounts != null)
                             {
                                 <MudDataGrid T="ClientIPAndCountDTO" Items="_ClientIPAndCounts" Height="25vh" Dense Hover Bordered Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_IsLoading">
@@ -99,17 +77,9 @@ else
                                     </Columns>
                                 </MudDataGrid>
                             }
-                        </MudCardContent>
-                    </MudCard>
-                </MudItem>
-                <MudItem xs="12" lg="8">
-                    <MudCard Elevation="0">
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.caption">نمودار تعداد کوئری بر حسب زمان</MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                        <MudCardContent>
+                        </MudItem>
+                        <MudItem xs="12" lg="8">
+                            <MudText Typo="Typo.caption">نمودار تعداد کوئری بر حسب زمان</MudText>
                             @if (_IsLoading)
                             {
                                 <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
@@ -125,10 +95,11 @@ else
                                     </ApexChart>
                                 </MudPaper>
                             }
-                        </MudCardContent>
-                    </MudCard>
-                </MudItem>
-            </MudGrid>
+                        </MudItem>
+                    </MudGrid>
+                }
+            }
         }
-    }
-}
+
+    </MudCardContent>
+</MudCard>

@@ -6,7 +6,7 @@ public sealed class GlobalSettings
 {
     public const string ApplicationName = "DNSLab";
     public const bool RightToLeft = true;
-    public const string Version = "1.1.5.1";
+    public const string Version = "1.1.5.3";
 
 #if DEBUG
     //public const string APIBaseAddress = "https://localhost:7046/";

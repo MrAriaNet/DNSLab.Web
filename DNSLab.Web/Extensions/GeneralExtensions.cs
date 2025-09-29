@@ -9,7 +9,7 @@ namespace DNSLab.Web.Extensions
     {
         public static string Separate3Digits(this long value) => value.ToString("N0");
 
-        public static string Separate3Digits(this int value) => Separate3Digits(value);
+        public static string Separate3Digits(this int value) => Separate3Digits((long)value);
 
         public static string ToPersianDateTime(this DateTime value) => new PersianDateTime(value).ToString();
         public static string ToPersianDate(this DateTime value) => new PersianDateTime(value).ToShortDateString();

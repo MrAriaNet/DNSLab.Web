@@ -1,0 +1,93 @@
+﻿@attribute [Route(AllRoutes.Plans)]
+@using DNSLab.Web.DTOs.Repositories.Subscription
+
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">پلن ها</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudAlert Class="mb-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
+            <MudText>در این بخش شما با توجه به نیاز خود میتوانید پلن مورد نظر خود را انتخاب نمایید</MudText>
+        </MudAlert>
+        @if (_PlanSections != null)
+        {
+            <MudRadioGroup T="PlanDiscountDTO" @bind-Value="_SelectedPlanDiscount">
+                @foreach (var sectionItem in _PlanSections.Where(x => x.Id == 1))
+                {
+                    <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-5">@sectionItem.Name</MudText>
+                    <MudGrid Spacing="1">
+                        @foreach (var plan in sectionItem.Plans)
+                        {
+                            <MudItem xs="12" sm="6" md="4" lg="3">
+                                <MudCard Outlined Style="height: 100%;">
+                                    <MudCardHeader>
+                                        <CardHeaderContent>
+                                            <MudText>@plan.Name</MudText>
+                                        </CardHeaderContent>
+                                        <CardHeaderActions>
+                                            <MudText Color="Color.Info">@plan.BasePrice.Separate3Digits() ريال</MudText>
+                                        </CardHeaderActions>
+                                    </MudCardHeader>
+                                    <MudCardContent>
+                                        <MarkdownViewer MarkdownText="@plan.Description" />
+                                        @if (plan.Discounts.Count() > 0)
+                                        {
+                                            <MudDivider DividerType="DividerType.Middle" Class="mt-5 mb-2" />
+                                            @foreach (var discount in plan.Discounts)
+                                            {
+                                                <MudRadio Value="discount" Size="Size.Small" Color="Color.Success" CheckedIcon="@Icons.Material.Rounded.CheckCircle" UncheckedColor="Color.Default">
+                                                    <MudText>
+                                                        @discount.Duration.DurationInMonth ماهه
+                                                        @if (discount.Duration.DurationInMonth > 1)
+                                                        {
+                                                            <text>(@((discount.Duration.DurationInMonth * (plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100))).Separate3Digits()))</text>
+                                                        }
+                                                    </MudText>
+                                                    @if (discount.Duration.DurationInMonth > 1)
+                                                    {
+                                                        <MudText Color="Color.Success" Typo="Typo.caption" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits()))</MudText>
+                                                    }
+                                                </MudRadio>
+                                            }
+                                        }
+                                    </MudCardContent>
+                                </MudCard>
+                            </MudItem>
+                        }
+                    </MudGrid>
+                }
+            </MudRadioGroup>
+
+            @if (_SelectedPlanDiscount != null)
+            {
+                <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="mt-2" Gutters="false">
+                    <MudCard Outlined>
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText>پلن انتخابی : @_SelectedPlan.Name</MudText>
+                            </CardHeaderContent>
+                            <CardHeaderActions>
+                                <BaseButton Color="Color.Primary" Variant="Variant.Filled">تایید و پرداخت</BaseButton>
+                            </CardHeaderActions>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <MudText Typo="Typo.caption">
+                                مدت :
+                                @_SelectedPlanDiscount.Duration.DurationInMonth ماهه
+                                (@((_SelectedPlanDiscount.Duration.DurationInMonth * (_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100))).Separate3Digits()))
+                                @if (_SelectedPlanDiscount.Duration.DurationInMonth > 1)
+                                {
+                                    <MudText Color="Color.Success" Typo="Typo.caption" Class="mr-2">هر ماه (@((_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100)).Separate3Digits()))</MudText>
+                                }
+                            </MudText>
+                            <MudText Typo="Typo.caption">توضیحات</MudText>
+                            <MarkdownViewer MarkdownText="@_SelectedPlan.Description" />
+                        </MudCardContent>
+                    </MudCard>
+                </MudContainer>
+            }
+        }
+    </MudCardContent>
+</MudCard>

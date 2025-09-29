@@ -39,22 +39,25 @@
                     <BaseButton Variant="Variant.Text" Color="Color.Default" Size="Size.Small" EndIcon="@Icons.Material.Filled.Refresh" OnClick="CheckNameServers">بررسی مجدد</BaseButton>
                 </MudText>
                 <MudGrid Justify="Justify.SpaceBetween">
-                    <MudItem xs="12" sm="6">
-                        <MudAlert Severity="Severity.Error" NoIcon Dense Variant="Variant.Text">
-                            @foreach (var item in _RequiredToUpdateNameServers)
-                            {
-                                <MudText Class="mud-ltr">@item</MudText>
-                            }
-                        </MudAlert>
-                    </MudItem>
-                    <MudItem xs="12" sm="1">
-                        <MudHidden Breakpoint="Breakpoint.SmAndDown">
-                            <MudIcon Icon="@Icons.Material.Filled.ArrowCircleLeft" Color="Color.Primary" Size="Size.Large" />
-                        </MudHidden>
-                        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert>
-                            <MudIcon Icon="@Icons.Material.Filled.ArrowCircleDown" Color="Color.Primary" Size="Size.Large" />
-                        </MudHidden>
-                    </MudItem>
+                    @if (!_RequiredToUpdateNameServers.All(x => String.IsNullOrEmpty(x)))
+                    {
+                        <MudItem xs="12" sm="6">
+                            <MudAlert Severity="Severity.Error" NoIcon Dense Variant="Variant.Text">
+                                @foreach (var item in _RequiredToUpdateNameServers)
+                                {
+                                    <MudText Class="mud-ltr">@item</MudText>
+                                }
+                            </MudAlert>
+                        </MudItem>
+                        <MudItem xs="12" sm="1">
+                            <MudHidden Breakpoint="Breakpoint.SmAndDown">
+                                <MudIcon Icon="@Icons.Material.Filled.ArrowCircleLeft" Color="Color.Primary" Size="Size.Large" />
+                            </MudHidden>
+                            <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert>
+                                <MudIcon Icon="@Icons.Material.Filled.ArrowCircleDown" Color="Color.Primary" Size="Size.Large" />
+                            </MudHidden>
+                        </MudItem>
+                    }
                     <MudItem xs="12" sm="5">
                         <MudAlert Severity="Severity.Success" NoIcon Dense Variant="Variant.Text">
                             <MudText Class="mud-ltr">jupiter.ns.dnslab.link</MudText>

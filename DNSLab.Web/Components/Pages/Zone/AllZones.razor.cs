@@ -3,6 +3,7 @@ using DNSLab.Web.Components.Dialogs;
 using DNSLab.Web.Components.Dialogs.Zone;
 using DNSLab.Web.DTOs.Repositories.Zone;
 using DNSLab.Web.Interfaces.Repositories;
+using DNSLab.Web.Repositories;
 using Microsoft.AspNetCore.Components;
 using MudBlazor.Charts;
 using static MudBlazor.CategoryTypes;
@@ -13,9 +14,16 @@ namespace DNSLab.Web.Components.Pages.Zone
     {
         [Inject] IZoneRepository _ZoneRepository { get; set; }
         [Inject] IDialogService _DialogService { get; set; }
+        [Inject] ISubscriptionRepository _SubscriptionRepository { get; set; }
 
         IEnumerable<ZoneDTO>? _Zones { get; set; }
         bool _IsLoading = false;
+        bool? _IsSubscribeThisFeature { get; set; } = null;
+
+        protected override async Task OnInitializedAsync()
+        {
+            _IsSubscribeThisFeature = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.PrivateZone);
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

@@ -17,7 +17,7 @@
         color-scheme: dark;
         --focus-outlineColor: #1f6feb;
         --fgColor-default: var(--mud-palette-text-primary);
-        --fgColor-muted: #9198a1;
+        --fgColor-muted: var(--mud-palette-text-primary);
         --fgColor-accent: #4493f8;
         --fgColor-success: #3fb950;
         --fgColor-attention: #d29922;
@@ -74,7 +74,7 @@
         color-scheme: light;
         --focus-outlineColor: #0969da;
         --fgColor-default: var(--mud-palette-text-primary);
-        --fgColor-muted: #59636e;
+        --fgColor-muted: var(--mud-palette-text-primary);
         --fgColor-accent: #0969da;
         --fgColor-success: #1a7f37;
         --fgColor-attention: #9a6700;

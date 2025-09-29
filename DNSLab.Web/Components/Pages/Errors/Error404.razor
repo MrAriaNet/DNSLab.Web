@@ -1,0 +1,16 @@
+﻿@page "/{*route:nonfile}"
+<PageTitle>404 - Not Found</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-4">
+    <MudPaper Elevation="4" Class="pa-4">
+        <MudText Typo="Typo.h4" GutterBottom align="Align.Center">404 - Not Found</MudText>
+        <MudText align="Align.Center">صفحه @Route یافت نشد</MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="@AllRoutes.Home" Class="mt-3">
+            بازگشت به خانه
+        </MudButton>
+    </MudPaper>
+</MudContainer>
+@code {
+    [Parameter]
+    public string? Route { get; set; }
+}

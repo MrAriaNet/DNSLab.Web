@@ -30,7 +30,7 @@
                     <PropertyColumn Property="x=>x.Plan.Name" Title="پلن" />
                     <TemplateColumn Title="مبغ(ريال)">
                         <CellTemplate>
-                            <MudText>@context.Item.TotalPrice.Separate3Digits().EnglishToPersianNumbers()</MudText>
+                            <MudText>@context.Item.TotalPrice.Separate3Digits()</MudText>
                         </CellTemplate>
                     </TemplateColumn>
                     <PropertyColumn Property="x=>x.Duration.Description" Title="مدت" />

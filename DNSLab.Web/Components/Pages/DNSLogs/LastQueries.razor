@@ -43,7 +43,7 @@
                     </NoRecordsContent>
                     <Columns>
                         <PropertyColumn Property="x=>x.QName" Title="کوئری" />
-                        <PropertyColumn Property="x=>x.TimeStamp.ToLocalTime().ToPersianDateTime().EnglishToPersianNumbers()" Title="زمان" />
+                        <PropertyColumn Property="x=>x.TimeStamp.ToLocalTime().ToPersianDateTime()" Title="زمان" />
                         <PropertyColumn Property="x=>x.ClientIP" Title="آی پی" />
                         <PropertyColumn Property="x=>(QueryTypeEnum)x.QType" Title="نوع" />
                         <PropertyColumn Property="x=>x.Answer" Title="پاسخ" />

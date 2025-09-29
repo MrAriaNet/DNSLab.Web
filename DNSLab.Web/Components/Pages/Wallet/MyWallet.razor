@@ -24,7 +24,7 @@
                 <MudStack Row AlignItems="AlignItems.Center">
                     @if (_Wallet != null)
                     {
-                        <MudText Typo="Typo.h3">@_Wallet.Balance.Separate3Digits().EnglishToPersianNumbers()</MudText>
+                        <MudText Typo="Typo.h3">@_Wallet.Balance.Separate3Digits()</MudText>
                         <MudText Typo="Typo.caption">ريال</MudText>
                     }
                 </MudStack>
@@ -58,7 +58,7 @@
                             <TemplateColumn Title="مبغ (ريال)">
                                 <CellTemplate>
                                     <MudAlert Severity="@(@context.Item.Incremental ? Severity.Success : Severity.Error)" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                        <MudText>@context.Item.Amount.Separate3Digits().EnglishToPersianNumbers()</MudText>
+                                        <MudText>@context.Item.Amount.Separate3Digits()</MudText>
                                     </MudAlert>
                                 </CellTemplate>
                             </TemplateColumn>

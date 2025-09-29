@@ -13,6 +13,6 @@ partial class AllBlogs
 
     protected override async Task OnInitializedAsync()
     {
-        _Pages = await _PageRepository.GetPagesByType(PageTypeEnum.KnowledgeBase);
+        _Pages = await _PageRepository.GetPagesByType(PageTypeEnum.Blog);
     }
 }

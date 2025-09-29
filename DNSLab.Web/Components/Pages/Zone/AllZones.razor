@@ -2,7 +2,7 @@
 @attribute [Route(AllRoutes.AllZones)]
 @attribute [Authorize]
 
-<AuthorizeView Roles="@(AuthorizeRoles.Admin)" Context="AuthCtx">
+<AuthorizeView Roles="@($"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")" Context="AuthCtx">
     <Authorized>
         <MudCard Elevation="0" Outlined>
             <MudCardHeader>

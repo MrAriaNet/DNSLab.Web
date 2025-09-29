@@ -39,7 +39,9 @@
                         <TemplateColumn>
                             <CellTemplate>
                                 <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                                    <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.TableRows" />
+                                    <MudTooltip Arrow Text="ویرایش رکورد ها">
+                                        <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                                    </MudTooltip>
                                     <BaseIconButton OnClick="()=> DisableZone(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
                                     <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
                                 </MudStack>

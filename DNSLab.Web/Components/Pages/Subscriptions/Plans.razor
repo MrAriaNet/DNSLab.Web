@@ -34,7 +34,7 @@
                                         <MudStack Spacing="0" AlignItems="AlignItems.Start">
                                             @foreach (var feature in plan.Features)
                                             {
-                                                <MudTooltip Text="@feature.Description">
+                                                <MudTooltip Text="@feature.Description" Arrow>
                                                     <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@(feature.Supported ? Icons.Material.Rounded.CheckBox : Icons.Material.Rounded.Close)" IconColor="@(feature.Supported ? Color.Success : Color.Error)" Color="Color.Default">@feature.Name @(feature.FeatureValue == null ? String.Empty : $" : {feature.FeatureValue}")</MudChip>
                                                 </MudTooltip>
                                             }

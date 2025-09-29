@@ -2,18 +2,21 @@
 @using DNSLab.Web.DTOs.Repositories.DNSLog
 @using DNSLab.Web.DTOs.Repositories.Zone
 @using DNSLab.Web.Enums
-@attribute [Route(AllRoutes.Summary)]
+@attribute [Route(AllRoutes.Monitoring)]
 @attribute [Authorize]
-<SeoProvider Title="خلاصه گزارش" />
+<SeoProvider Title="مانیتورینگ" />
 
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h5">خلاصه گزارش</MudText>
+            <MudText Typo="Typo.h5">مانیتورینگ</MudText>
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        <MudGrid Spacing="1">
+        <MudAlert Class="mb-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
+            <MudText>در این بخش 24 ساعت اخیر نمایش داده میشود.</MudText>
+        </MudAlert>
+        <MudGrid>
             <MudItem xs="12" sm="6" md="4">
                 @if (_AllRecords != null)
                 {
@@ -34,30 +37,28 @@
                     </MudStack>
                 }
             </MudItem>
-            <MudFlexBreak />
-            @if (!String.IsNullOrEmpty(_LastSelectedQName))
-            {
-                <MudItem xs="12" sm="6" md="4">
-                    <MudText>تعداد کل درخواست ها (24 س)</MudText>
-                    <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
-                </MudItem>
-                <MudItem xs="12" sm="6" md="8">
-                    @if (_IsLoading)
-                    {
-                        <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
-                    }
-                    else
-                    {
-                        <ApexChart Options="_LineOptions" @ref="_Chart">
-                            @if (_TimeAndCounts != null)
-                            {
-                                <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
-                            }
-                        </ApexChart>
-                    }
-                </MudItem>
-            }
         </MudGrid>
+
+        @if (!String.IsNullOrEmpty(_LastSelectedQName))
+        {
+            <MudStack Row AlignItems="AlignItems.Center">
+                <MudText>تعداد کل درخواست ها 24 ساعت اخیر :</MudText>
+                <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
+            </MudStack>
+            @if (_IsLoading)
+            {
+                <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
+            }
+            else
+            {
+                <ApexChart Options="_LineOptions" @ref="_Chart">
+                    @if (_TimeAndCounts != null)
+                    {
+                        <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" Name="تعداد" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
+                    }
+                </ApexChart>
+            }
+        }
 
     </MudCardContent>
 </MudCard>

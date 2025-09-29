@@ -5,7 +5,7 @@ using DNSLab.Web.DTOs.Repositories.Zone;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
 
-namespace DNSLab.Web.Components.Pages.DNSLogs;
+namespace DNSLab.Web.Components.Pages.Monitoring;
 
 partial class Summary
 {

@@ -42,11 +42,4 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Components\Pages\DynamicDNSs\MikroTikSettings.razor" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <Content Update="Components\Pages\DNSLogs\QueryCountPerRecordChart.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-  </ItemGroup>
 </Project>

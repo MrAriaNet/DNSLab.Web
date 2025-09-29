@@ -5,7 +5,7 @@ namespace DNSLab.Web.Components.Pages.Defaults;
 
 partial class Dashboard
 {
-    [Inject] IDashboardRepository _DashboardRepository { get; set; }
+    [Inject] IStaticRepository _StaticRepository { get; set; }
 
     int? ZoneCount { get; set; }
     int? RecordsCount { get; set; }
@@ -13,8 +13,8 @@ partial class Dashboard
 
     protected override async Task OnInitializedAsync()
     {
-        ZoneCount = await _DashboardRepository.GetZonesCount();
-        RecordsCount = await _DashboardRepository.GetRecordsCount();
-        DDNSsCount = await _DashboardRepository.GetDDNSsCount();
+        ZoneCount = await _StaticRepository.GetZonesCount();
+        RecordsCount = await _StaticRepository.GetRecordsCount();
+        DDNSsCount = await _StaticRepository.GetDDNSsCount();
     }
 }

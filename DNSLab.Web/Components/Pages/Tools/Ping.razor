@@ -8,7 +8,7 @@
 </MudAlert>
 <MudGrid>
     <MudItem sm="4" xs="12">
-        <MudTextField T="string" Label="آدرس هاست" Class="mud-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="_Host" />
+        <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="_Host" />
     </MudItem>
 </MudGrid>
 
@@ -16,5 +16,5 @@
 
 @if (!String.IsNullOrWhiteSpace(_Result))
 {
-    <MudTextField T="string" Class="mud-ltr" Value="@_Result" Variant="Variant.Outlined" Lines="23" ReadOnly />
+    <MudTextField T="string" Class="dnslab-ltr" Value="@_Result" Variant="Variant.Outlined" Lines="23" ReadOnly />
 }

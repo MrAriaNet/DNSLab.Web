@@ -11,20 +11,20 @@
         <MudCardHeader>
             <CardHeaderContent>
                 <MudGrid Justify="Justify.SpaceBetween" Spacing="1">
-                    <MudItem xs="6" lg="4">
+                    <MudItem xs="12" lg="4">
                         <MudStack Row AlignItems="AlignItems.Center">
                             <MudText Typo="Typo.body2">نویسنده : </MudText>
                             @((MarkupString)ProfileImageCreator.GenerateSVG(_Page.User!.Id, 25))
                             <MudText> @_Page.User?.FullName</MudText>
                         </MudStack>
                     </MudItem>
-                    <MudItem xs="6" lg="4">
+                    <MudItem xs="12" lg="4">
                         <MudText Typo="Typo.body2">تاریخ انتشار : @_Page.PublishDate?.ToLocalTime().ToPersianDateTime()</MudText>
                     </MudItem>
-                    <MudItem xs="6" lg="4">
+                    <MudItem xs="12" lg="4">
                         <MudText Typo="Typo.body2">آخرین بروزرسانی : @_Page.UpdateDate?.ToLocalTime().ToPersianDateTime()</MudText>
                     </MudItem>
-                    <MudItem xs="6" lg="4">
+                    <MudItem xs="12" lg="4">
                         <MudText Typo="Typo.body2">تعداد بازدید : @_Page.VisitCount.ToString()</MudText>
                     </MudItem>
                 </MudGrid>

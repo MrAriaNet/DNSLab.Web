@@ -1,0 +1,63 @@
+﻿@using ApexCharts
+@using DNSLab.Web.DTOs.Repositories.DNSLog
+@using DNSLab.Web.DTOs.Repositories.Zone
+@using DNSLab.Web.Enums
+@attribute [Route(AllRoutes.Summary)]
+@attribute [Authorize]
+<SeoProvider Title="خلاصه گزارش" />
+
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">خلاصه گزارش</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudGrid Spacing="1">
+            <MudItem xs="12" sm="6" md="4">
+                @if (_AllRecords != null)
+                {
+                    <MudStack Row Spacing="0" AlignItems="AlignItems.Center">
+                        <MudSelect Class="my-2" T="string" Label="هاست نِیم" Margin="Margin.Dense" Variant="Variant.Outlined" ValueChanged="QueryOnChange">
+                            @foreach (var zone in _AllRecords)
+                            {
+                                @foreach (var record in zone.Item2)
+                                {
+                                    <MudSelectItem T="string" Value="@($"{record.Name}.{zone.Item1.Name}")">@($"{record.Name}.{zone.Item1.Name}")</MudSelectItem>
+                                }
+                            }
+                        </MudSelect>
+                        @if (!String.IsNullOrEmpty(_LastSelectedQName))
+                        {
+                            <BaseIconButton Color="MudBlazor.Color.Primary" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Refresh" OnClick="()=> QueryOnChange()" />
+                        }
+                    </MudStack>
+                }
+            </MudItem>
+            <MudFlexBreak />
+            @if (!String.IsNullOrEmpty(_LastSelectedQName))
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudText>تعداد کل درخواست ها (24 س)</MudText>
+                    <MudText Typo="Typo.h2">@((_IsLoading ? 0 : _TotalRequests ?? 0).Separate3Digits())</MudText>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="8">
+                    @if (_IsLoading)
+                    {
+                        <MudProgressLinear Indeterminate Color="MudBlazor.Color.Primary" />
+                    }
+                    else
+                    {
+                        <ApexChart Options="_LineOptions" @ref="_Chart">
+                            @if (_TimeAndCounts != null)
+                            {
+                                <ApexPointSeries SeriesType="SeriesType.Bar" Items="_TimeAndCounts" XValue="x=> new DateTime(x.Time.Ticks).ToLocalTime().TimeOfDay" YValue="x=>x.Count" />
+                            }
+                        </ApexChart>
+                    }
+                </MudItem>
+            }
+        </MudGrid>
+
+    </MudCardContent>
+</MudCard>

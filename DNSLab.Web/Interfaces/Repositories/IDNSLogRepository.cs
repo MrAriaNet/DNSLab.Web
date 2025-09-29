@@ -7,6 +7,8 @@ namespace DNSLab.Web.Interfaces.Repositories
     {
         Task<IEnumerable<QueryLogDTO>?> GetLastQueries(Guid zoneId);
         Task<IEnumerable<QueryCountDTO>?> GetQueriesChart(Guid zoneId);
+        Task<long?> GetTotalRequest(string qName);
+        Task<IEnumerable<TimeAndCountDTO>?> GetTotalRequestChartByTime(string qName);
         Task<IEnumerable<QueryCountDTO>?> GetQueriesByRecordChart(Guid recordId , RecordTypeEnum recordType);
     }
 }

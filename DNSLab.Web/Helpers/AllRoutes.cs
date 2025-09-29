@@ -57,5 +57,6 @@
         public const string LastQueryLogs = "/log/last-queries";
         public const string QueryCountChart = "/log/query-count-chart";
         public const string QueryCountPerRecordChart = "/log/query-count-per-record-chart";
+        public const string Summary = "/log/summary";
     }
 }

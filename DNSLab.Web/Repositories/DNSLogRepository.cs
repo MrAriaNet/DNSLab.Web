@@ -22,5 +22,15 @@ namespace DNSLab.Web.Repositories
         {
             return await _HttpServiceProvider.Get<IEnumerable<QueryCountDTO>?>($"{APIController}/GetQueriesByRecordChart?recordId={recordId}&recordType={(int)recordType}");
         }
+
+        public async Task<long?> GetTotalRequest(string qName)
+        {
+            return await _HttpServiceProvider.Get<long?>($"{APIController}/GetTotalRequest?qName={qName}");
+        }
+
+        public async Task<IEnumerable<TimeAndCountDTO>?> GetTotalRequestChartByTime(string qName)
+        {
+            return await _HttpServiceProvider.Get<IEnumerable<TimeAndCountDTO>?>($"{APIController}/GetTotalRequestChartByTime?qName={qName}");
+        }
     }
 }

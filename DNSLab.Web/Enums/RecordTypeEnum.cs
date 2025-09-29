@@ -9,9 +9,9 @@ namespace DNSLab.Web.Enums
     public enum RecordTypeEnum
     {
         A = 1,
-        AAAA = 2,
-        TXT = 3,
-        CNAME = 4,
-        MX = 5,
+        AAAA = 28,
+        TXT = 16,
+        CNAME = 5,
+        MX = 15,
     }
 }

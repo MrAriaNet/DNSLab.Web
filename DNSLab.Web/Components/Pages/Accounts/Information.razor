@@ -39,16 +39,16 @@
                     <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="_CurrentUser.Email" Label="آدرس ایمیل" ReadOnly AdornmentIcon="@Icons.Material.Filled.Edit" OnAdornmentClick="EditEmail" Adornment="Adornment.End" />
                     @if (_CurrentUser.IsEmailApproved)
                     {
-                        <MudText Typo="Typo.caption" Color="Color.Success">آدرس ایمیل تایید شده است.</MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Success">آدرس ایمیل تایید شده است.</MudText>
                     }
                     else
                     {
-                        <MudText Typo="Typo.caption" Color="Color.Warning">
+                        <MudText Typo="Typo.body2" Color="Color.Warning">
                             آدرس ایمیل تایید نشده است.
                             @if (_IsConfirmEmailLinkResend)
                             {
-                                <MudText Color="Color.Success" Typo="Typo.caption">لینک تایید ایمیل ارسال شد</MudText>
-                                            <MudText Color="Color.Success" Typo="Typo.caption">لطفا پوشه Spam نیز بررسی شود</MudText>
+                                <MudText Color="Color.Success" Typo="Typo.body2">لینک تایید ایمیل ارسال شد</MudText>
+                                            <MudText Color="Color.Success" Typo="Typo.body2">لطفا پوشه Spam نیز بررسی شود</MudText>
                             }
                             else
                             {

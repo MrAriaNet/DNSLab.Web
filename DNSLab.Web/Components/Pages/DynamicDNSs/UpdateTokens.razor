@@ -15,8 +15,8 @@
     <MudCardContent>
         <MudDataGrid T="UpdateTokenDTO" Items="_Tokens" Loading="_IsLoading" Dense Hover Outlined>
             <NoRecordsContent>
-                <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                    <MudText Typo="Typo.caption">تا به حال هیچ کلیدی ایجاد نشده است!</MudText>
+                <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                    <MudText Typo="Typo.body2">تا به حال هیچ کلیدی ایجاد نشده است!</MudText>
                 </MudAlert>
             </NoRecordsContent>
             <Columns>
@@ -33,22 +33,22 @@
                             <MudGrid Justify="Justify.Center" Spacing="1">
                                 <MudItem>
                                     <BaseButton OnClick="()=> CopyLink(context.Item)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Material.Rounded.ContentCopy">
-                                        <MudText Typo="Typo.caption">Link</MudText>
+                                        <MudText Typo="Typo.body2">Link</MudText>
                                     </BaseButton>
                                 </MudItem>
                                 <MudItem>
                                     <BaseButton OnClick="()=> DownloadScript(context.Item.Id,1)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Custom.FileFormats.FileDocument">
-                                        <MudText Typo="Typo.caption">Shell (Wget)</MudText>
+                                        <MudText Typo="Typo.body2">Shell (Wget)</MudText>
                                     </BaseButton>
                                 </MudItem>
                                 <MudItem>
                                     <BaseButton OnClick="()=> DownloadScript(context.Item.Id,2)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Custom.FileFormats.FileDocument">
-                                        <MudText Typo="Typo.caption">Shell (Curl)</MudText>
+                                        <MudText Typo="Typo.body2">Shell (Curl)</MudText>
                                     </BaseButton>
                                 </MudItem>
                                 <MudItem>
                                     <BaseButton OnClick="()=> DownloadScript(context.Item.Id,3)" DropShadow="false" Color="Color.Default" Size="Size.Small" Variant="Variant.Filled" EndIcon="@Icons.Custom.FileFormats.FileDocument">
-                                        <MudText Typo="Typo.caption">PowerShell (RestMethod)</MudText>
+                                        <MudText Typo="Typo.body2">PowerShell (RestMethod)</MudText>
                                     </BaseButton>
                                 </MudItem>
                             </MudGrid>
@@ -78,8 +78,10 @@
         </MudDataGrid>
         @if (IsSelectableList == false)
         {
-            <MudAlert Class="mt-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
-                <MudText>با ایجاد یک کلید، شما میتوانید چندین هاست نِیم را به یک کلید وصل کنید و بصورت گروهی آن ها را آپدیت نمایید.</MudText>
+            <MudAlert Class="mt-3" Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
+                <MudText Typo="Typo.body2">کلید های DNSLab برای بروزرسانی آی‌پی هاست نیم ها استفاده میشوند.</MudText>
+                <MudText Typo="Typo.body2">شما میتوانید از کلید بصورت مستقیم با فراخوانی لینک آن آی‌پی هاست نیم های متصل به کلید را بروزرسانی نمایید و یا از منوی تنظیمات Mikrotik از کلید برروی مودم خود استفاده نمایید.</MudText>
+                <MudText Typo="Typo.body2">همچنین شما میتوانید بصورت Task Scheduler اسکریپت کلید مورد نظر را در سیستم عامل قرار دهید تا بصورت خودکار یک بار در هنگام روشن شدن سیستم اجرا شود تا آی‌پی بروزرسانی شود.</MudText>
             </MudAlert>
         }
     </MudCardContent>

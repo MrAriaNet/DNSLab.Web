@@ -32,7 +32,7 @@
                         </TemplateColumn>
                         <TemplateColumn Title="وضعیت نیم سرور">
                             <CellTemplate>
-                                <MudTooltip Text="@context.Item.Status.Description">
+                                <MudTooltip Text="@context.Item.Status!.Description">
                                     @switch ((ZoneStatusEnum)context.Item.Status.Id)
                                     {
                                         case ZoneStatusEnum.Pending:

@@ -88,6 +88,7 @@ partial class Information
     {
         _NewEmailAddress = _CurrentUser!.Email;
         _EditEmailDialogVisible = true;
+        _IsConfirmEmailLinkResend = true;
     }
     MudForm _EditEmailForm;
     string _NewEmailAddress;

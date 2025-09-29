@@ -1,4 +1,5 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Ticket
+@using DNSLab.Web.Enums
 @attribute [Route(AllRoutes.AllTickets)]
 @attribute [Authorize(Roles = AuthorizeRoles.Admin)]
 
@@ -20,11 +21,14 @@
             </NoRecordsContent>
             <Columns>
                 <PropertyColumn Property="x=>x.Title" Title="عنوان" />
-                <PropertyColumn Property="x=>x.Status" Title="وضعیت">
+                <PropertyColumn Property="x=>x.Status" Title="وضعیت" SortBy="x=>x.Status!.Id">
                     <CellTemplate>
-                        <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                            <MudText Typo="Typo.caption">@context.Item.Status!.Name</MudText>
-                        </MudAlert>
+                        <MudSelect T="TicketStatusEnum" Variant="Variant.Text" Value="(TicketStatusEnum)context.Item.Status!.Id" Margin="Margin.Dense" ValueChanged="x=> OnStatusChanged(context.Item , x)">
+                            @foreach (TicketStatusEnum item in Enum.GetValues(typeof(TicketStatusEnum)))
+                            {
+                                <MudSelectItem T="TicketStatusEnum" Value="item">@item</MudSelectItem>
+                            }
+                        </MudSelect>
                     </CellTemplate>
                 </PropertyColumn>
                 <PropertyColumn Property="x=>x.CreateDate" Title="تاریخ ثبت">
@@ -37,10 +41,6 @@
                         <MudStack Row Justify="Justify.FlexEnd">
                             <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
                                 <MudMenuItem Href="@(AllRoutes.TicketMessages+"/"+context.Item.Id)" Icon="@Icons.Material.Rounded.Message">مشاهده</MudMenuItem>
-                                <MudMenuItem Disabled />
-                                <MudMenuItem IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete">
-                                    <MudText Color="Color.Error" Typo="Typo.caption">حذف</MudText>
-                                </MudMenuItem>
                             </MudMenu>
                         </MudStack>
                     </CellTemplate>

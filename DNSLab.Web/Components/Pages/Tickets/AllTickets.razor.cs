@@ -2,6 +2,7 @@
 using DNSLab.Web.Components.Dialogs.Ticket;
 using DNSLab.Web.DTOs.Repositories.Record;
 using DNSLab.Web.DTOs.Repositories.Ticket;
+using DNSLab.Web.Enums;
 using DNSLab.Web.Interfaces.Repositories;
 using DNSLab.Web.Repositories;
 using Microsoft.AspNetCore.Components;
@@ -39,6 +40,14 @@ partial class AllTickets
         if (!result!.Canceled)
         {
             await OnAfterRenderAsync(true);
+        }
+    }
+
+    async Task OnStatusChanged(TicketDTO ticket, TicketStatusEnum status)
+    {
+        if (await _TicketRepository.ChangeTicketStatus(ticket.Id, status)) 
+        {
+            ticket.Status!.Id = (int)status;
         }
     }
 }

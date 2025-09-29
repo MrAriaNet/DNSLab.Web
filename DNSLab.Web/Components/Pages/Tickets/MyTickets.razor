@@ -1,4 +1,5 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Ticket
+@using DNSLab.Web.Enums
 @attribute [Route(AllRoutes.MyTickets)]
 @attribute [Authorize]
 
@@ -22,7 +23,7 @@
                 <PropertyColumn Property="x=>x.Title" Title="عنوان" />
                 <PropertyColumn Property="x=>x.Status" Title="وضعیت">
                     <CellTemplate>
-                        <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
+                        <MudAlert Severity="@(context.Item.Status!.Id == (int)TicketStatusEnum.New ?  Severity.Info : context.Item.Status!.Id == (int)TicketStatusEnum.Checking ? Severity.Warning : Severity.Success)" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
                             <MudText Typo="Typo.caption">@context.Item.Status!.Name</MudText>
                         </MudAlert>
                     </CellTemplate>

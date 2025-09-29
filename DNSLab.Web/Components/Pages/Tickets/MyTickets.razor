@@ -10,7 +10,7 @@
             <MudText Typo="Typo.h5">تیکت ها</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@Icons.Material.Rounded.Add" OnClick="AddTicket">ثبت تیکت جدید</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Add" OnClick="AddTicket">ثبت تیکت جدید</MudButton>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
@@ -38,7 +38,7 @@
                     <CellTemplate>
                         <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
                             <BaseIconButton Href="@(AllRoutes.TicketMessages+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.OpenInFull" />
-                            <BaseIconButton OnClick="()=>Delete(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
+                            <BaseIconButton OnClick="()=>Delete(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>

@@ -19,7 +19,7 @@
             <MudOverlay Visible="_IsSubscribeThisFeature == false" DarkBackground="true" LockScroll Absolute="true" Style="height:100vh">
                 <MudContainer>
                     <MudText Color="MudBlazor.Color.Warning">اشتراک فعلی شما این قابلیت را پوشش نمیدهد لطفا اشتراک تهیه فرمایید</MudText>
-                    <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@Icons.Material.Filled.TableChart" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+                    <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
                 </MudContainer>
             </MudOverlay>
 
@@ -47,7 +47,7 @@
                                 </MudSelect>
                                 @if (!String.IsNullOrEmpty(_LastSelectedQName))
                                 {
-                                    <BaseIconButton Color="MudBlazor.Color.Primary" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Refresh" OnClick="()=> QueryOnChange()" />
+                                    <BaseIconButton Color="MudBlazor.Color.Primary" Variant="Variant.Filled" Icon="@DNSLabIcons.Refresh" OnClick="()=> QueryOnChange()" />
                                 }
                             </MudStack>
                         }

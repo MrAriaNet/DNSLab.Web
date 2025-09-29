@@ -9,7 +9,7 @@
             <MudText Typo="Typo.h5">مطالب سایت</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="@AllRoutes.Page" EndIcon="@Icons.Material.Rounded.Add">افزودن صفحه جدید</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="@AllRoutes.Page" EndIcon="@DNSLabIcons.Add">افزودن صفحه جدید</MudButton>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
@@ -49,12 +49,12 @@
                 <TemplateColumn StickyLeft>
                     <CellTemplate>
                         <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                            <BaseIconButton Href="@(AllRoutes.Page+"/"+context.Item.Id)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                            <BaseIconButton Href="@(AllRoutes.Page+"/"+context.Item.Id)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
                             @if (context.Item.IsPublished)
                             {
                                 <BaseIconButton Href="@($"{context.Item.Type.Url}/{context.Item.URL}")" Color="Color.Success" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.OpenInBrowser" />
                             }
-                            <BaseIconButton OnClick="()=> DeletePage(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
+                            <BaseIconButton OnClick="()=> DeletePage(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>

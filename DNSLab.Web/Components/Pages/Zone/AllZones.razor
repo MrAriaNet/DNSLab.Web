@@ -13,7 +13,7 @@
         <CardHeaderActions>
             @if (_IsSubscribeThisFeature == true)
             {
-                <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="NewZone" EndIcon="@Icons.Material.Rounded.Add">افزودن دامنه</MudButton>
+                <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="NewZone" EndIcon="@DNSLabIcons.Add">افزودن دامنه</MudButton>
             }
         </CardHeaderActions>
     </MudCardHeader>
@@ -88,11 +88,11 @@
                                 <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
                                     <AuthorizeView Roles="@($"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")" Context="authCTX">
                                         <MudTooltip Arrow Text="ویرایش رکورد ها">
-                                            <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Edit" />
+                                            <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
                                         </MudTooltip>
                                     </AuthorizeView>
                                     <BaseIconButton OnClick="()=> DisableZone(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
-                                    <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Material.Rounded.Delete" />
+                                    <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                                 </MudStack>
                             </CellTemplate>
                         </TemplateColumn>

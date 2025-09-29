@@ -38,7 +38,7 @@
                             <MudMenu Dense Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" DropShadow AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
                                 <MudMenuItem Href="@(AllRoutes.TicketMessages+"/"+context.Item.Id)" Icon="@Icons.Material.Rounded.Message">مشاهده</MudMenuItem>
                                 <MudMenuItem Disabled />
-                                <MudMenuItem IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete">
+                                <MudMenuItem IconColor="Color.Error" IconSize="Size.Small" Icon="@Icons.Material.Rounded.Delete" OnClick="()=>Delete(context.Item)">
                                     <MudText Color="Color.Error" Typo="Typo.caption">حذف</MudText>
                                 </MudMenuItem>
                             </MudMenu>

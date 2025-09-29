@@ -1,4 +1,5 @@
-﻿using DNSLab.Web.Components.Dialogs.Record;
+﻿using DNSLab.Web.Components.Dialogs;
+using DNSLab.Web.Components.Dialogs.Record;
 using DNSLab.Web.Components.Dialogs.Ticket;
 using DNSLab.Web.DTOs.Repositories.Record;
 using DNSLab.Web.DTOs.Repositories.Ticket;
@@ -39,6 +40,28 @@ partial class MyTickets
         if (!result!.Canceled)
         {
             await OnAfterRenderAsync(true);
+        }
+    }
+
+    async Task Delete(TicketDTO ticket)
+    {
+        var parameters = new DialogParameters<BaseDialog>
+            {
+                { x => x.ContentText, $"شما در حال حذف {ticket.Title} میباشید آیا تایید میکنید؟" },
+                { x => x.ButtonText, "حذف" },
+                { x => x.Color, Color.Error }
+            };
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+        var dialog = await _DialogService.ShowAsync<BaseDialog>("حذف", parameters, options);
+        var result = await dialog.Result;
+        if (!result!.Canceled)
+        {
+            if (await _TicketRepository.DeleteTicket(ticket.Id))
+            {
+                await OnAfterRenderAsync(true);
+            }
         }
     }
 }

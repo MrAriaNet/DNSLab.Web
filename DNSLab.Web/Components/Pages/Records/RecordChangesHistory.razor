@@ -9,6 +9,12 @@
         <CardHeaderContent>
             <MudText Typo="Typo.h5">تاریخچه تغییرات</MudText>
         </CardHeaderContent>
+        <CardHeaderActions>
+            @if (_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true)
+            {
+                <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Refresh" OnClick="OnInitializedAsync">بروزرسانی</MudButton>
+            }
+        </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
         @if (_IsSubscribeThisFeature != null)
@@ -25,7 +31,7 @@
                     در صورت اعمال روی سرور ها با علامت
                     <MudChip T="string" Icon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" Label="true">اعمال شده</MudChip>
                     و در صورتی که در حال انجام باشد با علامت
-                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true" OnClick="OnInitializedAsync">در حال اعمال</MudChip>
+                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true">در حال اعمال</MudChip>
                     مشخص میگردد
                 </MudText>
             </MudAlert>
@@ -132,7 +138,7 @@
                                 }
                                 else
                                 {
-                                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true" OnClick="OnInitializedAsync">در حال اعمال</MudChip>
+                                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true">در حال اعمال</MudChip>
                                 }
                             </CellTemplate>
                         </PropertyColumn>

@@ -9,7 +9,7 @@
         </CardHeaderContent>
         <CardHeaderActions>
             <MudStack Row>
-                <MudTextField T="string" Variant="Variant.Filled" ReadOnly @bind-Value="_Token" Margin="Margin.Dense" Label="کلید (token)" AdornmentIcon="@DNSLabIcons.Refresh" Adornment="Adornment.End"></MudTextField>
+                <MudTextField T="string" Variant="Variant.Filled" ReadOnly @bind-Value="_Token" Margin="Margin.Dense" Label="کلید (token)" AdornmentIcon="@DNSLabIcons.Refresh" OnAdornmentClick="RevokeClientToken" Adornment="Adornment.End"></MudTextField>
             </MudStack>
         </CardHeaderActions>
     </MudCardHeader>

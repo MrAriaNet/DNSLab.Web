@@ -1,11 +1,9 @@
 ﻿ @inject IHttpContextAccessor httpContextAccessor;
 <MudDrawer @bind-Open="_drawerOpen" Overlay="false" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
-    <MudText Typo="Typo.caption" Align="Align.Center">IP : @httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress!.ToString()</MudText>
-    <MudText Typo="Typo.caption" Align="Align.Center">version : @GlobalSettings.Version</MudText>
-    <MudNavMenu>
-        <MudNavLink Href="@AllRoutes.Home" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">خانه</MudNavLink>
-        <AuthorizeView Context="_AuthCTX">
-            <Authorized>
+    <AuthorizeView Context="_AuthCTX">
+        <Authorized>
+            <MudNavMenu>
+                <MudNavLink Href="@AllRoutes.Dashboard" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">داشبورد</MudNavLink>
                 @if (_AuthCTX.User.IsInRole(AuthorizeRoles.Admin))
                 {
                     <MudNavGroup Title="مدیریت" Icon="@Icons.Material.Filled.AdminPanelSettings">
@@ -15,7 +13,6 @@
                         <MudNavLink Href="@AllRoutes.AllPayments">همه پرداخت ها</MudNavLink>
                     </MudNavGroup>
                 }
-                <MudNavLink Href="@AllRoutes.Dashboard" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">داشبورد</MudNavLink>
                 <MudNavLink Icon="@Icons.Material.Filled.Cloud" Href="@AllRoutes.AllZones">دامنه‌ ها</MudNavLink>
                 <MudNavGroup Title="Dynamic DNS" Icon="@Icons.Material.Filled.CloudSync">
                     <MudNavLink Href="@AllRoutes.DDNSHostNames">هاست‌نیم ها</MudNavLink>
@@ -29,8 +26,11 @@
                     <MudNavLink Href="@AllRoutes.Payments">پرداخت ها</MudNavLink>
                 </MudNavGroup>
                 <MudNavLink Href="@AllRoutes.MyAccount" Icon="@Icons.Material.Filled.AccountBox">حساب کاربری</MudNavLink>
-            </Authorized>
-        </AuthorizeView>
+            </MudNavMenu>
+            <MudSpacer />
+        </Authorized>
+    </AuthorizeView>
+    <MudNavMenu>
         <MudNavLink Icon="@Icons.Material.Rounded.Web" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.Construction" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
         <MudNavLink Icon="@Icons.Material.Rounded.Code" Href="@AllRoutes.ItIsUnderDevelopment">API</MudNavLink>
@@ -43,6 +43,7 @@
             </Authorized>
         </AuthorizeView>
     </MudNavMenu>
+
 </MudDrawer>
 
 @code {

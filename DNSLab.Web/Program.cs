@@ -67,6 +67,11 @@ builder.Services.AddRazorComponents()
         option.DetailedErrors = builder.Environment.IsDevelopment();
     });
 
+builder.Services.AddSignalR(hubOptions =>
+{
+    hubOptions.MaximumReceiveMessageSize = 3 * 1024 * 1024; // 3MB
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

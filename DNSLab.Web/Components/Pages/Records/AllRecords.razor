@@ -69,7 +69,7 @@
             </MudAlert>
         }
 
-        <MudDataGrid T="BaseRecordDTO" Items="_Records" Dense Hover Outlined Loading="_IsLoading">
+        <MudDataGrid T="BaseRecordDTO" Items="_Records?.OrderBy(x=>x.Name)" Dense Hover Outlined Loading="_IsLoading">
             <NoRecordsContent>
                 <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                     <MudText Typo="Typo.caption">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
@@ -79,9 +79,7 @@
                 <PropertyColumn Property="x=>x.Name" Title="نام" />
                 <PropertyColumn Property="x=>x.Type" Title="نوع">
                     <CellTemplate>
-                        <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                            <MudText Typo="Typo.caption">@context.Item.Type</MudText>
-                        </MudAlert>
+                        <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">@context.Item.Type</MudChip>
                     </CellTemplate>
                 </PropertyColumn>
                 <PropertyColumn Property="x=>x.TTL" Title="TTL" />
@@ -116,9 +114,14 @@
                 <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
                 <PropertyColumn Property="x=>x.Disable" Title="وضعیت">
                     <CellTemplate>
-                        <MudAlert Severity="@(context.Item.Disable ? Severity.Warning : Severity.Success)" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                            <MudText Typo="Typo.caption">@(context.Item.Disable ? "غیر فعال" : "فعال")</MudText>
-                        </MudAlert>
+                        @if (context.Item.Disable)
+                        {
+                            <MudChip T="string" Color="Color.Warning" Size="Size.Small" Label="true">غیرفعال</MudChip>
+                        }
+                        else
+                        {
+                            <MudChip T="string" Color="Color.Success" Size="Size.Small" Label="true">فعال</MudChip>
+                        }
                     </CellTemplate>
                 </PropertyColumn>
                 <TemplateColumn StickyLeft>

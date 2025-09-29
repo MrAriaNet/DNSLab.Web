@@ -15,7 +15,7 @@
                 </CardHeaderActions>
             </MudCardHeader>
             <MudCardContent>
-                <MudDataGrid T="ZoneDTO" Items="_Zones" Loading="_IsLoading" Dense Hover Outlined>
+                <MudDataGrid T="ZoneDTO" Items="_Zones?.OrderBy(x=>x.Name)" Loading="_IsLoading" Dense Hover Outlined>
                     <NoRecordsContent>
                         <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                             <MudText Typo="Typo.caption">تا به حال هیچ دامنه‌ای ثبت نشده است!</MudText>
@@ -25,16 +25,19 @@
                         <PropertyColumn Property="x=>x.Name" Title="دامنه" />
                         <TemplateColumn Title="نوع">
                             <CellTemplate>
-                                <MudAlert Severity="Severity.Info" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                    <MudText Typo="Typo.caption">Primary</MudText>
-                                </MudAlert>
+                                <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">Primary</MudChip>
                             </CellTemplate>
                         </TemplateColumn>
                         <TemplateColumn Title="وضعیت">
                             <CellTemplate>
-                                <MudAlert Severity="@(context.Item.Disable ? Severity.Warning : Severity.Success)" Variant="Variant.Filled" NoIcon Dense ContentAlignment="HorizontalAlignment.Center">
-                                    <MudText Typo="Typo.caption">@(context.Item.Disable ? "غیر فعال" : "فعال")</MudText>
-                                </MudAlert>
+                                @if (context.Item.Disable)
+                                {
+                                    <MudChip T="string" Color="Color.Warning" Size="Size.Small" Label="true">غیرفعال</MudChip>
+                                }
+                                else
+                                {
+                                    <MudChip T="string" Color="Color.Success" Size="Size.Small" Label="true">فعال</MudChip>
+                                }
                             </CellTemplate>
                         </TemplateColumn>
                         <TemplateColumn>

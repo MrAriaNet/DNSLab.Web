@@ -13,36 +13,44 @@ namespace DNSLab.Web.Providers
 
         public async Task<string> GetRefreshTokenAsync()
         {
-            var model = await _LocalStorage.GetAsync<AuthUserDTO>(TokenKey);
-
-            if (model.Success)
+            try
             {
-                if (model.Value!.RefreshTokenExpiryTime > DateTime.UtcNow)
+                var model = await _LocalStorage.GetAsync<AuthUserDTO>(TokenKey);
+
+                if (model.Success)
                 {
-                    return model.Value.RefreshToken;
+                    if (model.Value!.RefreshTokenExpiryTime > DateTime.UtcNow)
+                    {
+                        return model.Value.RefreshToken;
+                    }
                 }
             }
-
-            return String.Empty;
+            catch { }
+            {
+                return String.Empty;
+            }
         }
 
         public async Task<string> GetTokenAsync()
         {
-            var model = await _LocalStorage.GetAsync<AuthUserDTO>(TokenKey);
-
-            if (model.Success)
+            try
             {
-                if (!String.IsNullOrEmpty(model.Value!.Token))
+                var model = await _LocalStorage.GetAsync<AuthUserDTO>(TokenKey);
+                if (model.Success)
                 {
-                    if (model.Value!.TokenExpiryTime > DateTime.UtcNow)
+                    if (!String.IsNullOrEmpty(model.Value!.Token))
                     {
-                        return model.Value.Token;
+                        if (model.Value!.TokenExpiryTime.AddSeconds(-5) > DateTime.UtcNow)
+                        {
+                            return model.Value.Token;
+                        }
                     }
-
                 }
             }
-
-            return String.Empty;
+            catch { }
+            {
+                return String.Empty;
+            }
         }
 
         public async Task SetTokenAsync(AuthUserDTO model)

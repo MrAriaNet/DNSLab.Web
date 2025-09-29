@@ -20,11 +20,15 @@
                 </MudAlert>
             </NoRecordsContent>
             <Columns>
-                <PropertyColumn Property="x=>x.Name" Title="نام" />
+                <PropertyColumn Property="x=>x.Name" Title="آدرس">
+                    <CellTemplate>
+                        <MudLink Href='@($"http://tcp.dnslab.ir:{@context.Item.RemotePort}")' Underline="Underline.None">http://tcp.dnslab.ir:@context.Item.RemotePort</MudLink>
+                    </CellTemplate>
+                </PropertyColumn>
                 <PropertyColumn Property="x=>x.LocalIp" Title="آی پی محلی" />
                 <PropertyColumn Property="x=>x.LocalPort" Title="پورت محلی" />
                 <PropertyColumn Property="x=>x.RemotePort" Title="پورت اختصاصی" />
-                <PropertyColumn Property="x=>x.Type" Title="نوع پروتکل" >
+                <PropertyColumn Property="x=>x.Type" Title="نوع پروتکل">
                     <CellTemplate>
                         <MudChip T="string" Color="Color.Info" Size="Size.Small" Label="true">@context.Item.Type.ToString()</MudChip>
                     </CellTemplate>

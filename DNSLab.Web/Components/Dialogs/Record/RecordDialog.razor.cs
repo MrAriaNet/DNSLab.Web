@@ -11,6 +11,7 @@ partial class RecordDialog
 
     [Inject] IRecordRepository _RecordRepository { get; set; }
     [Inject] IDDNSRepository _DDNSRepository { get; set; }
+    [Inject] IHttpContextAccessor _HttpContextAccessor { get; set; }
 
     [Parameter] public ZoneDTO Zone { get; set; }
     [Parameter] public BaseRecordDTO Record { get; set; } = new() { Name = String.Empty, Type = Enums.RecordTypeEnum.A, TTL = 3600 };
@@ -58,6 +59,8 @@ partial class RecordDialog
         switch (Record.Type)
         {
             case Enums.RecordTypeEnum.A:
+                //Set User IP if ipv4 address was empty
+                _ARecord.IPv4Address ??= _HttpContextAccessor.HttpContext?.Connection?.RemoteIpAddress!.ToString()!;
                 Record.RData = _ARecord;
                 break;
             case Enums.RecordTypeEnum.AAAA:

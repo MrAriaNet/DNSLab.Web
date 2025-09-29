@@ -16,7 +16,7 @@
             @switch (Record.Type)
             {
                 case RecordTypeEnum.A:
-                    <MudTextField T="string" @bind-Value="_ARecord.IPv4Address" Variant="Variant.Outlined" Placeholder="1.2.3.4" Class="mud-ltr" Label="IPv4" />
+                    <MudTextField T="string" @bind-Value="_ARecord.IPv4Address" Variant="Variant.Outlined" Placeholder="@_HttpContextAccessor.HttpContext?.Connection?.RemoteIpAddress!.ToString()" Class="mud-ltr" Label="IPv4" />
                     break;
                 case RecordTypeEnum.AAAA:
                     <MudTextField T="string" @bind-Value="_AAARecord.IPv6Address" Variant="Variant.Outlined" Placeholder="2001:0000:130F:0000:0000:09C0:876A:130B" Class="mud-ltr" Label="IPv6" />

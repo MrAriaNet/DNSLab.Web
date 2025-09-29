@@ -1,5 +1,6 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.ReeverseProxy
 @attribute [Route(AllRoutes.ActiveTunnels)]
+@attribute [Authorize]
 <SeoProvider Title="تونل های فعال" />
 
 <MudCard Elevation="0">

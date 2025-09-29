@@ -19,7 +19,16 @@
                     <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
                 </MudContainer>
             </MudOverlay>
-
+            <MudAlert Class="mb-2" Dense Severity="Severity.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
+                <MudText Typo="Typo.body2">در این بخش تاریخچه تغییرات رکورد ها نمایش داده میشود</MudText>
+                <MudText Typo="Typo.body2">
+                    در صورت اعمال روی سرور ها با علامت
+                    <MudChip T="string" Icon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" Label="true">اعمال شده</MudChip>
+                    و در صورتی که در حال انجام باشد با علامت
+                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true" OnClick="OnInitializedAsync">در حال اعمال</MudChip>
+                    مشخص میگردد
+                </MudText>
+            </MudAlert>
             @if (_IsSubscribeThisFeature == true)
             {
                 <MudDataGrid T="RecordChangeDTO" Items="_RecordChanges?.OrderByDescending(x=>x.TimeStamp)" Loading="_Loading" Dense Hover Outlined>
@@ -29,7 +38,7 @@
                         </MudAlert>
                     </NoRecordsContent>
                     <Columns>
-                        <PropertyColumn Property="x=>x.TimeStamp.ToLocalTime().ToPersianDateTime()" Title="زمان" StickyRight />
+                        <PropertyColumn Property="x=>x.TimeStamp.ToLocalTime().ToPersianDateTime()" Title="زمان" />
                         <PropertyColumn Property="x=>x.OperationId" Title="عملیات">
                             <CellTemplate>
                                 @switch ((RecordChangeOperationEnum)context.Item.OperationId)
@@ -76,6 +85,8 @@
                                             default:
                                                 break;
                                         }
+                                        <MudFlexBreak />
+                                        TTL : @context.Item.PreviousData.TTL
                                     </MudText>
                                 }
                             </CellTemplate>
@@ -107,6 +118,8 @@
                                             default:
                                                 break;
                                         }
+                                        <MudFlexBreak />
+                                        TTL : @context.Item.CurrentData.TTL
                                     </MudText>
                                 }
                             </CellTemplate>
@@ -115,11 +128,11 @@
                             <CellTemplate>
                                 @if (context.Item.IsProcessed)
                                 {
-                                    <MudIcon Icon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" />
+                                    <MudChip T="string" Icon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" Label="true">اعمال شده</MudChip>
                                 }
                                 else
                                 {
-                                    <MudIcon Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" />
+                                    <MudChip T="string" Icon="@DNSLabIcons.Refresh" Size="Size.Small" Color="Color.Info" Label="true" OnClick="OnInitializedAsync">در حال اعمال</MudChip>
                                 }
                             </CellTemplate>
                         </PropertyColumn>

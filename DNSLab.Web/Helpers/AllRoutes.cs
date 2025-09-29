@@ -22,6 +22,7 @@
         public const string UpdateTokens = "/ddns/update-tokens";
         public const string RouterSettings = "/ddns/router-settings";
         public const string MikroTikSettings = "/ddns/mikrotik-settings";
+        public const string RaspberryPiSettings = "/ddns/raspberry-pi-settings";
 
         public const string MyWallet = "/wallet/my";
         public const string WalletTransactions = "/wallet/transactions";

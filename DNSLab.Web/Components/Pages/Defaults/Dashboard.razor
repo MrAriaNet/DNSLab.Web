@@ -38,11 +38,11 @@
     </MudCardContent>
 </MudCard>
 
-<MudAlert Class="mt-2" Severity="Severity.Normal" ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Filled">
+<MudAlert Class="mt-2" Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Text">
     @if (DDNSsCount != null && DDNSsCount == 0)
     {
-        <MudText>تا کنون هیچ هاست نِیمی ثبت نشده است.</MudText>
+        <MudText Typo="Typo.body2">تا کنون هیچ هاست نِیمی ثبت نشده است.</MudText>
     }
-    <MudLink Underline="Underline.None" Href="@AllRoutes.DDNSHostNames"><MudText Color="Color.Primary" Typo="Typo.caption">مدیریت هاست نِیم ها</MudText></MudLink>
+    <MudLink Underline="Underline.None" Href="@AllRoutes.DDNSHostNames"><MudText Typo="Typo.body2">مدیریت هاست نِیم ها</MudText></MudLink>
 </MudAlert>
 

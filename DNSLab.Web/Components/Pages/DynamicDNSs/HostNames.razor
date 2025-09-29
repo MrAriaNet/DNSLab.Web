@@ -26,8 +26,8 @@ else
                 {
                     <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderBy(x=>x.Name)" Dense Hover Outlined>
                         <NoRecordsContent>
-                            <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                                <MudText Typo="Typo.caption">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
+                            <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                                <MudText Typo="Typo.body2">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
                             </MudAlert>
                         </NoRecordsContent>
                         <Columns>
@@ -40,7 +40,7 @@ else
                             <PropertyColumn Property="x=>x.TTL" Title="TTL" />
                             <PropertyColumn Property="x=>x.RData" Title="مقدار" CellClass="mud-ltr" Sortable="false">
                                 <CellTemplate>
-                                    <MudText Typo="Typo.caption">
+                                    <MudText Typo="Typo.body2">
                                         @switch (context.Item.Type)
                                         {
                                             case Enums.RecordTypeEnum.A:
@@ -60,7 +60,7 @@ else
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.LastModified" Title="آخرین تغییر">
                                 <CellTemplate>
-                                    <MudText Typo="Typo.caption">@(context.Item.LastModified.HasValue ? context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime() : "بدون تغییر")</MudText>
+                                    <MudText Typo="Typo.body2">@(context.Item.LastModified.HasValue ? context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime() : "بدون تغییر")</MudText>
                                 </CellTemplate>
                             </PropertyColumn>
                             <PropertyColumn Property="x=>x.Disable" Title="وضعیت">

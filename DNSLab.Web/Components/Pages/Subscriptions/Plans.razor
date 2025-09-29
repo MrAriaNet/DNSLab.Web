@@ -9,8 +9,8 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        <MudAlert Class="mb-2" Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
-            <MudText>در این بخش شما با توجه به نیاز خود میتوانید پلن مورد نظر خود را انتخاب نمایید</MudText>
+        <MudAlert Class="mb-2" Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
+            <MudText Typo="Typo.body2">در این بخش شما با توجه به نیاز خود میتوانید پلن مورد نظر خود را انتخاب نمایید</MudText>
         </MudAlert>
         @if (_PlanSections != null)
         {
@@ -57,7 +57,7 @@
                                                             </MudText>
                                                             @if (discount.Duration.DurationInMonth > 1)
                                                             {
-                                                                <MudText Color="Color.Info" Typo="Typo.caption" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits()))</MudText>
+                                                                <MudText Color="Color.Info" Typo="Typo.body2" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits()))</MudText>
                                                             }
                                                         </MudStack>
                                                         <MudChip T="object" Label="true" Variant="Variant.Text" Icon="@Icons.Material.Rounded.Check" Color="Color.Success">انتخاب</MudChip>
@@ -82,17 +82,17 @@
                     <BaseButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Subscriptionn">تایید و پرداخت</BaseButton>
                 </DialogActions>
                 <DialogContent>
-                    <MudText Typo="Typo.caption">
+                    <MudText Typo="Typo.body2">
                         مدت :
                         @_SelectedPlanDiscount.Duration.DurationInMonth ماهه
                         (@((_SelectedPlanDiscount.Duration.DurationInMonth * (_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100))).Separate3Digits())) ريال
                         @if (_SelectedPlanDiscount.Duration.DurationInMonth > 1)
                         {
-                            <MudText Color="Color.Success" Typo="Typo.caption" Class="mr-2">هر ماه (@((_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100)).Separate3Digits())) ريال</MudText>
+                            <MudText Color="Color.Success" Typo="Typo.body2" Class="mr-2">هر ماه (@((_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100)).Separate3Digits())) ريال</MudText>
                         }
                     </MudText>
                     <MudDivider />
-                    <MudText Typo="Typo.caption">توضیحات</MudText>
+                    <MudText Typo="Typo.body2">توضیحات</MudText>
                     <MudStack Spacing="0" AlignItems="AlignItems.Start">
                         @foreach (var feature in _SelectedPlan.Features)
                         {
@@ -102,7 +102,7 @@
                         }
                     </MudStack>
                     <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
-                        <MudText Typo="Typo.caption" class="mt-2">
+                        <MudText Typo="Typo.body2" class="mt-2">
                             شما در حال تهیه اشتراک @_SelectedPlanDiscount!.Duration.Description برای پلن @_SelectedPlan.Name میباشید و در صورت تایید مبلغ (@((_SelectedPlanDiscount.Duration.DurationInMonth * (_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100))).Separate3Digits()) ريال) از کیف پول شما کسر خواهد شد.
                         </MudText>
                     </MudAlert>

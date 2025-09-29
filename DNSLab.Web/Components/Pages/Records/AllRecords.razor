@@ -16,10 +16,10 @@
                     </MudStack>
                     <MudStack Row Spacing="0">
                         <MudChip T="string" Size="Size.Small" Color="Color.Info" Variant="Variant.Filled">
-                            <MudText Typo="Typo.caption">Primary</MudText>
+                            <MudText Typo="Typo.body2">Primary</MudText>
                         </MudChip>
                         <MudChip T="string" Size="Size.Small" Color="@(_Zone.Disable ? Color.Warning : Color.Success)" Variant="Variant.Filled">
-                            <MudText Typo="Typo.caption">@(_Zone.Disable ? "غیر فعال" : "فعال")</MudText>
+                            <MudText Typo="Typo.body2">@(_Zone.Disable ? "غیر فعال" : "فعال")</MudText>
                         </MudChip>
                     </MudStack>
                 }
@@ -33,9 +33,9 @@
 
         @if (_RequiredToUpdateNameServers != null && _RequiredToUpdateNameServers.Count() > 0)
         {
-            <MudAlert Class="mb-2" Severity="Severity.Warning" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
-                <MudText>برای استفاده از خدمات DNSLab ، باید NS زیر را به جای مقادیر قبلی در تنظیمات دامنه‌ی خود وارد کنید.</MudText>
-                <MudText>
+            <MudAlert Class="mb-2" Dense Severity="Severity.Warning" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
+                <MudText Typo="Typo.body2">برای استفاده از خدمات DNSLab ، باید NS زیر را به جای مقادیر قبلی در تنظیمات دامنه‌ی خود وارد کنید.</MudText>
+                <MudText Typo="Typo.body2">
                     توجه داشته باشید که تغییر NS در دامنه ممکن است تا 72 ساعت زمان ببرد.
                     <BaseButton Variant="Variant.Text" Color="Color.Default" Size="Size.Small" EndIcon="@Icons.Material.Filled.Refresh" OnClick="CheckNameServers">بررسی مجدد</BaseButton>
                 </MudText>
@@ -46,7 +46,7 @@
                             <MudAlert Severity="Severity.Error" NoIcon Dense Variant="Variant.Text">
                                 @foreach (var item in _RequiredToUpdateNameServers)
                                 {
-                                    <MudText Class="mud-ltr">@item</MudText>
+                                    <MudText Class="mud-ltr" Typo="Typo.body2">@item</MudText>
                                 }
                             </MudAlert>
                         </MudItem>
@@ -61,7 +61,7 @@
                     }
                     <MudItem xs="12" sm="5">
                         <MudAlert Severity="Severity.Success" NoIcon Dense Variant="Variant.Text">
-                            <MudText Class="mud-ltr">jupiter.ns.dnslab.link</MudText>
+                            <MudText Class="mud-ltr" Typo="Typo.body2">jupiter.ns.dnslab.link</MudText>
                         </MudAlert>
                     </MudItem>
                 </MudGrid>
@@ -72,7 +72,7 @@
         <MudDataGrid T="BaseRecordDTO" Items="_Records?.OrderBy(x=>x.Name)" Dense Hover Outlined Loading="_IsLoading">
             <NoRecordsContent>
                 <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                    <MudText Typo="Typo.caption">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
+                    <MudText Typo="Typo.body2">تا به حال هیچ رکوردی ثبت نشده است!</MudText>
                 </MudAlert>
             </NoRecordsContent>
             <Columns>
@@ -85,7 +85,7 @@
                 <PropertyColumn Property="x=>x.TTL" Title="TTL" />
                 <PropertyColumn Property="x=>x.RData" Title="مقدار" CellClass="mud-ltr" Sortable="false">
                     <CellTemplate>
-                        <MudText Typo="Typo.caption">
+                        <MudText Typo="Typo.body2">
                             @switch (context.Item.Type)
                             {
                                 case Enums.RecordTypeEnum.A:

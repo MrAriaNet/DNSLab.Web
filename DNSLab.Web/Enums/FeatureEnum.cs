@@ -11,5 +11,6 @@ namespace DNSLab.Web.Enums
         RecordCount = 1,
         AbleToChangeTTL = 2,
         Monitoring = 3,
+        PrivateZone = 9,
     }
 }

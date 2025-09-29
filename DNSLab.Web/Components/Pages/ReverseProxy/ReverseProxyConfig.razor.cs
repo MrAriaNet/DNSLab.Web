@@ -2,6 +2,7 @@
 using DNSLab.Web.Interfaces.Repositories;
 using DNSLab.Web.Repositories;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace DNSLab.Web.Components.Pages.ReverseProxy;
 
@@ -9,6 +10,7 @@ partial class ReverseProxyConfig
 {
     [Inject] IReverseProxyRepository _ReverseProxyRepository { get; set; }
     [Inject] IDialogService _DialogService { get; set; }
+    [Inject] IJSRuntime _JSRuntime { get; set; }
 
     string _Token = "XXXXXXX-XX-XXXXXXXX";
 
@@ -34,5 +36,10 @@ partial class ReverseProxyConfig
         {
             _Token = await _ReverseProxyRepository.RevokeClientToken() ?? String.Empty;
         }
+    }
+
+    async Task CopyTokenCommand()
+    {
+        await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"token set {_Token}");
     }
 }

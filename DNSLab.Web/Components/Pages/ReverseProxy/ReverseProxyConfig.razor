@@ -50,38 +50,48 @@
             📥 ابتدا فایل کلاینت را دانلود کنید. در حال حاضر این کلاینت فقط روی ویندوز قابل اجراست.
         </MudText>
         <MudFlexBreak />
-        <MudLink Href="https://cdn.dnslab.link/dnslab.exe" Underline="Underline.Hover">
-            <MudText Typo="Typo.caption" Color="Color.Primary">برای دانلود کلیک کنید</MudText>
-        </MudLink>
+        <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Primary" Variant="Variant.Filled" Href="https://cdn.dnslab.link/dnslab.exe">
+            DNSLab windows .exe
+        </BaseButton>
         <MudText Class="mt-1">2️⃣ اجرای فایل dnslab.exe</MudText>
         <MudText Class="mt-1">3️⃣ وارد کردن توکن</MudText>
         <MudText Typo="Typo.caption">
             🔐 توکن اختصاصی خود را با دستور زیر وارد کنید:
         </MudText>
+        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="CopyTokenCommand" />
+                <MudText Typo="Typo.caption">
+                    token set @_Token
+                </MudText>
+            </MudStack>
+        </MudAlert>
         <MudFlexBreak />
-        <MudText Typo="Typo.caption" Color="Color.Primary" Class="dnslab-ltr">
-            token @_Token
-        </MudText>
-        <MudFlexBreak />
-        <MudText Typo="Typo.caption" Color="Color.Warning" Class="dnslab-ltr">
-            ⚠️ در صورت نیاز میتوانید با لینک روبرو کلید خود را تغییر دهید :
-            <MudLink OnClick="RevokeClientToken" Typo="Typo.caption">
-                تغییر کلید
-            </MudLink>
-        </MudText>
+        <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                <MudText Typo="Typo.caption" Class="dnslab-ltr">
+                    در صورت نیاز میتوانید با لینک روبرو کلید خود را تغییر دهید :
+                </MudText>
+                <BaseButton OnClick="RevokeClientToken" EndIcon="@DNSLabIcons.Refresh" Size="Size.Small">تغییر کلید</BaseButton>
+            </MudStack>
+        </MudAlert>
 
         <MudText Class="mt-1">4️⃣ تونل کردن پورت دلخواه</MudText>
         <MudText Typo="Typo.caption">
             برای ایجاد تونل روی پورت مورد نظر (مثلاً پورت 80)، از دستور زیر استفاده کنید:
         </MudText>
         <MudFlexBreak />
-        <MudText Typo="Typo.caption" Color="Color.Primary" Class="dnslab-ltr">
-            tcp 80
-        </MudText>
+        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                <MudText Typo="Typo.caption">
+                    tcp 80
+                </MudText>
+            </MudStack>
+        </MudAlert>
+
         <MudFlexBreak />
         <MudText Typo="Typo.caption">
             ✅ در صورت صحیح بودن مراحل یک آدرس به همراه پورت به شما نمایش داده خواهد شد که با این مراحل، سرویس داخلی شما از طریق اینترنت قابل دسترسی خواهد بود — بدون نیاز به IP عمومی یا Port Forwarding.
         </MudText>
-
     </MudCardContent>
 </MudCard>

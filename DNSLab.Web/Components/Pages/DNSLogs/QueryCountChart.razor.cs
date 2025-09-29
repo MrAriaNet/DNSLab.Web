@@ -32,9 +32,19 @@ partial class QueryCountChart
         {
            Theme = Mode.Dark
         },
+        Grid = new Grid
+        {
+            Yaxis = new GridYAxis
+            {
+                Lines = new Lines
+                {
+                    Show = false ,
+                }
+            }
+        },
         Chart = new Chart
         {
-            Type = ApexCharts.ChartType.Line,
+            Type = ApexCharts.ChartType.Bar,
             ForeColor = "var(--mud-palette-text-primary)",
             Background = "transparent",
             Toolbar = new Toolbar

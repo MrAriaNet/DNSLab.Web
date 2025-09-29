@@ -65,6 +65,16 @@
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>
+                @if (IsSelectableList)
+                {
+                    <TemplateColumn>
+                        <CellTemplate>
+                            <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
+                                <BaseButton EndIcon="@Icons.Material.Rounded.Check" Size="Size.Small" Color="Color.Success" Variant="Variant.Filled" OnClick="()=> SelectToken(context.Item)">انتخاب</BaseButton>
+                            </MudStack>
+                        </CellTemplate>
+                    </TemplateColumn>
+                }
             </Columns>
         </MudDataGrid>
     </MudCardContent>

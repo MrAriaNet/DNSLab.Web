@@ -44,6 +44,10 @@ namespace DNSLab.Web.Providers
             {
                 _HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             }
+            else
+            {
+                _HttpClient.DefaultRequestHeaders.Authorization = null;
+            }
         }
 
         public StringContent GenerateStringContentFromObject<T>(T data)

@@ -40,29 +40,10 @@ namespace DNSLab.Web.Providers
         public async Task CheckTokenAsync()
         {
             var token = await _TokenProvider.GetTokenAsync();
-            if (String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
-                var refreshToken = await _TokenProvider.GetRefreshTokenAsync();
-                if (!String.IsNullOrEmpty(refreshToken))
-                {
-                    var newToken = await GenerateHttpResponseWraper<AuthUserDTO?>(await _HttpClient.PostAsync($"{_BaseUrl}Account/GenerateTokenWithRefreshTokenAsync", GenerateStringContentFromObject<AuthUserDTO>(new AuthUserDTO
-                    {
-                        RefreshToken = refreshToken
-                    })));
-
-                    if (newToken != null)
-                    {
-                        await _TokenProvider.SetTokenAsync(newToken);
-                        token = newToken.Token;
-                    }
-                    else
-                    {
-                        await _TokenProvider.DeleteTokenAsync();
-                    }
-                }
+                _HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             }
-
-            _HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
         }
 
         public StringContent GenerateStringContentFromObject<T>(T data)

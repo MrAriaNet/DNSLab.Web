@@ -26,9 +26,6 @@
                                     <CardHeaderContent>
                                         <MudText Typo="Typo.h3">@plan.Name</MudText>
                                     </CardHeaderContent>
-                                    <CardHeaderActions>
-                                        <MudText Color="Color.Info">@plan.BasePrice.Separate3Digits() ريال</MudText>
-                                    </CardHeaderActions>
                                 </MudCardHeader>
                                 <MudCardContent>
                                     <MudStack Spacing="0" AlignItems="AlignItems.Start">
@@ -48,11 +45,14 @@
                                                 <MudPaper Outlined Class="pa-1 my-1">
                                                     <MudStack AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Row Spacing="0">
                                                         <MudStack AlignItems="AlignItems.Center" Spacing="1">
-                                                            <MudText>
+                                                            <MudText Typo="Typo.caption">
                                                                 @discount.Duration.DurationInMonth ماهه
-                                                                <text>(@((discount.Duration.DurationInMonth * (plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100))).Separate3Digits()))</text>
+                                                                <text>(@((discount.Duration.DurationInMonth * (plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100))).Separate3Digits())) ريال</text>
                                                             </MudText>
-                                                            <MudText Color="Color.Info" Typo="Typo.body2" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits()))</MudText>
+                                                            @if (discount.Duration.DurationInMonth > 1)
+                                                            {
+                                                                <MudText Color="Color.Info" Typo="Typo.caption" Class="mr-2">هر ماه (@((plan.BasePrice - (plan.BasePrice * discount.DiscountRate / 100)).Separate3Digits())) ريال</MudText>
+                                                            }
                                                         </MudStack>
                                                         <MudChip T="object" Label="true" Variant="Variant.Text" Icon="@DNSLabIcons.Check" Color="Color.Success">انتخاب</MudChip>
                                                     </MudStack>
@@ -82,13 +82,13 @@
                     <BaseButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Subscriptionn">تایید و پرداخت</BaseButton>
                 </DialogActions>
                 <DialogContent>
-                    <MudText Typo="Typo.body2">
+                    <MudText Typo="Typo.caption">
                         مدت :
                         @_SelectedPlanDiscount.Duration.DurationInMonth ماهه
                         (@((_SelectedPlanDiscount.Duration.DurationInMonth * (_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100))).Separate3Digits())) ريال
                         @if (_SelectedPlanDiscount.Duration.DurationInMonth > 1)
                         {
-                            <MudText Color="Color.Success" Typo="Typo.body2" Class="mr-2">هر ماه (@((_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100)).Separate3Digits())) ريال</MudText>
+                            <MudText Color="Color.Success" Typo="Typo.caption" Class="mr-2">هر ماه (@((_SelectedPlan.BasePrice - (_SelectedPlan.BasePrice * _SelectedPlanDiscount.DiscountRate / 100)).Separate3Digits())) ريال</MudText>
                         }
                     </MudText>
                     <MudDivider />

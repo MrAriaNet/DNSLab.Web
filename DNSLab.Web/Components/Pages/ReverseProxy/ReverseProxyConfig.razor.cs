@@ -42,4 +42,9 @@ partial class ReverseProxyConfig
     {
         await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"token set {_Token}");
     }
+
+    async Task CopyLinuxCommand()
+    {
+        await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh");
+    }
 }

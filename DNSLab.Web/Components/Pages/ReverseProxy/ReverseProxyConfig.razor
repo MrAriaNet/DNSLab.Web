@@ -55,9 +55,9 @@
             dnslab-windows-arm64.exe
         </BaseButton>
         <MudText Typo="Typo.h4" Class="mt-1">Linux</MudText>
-        <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+        <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.End" Dense NoIcon>
             <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Success" Size="Size.Small" OnClick="CopyLinuxCommand" />
+                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="CopyLinuxCommand" />
                 <MudText Color="Color.Primary">
                     curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh
                 </MudText>
@@ -76,9 +76,9 @@
         <MudText Typo="Typo.caption">
             🔐 توکن اختصاصی خود را با دستور زیر وارد کنید:
         </MudText>
-        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.End" Dense NoIcon>
             <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Success" Size="Size.Small" OnClick="CopyTokenCommand" />
+                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="CopyTokenCommand" />
                 <MudText Typo="Typo.caption">
                     token set @_Token
                 </MudText>
@@ -99,7 +99,7 @@
             برای ایجاد تونل روی پورت مورد نظر (مثلاً پورت 80)، از دستور زیر استفاده کنید:
         </MudText>
         <MudFlexBreak />
-        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
+        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.End" Dense NoIcon>
             <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
                 <MudText Typo="Typo.caption">
                     tcp 80

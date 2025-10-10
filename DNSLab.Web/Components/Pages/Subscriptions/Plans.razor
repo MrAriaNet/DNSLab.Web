@@ -14,9 +14,9 @@
         </MudAlert>
         @if (_PlanSections != null)
         {
-            @foreach (var sectionItem in _PlanSections.Where(x => x.Id == 1))
+            @foreach (var sectionItem in _PlanSections.Where(x => x.Id != 2))
             {
-                <MudText Typo="Typo.h2" Align="Align.Center" Class="mb-5">@sectionItem.Name</MudText>
+                <MudText Typo="Typo.h2" Align="Align.Center" Class="mb-5 mt-7">@sectionItem.Name</MudText>
                 <MudGrid Spacing="1">
                     @foreach (var plan in sectionItem.Plans)
                     {

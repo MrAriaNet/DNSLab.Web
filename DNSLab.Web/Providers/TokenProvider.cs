@@ -11,26 +11,6 @@ namespace DNSLab.Web.Providers
             await _LocalStorage.DeleteAsync(TokenKey);
         }
 
-        public async Task<string> GetRefreshTokenAsync()
-        {
-            try
-            {
-                var model = await _LocalStorage.GetAsync<AuthUserDTO>(TokenKey);
-
-                if (model.Success)
-                {
-                    if (model.Value!.RefreshTokenExpiryTime > DateTime.UtcNow)
-                    {
-                        return model.Value.RefreshToken;
-                    }
-                }
-            }
-            catch { }
-            {
-                return String.Empty;
-            }
-        }
-
         public async Task<string> GetTokenAsync()
         {
             try

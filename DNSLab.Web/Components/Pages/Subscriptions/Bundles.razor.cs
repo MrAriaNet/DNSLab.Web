@@ -2,9 +2,9 @@
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
 
-namespace DNSLab.Web.Components.Pages.Admin;
+namespace DNSLab.Web.Components.Pages.Subscriptions;
 
-partial class AllSubscriptions
+partial class Bundles
 {
     [Inject] IBudleRepository _SubscriptionsRepository { get; set; }
 
@@ -13,7 +13,7 @@ partial class AllSubscriptions
     protected override async Task OnInitializedAsync()
     {
         _Loading = true;
-        _UserBundles = await _SubscriptionsRepository.GetAllBundles();
+        _UserBundles = await _SubscriptionsRepository.GetBundles();
         _Loading = false;
     }
 }

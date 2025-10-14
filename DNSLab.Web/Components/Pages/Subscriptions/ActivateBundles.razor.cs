@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace DNSLab.Web.Components.Pages.Subscriptions;
 
-partial class Plans
+partial class ActivateBundles
 {
     [Inject] IBudleRepository _SubscriptionRepository { get; set; }
     [Inject] ISnackbar _Snackbar { get; set; }

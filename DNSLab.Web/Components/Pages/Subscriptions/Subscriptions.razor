@@ -1,5 +1,5 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Bundle
-@attribute [Route(AllRoutes.MySubscriptions)]
+@attribute [Route(AllRoutes.MyBundles)]
 @attribute [Authorize]
 <SeoProvider Title="اشتراک ها" />
 
@@ -9,7 +9,7 @@
             <MudText Typo="Typo.h5">اشتراک‌ها</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">تهیه اشتراک</MudButton>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudButton>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>

@@ -20,7 +20,7 @@
                     <MudItem xs="12" md="6">
                         <MudText Typo="Typo.h2">@sectionItem.Name</MudText>
 
-                        @foreach (var item in sectionItem.Features)
+                        @foreach (var item in sectionItem.Features.OrderBy(x => x.Order))
                         {
                             <MudPaper Class="mb-2 pa-2" Outlined>
                                 <MudStack Row AlignItems="AlignItems.Baseline" Justify="Justify.SpaceBetween" Spacing="10">

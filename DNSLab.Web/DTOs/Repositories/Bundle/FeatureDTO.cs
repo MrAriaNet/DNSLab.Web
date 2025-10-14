@@ -14,6 +14,7 @@ namespace DNSLab.Web.DTOs.Repositories.Bundle
         public string Name { get; set; }
         public string Description { get; set; }
         public FeatureTypeEnum Type { get; set; }
+        public int Order { get; set; }
         public FeaturePricingDTO Pricing { get; set; }
 
     }

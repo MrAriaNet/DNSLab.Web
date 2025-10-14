@@ -1,4 +1,4 @@
-﻿@using DNSLab.Web.DTOs.Repositories.Subscription
+﻿@using DNSLab.Web.DTOs.Repositories.Bundle
 @using DNSLab.Web.Utilities
 @attribute [Route(AllRoutes.AllSubscriptions)]
 @attribute [Authorize(Roles = AuthorizeRoles.Admin)]
@@ -13,7 +13,7 @@
     <MudCardContent>
         @if (_Subscriptions != null)
         {
-            <MudDataGrid T="SubscriptionDTO" Items="_Subscriptions.OrderByDescending(x=>x.StartDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+       @*      <MudDataGrid T="UserBun" Items="_Subscriptions.OrderByDescending(x=>x.StartDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Center" NoIcon>
                         <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
@@ -38,7 +38,7 @@
                     <PropertyColumn Property="x=>x.StartDate.ToLocalTime().ToPersianDateTime()" Title="زمان شروع" />
                     <PropertyColumn Property="x=>x.EndDate.ToLocalTime().ToPersianDateTime()" Title="زمان پایان" />
                 </Columns>
-            </MudDataGrid>
+            </MudDataGrid> *@
         }
     </MudCardContent>
 </MudCard>

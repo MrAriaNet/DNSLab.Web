@@ -1,4 +1,4 @@
-﻿@using DNSLab.Web.DTOs.Repositories.Subscription
+﻿@using DNSLab.Web.DTOs.Repositories.Bundle
 @attribute [Route(AllRoutes.MySubscriptions)]
 @attribute [Authorize]
 <SeoProvider Title="اشتراک ها" />
@@ -15,7 +15,7 @@
     <MudCardContent>
         @if (_Subscriptions != null)
         {
-            <MudDataGrid T="SubscriptionDTO" Items="_Subscriptions.OrderByDescending(x=>x.StartDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+           @*  <MudDataGrid T="SubscriptionDTO" Items="_Subscriptions.OrderByDescending(x=>x.StartDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
                         <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
@@ -32,7 +32,7 @@
                     <PropertyColumn Property="x=>x.StartDate.ToLocalTime().ToPersianDateTime()" Title="زمان شروع" />
                     <PropertyColumn Property="x=>x.EndDate.ToLocalTime().ToPersianDateTime()" Title="زمان پایان" />
                 </Columns>
-            </MudDataGrid>
+            </MudDataGrid> *@
         }
     </MudCardContent>
 </MudCard>

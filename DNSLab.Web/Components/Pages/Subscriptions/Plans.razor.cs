@@ -1,5 +1,4 @@
-﻿using DNSLab.Web.Components.Dialogs;
-using DNSLab.Web.DTOs.Repositories.Subscription;
+﻿using DNSLab.Web.DTOs.Repositories.Bundle;
 using DNSLab.Web.Helpers;
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
@@ -8,45 +7,115 @@ namespace DNSLab.Web.Components.Pages.Subscriptions;
 
 partial class Plans
 {
-    [Inject] ISubscriptionRepository _SubscriptionRepository { get; set; }
+    [Inject] IBudleRepository _SubscriptionRepository { get; set; }
     [Inject] ISnackbar _Snackbar { get; set; }
     [Inject] NavigationManager _NavigationManager { get; set; }
 
-    IEnumerable<PlanSectionDTO>? _PlanSections { get; set; }
+    IEnumerable<FeatureSectionDTO>? _FeatureSections { get; set; }
+    IEnumerable<BundleDurationDTO>? _BundleDurations { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        _PlanSections = await _SubscriptionRepository.GetPlans();
+        _FeatureSections = await _SubscriptionRepository.GetFeatures();
+        _BundleDurations = await _SubscriptionRepository.GetBundleDurations();
     }
 
-    PlanDiscountDTO? _SelectedPlanDiscount { get; set; }
 
-    PlanDTO _SelectedPlan
+    void ToggleFeatureChanged(FeatureDTO feature, bool value)
     {
-        get
+        if (value)
         {
-            if (_SelectedPlanDiscount != null)
-            {
-                return _PlanSections!.SelectMany(x => x.Plans).First(x => x.Discounts.Any(d => d.Id == _SelectedPlanDiscount.Id));
-            }
+            _ActiveBundle.Features.Add(new ActiveFeatureDTO { Id = feature.Id });
+        }
+        else
+        {
+            var exist = _ActiveBundle.Features.FirstOrDefault(x => x.Id == feature.Id);
 
-            return null;
+            if (exist != null)
+            {
+                _ActiveBundle.Features.Remove(exist);
+            }
         }
     }
 
-    bool _SubscribeDialogVisible { get; set; } = false;
-    void DiscountOnChange(PlanDiscountDTO discount)
+    void CountableFeatureChanged(FeatureDTO feature, int count)
     {
-        _SelectedPlanDiscount = discount;
-        _SubscribeDialogVisible = true;
+        var exist = _ActiveBundle.Features.FirstOrDefault(x => x.Id == feature.Id);
+
+        if (exist != null)
+        {
+            if (feature.Pricing != null && feature.Pricing.FreeCount != null && feature.Pricing.FreeCount >= count)
+            {
+                _ActiveBundle.Features.Remove(exist);
+            }
+            else
+            {
+                exist.RequestCount = count;
+            }
+        }
+        else
+        {
+            _ActiveBundle.Features.Add(new ActiveFeatureDTO { Id = feature.Id, RequestCount = count });
+        }
     }
 
-    async Task Subscriptionn()
+    long CalculatePrice()
     {
-        if (await _SubscriptionRepository.Subscribe(_SelectedPlan.Id, _SelectedPlanDiscount!.Id))
+        long total = 0;
+
+        var features = _FeatureSections!.SelectMany(x => x.Features);
+        foreach (var feature in _ActiveBundle.Features)
         {
-            _Snackbar.Add($"پلن {_SelectedPlan.Name} به مدت {_SelectedPlanDiscount.Duration.Description} برای شما فعال شد", Severity.Success);
-            _NavigationManager.NavigateTo(AllRoutes.Dashboard);
+            var existFeature = features.FirstOrDefault(x => x.Id == feature.Id);
+            if (existFeature != null)
+            {
+                switch (existFeature.Type)
+                {
+                    case Enums.FeatureTypeEnum.Countable:
+                        total += (long)((feature.RequestCount - existFeature.Pricing.FreeCount) * existFeature.Pricing.UnitPrice ?? 0);
+                        break;
+                    case Enums.FeatureTypeEnum.Toggle:
+                        total += (long)(existFeature.Pricing.ActivationPrice ?? 0);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        if (_BundleDuration != null)
+        {
+            total *= _BundleDuration.Duration;
+
+            if (_BundleDuration.Discount.Percent > 0)
+            {
+                total = total - (total * _BundleDuration.Discount.Percent / 100);
+            }
+        }
+        return total;
+    }
+
+    ActiveBundleDTO _ActiveBundle { get; set; } = new ActiveBundleDTO { Features = new List<ActiveFeatureDTO>() };
+
+    BundleDurationDTO? _BundleDuration { get; set; }
+
+    void SelectDuration(BundleDurationDTO selectedDuration)
+    {
+        _BundleDuration = selectedDuration;
+    }
+
+    async Task Activate()
+    {
+        if (_BundleDuration != null)
+        {
+
+            _ActiveBundle.DurationId = _BundleDuration.Id;
+
+            if (await _SubscriptionRepository.Activate(_ActiveBundle))
+            {
+                _Snackbar.Add($"به مدت {_BundleDuration.Description} برای شما فعال شد", Severity.Success);
+                _NavigationManager.NavigateTo(AllRoutes.Dashboard);
+            }
         }
     }
 }

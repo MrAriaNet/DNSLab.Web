@@ -8,12 +8,12 @@ partial class AllSubscriptions
 {
     [Inject] IBudleRepository _SubscriptionsRepository { get; set; }
 
-    IEnumerable<BundleDTO>? _Subscriptions;
+    IEnumerable<UserBundleDTO>? _UserBundles;
     bool _Loading = false;
     protected override async Task OnInitializedAsync()
     {
         _Loading = true;
-        _Subscriptions = await _SubscriptionsRepository.GetAllSubscribes();
+        _UserBundles = await _SubscriptionsRepository.GetAllBundles();
         _Loading = false;
     }
 }

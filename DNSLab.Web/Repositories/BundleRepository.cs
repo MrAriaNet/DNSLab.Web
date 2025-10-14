@@ -14,9 +14,9 @@ namespace DNSLab.Web.Repositories
             return _HttpServiceProvider.Get<bool>($"{APIController}/CheckSbscriptionFeature?feature={(int)feature}");
         }
 
-        public Task<IEnumerable<BundleDTO>?> GetAllSubscribes()
+        public Task<IEnumerable<UserBundleDTO>?> GetAllBundles()
         {
-            return _HttpServiceProvider.Get<IEnumerable<BundleDTO>?>($"{APIController}/GetAllSubscribes");
+            return _HttpServiceProvider.Get<IEnumerable<UserBundleDTO>?>($"{APIController}/GetAllBundles");
         }
 
         public Task<IEnumerable<FeatureSectionDTO>?> GetFeatures()
@@ -24,9 +24,9 @@ namespace DNSLab.Web.Repositories
             return _HttpServiceProvider.Get<IEnumerable<FeatureSectionDTO>?>($"{APIController}/GetFeatures", false);
         }
 
-        public Task<IEnumerable<BundleDTO>?> GetSubscribes()
+        public Task<IEnumerable<UserBundleDTO>?> GetBundles()
         {
-            return _HttpServiceProvider.Get<IEnumerable<BundleDTO>?>($"{APIController}/GetSubscribes");
+            return _HttpServiceProvider.Get<IEnumerable<UserBundleDTO>?>($"{APIController}/GetBundles");
         }
 
         public Task<bool> Activate(ActiveBundleDTO model)

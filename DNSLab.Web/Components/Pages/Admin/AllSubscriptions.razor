@@ -11,12 +11,12 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        @if (_Subscriptions != null)
+        @if (_UserBundles != null)
         {
-       @*      <MudDataGrid T="UserBun" Items="_Subscriptions.OrderByDescending(x=>x.StartDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.CreateDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
-                    <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                        <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
+                    <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                        <MudText Typo="Typo.body2">هیچ اشتراکی یافت نشد</MudText>
                     </MudAlert>
                 </NoRecordsContent>
                 <Columns>
@@ -24,11 +24,33 @@
                         <CellTemplate>
                             <MudStack Row AlignItems="AlignItems.Center">
                                 @((MarkupString)ProfileImageCreator.GenerateSVG(context.Item.User!.Id, 25))
-                                @context.Item.User.FullName
+                                <MudText> @context.Item.User?.FullName</MudText>
                             </MudStack>
                         </CellTemplate>
                     </TemplateColumn>
-                    <PropertyColumn Property="x=>x.Plan.Name" Title="پلن" />
+                    <TemplateColumn Title="قابلیت ها">
+                        <CellTemplate>
+                            @foreach (var feature in context.Item.Bundle.Features)
+                            {
+                                <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                                    @switch (feature.Feature.Type)
+                                    {
+                                        case Enums.FeatureTypeEnum.Countable:
+                                            <MudText Typo="Typo.caption">@feature.Feature.Name : </MudText>
+                                            <MudText Typo="Typo.caption" Class="ml-1">@feature.Count</MudText>
+                                            break;
+                                        case Enums.FeatureTypeEnum.Toggle:
+                                            <MudText Typo="Typo.caption">@feature.Feature.Name</MudText>
+                                            <MudIcon Size="Size.Small" Color="Color.Success" Icon="@DNSLabIcons.Check" />
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                </MudStack>
+                                <MudFlexBreak />
+                            }
+                        </CellTemplate>
+                    </TemplateColumn>
                     <TemplateColumn Title="مبغ(ريال)">
                         <CellTemplate>
                             <MudText>@context.Item.TotalPrice.Separate3Digits()</MudText>
@@ -38,7 +60,7 @@
                     <PropertyColumn Property="x=>x.StartDate.ToLocalTime().ToPersianDateTime()" Title="زمان شروع" />
                     <PropertyColumn Property="x=>x.EndDate.ToLocalTime().ToPersianDateTime()" Title="زمان پایان" />
                 </Columns>
-            </MudDataGrid> *@
+            </MudDataGrid>
         }
     </MudCardContent>
 </MudCard>

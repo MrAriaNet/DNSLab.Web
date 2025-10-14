@@ -1,11 +1,4 @@
-﻿using DNSLab.Shared.DTOs.Subscription;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DNSLab.Web.DTOs.Repositories.Bundle
+﻿namespace DNSLab.Web.DTOs.Repositories.Bundle
 {
     public class BundleDTO
     {

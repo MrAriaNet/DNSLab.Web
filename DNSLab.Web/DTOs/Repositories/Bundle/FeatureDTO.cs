@@ -1,4 +1,5 @@
 ﻿using DNSLab.Shared.Enums;
+using DNSLab.Web.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

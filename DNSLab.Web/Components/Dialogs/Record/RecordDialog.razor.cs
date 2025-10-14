@@ -27,7 +27,7 @@ partial class RecordDialog
     bool _IsAbleToChangeTTL = false;
     protected override async Task OnInitializedAsync()
     {
-        _IsAbleToChangeTTL = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.Monitoring);
+        _IsAbleToChangeTTL = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.AbleToChangeTTL);
     }
     protected override void OnInitialized()
     {

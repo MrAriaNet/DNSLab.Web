@@ -83,38 +83,42 @@
         }
         @if (_BundleDurations != null)
         {
-            <MudText Typo="Typo.h3" Class="my-3">مدت زمان اشتراک</MudText>
-
-            <MudContainer MaxWidth="MaxWidth.Small">
-                <MudToggleGroup Class="mud-width-full" T="BundleDurationDTO" @bind-Value="_BundleDuration">
-                    @foreach (var item in _BundleDurations)
-                    {
-                        <MudToggleItem Value="item">
-                            <div class="mud-width-full mud-height-full">
-                                <div class="d-flex align-center justify-space-between flex-wrap">
-                                    <MudText Class="ellipsis">@item.Description</MudText>
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudText Typo="Typo.h3" Class="my-3">مدت زمان اشتراک</MudText>
+                    <MudToggleGroup Class="mud-width-full" T="BundleDurationDTO" Color="Color.Secondary" @bind-Value="_BundleDuration">
+                        @foreach (var item in _BundleDurations)
+                        {
+                            <MudToggleItem Value="item">
+                                <div class="mud-width-full mud-height-full">
+                                    <div class="d-flex align-center justify-space-between flex-wrap">
+                                        <MudText Class="ellipsis">@item.Description</MudText>
+                                    </div>
+                                    <MudText Typo="Typo.subtitle2">
+                                        @if (item.Discount.Percent > 0)
+                                        {
+                                            <text>@item.Discount.Percent % تخفیف</text>
+                                        }
+                                    </MudText>
                                 </div>
-                                <MudText Typo="Typo.subtitle2">
-                                    @if (item.Discount.Percent > 0)
-                                    {
-                                        <text>@item.Discount.Percent % تخفیف</text>
-                                    }
-                                </MudText>
-                            </div>
-                        </MudToggleItem>
+                            </MudToggleItem>
+                        }
+
+                    </MudToggleGroup>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    @if (_BundleDuration != null && CalculatePrice() > 0)
+                    {
+                        <MudStack AlignItems="AlignItems.Center" Class="pa-10">
+                            <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits()</MudText>
+                            <BaseButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Activate">تایید و تهیه اشتراک</BaseButton>
+                        </MudStack>
                     }
-
-                </MudToggleGroup>
-            </MudContainer>
+                </MudItem>
+            </MudGrid>
 
         }
-        @if (_BundleDuration != null)
-        {
-            <MudStack AlignItems="AlignItems.Center" Class="pa-10">
-                <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits()</MudText>
-                <BaseButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Activate">تایید و تهیه اشتراک</BaseButton>
-            </MudStack>
-        }
+
 
     </MudCardContent>
 </MudCard>

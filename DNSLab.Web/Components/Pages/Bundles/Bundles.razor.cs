@@ -2,7 +2,7 @@
 using DNSLab.Web.Interfaces.Repositories;
 using Microsoft.AspNetCore.Components;
 
-namespace DNSLab.Web.Components.Pages.Subscriptions;
+namespace DNSLab.Web.Components.Pages.Bundles;
 
 partial class Bundles
 {

@@ -8,6 +8,7 @@ namespace DNSLab.Web.DTOs.Repositories.Bundle
 {
     public class UserBundleDTO
     {
+        public Guid Id { get; set; }
         public BundleDTO Bundle { get; set; }
         public BundleDurationDTO Duration { get; set; }
         public DateTime CreateDate { get; set; }

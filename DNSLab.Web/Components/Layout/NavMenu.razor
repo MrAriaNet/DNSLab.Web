@@ -33,7 +33,10 @@
                     <MudNavLink Href="@AllRoutes.Payments">پرداخت ها</MudNavLink>
                 </MudNavGroup>
                 <MudNavLink Href="@AllRoutes.Monitoring" Icon="@DNSLabIcons.Monitoring">مانیتورینگ</MudNavLink>
-                <MudNavLink Icon="@DNSLabIcons.Premium" Href="@AllRoutes.MyBundles">اشتراک‌ها</MudNavLink>
+                <MudNavGroup Title="اشتراک" Icon="@DNSLabIcons.Premium">
+                    <MudNavLink Href="@AllRoutes.MyBundles">اشتراک‌ها</MudNavLink>
+                    <MudNavLink Href="@AllRoutes.Renewal">تمدید اشتراک</MudNavLink>
+                </MudNavGroup>
             </MudNavMenu>
             <MudSpacer />
         </Authorized>

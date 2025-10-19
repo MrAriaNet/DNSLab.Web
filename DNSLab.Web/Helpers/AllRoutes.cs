@@ -30,6 +30,7 @@
 
         public const string Bundle = "bundle/features";
         public const string MyBundles = "bundle/my";
+        public const string Renewal = "bundle/renewal";
         public const string AllBundles = "bundle/all";
 
         public const string AllTickets = "/tickets/all";

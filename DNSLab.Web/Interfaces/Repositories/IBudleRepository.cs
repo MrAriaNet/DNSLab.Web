@@ -9,6 +9,8 @@ namespace DNSLab.Web.Interfaces.Repositories
         Task<IEnumerable<BundleDurationDTO>?> GetBundleDurations();
         Task<bool> Activate(ActiveBundleDTO model);
         Task<IEnumerable<UserBundleDTO>?> GetBundles();
+        Task<IEnumerable<UserBundleDTO>?> GetExpiringBundles();
+        Task<bool> RenewalBundle(Guid userBundleId);
         Task<IEnumerable<UserBundleDTO>?> GetAllBundles();
         Task<bool> CheckSbscriptionFeature(FeatureEnum feature);
     }

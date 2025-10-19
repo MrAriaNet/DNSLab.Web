@@ -38,5 +38,15 @@ namespace DNSLab.Web.Repositories
         {
             return _HttpServiceProvider.Get<IEnumerable<BundleDurationDTO>?>($"{APIController}/GetBundleDurations", false);
         }
+
+        public Task<IEnumerable<UserBundleDTO>?> GetExpiringBundles()
+        {
+            return _HttpServiceProvider.Get<IEnumerable<UserBundleDTO>?>($"{APIController}/GetExpiringBundles");
+        }
+
+        public Task<bool> RenewalBundle(Guid userBundleId)
+        {
+            return _HttpServiceProvider.Put<bool>($"{APIController}/RenewalBundle?userBundleId={userBundleId}");
+        }
     }
 }

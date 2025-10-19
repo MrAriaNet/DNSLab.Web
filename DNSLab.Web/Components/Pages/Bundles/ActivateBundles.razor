@@ -90,7 +90,7 @@
             <MudGrid>
                 <MudItem xs="12" md="6">
                     <MudText Typo="Typo.h3" Class="my-3">مدت زمان اشتراک</MudText>
-                    <MudToggleGroup Class="mud-width-full" T="BundleDurationDTO" Color="Color.Secondary" @bind-Value="_BundleDuration">
+                    <MudToggleGroup Class="mud-width-full" T="BundleDurationDTO" Color="Color.Success" @bind-Value="_BundleDuration">
                         @foreach (var item in _BundleDurations)
                         {
                             <MudToggleItem Value="item">

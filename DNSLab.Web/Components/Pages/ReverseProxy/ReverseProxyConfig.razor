@@ -62,14 +62,7 @@
         </BaseButton>
         <MudText Typo="Typo.h4" Class="mt-1">Linux</MudText>
         <MudText Typo="Typo.caption">برای نصب کلاینت بر روی لینوکس دستور زیر را در ترمینال سیستم عامل خود وارد کنید.</MudText>
-        <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.End" Dense NoIcon>
-            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="CopyLinuxCommand" />
-                <MudText Color="Color.Primary">
-                    curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh
-                </MudText>
-            </MudStack>
-        </MudAlert>
+        <CodeSnippet Language="bash" Code="curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh" />
         <MudText Class="mt-1">2️⃣ اجرای فایل</MudText>
         <MudFlexBreak />
         <MudText Typo="Typo.caption">برای اجرا در سیستم عامل ویندوز بر روی فایل .exe دانلود شده کلیک کنید</MudText>
@@ -83,14 +76,7 @@
         <MudText Typo="Typo.caption">
             🔐 توکن اختصاصی خود را با دستور زیر وارد کنید:
         </MudText>
-        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.End" Dense NoIcon>
-            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-                <MudIconButton Icon="@DNSLabIcons.Copy" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="CopyTokenCommand" />
-                <MudText Typo="Typo.caption">
-                    token set @_Token
-                </MudText>
-            </MudStack>
-        </MudAlert>
+        <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
         <MudFlexBreak />
         <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
             <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
@@ -106,13 +92,7 @@
             برای ایجاد تونل روی پورت مورد نظر (مثلاً پورت 80)، از دستور زیر استفاده کنید:
         </MudText>
         <MudFlexBreak />
-        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.End" Dense NoIcon>
-            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-                <MudText Typo="Typo.caption">
-                    tcp 80
-                </MudText>
-            </MudStack>
-        </MudAlert>
+        <CodeSnippet Language="bash" Code="tcp 80" />
 
         <MudFlexBreak />
         <MudText Typo="Typo.caption">

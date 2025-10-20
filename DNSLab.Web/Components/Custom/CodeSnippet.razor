@@ -1,0 +1,30 @@
+﻿<MudPaper Outlined>
+    <MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+        <MudIconButton Icon="@DNSLabIcons.Copy" OnClick="Copy" Size="Size.Small" Style="margin-right:0.5rem" />
+        <MudText Typo="Typo.caption" Class="ml-2">@Language</MudText>
+    </MudStack>
+<pre class="code" style="direction:ltr;">
+<code @key=Code class="@($"language-{Language}")" @ref="_codeElement">
+            @Code
+    </code>
+</pre>
+</MudPaper>
+
+@code {
+    [Inject] private IJSRuntime JSRuntime { get; set; }
+
+    [Parameter] public string Code { get; set; }
+    [Parameter] public string Language { get; set; } = "csharp";
+
+    private ElementReference _codeElement;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("hljs.highlightElement", _codeElement);
+    }
+
+    async Task Copy()
+    {
+        await JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", Code);
+    }
+}

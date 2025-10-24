@@ -22,64 +22,67 @@
                 @foreach (var sectionItem in _FeatureSections)
                 {
                     <MudItem xs="12" md="6">
-                        <MudText Typo="Typo.h2">@sectionItem.Name</MudText>
+                        <MudPaper Class="pa-2" Outlined>
+                            <MudText Typo="Typo.h2">@sectionItem.Name</MudText>
+                            <MudText Typo="Typo.caption">@sectionItem.Description</MudText>
 
-                        @foreach (var item in sectionItem.Features.OrderBy(x => x.Order))
-                        {
-                            <MudPaper Class="mb-2 pa-2" Outlined>
-                                <MudStack Row AlignItems="AlignItems.Baseline" Justify="Justify.SpaceBetween" Spacing="10">
+                            @foreach (var item in sectionItem.Features.OrderBy(x => x.Order))
+                            {
+                                <MudPaper Class="mb-2 pa-2" Outlined>
+                                    <MudStack Row AlignItems="AlignItems.Baseline" Justify="Justify.SpaceBetween" Spacing="10">
 
-                                    <MudText>@item.Name</MudText>
+                                        <MudText>@item.Name</MudText>
 
-                                    <MudStack Justify="Justify.SpaceAround">
-                                        @switch (item.Type)
-                                        {
-                                            case Enums.FeatureTypeEnum.Toggle:
-                                                if (item.Pricing != null)
-                                                {
-                                                    <MudStack Row AlignItems="AlignItems.Center">
-                                                        <MudText Typo="Typo.caption">فعال سازی @((item.Pricing.ActivationPrice ?? 0).Separate3Digits()) ریال</MudText>
-                                                        <MudSwitch Color="Color.Primary" T="bool" ValueChanged="(x)=> ToggleFeatureChanged(item, x)" />
-                                                    </MudStack>
-
-                                                }
-                                                else
-                                                {
-                                                    <MudStack Row AlignItems="AlignItems.Center">
-                                                        <MudText Typo="Typo.caption">رایگان</MudText>
-                                                    </MudStack>
-                                                }
-                                                break;
-                                            case Enums.FeatureTypeEnum.Countable:
-                                                if (item.Pricing != null)
-                                                {
-                                                    <MudStack Row AlignItems="AlignItems.Center">
-                                                        <MudStack Spacing="0">
-                                                            <MudText Typo="Typo.caption">هر عدد @((item.Pricing.UnitPrice ?? 0).Separate3Digits()) ریال</MudText>
-                                                            @if (item.Pricing.FreeCount != null && item.Pricing.FreeCount > 0)
-                                                            {
-                                                                <MudText Typo="Typo.caption">@item.Pricing.FreeCount عدد رایگان میباشد</MudText>
-                                                            }
+                                        <MudStack Justify="Justify.SpaceAround">
+                                            @switch (item.Type)
+                                            {
+                                                case Enums.FeatureTypeEnum.Toggle:
+                                                    if (item.Pricing != null)
+                                                    {
+                                                        <MudStack Row AlignItems="AlignItems.Center">
+                                                            <MudText Typo="Typo.caption">فعال سازی @((item.Pricing.ActivationPrice ?? 0).Separate3Digits()) ریال</MudText>
+                                                            <MudSwitch Color="Color.Primary" T="bool" ValueChanged="(x)=> ToggleFeatureChanged(item, x)" />
                                                         </MudStack>
-                                                        <MudNumericField Variant="Variant.Outlined" Margin="Margin.Dense" T="int" Min="item.Pricing.FreeCount??0" Value="@(_ActiveBundle.Features.FirstOrDefault(x=>x.Id == item.Id) == null ? (item.Pricing.FreeCount??0) : _ActiveBundle.Features.FirstOrDefault(x=>x.Id == item.Id)!.RequestCount!.Value)" ValueChanged="(x)=> CountableFeatureChanged(item,x)" />
-                                                    </MudStack>
-                                                }
-                                                else
-                                                {
-                                                    <MudText Typo="Typo.caption">به تعداد نا محدود رایگان میباشد</MudText>
-                                                }
-                                                break;
-                                            default:
-                                                break;
-                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <MudStack Row AlignItems="AlignItems.Center">
+                                                            <MudText Typo="Typo.caption">رایگان</MudText>
+                                                        </MudStack>
+                                                    }
+                                                    break;
+                                                case Enums.FeatureTypeEnum.Countable:
+                                                    if (item.Pricing != null)
+                                                    {
+                                                        <MudStack Row AlignItems="AlignItems.Center">
+                                                            <MudStack Spacing="0">
+                                                                <MudText Typo="Typo.caption">هر عدد @((item.Pricing.UnitPrice ?? 0).Separate3Digits()) ریال</MudText>
+                                                                @if (item.Pricing.FreeCount != null && item.Pricing.FreeCount > 0)
+                                                                {
+                                                                    <MudText Typo="Typo.caption">@item.Pricing.FreeCount عدد رایگان میباشد</MudText>
+                                                                }
+                                                            </MudStack>
+                                                            <MudNumericField Variant="Variant.Outlined" Margin="Margin.Dense" T="int" Min="item.Pricing.FreeCount??0" Value="@(_ActiveBundle.Features.FirstOrDefault(x=>x.Id == item.Id) == null ? (item.Pricing.FreeCount??0) : _ActiveBundle.Features.FirstOrDefault(x=>x.Id == item.Id)!.RequestCount!.Value)" ValueChanged="(x)=> CountableFeatureChanged(item,x)" />
+                                                        </MudStack>
+                                                    }
+                                                    else
+                                                    {
+                                                        <MudText Typo="Typo.caption">به تعداد نا محدود رایگان میباشد</MudText>
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        </MudStack>
                                     </MudStack>
-                                </MudStack>
-                                @if (!String.IsNullOrEmpty(item.Description))
-                                {
-                                    <MudText Class="mt-2" Typo="Typo.caption">@item.Description</MudText>
-                                }
-                            </MudPaper>
-                        }
+                                    @if (!String.IsNullOrEmpty(item.Description))
+                                    {
+                                        <MudText Class="mt-2" Typo="Typo.caption">@item.Description</MudText>
+                                    }
+                                </MudPaper>
+                            }
+                        </MudPaper>
                     </MudItem>
                 }
             </MudGrid>

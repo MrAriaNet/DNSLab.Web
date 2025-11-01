@@ -1,0 +1,132 @@
+﻿@using DNSLab.Web.DTOs.Repositories.Bundle
+@attribute [Route(AllRoutes.Bundle)]
+<SeoProvider Title="پلن ها" Meta_Description="پلن های سایت DNSLab" />
+
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h1">اشتراک</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudAlert Class="mb-2" Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
+            <MudText Typo="Typo.body2">
+                همه‌چیز دست خودته — فقط همون چیزی رو بخر که واقعاً لازم داری!
+                <MudFlexBreak />
+                با سیستم قیمت‌گذاری منعطف DNSLab، دیگه لازم نیست برای امکاناتی که نمی‌خوای پول بدی. هر قابلیت رو جداگانه فعال کن، هزینه رو کنترل کن، و دقیقاً همون چیزی رو بساز که کارت رو راه می‌ندازه. سریع، ساده، اقتصادی.
+            </MudText>
+        </MudAlert>
+        @if (_FeatureSections != null)
+        {
+            <MudGrid>
+                @foreach (var sectionItem in _FeatureSections)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudPaper Class="pa-2" Outlined>
+                            <MudText Typo="Typo.h2">@sectionItem.Name</MudText>
+                            <MudText Typo="Typo.caption">@sectionItem.Description</MudText>
+                            <MudDivider Class="my-2" />
+                            @foreach (var item in sectionItem.Features.OrderBy(x => x.Order))
+                            {
+                                <MudPaper Class="mb-2 pa-2" Outlined>
+                                    <MudStack Row AlignItems="AlignItems.Baseline" Justify="Justify.SpaceBetween" Spacing="10">
+
+                                        <MudText>@item.Name</MudText>
+
+                                        <MudStack Justify="Justify.SpaceAround">
+                                            @switch (item.Type)
+                                            {
+                                                case Enums.FeatureTypeEnum.Toggle:
+                                                    if (item.Pricing != null)
+                                                    {
+                                                        <MudStack Row AlignItems="AlignItems.Center">
+                                                            <MudText Typo="Typo.caption">فعال سازی @((item.Pricing.ActivationPrice ?? 0).Separate3Digits()) ریال</MudText>
+                                                            <MudSwitch Color="Color.Primary" T="bool" ValueChanged="(x)=> ToggleFeatureChanged(item, x)" />
+                                                        </MudStack>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <MudStack Row AlignItems="AlignItems.Center">
+                                                            <MudText Typo="Typo.caption">رایگان</MudText>
+                                                        </MudStack>
+                                                    }
+                                                    break;
+                                                case Enums.FeatureTypeEnum.Countable:
+                                                    if (item.Pricing != null)
+                                                    {
+                                                        <MudStack Row AlignItems="AlignItems.Center">
+                                                            <MudStack Spacing="0">
+                                                                <MudText Typo="Typo.caption">هر عدد @((item.Pricing.UnitPrice ?? 0).Separate3Digits()) ریال</MudText>
+                                                                @if (item.Pricing.FreeCount != null && item.Pricing.FreeCount > 0)
+                                                                {
+                                                                    <MudText Typo="Typo.caption">@item.Pricing.FreeCount عدد رایگان میباشد</MudText>
+                                                                }
+                                                            </MudStack>
+                                                            <MudNumericField Variant="Variant.Outlined" Margin="Margin.Dense" T="int" Min="item.Pricing.FreeCount??0" Value="@(_ActiveBundle.Features.FirstOrDefault(x=>x.Id == item.Id) == null ? (item.Pricing.FreeCount??0) : _ActiveBundle.Features.FirstOrDefault(x=>x.Id == item.Id)!.RequestCount!.Value)" ValueChanged="(x)=> CountableFeatureChanged(item,x)" />
+                                                        </MudStack>
+                                                    }
+                                                    else
+                                                    {
+                                                        <MudText Typo="Typo.caption">به تعداد نا محدود رایگان میباشد</MudText>
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        </MudStack>
+                                    </MudStack>
+                                    @if (!String.IsNullOrEmpty(item.Description))
+                                    {
+                                        <MudText Class="mt-2" Typo="Typo.caption">@item.Description</MudText>
+                                    }
+                                </MudPaper>
+                            }
+                        </MudPaper>
+                    </MudItem>
+                }
+            </MudGrid>
+
+        }
+        @if (_BundleDurations != null)
+        {
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudText Typo="Typo.h3" Class="my-3">مدت زمان اشتراک</MudText>
+                    <MudToggleGroup Class="mud-width-full" T="BundleDurationDTO" Color="Color.Success" @bind-Value="_BundleDuration">
+                        @foreach (var item in _BundleDurations)
+                        {
+                            <MudToggleItem Value="item">
+                                <div class="mud-width-full mud-height-full">
+                                    <div class="d-flex align-center justify-space-between flex-wrap">
+                                        <MudText Class="ellipsis">@item.Description</MudText>
+                                    </div>
+                                    <MudText Typo="Typo.subtitle2">
+                                        @if (item.Discount.Percent > 0)
+                                        {
+                                            <text>@item.Discount.Percent % تخفیف</text>
+                                        }
+                                    </MudText>
+                                </div>
+                            </MudToggleItem>
+                        }
+
+                    </MudToggleGroup>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    @if (_BundleDuration != null && CalculatePrice() > 0)
+                    {
+                        <MudStack AlignItems="AlignItems.Center" Class="pa-10">
+                            <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits()</MudText>
+                            <BaseButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Activate">تایید و تهیه اشتراک</BaseButton>
+                        </MudStack>
+                    }
+                </MudItem>
+            </MudGrid>
+
+        }
+
+
+    </MudCardContent>
+</MudCard>
+

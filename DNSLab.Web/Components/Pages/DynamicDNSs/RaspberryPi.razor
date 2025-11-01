@@ -25,18 +25,18 @@
         else
         {
             <MudText Typo="Typo.h6">DNSLab نیاز به نرم افزار خاصی برای بروزرسانی نیاز ندارد ، از اسکریپت زیر استفاده کنید . به Home Directory بروید:</MudText>
-            <MudText Class="dnslab-ltr" Align="Align.End" Color="Color.Primary">cd ~</MudText>
+            <CodeSnippet Language="bash" Code="cd ~" />
             <MudText Typo="Typo.h6">یک اسکریپت با دستور زیر ایجاد کنید:</MudText>
-            <MudText Class="dnslab-ltr" Align="Align.End" Color="Color.Primary">nano dnslab.sh</MudText>
+            <CodeSnippet Language="bash" Code="nano dnslab.sh" />
             <MudText Typo="Typo.h6">محتوا زیر رو بهش اضافه کنید:</MudText>
-            <MudText Class="dnslab-ltr" Align="Align.End" Color="Color.Primary">echo url="https://api.dnslab.link/DDNS/U?k=@_Token.Key" | curl -k -o ~/dnslab.log -K -</MudText>
+            <CodeSnippet Language="bash" Code="@($"echo url=\"https://api.dnslab.link/DDNS/U?k={_Token.Key}\" | curl -k -o ~/dnslab.log -K -")" />
             <MudText Typo="Typo.h6">با دستور زیر اسکریپت رو قابل اجرا کنید (executable):</MudText>
-            <MudText Class="dnslab-ltr" Align="Align.End" Color="Color.Primary">chmod +x dnslab.sh</MudText>
+            <CodeSnippet Language="bash" Code="chmod +x dnslab.sh" />
             <MudText Typo="Typo.h6">آپدیت رو با cron خودکار کنید:</MudText>
             <MudText>cron editor رو باز کنید</MudText>
-            <MudText Class="dnslab-ltr" Align="Align.End" Color="Color.Primary">crontab -e</MudText>
+            <CodeSnippet Language="bash" Code="crontab -e" />
             <MudText Typo="Typo.h6">خط زیر رو اضافه کنید تا هر 3 دقیقه اسکریپت اجرا بشه:</MudText>
-            <MudText Class="dnslab-ltr" Align="Align.End" Color="Color.Primary">*/3 * * * * ~/dnslab.sh</MudText>
+            <CodeSnippet Language="bash" Code="*/3 * * * * ~/dnslab.sh" />
             <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
                 <MudText Typo="Typo.body2">در صورتی که آی پی شما بعد از 3 دقیقه با آی پی عمومی سیستم بروز نشد از اجرای درست cron در سیستم عامل اطمینان حاصل فرمایید.</MudText>
             </MudAlert>

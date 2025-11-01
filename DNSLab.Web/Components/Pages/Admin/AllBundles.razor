@@ -1,0 +1,66 @@
+﻿@using DNSLab.Web.DTOs.Repositories.Bundle
+@using DNSLab.Web.Utilities
+@attribute [Route(AllRoutes.AllBundles)]
+@attribute [Authorize(Roles = AuthorizeRoles.Admin)]
+<SeoProvider Title="اشتراک ها" />
+
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5">اشتراک‌ها</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        @if (_UserBundles != null)
+        {
+            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.CreateDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+                <NoRecordsContent>
+                    <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                        <MudText Typo="Typo.body2">هیچ اشتراکی یافت نشد</MudText>
+                    </MudAlert>
+                </NoRecordsContent>
+                <Columns>
+                    <TemplateColumn Title="کاربر">
+                        <CellTemplate>
+                            <MudStack Row AlignItems="AlignItems.Center">
+                                @((MarkupString)ProfileImageCreator.GenerateSVG(context.Item.User!.Id, 25))
+                                <MudText> @context.Item.User?.FullName</MudText>
+                            </MudStack>
+                        </CellTemplate>
+                    </TemplateColumn>
+                    <TemplateColumn Title="قابلیت ها">
+                        <CellTemplate>
+                            @foreach (var feature in context.Item.Bundle.Features)
+                            {
+                                <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                                    @switch (feature.Feature.Type)
+                                    {
+                                        case Enums.FeatureTypeEnum.Countable:
+                                            <MudText Typo="Typo.caption">@feature.Feature.Name : </MudText>
+                                            <MudText Typo="Typo.caption" Class="ml-1">@feature.Count</MudText>
+                                            break;
+                                        case Enums.FeatureTypeEnum.Toggle:
+                                            <MudText Typo="Typo.caption">@feature.Feature.Name</MudText>
+                                            <MudIcon Size="Size.Small" Color="Color.Success" Icon="@DNSLabIcons.Check" />
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                </MudStack>
+                                <MudFlexBreak />
+                            }
+                        </CellTemplate>
+                    </TemplateColumn>
+                    <TemplateColumn Title="مبغ(ريال)">
+                        <CellTemplate>
+                            <MudText>@context.Item.TotalPrice.Separate3Digits()</MudText>
+                        </CellTemplate>
+                    </TemplateColumn>
+                    <PropertyColumn Property="x=>x.Duration.Description" Title="مدت" />
+                    <PropertyColumn Property="x=>x.StartDate.ToLocalTime().ToPersianDateTime()" Title="زمان شروع" />
+                    <PropertyColumn Property="x=>x.EndDate.ToLocalTime().ToPersianDateTime()" Title="زمان پایان" />
+                </Columns>
+            </MudDataGrid>
+        }
+    </MudCardContent>
+</MudCard>

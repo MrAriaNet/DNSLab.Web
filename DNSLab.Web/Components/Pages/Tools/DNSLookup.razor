@@ -27,5 +27,5 @@
 
 @if (!String.IsNullOrWhiteSpace(_Result))
 {
-    <MudTextField T="string" Class="dnslab-ltr" Value="@_Result.PrettyJson()" Variant="Variant.Outlined" Lines="23" ReadOnly />
+    <CodeSnippet Language="json" Code="@_Result.PrettyJson()" />
 }

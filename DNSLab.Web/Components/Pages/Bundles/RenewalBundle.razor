@@ -17,9 +17,7 @@
         {
             <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.EndDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
-                    <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                        <MudText Typo="Typo.body2">هیچ اشتراکی یافت نشد</MudText>
-                    </MudAlert>
+                    <NoRecordFound />
                 </NoRecordsContent>
                 <Columns>
                     <TemplateColumn Title="قابلیت ها">

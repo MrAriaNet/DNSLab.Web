@@ -67,9 +67,7 @@
                             {
                                 <MudDataGrid T="ClientIPAndCountDTO" Items="_ClientIPAndCounts" Height="25vh" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_IsLoading">
                                     <NoRecordsContent>
-                                        <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                                            <MudText Typo="Typo.body2">هیچ موردی یافت نشد</MudText>
-                                        </MudAlert>
+                                        <NoRecordFound />
                                     </NoRecordsContent>
                                     <Columns>
                                         <PropertyColumn Property="x=>x.ClientIP" Title="آی پی" />

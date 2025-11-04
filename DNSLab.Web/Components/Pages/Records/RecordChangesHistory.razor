@@ -42,9 +42,7 @@
             {
                 <MudDataGrid T="RecordChangeDTO" Items="_RecordChanges?.OrderByDescending(x=>x.TimeStamp)" Loading="_Loading" Dense Hover Outlined>
                     <NoRecordsContent>
-                        <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                            <MudText Typo="Typo.body2">تا به حال هیچ تغییری ثبت نشده است!</MudText>
-                        </MudAlert>
+                        <NoRecordFound />
                     </NoRecordsContent>
                     <Columns>
                         <PropertyColumn Property="x=>x.TimeStamp.ToLocalTime().ToPersianDateTime()" Title="زمان" />

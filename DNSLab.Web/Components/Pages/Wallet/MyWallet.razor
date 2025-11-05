@@ -50,9 +50,7 @@
                 {
                     <MudDataGrid T="WalletTransactionDTO" Items="_WalletTransactions.Results" Loading="_IsLoading" Dense Hover Outlined>
                         <NoRecordsContent>
-                            <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                                <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
-                            </MudAlert>
+                            <NoRecordFound />
                         </NoRecordsContent>
                         <Columns>
                             <PropertyColumn Property="x=>x.TransactionType" Title="نوع" />

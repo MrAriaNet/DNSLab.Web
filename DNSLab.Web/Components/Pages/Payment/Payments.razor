@@ -14,9 +14,7 @@
         {
             <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Outlined FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
                 <NoRecordsContent>
-                    <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                        <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
-                    </MudAlert>
+                    <NoRecordFound />
                 </NoRecordsContent>
                 <Columns>
                     <PropertyColumn Property="x=>x.Amount" Title="مبلغ (ريال)" />

@@ -13,9 +13,7 @@
     <MudCardContent>
         <MudDataGrid T="TicketDTO" Items="_Tickets?.OrderByDescending(x=>x.CreateDate)" Dense Hover Outlined Loading="_IsLoading">
             <NoRecordsContent>
-                <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                    <MudText Typo="Typo.body2">تا به حال هیچ تیکتی ثبت نشده است!</MudText>
-                </MudAlert>
+                <NoRecordFound />
             </NoRecordsContent>
             <Columns>
                 <PropertyColumn Property="x=>x.Title" Title="عنوان" />

@@ -15,9 +15,7 @@
     <MudCardContent>
         <MudDataGrid T="ReverseProxyTunnelDTO" Items="_Tunnels?.OrderByDescending(x=> x.Name)" Loading="_Loading" Dense Hover Outlined>
             <NoRecordsContent>
-                <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Center" NoIcon>
-                    <MudText Typo="Typo.body2">هیچ تونل فعالی وجود ندارد!</MudText>
-                </MudAlert>
+                <NoRecordFound />
             </NoRecordsContent>
             <Columns>
                 <PropertyColumn Property="x=>x.Name" Title="آدرس">

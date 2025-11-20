@@ -1,49 +1,45 @@
 ﻿@attribute [Route(AllRoutes.SetupAndInstallation)]
-
-
 <SeoProvider Title="DNSLab cli" />
 
-<MudContainer MaxWidth="MaxWidth.Medium" Gutters>
-    <MudText Typo="Typo.h1" Align="Align.Center">DNSLab cli</MudText>
-    <MudText Typo="Typo.body1" Align="Align.Center" Class="mt-2 mb-10">DNSLab دروازه‌ی ورود اپلیکیشن شماست — و سریع‌ترین راه برای قرار دادن هر چیزی روی اینترنت.</MudText>
-    <MudStack Row>
-        <BaseButton Class="px-7" StartIcon="@DNSLabIcons.Windows" Size="Size.Small" Color="@(_SelectedOs == OS.Windows ? Color.Primary : Color.Default)" Variant="@(_SelectedOs == OS.Windows ? Variant.Filled : Variant.Outlined)" OnClick="()=> ChangeOS(OS.Windows)">Windows</BaseButton>
-        <BaseButton Class="px-10" StartIcon="@DNSLabIcons.Linux" Size="Size.Small" Color="@(_SelectedOs == OS.Linux ? Color.Primary : Color.Default)" Variant="@(_SelectedOs == OS.Linux ? Variant.Filled : Variant.Outlined)" OnClick="()=> ChangeOS(OS.Linux)">Linux</BaseButton>
-    </MudStack>
-    <MudPaper Class="mt-5 pa-10" Outlined>
-        @switch (_SelectedOs)
-        {
-            case OS.Windows:
-                <MudText Typo="Typo.h4" Class="mt-1">روش نصب</MudText>
-                <MudText Typo="Typo.caption">برای نصب کلاینت بر روی ویندوز فایل مناسب سیستم عامل خود را دانلود کنید.</MudText>
-                <MudFlexBreak />
-                <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Tertiary" Variant="Variant.Outlined" Href="https://cdn.dnslab.link/dnslab-windows-amd64.exe">
-                    dnslab-windows-amd64.exe
-                </BaseButton>
-                <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Tertiary" Variant="Variant.Outlined" Href="https://cdn.dnslab.link/dnslab-windows-arm64.exe">
-                    dnslab-windows-arm64.exe
-                </BaseButton>
-                break;
-            case OS.Linux:
-                <MudText Typo="Typo.h4" Class="mt-1">روش نصب</MudText>
-                <MudText Typo="Typo.caption">برای نصب کلاینت بر روی لینوکس دستور زیر را در ترمینال سیستم عامل خود وارد کنید.</MudText>
-                <CodeSnippet Language="bash" Code="curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh" />
-                break;
-        }
+<MudText Typo="Typo.h1" Align="Align.Center">DNSLab cli</MudText>
+<MudText Typo="Typo.body1" Align="Align.Center" Class="mt-2 mb-10">DNSLab دروازه‌ی ورود اپلیکیشن شماست — و سریع‌ترین راه برای قرار دادن هر چیزی روی اینترنت.</MudText>
+<MudStack Row>
+    <BaseButton Class="px-7" StartIcon="@DNSLabIcons.Windows" Size="Size.Small" Color="@(_SelectedOs == OS.Windows ? Color.Primary : Color.Default)" Variant="@(_SelectedOs == OS.Windows ? Variant.Filled : Variant.Outlined)" OnClick="()=> ChangeOS(OS.Windows)">Windows</BaseButton>
+    <BaseButton Class="px-10" StartIcon="@DNSLabIcons.Linux" Size="Size.Small" Color="@(_SelectedOs == OS.Linux ? Color.Primary : Color.Default)" Variant="@(_SelectedOs == OS.Linux ? Variant.Filled : Variant.Outlined)" OnClick="()=> ChangeOS(OS.Linux)">Linux</BaseButton>
+</MudStack>
+<MudPaper Class="mt-5 pa-10" Outlined>
+    @switch (_SelectedOs)
+    {
+        case OS.Windows:
+            <MudText Typo="Typo.h4" Class="mt-1">روش نصب</MudText>
+            <MudText Typo="Typo.caption">برای نصب کلاینت بر روی ویندوز فایل مناسب سیستم عامل خود را دانلود کنید.</MudText>
+            <MudFlexBreak />
+            <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Tertiary" Variant="Variant.Outlined" Href="https://cdn.dnslab.link/dnslab-windows-amd64.exe">
+                dnslab-windows-amd64.exe
+            </BaseButton>
+            <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Tertiary" Variant="Variant.Outlined" Href="https://cdn.dnslab.link/dnslab-windows-arm64.exe">
+                dnslab-windows-arm64.exe
+            </BaseButton>
+            break;
+        case OS.Linux:
+            <MudText Typo="Typo.h4" Class="mt-1">روش نصب</MudText>
+            <MudText Typo="Typo.caption">برای نصب کلاینت بر روی لینوکس دستور زیر را در ترمینال سیستم عامل خود وارد کنید.</MudText>
+            <CodeSnippet Language="bash" Code="curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh" />
+            break;
+    }
 
-        <MudFlexBreak Class="my-4" />
-        <MudText Typo="Typo.caption" Class="mb-2">این دستور رو اجرا کن تا توکن احراز هویتت (token) به فایل پیکربندی پیش‌فرض dnslab اضافه بشه.</MudText>
-        <MudFlexBreak Class="my-2" />
-        <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
-        <MudText Typo="Typo.h4" Class="my-2">برنامه‌ت رو روی اینترنت منتشر کن</MudText>
-        <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
-        <MudFlexBreak Class="my-3" />
-        <CodeSnippet Language="bash" Code="@($"http 80")" />
-        <MudText Typo="Typo.h4" Class="my-2">ایجاد نقطه‌های پایانی (Endpoint) عمومی TCP</MudText>
-        <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
-        <MudFlexBreak Class="my-3" />
-        <CodeSnippet Language="bash" Code="@($"tcp 80")" />
-        <MudFlexBreak Class="my-2"/>
-        <MudText Typo="Typo.caption">نشانی‌های TCP شامل یک نام میزبان (hostname) و شماره پورت هستند. مثلاً: tcp.dnslab.ir:12345</MudText>
-    </MudPaper>
-</MudContainer>
+    <MudFlexBreak Class="my-4" />
+    <MudText Typo="Typo.caption" Class="mb-2">این دستور رو اجرا کن تا توکن احراز هویتت (token) به فایل پیکربندی پیش‌فرض dnslab اضافه بشه.</MudText>
+    <MudFlexBreak Class="my-2" />
+    <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
+    <MudText Typo="Typo.h4" Class="my-2">برنامه‌ت رو روی اینترنت منتشر کن</MudText>
+    <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"http 80")" />
+    <MudText Typo="Typo.h4" Class="my-2">ایجاد نقطه‌های پایانی (Endpoint) عمومی TCP</MudText>
+    <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"tcp 80")" />
+    <MudFlexBreak Class="my-2"/>
+    <MudText Typo="Typo.caption">نشانی‌های TCP شامل یک نام میزبان (hostname) و شماره پورت هستند. مثلاً: tcp.dnslab.ir:12345</MudText>
+</MudPaper>

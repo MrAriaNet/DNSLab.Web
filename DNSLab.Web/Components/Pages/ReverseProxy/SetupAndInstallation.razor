@@ -1,4 +1,6 @@
-﻿@attribute [Route(AllRoutes.Download)]
+﻿@attribute [Route(AllRoutes.SetupAndInstallation)]
+
+
 <SeoProvider Title="DNSLab cli" />
 
 <MudContainer MaxWidth="MaxWidth.Medium" Gutters>
@@ -9,7 +11,6 @@
         <BaseButton Class="px-10" StartIcon="@DNSLabIcons.Linux" Size="Size.Small" Color="@(_SelectedOs == OS.Linux ? Color.Primary : Color.Default)" Variant="@(_SelectedOs == OS.Linux ? Variant.Filled : Variant.Outlined)" OnClick="()=> ChangeOS(OS.Linux)">Linux</BaseButton>
     </MudStack>
     <MudPaper Class="mt-5 pa-10" Outlined>
-
         @switch (_SelectedOs)
         {
             case OS.Windows:
@@ -29,5 +30,20 @@
                 <CodeSnippet Language="bash" Code="curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh" />
                 break;
         }
+
+        <MudFlexBreak Class="my-4" />
+        <MudText Typo="Typo.caption" Class="mb-2">این دستور رو اجرا کن تا توکن احراز هویتت (token) به فایل پیکربندی پیش‌فرض dnslab اضافه بشه.</MudText>
+        <MudFlexBreak Class="my-2" />
+        <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
+        <MudText Typo="Typo.h4" Class="my-2">برنامه‌ت رو روی اینترنت منتشر کن</MudText>
+        <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
+        <MudFlexBreak Class="my-3" />
+        <CodeSnippet Language="bash" Code="@($"http 80")" />
+        <MudText Typo="Typo.h4" Class="my-2">ایجاد نقطه‌های پایانی (Endpoint) عمومی TCP</MudText>
+        <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
+        <MudFlexBreak Class="my-3" />
+        <CodeSnippet Language="bash" Code="@($"tcp 80")" />
+        <MudFlexBreak Class="my-2"/>
+        <MudText Typo="Typo.caption">نشانی‌های TCP شامل یک نام میزبان (hostname) و شماره پورت هستند. مثلاً: tcp.dnslab.ir:12345</MudText>
     </MudPaper>
 </MudContainer>

@@ -1,0 +1,21 @@
+﻿@attribute [Route(AllRoutes.AuthToken)]
+@attribute [Authorize]
+
+<MudContainer MaxWidth="MaxWidth.Medium">
+
+    <MudText Typo="Typo.h1" Align="Align.Center">توکن احراز هویت شما</MudText>
+    <MudText Class="mt-5 mb-16"  Align="Align.Center">از این توکن شخصی (Authtoken) برای احراز هویت ابزار خط فرمان dnslab در پروژه‌های خودت استفاده کن. یادت باشه مثل رمز عبور باید محرمانه نگهش داری.</MudText>
+
+    <MudText Typo="Typo.h4" Class="mb-2">توکن احراز هویتت (Authtoken) رو از روش زیر به dnslab cli اضافه کن.</MudText>
+
+    <MudText Typo="Typo.caption">عامل dnslab رو احراز هویت کن. این کار باعث می‌شه Authtoken‌ت داخل فایل تنظیمات پیش‌فرض ذخیره بشه و فقط یک بار لازم باشه انجامش بدی.</MudText>
+    <MudFlexBreak Class="mt-2 mb-5" />
+    <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
+
+    <MudText Typo="Typo.h4" Class="mt-5 mb-2">توکن احراز هویتت رو بازنشانی کن</MudText>
+    <MudText Typo="Typo.caption">این کار قابل بازگشت نیست. بعد از بازنشانی، باید هر عامل (cli) رو با Authtoken جدید به‌روزرسانی کنی؛ با روشی که بالاتر گفته شد.</MudText>
+    <MudFlexBreak Class="my-3" />
+    <BaseButton Variant="Variant.Outlined" Color="Color.Error" OnClick="RevokeClientToken">بازنشانی توکن احراز هویت</BaseButton>
+
+
+</MudContainer>

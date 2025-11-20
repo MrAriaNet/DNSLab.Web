@@ -61,7 +61,8 @@
         public const string Monitoring = "/monitoring/summary";
 
         public const string ReverseProxy = "/reverse-proxy/config";
-        public const string Download = "/reverse-proxy/download";
+        public const string SetupAndInstallation = "/reverse-proxy/setup-and-installation";
+        public const string AuthToken = "/reverse-proxy/auth-token";
         public const string ActiveTunnels = "/reverse-proxy/active-tunnels";
     }
 }

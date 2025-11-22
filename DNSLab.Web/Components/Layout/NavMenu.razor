@@ -116,7 +116,7 @@
         {
             child = new WikiMenuItem
                 {
-                    Title = (index == parts.Length - 1) ? title : parts[index], // leaf gets page title
+                    Title = _WikiPages.FirstOrDefault(x=>x.URL.Trim('/') == path.Trim('/'))?.Title?? String.Empty, // leaf gets page title
                     URL = path
                 };
             parent.SubMenus.Add(child);

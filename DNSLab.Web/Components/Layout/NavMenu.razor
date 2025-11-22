@@ -147,9 +147,10 @@
             // Render as a NavLink if it has no children
             builder.OpenComponent<MudNavLink>(4);
             builder.AddAttribute(5, "Href", "/wiki" + menu.URL);
-            builder.AddAttribute(6, "ChildContent", (RenderFragment)(childBuilder =>
+            builder.AddAttribute(6, "Match", NavLinkMatch.All);
+            builder.AddAttribute(7, "ChildContent", (RenderFragment)(childBuilder =>
             {
-                childBuilder.AddContent(7, menu.Title);
+                childBuilder.AddContent(8, menu.Title);
             }));
             builder.CloseComponent();
         }

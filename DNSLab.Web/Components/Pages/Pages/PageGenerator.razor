@@ -1,6 +1,6 @@
 ﻿@using DNSLab.Web.Utilities
 @attribute [Route(AllRoutes.Blog + "/{Url}")]
-@attribute [Route(AllRoutes.KnowledgeBase + "/{Url}")]
+@attribute [Route(AllRoutes.Wiki + "/{*Url}")]
 @attribute [AllowAnonymous]
 
 @if (_Page != null)

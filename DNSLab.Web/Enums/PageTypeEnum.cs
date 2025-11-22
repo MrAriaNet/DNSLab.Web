@@ -9,6 +9,6 @@ namespace DNSLab.Shared.Enums
     public enum PageTypeEnum
     {
         Blog = 1,
-        KnowledgeBase = 2
+        Wiki = 2
     }
 }

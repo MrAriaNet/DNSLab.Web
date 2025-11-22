@@ -6,7 +6,7 @@
 <MudDrawer @bind-Open="_drawerOpen" Overlay="true" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
     <AuthorizeView Context="_AuthCTX">
         <Authorized>
-            <MudNavMenu>
+            <MudNavMenu Dense>
                 <MudNavLink Href="@AllRoutes.Dashboard" Match="NavLinkMatch.All" Icon="@DNSLabIcons.Dashboard">داشبورد</MudNavLink>
                 @if (_AuthCTX.User.IsInRole(AuthorizeRoles.Admin))
                 {
@@ -46,7 +46,7 @@
             <MudSpacer />
         </Authorized>
     </AuthorizeView>
-    <MudNavMenu>
+    <MudNavMenu Dense>
         <MudNavLink Icon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Tools" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Support" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>

@@ -49,8 +49,8 @@
         public const string AllPages = "/pages/all";
         public const string Page = "/pages/page";
         public const string Blog = "/blog";
-        public const string KnowledgeBase = "/knowledge-base";
         public const string AllBlogs = "/blog/all";
+        public const string Wiki = "wiki";
 
         public const string CallBackPayment = "payment/callback";
         public const string Payments = "/payment/payments";
@@ -61,6 +61,8 @@
         public const string Monitoring = "/monitoring/summary";
 
         public const string ReverseProxy = "/reverse-proxy/config";
+        public const string SetupAndInstallation = "/reverse-proxy/setup-and-installation";
+        public const string AuthToken = "/reverse-proxy/auth-token";
         public const string ActiveTunnels = "/reverse-proxy/active-tunnels";
     }
 }

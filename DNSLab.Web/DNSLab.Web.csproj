@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\Pages\ReverseProxy\ActiveTunnels.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Components\Pages\ReverseProxy\ActiveTunnels.razor" />
     <Content Remove="wwwroot\dnslab.js" />
   </ItemGroup>
 

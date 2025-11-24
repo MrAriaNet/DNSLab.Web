@@ -1,110 +1,0 @@
-﻿@attribute [Route(AllRoutes.ReverseProxy)]
-@attribute [Authorize]
-<SeoProvider Title="Reverse Proxy" />
-
-<MudCard Class="mb-2" Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">Reverse Proxy</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.caption">
-            Reverse Proxy به شما این امکان رو می‌ده که از پشت NAT یا فایروال، به سرویس‌های TCP روی دستگاه‌های داخلی دسترسی داشته باشید — بدون نیاز به IP عمومی یا تنظیمات پیچیده.
-        </MudText>
-        <MudGrid>
-            <MudItem xs="12" md="6">
-                <MudText Typo="Typo.h6" Class="mt-3 mb-2">
-                    ✨با TCP Reverse Proxy می‌تونید:
-                </MudText>
-                <MudText Typo="Typo.caption">
-                    ✅ اتصال به سرورهای داخلی مثل SSH، RDP، یا دیتابیس از هر جای دنیا
-                    <MudFlexBreak />
-                    ✅ دور زدن NAT و فایروال بدون نیاز به Port Forwarding
-                    <MudFlexBreak />
-                    ✅ ارائه سرویس‌های محلی روی دامنه یا پورت عمومی
-                    <MudFlexBreak />
-                    ✅ مدیریت چند تونل همزمان با تنظیمات ساده و قابل اسکریپت‌نویسی
-                    <MudFlexBreak />
-                    ✅ رمزنگاری و احراز هویت برای امنیت بیشتر در انتقال داده
-                </MudText>
-            </MudItem>
-            <MudItem xs="12" md="6">
-                <MudText Typo="Typo.h6" Class="mt-3 mb-2">
-                    🎯 مناسب برای:
-                </MudText>
-                <MudText Typo="Typo.caption">
-                    ✅ توسعه‌دهندگان، مدیران سیستم، و تیم‌های DevOps
-                    <MudFlexBreak />
-                    ✅ کنترل و مانیتورینگ سرورهای خانگی یا شرکتی از راه دور
-                    <MudFlexBreak />
-                    ✅ ارائه API یا سرویس‌های TCP به مشتریان بدون تغییر در زیرساخت شبکه
-                </MudText>
-            </MudItem>
-        </MudGrid>
-        <MudText Typo="Typo.h6" Class="mt-3 mb-2">
-            🔧 روش راه‌اندازی سرویس
-        </MudText>
-        <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start">
-            <MudText>
-                توجه داشته باشید که این قابلیت نیاز به تهیه اشتراک دارد
-            </MudText>
-        </MudAlert>
-        <MudText Class="mt-1">1️⃣ نصب کلاینت</MudText>
-        <MudPaper Outlined Class="pa-1">
-            <MudGrid Spacing="1">
-                <MudItem xs="12" md="6">
-                    <MudText Typo="Typo.h4" Class="mt-1">Windows</MudText>
-                    <MudText Typo="Typo.caption">برای نصب کلاینت بر روی ویندوز فایل مناسب سیستم عامل خود را دانلود کنید.</MudText>
-                    <MudFlexBreak />
-                    <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Tertiary" Variant="Variant.Outlined" Href="https://cdn.dnslab.link/dnslab-windows-amd64.exe">
-                        dnslab-windows-amd64.exe
-                    </BaseButton>
-                    <BaseButton Class="my-3" Size="Size.Small" EndIcon="@DNSLabIcons.Download" Color="Color.Tertiary" Variant="Variant.Outlined" Href="https://cdn.dnslab.link/dnslab-windows-arm64.exe">
-                        dnslab-windows-arm64.exe
-                    </BaseButton>
-                </MudItem>
-                <MudItem xs="12" md="6">
-                    <MudText Typo="Typo.h4" Class="mt-1">Linux</MudText>
-                    <MudText Typo="Typo.caption">برای نصب کلاینت بر روی لینوکس دستور زیر را در ترمینال سیستم عامل خود وارد کنید.</MudText>
-                    <CodeSnippet Language="bash" Code="curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh" />
-                </MudItem>
-            </MudGrid>
-        </MudPaper>
-        <MudText Class="mt-1">2️⃣ اجرای فایل</MudText>
-        <MudFlexBreak />
-        <MudText Typo="Typo.caption">برای اجرا در سیستم عامل ویندوز بر روی فایل .exe دانلود شده کلیک کنید</MudText>
-        <MudFlexBreak />
-        <MudText Typo="Typo.caption">
-            در سیستم عامل لینوکس
-            بعد از نمایش پیغام dnslab installed successfully!
-            میتوانید با تایپ dnslab در ترمینال به cli دی ان اس لب دسترسی داشته باشید
-        </MudText>
-        <MudText Class="mt-1">3️⃣ وارد کردن توکن</MudText>
-        <MudText Typo="Typo.caption">
-            🔐 توکن اختصاصی خود را با دستور زیر وارد کنید:
-        </MudText>
-        <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
-        <MudFlexBreak />
-        <MudAlert Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
-            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-                <MudText Typo="Typo.caption" Class="dnslab-ltr">
-                    در صورت نیاز میتوانید با لینک روبرو کلید خود را تغییر دهید :
-                </MudText>
-                <BaseButton OnClick="RevokeClientToken" EndIcon="@DNSLabIcons.Refresh" Size="Size.Small">تغییر کلید</BaseButton>
-            </MudStack>
-        </MudAlert>
-
-        <MudText Class="mt-1">4️⃣ تونل کردن پورت دلخواه</MudText>
-        <MudText Typo="Typo.caption">
-            برای ایجاد تونل روی پورت مورد نظر (مثلاً پورت 80)، از دستور زیر استفاده کنید:
-        </MudText>
-        <MudFlexBreak />
-        <CodeSnippet Language="bash" Code="tcp 80" />
-
-        <MudFlexBreak />
-        <MudText Typo="Typo.caption">
-            ✅ در صورت صحیح بودن مراحل یک آدرس به همراه پورت به شما نمایش داده خواهد شد که با این مراحل، سرویس داخلی شما از طریق اینترنت قابل دسترسی خواهد بود — بدون نیاز به IP عمومی یا Port Forwarding.
-        </MudText>
-    </MudCardContent>
-</MudCard>

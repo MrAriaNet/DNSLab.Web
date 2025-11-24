@@ -1,17 +1,14 @@
 ﻿using DNSLab.Web.Components.Dialogs;
 using DNSLab.Web.Interfaces.Repositories;
-using DNSLab.Web.Repositories;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace DNSLab.Web.Components.Pages.ReverseProxy;
 
-partial class ReverseProxyConfig
+partial class AuthToken
 {
     [Inject] IReverseProxyRepository _ReverseProxyRepository { get; set; }
     [Inject] IDialogService _DialogService { get; set; }
-    [Inject] IJSRuntime _JSRuntime { get; set; }
-
     string _Token = "XXXXXXX-XX-XXXXXXXX";
 
     protected override async Task OnInitializedAsync()
@@ -36,15 +33,5 @@ partial class ReverseProxyConfig
         {
             _Token = await _ReverseProxyRepository.RevokeClientToken() ?? String.Empty;
         }
-    }
-
-    async Task CopyTokenCommand()
-    {
-        await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"token set {_Token}");
-    }
-
-    async Task CopyLinuxCommand()
-    {
-        await _JSRuntime.InvokeAsync<bool>("clipboardCopy.copyText", $"curl -fsSL https://cdn.dnslab.link/linux/install.sh | sudo sh");
     }
 }

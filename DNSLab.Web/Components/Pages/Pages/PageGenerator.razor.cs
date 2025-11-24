@@ -15,7 +15,7 @@ partial class PageGenerator
     [Parameter] public string? Url { get; set; }
 
     PageDTO? _Page;
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         if (!String.IsNullOrEmpty(Url))
         {

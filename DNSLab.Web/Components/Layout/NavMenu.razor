@@ -1,8 +1,12 @@
-﻿ @inject IHttpContextAccessor httpContextAccessor;
+﻿@using DNSLab.Web.DTOs.Repositories.Page
+@using DNSLab.Web.Interfaces.Repositories
+@inject IHttpContextAccessor httpContextAccessor;
+@inject IPageRepository _PageRepository;
+
 <MudDrawer @bind-Open="_drawerOpen" Overlay="true" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
     <AuthorizeView Context="_AuthCTX">
         <Authorized>
-            <MudNavMenu>
+            <MudNavMenu Dense>
                 <MudNavLink Href="@AllRoutes.Dashboard" Match="NavLinkMatch.All" Icon="@DNSLabIcons.Dashboard">داشبورد</MudNavLink>
                 @if (_AuthCTX.User.IsInRole(AuthorizeRoles.Admin))
                 {
@@ -24,8 +28,9 @@
                     <MudNavLink Href="@AllRoutes.RaspberryPiSettings" Icon="@DNSLabIcons.RaspberryPi">تنظیمات Raspberry Pi</MudNavLink>
                 </MudNavGroup>
                 <MudNavGroup Title="Reverse Proxy" Icon="@DNSLabIcons.NAT">
-                    <MudNavLink Icon="@DNSLabIcons.ReverseProxySetting" Href="@AllRoutes.ReverseProxy">نرم افزار و تنظیمات</MudNavLink>
-                    <MudNavLink Icon="@DNSLabIcons.ActiveTunnels" Href="@AllRoutes.ActiveTunnels">تونل های فعال</MudNavLink>
+                    <MudNavLink Icon="@DNSLabIcons.Download" Href="@AllRoutes.SetupAndInstallation">راه‌اندازی و نصب</MudNavLink>
+                    <MudNavLink Icon="@DNSLabIcons.Key" Href="@AllRoutes.AuthToken">توکن احراز هویت شما</MudNavLink>
+                    @* <MudNavLink Icon="@DNSLabIcons.ActiveTunnels" Href="@AllRoutes.ActiveTunnels">تونل های فعال</MudNavLink> *@
                 </MudNavGroup>
                 <MudNavGroup Title="کیف پول" Icon="@DNSLabIcons.Wallet">
                     <MudNavLink Href="@AllRoutes.MyWallet">موجودی</MudNavLink>
@@ -41,10 +46,19 @@
             <MudSpacer />
         </Authorized>
     </AuthorizeView>
-    <MudNavMenu>
+    <MudNavMenu Dense>
         <MudNavLink Icon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Tools" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Support" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>
+        <MudNavGroup Icon="@DNSLabIcons.Wiki" Title="Wiki">
+            @if (_WikiMenu is not null)
+            {
+                @foreach (var menu in _WikiMenu.SubMenus)
+                {
+                    @RenderMenu(menu)
+                }
+            }
+        </MudNavGroup>
         <MudNavLink Icon="@DNSLabIcons.Blog" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Info" Href="@AllRoutes.About">درباره ما</MudNavLink>
         <AuthorizeView>
@@ -63,5 +77,91 @@
     {
         _drawerOpen = !_drawerOpen;
         StateHasChanged();
+    }
+
+    IEnumerable<PageInfoDTO>? _WikiPages { get; set; } = Enumerable.Empty<PageInfoDTO>();
+
+    WikiMenuItem? _WikiMenu { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _WikiPages = await _PageRepository.GetPagesByType(Shared.Enums.PageTypeEnum.Wiki);
+
+        if (_WikiPages is not null && _WikiPages.Any())
+        {
+            var root = new WikiMenuItem { Title = "Wiki", URL = "/" };
+
+            foreach (var page in _WikiPages)
+            {
+                var parts = page.URL.Trim('/').Split('/');
+                AddPageRecursive(root, parts, 0, page.URL, page.Title);
+            }
+
+            _WikiMenu = root;
+        }
+    }
+
+
+    private void AddPageRecursive(WikiMenuItem parent, string[] parts, int index, string fullPath, string title)
+    {
+        if (index >= parts.Length)
+            return;
+
+        // Build the path up to this part
+        string path = string.Join("/", parts.Take(index + 1)).Insert(0, "/");
+
+        // Find or create the child
+        var child = parent.SubMenus.FirstOrDefault(c => c.URL == path);
+        if (child == null)
+        {
+            child = new WikiMenuItem
+                {
+                    Title = _WikiPages.FirstOrDefault(x=>x.URL.Trim('/') == path.Trim('/'))?.Title?? String.Empty, // leaf gets page title
+                    URL = path
+                };
+            parent.SubMenus.Add(child);
+        }
+
+        // Recurse into the next level
+        AddPageRecursive(child, parts, index + 1, fullPath, title);
+    }
+
+    private RenderFragment RenderMenu(WikiMenuItem menu) => builder =>
+    {
+        if (menu.SubMenus?.Any() == true)
+        {
+            // Render as a NavGroup if it has children
+            builder.OpenComponent<MudNavGroup>(0);
+            builder.AddAttribute(1, "Title", menu.Title);
+            builder.AddAttribute(2, "ChildContent", (RenderFragment)(childBuilder =>
+            {
+                foreach (var sub in menu.SubMenus)
+                {
+                    childBuilder.AddContent(3, RenderMenu(sub));
+                }
+            }));
+            builder.CloseComponent();
+        }
+        else
+        {
+            // Render as a NavLink if it has no children
+            builder.OpenComponent<MudNavLink>(4);
+            builder.AddAttribute(5, "Href", "/wiki" + menu.URL);
+            builder.AddAttribute(6, "Match", NavLinkMatch.All);
+            builder.AddAttribute(7, "ChildContent", (RenderFragment)(childBuilder =>
+            {
+                childBuilder.AddContent(8, menu.Title);
+            }));
+            builder.CloseComponent();
+        }
+    };
+
+    class WikiMenuItem
+    {
+        public Guid Id { get; set; }
+        public string URL { get; set; }
+        public string Title { get; set; }
+
+        public List<WikiMenuItem> SubMenus { get; set; } = new();
     }
 }

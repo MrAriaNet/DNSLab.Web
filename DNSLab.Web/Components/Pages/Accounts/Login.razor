@@ -1,19 +1,28 @@
 ﻿@attribute [Route(AllRoutes.Login)]
 <SeoProvider Title="صفحه ورود" Meta_Description="ورود به سیستم سایت DNSLab" />
 
-<MudStack AlignItems="AlignItems.Center">
-    <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="mt-6">
-        <MudCard Elevation="0" Class="pa-5">
-            <MudText Typo="Typo.h3" Class="my-3">ورود</MudText>
-            <MudText>سلام</MudText>
-            <MudText>لطفا نام کاربری یا ایمیل خود را وارد نمایید</MudText>
-            <EditForm Model="_AuthenticateDTO" Context="ctx">
-                <DataAnnotationsValidator />
-                <MudTextField T="string" Placeholder="نام کاربری یا ایمیل" Variant="Variant.Outlined" Class="my-2 dnslab-ltr" @bind-Value="_AuthenticateDTO.UsernameOrEmail" For="()=>_AuthenticateDTO.UsernameOrEmail"></MudTextField>
-                <MudTextField T="string" InputType="InputType.Password" Placeholder="رمز عبور" Variant="Variant.Outlined" Class="my-2 dnslab-ltr" @bind-Value="_AuthenticateDTO.Password" For="()=>_AuthenticateDTO.Password"></MudTextField>
-                <BaseButton Color="Color.Primary" EditContext="ctx" OnClick="Authenticate" ButtonType="ButtonType.Submit" Variant="Variant.Filled" FullWidth>ورود</BaseButton>
-                <BaseButton Href="@AllRoutes.ForgetPassword" Color="Color.Info" FullWidth Class="mt-1">فراموشی رمز عبور</BaseButton>
-            </EditForm>
-        </MudCard>
-    </MudContainer>
+<MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Class="pt-10">
+    <MudGrid Justify="Justify.Center">
+        <MudItem xl="3" lg="4" md="6" sm="8" xs="12">
+            <MudCard Elevation="0" Class="pa-5">
+                <MudCardContent>
+                    <MudText Typo="Typo.h3" Class="my-3" Align="Align.Center">ورود</MudText>
+                    <EditForm Model="_AuthenticateDTO" Context="ctx">
+                        <DataAnnotationsValidator />
+                        <MudText Typo="Typo.caption">نام کاربری یا ایمیل</MudText>
+                        <MudTextField T="string" Placeholder="نام کاربری یا ایمیل" Variant="Variant.Outlined" Class="my-2 dnslab-ltr" @bind-Value="_AuthenticateDTO.UsernameOrEmail" For="()=>_AuthenticateDTO.UsernameOrEmail"></MudTextField>
+                        <MudStack Row Justify="Justify.SpaceBetween">
+                            <MudText Typo="Typo.caption">رمز عبور</MudText>
+                            <MudLink Underline="Underline.None" Href="@AllRoutes.ForgetPassword">
+                                <MudText Typo="Typo.caption" Color="Color.Error">رمزت رو فراموش کردی ؟</MudText>
+                            </MudLink>
+                        </MudStack>
+                        <MudTextField T="string" InputType="InputType.Password" Placeholder="رمز عبور" Variant="Variant.Outlined" Class="mt-2 mb-4 dnslab-ltr" @bind-Value="_AuthenticateDTO.Password" For="()=>_AuthenticateDTO.Password"></MudTextField>
+                        <BaseButton Color="Color.Primary" EditContext="ctx" OnClick="Authenticate" ButtonType="ButtonType.Submit" Variant="Variant.Filled" FullWidth>ورود</BaseButton>
+                        <MudText Align="Align.Center" Class="mt-3">حساب کاربری نداری ؟ <MudLink Href="@AllRoutes.RegisterAccount" Underline="Underline.None">ثبت نام</MudLink></MudText>
+                    </EditForm>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
 </MudStack>

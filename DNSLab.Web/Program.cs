@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,6 +81,16 @@ builder.Services.AddSignalR(hubOptions =>
     hubOptions.MaximumReceiveMessageSize = 3 * 1024 * 1024; // 3MB
 });
 
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(r => r.AddService("DNSLab-Web"))
+    .WithMetrics(metrics =>
+    {
+        metrics.AddAspNetCoreInstrumentation(); 
+        metrics.AddHttpClientInstrumentation(); 
+        metrics.AddPrometheusExporter();        
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -96,5 +108,7 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.Run();

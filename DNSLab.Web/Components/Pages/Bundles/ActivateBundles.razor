@@ -92,35 +92,36 @@
         {
             <MudGrid>
                 <MudItem xs="12" md="6">
-                    <MudText Typo="Typo.h3" Class="my-3">مدت زمان اشتراک</MudText>
-                    <MudToggleGroup Class="mud-width-full" T="BundleDurationDTO" Color="Color.Success" @bind-Value="_BundleDuration">
+                    <MudStack AlignItems="AlignItems.Center" Class="pa-10">
+                        @if (_BundleDuration != null && CalculatePrice() > 0)
+                        {
+                            <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits()</MudText>
+                            <BaseButton Color="Color.Primary" Size="Size.Large" Variant="Variant.Filled" OnClick="Activate">تایید و تهیه اشتراک</BaseButton>
+                        }
+                        else
+                        {
+                            <MudChip ReadOnly T="string" Color="Color.Primary" Variant="Variant.Outlined" Size="Size.Large" Label="true" Text="این قابلیت به صورت رایگان فعال میباشد" />
+                        }
+                    </MudStack>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudText Typo="Typo.h4" Class="my-3">مدت زمان اشتراک</MudText>
+                    <MudToggleGroup T="BundleDurationDTO" Color="Color.Primary" @bind-Value="_BundleDuration">
                         @foreach (var item in _BundleDurations)
                         {
-                            <MudToggleItem Value="item">
-                                <div class="mud-width-full mud-height-full">
-                                    <div class="d-flex align-center justify-space-between flex-wrap">
-                                        <MudText Class="ellipsis">@item.Description</MudText>
-                                    </div>
-                                    <MudText Typo="Typo.subtitle2">
+                            <MudToggleItem Value="item" >
+                                <MudStack Justify="Justify.Center" Spacing="1">
+                                    <MudText>@item.Description</MudText>
+                                    <MudText Typo="Typo.caption">
                                         @if (item.Discount.Percent > 0)
                                         {
                                             <text>@item.Discount.Percent % تخفیف</text>
                                         }
                                     </MudText>
-                                </div>
+                                </MudStack>
                             </MudToggleItem>
                         }
-
                     </MudToggleGroup>
-                </MudItem>
-                <MudItem xs="12" md="6">
-                    @if (_BundleDuration != null && CalculatePrice() > 0)
-                    {
-                        <MudStack AlignItems="AlignItems.Center" Class="pa-10">
-                            <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits()</MudText>
-                            <BaseButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Activate">تایید و تهیه اشتراک</BaseButton>
-                        </MudStack>
-                    }
                 </MudItem>
             </MudGrid>
 

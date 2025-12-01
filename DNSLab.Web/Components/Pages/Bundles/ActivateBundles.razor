@@ -95,7 +95,7 @@
                     <MudStack AlignItems="AlignItems.Center" Class="pa-10">
                         @if (_BundleDuration != null && CalculatePrice() > 0)
                         {
-                            <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits()</MudText>
+                            <MudText>جمع مبلغ پراختی : @CalculatePrice().Separate3Digits() ريال</MudText>
                             <BaseButton Color="Color.Primary" Size="Size.Large" Variant="Variant.Filled" OnClick="Activate">تایید و تهیه اشتراک</BaseButton>
                         }
                         else

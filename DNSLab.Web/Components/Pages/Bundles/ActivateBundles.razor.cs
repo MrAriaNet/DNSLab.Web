@@ -18,6 +18,7 @@ partial class ActivateBundles
     {
         _FeatureSections = await _SubscriptionRepository.GetFeatures();
         _BundleDurations = await _SubscriptionRepository.GetBundleDurations();
+        _BundleDuration = _BundleDurations?.FirstOrDefault();
     }
 
 

@@ -3,6 +3,7 @@
         <MudIconButton Icon="@DNSLabIcons.Copy" OnClick="Copy" Size="Size.Small" Class="mr-2" />
         <MudText Typo="Typo.caption" Class="ml-2">@Language</MudText>
     </MudStack>
+    <MudDivider DividerType="DividerType.FullWidth"  Style="opacity:0.4" />
 <pre class="code" style="direction:ltr;">
 <code @key=Code class="@($"language-{Language}")" @ref="_codeElement">
             @Code

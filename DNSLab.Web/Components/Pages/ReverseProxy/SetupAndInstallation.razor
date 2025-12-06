@@ -32,14 +32,24 @@
     <MudText Typo="Typo.caption" Class="mb-2">این دستور رو اجرا کن تا توکن احراز هویتت (token) به فایل پیکربندی پیش‌فرض dnslab اضافه بشه.</MudText>
     <MudFlexBreak Class="my-2" />
     <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
-    <MudText Typo="Typo.h4" Class="my-2">برنامه‌ت رو روی اینترنت منتشر کن</MudText>
+    <MudDivider DividerType="DividerType.FullWidth" Class="my-2" />
+    <MudText Typo="Typo.h4" Class="my-2">عمومی کردن یک سرویس HTTP برروی اینترنت</MudText>
     <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
     <MudFlexBreak Class="my-3" />
     <CodeSnippet Language="bash" Code="@($"http 80")" />
-    <MudText Typo="Typo.h4" Class="my-2">ایجاد نقطه‌های پایانی (Endpoint) عمومی TCP</MudText>
+    <MudText Class="mb-2">برای رزرو اجرا با آدرس دلخواه میتوانید از این دستور استفاده نمایید (نیاز به تهیه اشتراک دارد).</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"http 80 example.http.dnslab.ir")" />
+    <MudText Typo="Typo.caption" Class="mb-2" Color="Color.Info">در این مثال نشانی example.http.dnslab.ir بعنوان رزرو برای شما ثبت میشود.</MudText>
+    <MudDivider DividerType="DividerType.FullWidth" Class="my-2" />
+    <MudText Typo="Typo.h4" Class="my-2">دسترسی به پورت های TCP سیستم از طریق اینترنت</MudText>
     <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان اجرا کن.</MudText>
     <MudFlexBreak Class="my-3" />
     <CodeSnippet Language="bash" Code="@($"tcp 80")" />
-    <MudFlexBreak Class="my-2"/>
     <MudText Typo="Typo.caption">نشانی‌های TCP شامل یک نام میزبان (hostname) و شماره پورت هستند. مثلاً: tcp.dnslab.ir:12345</MudText>
+    <MudText Class="mb-2">برای رزرو پورت مورد نظر میتوانید از این دستور استفاده نمایید (نیاز به تهیه اشتراک دارد).</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"tcp 80 tcp.dnslab.ir:5001")" />
+    <MudText Typo="Typo.caption" Class="mb-2" Color="Color.Info">در این مثال آدرس و پورت tcp.dnslab.ir:5001 بعنوان رزرو برای شما ثبت میشود.</MudText>
+    <MudFlexBreak Class="my-2" />
 </MudPaper>

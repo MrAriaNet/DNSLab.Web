@@ -1,14 +1,16 @@
 ﻿<MudPaper Outlined>
-    <MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
-        <MudIconButton Icon="@DNSLabIcons.Copy" OnClick="Copy" Size="Size.Small" Class="mr-2" />
-        <MudText Typo="Typo.caption" Class="ml-2">@Language</MudText>
+    <MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Style="">
+        <MudIconButton Icon="@DNSLabIcons.Copy" OnClick="Copy" Size="Size.Small" Class="mr-3 my-1" />
+        <MudText Typo="Typo.caption" Class="ml-3 my-1">@Language</MudText>
     </MudStack>
-    <MudDivider DividerType="DividerType.FullWidth"  Style="opacity:0.4" />
-<pre class="code" style="direction:ltr;">
-<code @key=Code class="@($"language-{Language}")" @ref="_codeElement">
-            @Code
+    <MudDivider DividerType="DividerType.FullWidth" Style="opacity:0.4" />
+    <MudStack Class="pa-3" Style="background-color:var(--mud-palette-background)">
+        <pre class="code" style="direction:ltr;">
+<code @key=Code class="@($"language-{Language}")">
+                @Code
     </code>
 </pre>
+    </MudStack>
 </MudPaper>
 
 @code {
@@ -17,12 +19,6 @@
     [Parameter] public string Code { get; set; }
     [Parameter] public string Language { get; set; } = "csharp";
 
-    private ElementReference _codeElement;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await JSRuntime.InvokeVoidAsync("hljs.highlightElement", _codeElement);
-    }
 
     async Task Copy()
     {

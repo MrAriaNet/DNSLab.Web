@@ -1,32 +1,41 @@
 ﻿@attribute [Route(AllRoutes.PortChecker)]
 
-<SeoProvider Title="Ping - پینگ" Meta_Description="آدرس هاست مورد نظر خود را با استفاده از این ابزار پینگ بگیرید" />
+<SeoProvider Title="Port Checker - بررسی باز بودن پورت" Meta_Description="آدرس هاست مورد نظر خود را با استفاده از این ابزار پینگ بگیرید" />
 
-<MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
-    <MudText Typo="Typo.body2">برای بررسی پورت لطفا آدرس آی‌پی یا هاست و پورت مورد نظر خود را وارد نمایید</MudText>
-    <MudText Typo="Typo.body2">توجه فرمایید که عملیات بررسی پورت توسط سرور DNSLab انجام میشود</MudText>
-</MudAlert>
-<MudGrid>
-    <MudItem sm="4" xs="12">
-        <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="_Host" />
-    </MudItem>
-    <MudItem sm="2" xs="12">
-        <MudTextField T="int" Label="پورت" Class="dnslab-ltr" Placeholder="90" Variant="Variant.Outlined" @bind-Value="_Port" />
-    </MudItem>
-</MudGrid>
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h1">Port Checker - بررسی باز بودن پورت</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
+            <MudText Typo="Typo.body2">برای بررسی پورت لطفا آدرس آی‌پی یا هاست و پورت مورد نظر خود را وارد نمایید</MudText>
+            <MudText Typo="Typo.body2">توجه فرمایید که عملیات بررسی پورت توسط سرور DNSLab انجام میشود</MudText>
+        </MudAlert>
+        <MudGrid>
+            <MudItem sm="4" xs="12">
+                <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="_Host" />
+            </MudItem>
+            <MudItem sm="2" xs="12">
+                <MudTextField T="int" Label="پورت" Class="dnslab-ltr" Placeholder="90" Variant="Variant.Outlined" @bind-Value="_Port" />
+            </MudItem>
+        </MudGrid>
 
-<BaseButton Class="my-2" EndIcon="@DNSLabIcons.Search" Variant="Variant.Filled" Color="Color.Primary" OnClick="CalcPing">بررسی</BaseButton>
+        <BaseButton Class="my-2" EndIcon="@DNSLabIcons.Search" Variant="Variant.Filled" Color="Color.Primary" OnClick="CalcPing">بررسی</BaseButton>
 
-@if (_Result != null)
-{
-    <MudAlert Severity="@(_Result == true ? Severity.Success : Severity.Error)" Dense NoIcon>
-        @if (_Result == true)
+        @if (_Result != null)
         {
-            <MudText Typo="Typo.body2">Port @_Port is open</MudText>
+            <MudAlert Severity="@(_Result == true ? Severity.Success : Severity.Error)" Dense NoIcon>
+                @if (_Result == true)
+                {
+                    <MudText Typo="Typo.body2">Port @_Port is open</MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.body2">Port @_Port is closed</MudText>
+                }
+            </MudAlert>
         }
-        else
-        {
-            <MudText Typo="Typo.body2">Port @_Port is closed</MudText>
-        }
-    </MudAlert>
-}
+    </MudCardContent>
+</MudCard>

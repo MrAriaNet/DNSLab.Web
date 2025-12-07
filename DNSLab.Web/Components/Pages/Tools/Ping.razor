@@ -2,19 +2,28 @@
 
 <SeoProvider Title="Ping - پینگ" Meta_Description="آدرس هاست مورد نظر خود را با استفاده از این ابزار پینگ بگیرید" />
 
-<MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
-    <MudText Typo="Typo.body2">برای بررسی پینگ لطفا آدرس آی‌پی یا هاست مورد نظر خود را وارد نمایید</MudText>
-    <MudText Typo="Typo.body2">توجه فرمایید که عملیات پینگ توسط سرور DNSLab انجام میشود</MudText>
-</MudAlert>
-<MudGrid>
-    <MudItem sm="4" xs="12">
-        <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="_Host" />
-    </MudItem>
-</MudGrid>
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h1">Ping - پینگ</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
+            <MudText Typo="Typo.body2">برای بررسی پینگ لطفا آدرس آی‌پی یا هاست مورد نظر خود را وارد نمایید</MudText>
+            <MudText Typo="Typo.body2">توجه فرمایید که عملیات پینگ توسط سرور DNSLab انجام میشود</MudText>
+        </MudAlert>
+        <MudGrid>
+            <MudItem sm="4" xs="12">
+                <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="_Host" />
+            </MudItem>
+        </MudGrid>
 
-<BaseButton Class="my-2" EndIcon="@DNSLabIcons.Search" Variant="Variant.Filled" Color="Color.Primary" OnClick="CalcPing">بررسی</BaseButton>
+        <BaseButton Class="my-2" EndIcon="@DNSLabIcons.Search" Variant="Variant.Filled" Color="Color.Primary" OnClick="CalcPing">بررسی</BaseButton>
 
-@if (!String.IsNullOrWhiteSpace(_Result))
-{
-    <CodeSnippet Language="powershell" Code="@_Result"/>
-}
+        @if (!String.IsNullOrWhiteSpace(_Result))
+        {
+            <CodeSnippet Language="powershell" Code="@_Result" />
+        }
+    </MudCardContent>
+</MudCard>

@@ -2,30 +2,40 @@
 @using DNSLab.Web.Enums
 <SeoProvider Title="DNSLookup - پرس و جوی DNS" Meta_Description="شما میتوانید DNS خود را بررسی و پرس و جو کنید و در صورت نیاز میتوانید با نیم سرور خاصی این پرس و چو را انجام دهید" />
 
-<MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
-    <MudText Typo="Typo.body2">بصورت پیشفرض DNS ها از سرور عمومی گوگل به آدرس 8.8.4.4 پرس و جو میشوند</MudText>
-    <MudText Typo="Typo.body2">اما شما میتوانید در قسمت نیم سرور ، IP سرور مورد نظر خود را وارد نمایید</MudText>
-</MudAlert>
-<MudGrid>
-    <MudItem sm="6" xs="12">
-        <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="query" />
-    </MudItem>
-    <MudItem lg="2" sm="3" xs="12">
-        <MudSelect T="QueryTypeEnum" Label="نوع رکورد" Variant="Variant.Outlined" @bind-Value="_QueryType">
-            @foreach (QueryTypeEnum item in (QueryTypeEnum[])Enum.GetValues(typeof(QueryTypeEnum)))
-            {
-                <MudSelectItem T="QueryTypeEnum" Value="item">@item</MudSelectItem>
-            }
-        </MudSelect>
-    </MudItem>
-    <MudItem lg="4" sm="3" xs="12">
-        <MudTextField T="string" Label="نیم سرور" Class="dnslab-ltr" @bind-Value="_NameServer" Variant="Variant.Outlined" />
-    </MudItem>
-</MudGrid>
+<MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h1">DNSLookup - پرس و جوی DNS</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
+            <MudText Typo="Typo.body2">بصورت پیشفرض DNS ها از سرور عمومی گوگل به آدرس 8.8.4.4 پرس و جو میشوند</MudText>
+            <MudText Typo="Typo.body2">اما شما میتوانید در قسمت نیم سرور ، IP سرور مورد نظر خود را وارد نمایید</MudText>
+        </MudAlert>
+        <MudGrid>
+            <MudItem sm="6" xs="12">
+                <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="query" />
+            </MudItem>
+            <MudItem lg="2" sm="3" xs="12">
+                <MudSelect T="QueryTypeEnum" Label="نوع رکورد" Variant="Variant.Outlined" @bind-Value="_QueryType">
+                    @foreach (QueryTypeEnum item in (QueryTypeEnum[])Enum.GetValues(typeof(QueryTypeEnum)))
+                    {
+                        <MudSelectItem T="QueryTypeEnum" Value="item">@item</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudItem>
+            <MudItem lg="4" sm="3" xs="12">
+                <MudTextField T="string" Label="نیم سرور" Class="dnslab-ltr" @bind-Value="_NameServer" Variant="Variant.Outlined" />
+            </MudItem>
+        </MudGrid>
 
-<BaseButton Class="my-2" EndIcon="@DNSLabIcons.Search" Variant="Variant.Filled" Color="Color.Primary" OnClick="Query">جستجو</BaseButton>
+        <BaseButton Class="my-2" EndIcon="@DNSLabIcons.Search" Variant="Variant.Filled" Color="Color.Primary" OnClick="Query">جستجو</BaseButton>
 
-@if (!String.IsNullOrWhiteSpace(_Result))
-{
-    <CodeSnippet Language="json" Code="@_Result.PrettyJson()" />
-}
+        @if (!String.IsNullOrWhiteSpace(_Result))
+        {
+            <CodeSnippet Language="json" Code="@_Result.PrettyJson()" />
+        }
+    </MudCardContent>
+</MudCard>
+

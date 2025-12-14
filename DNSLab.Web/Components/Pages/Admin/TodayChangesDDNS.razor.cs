@@ -36,7 +36,7 @@ namespace DNSLab.Web.Components.Pages.Admin
             return new GridData<BaseRecordDTO>
             {
                 TotalItems = totalItems,
-                Items = pagedData.AsEnumerable()
+                Items = pagedData
             };
         }
     }

@@ -1,76 +1,59 @@
 ﻿@using DNSLab.Web.DTOs.Repositories.Record
+@using DNSLab.Web.DTOs.Repositories.Zone
 @attribute [Route(AllRoutes.TodayChangesDDNS)]
 @attribute [Authorize(Roles = AuthorizeRoles.Admin)]
 <SeoProvider Title="تغییرات امروز" />
 
 
-@if (_AllRecords == null)
-{
-
-}
-else
-{
-    <MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense NoIcon>
-        <MudText>تعداد رکورد های تغییر یافته : @_AllRecords.SelectMany(x => x.Item2).Count()</MudText>
-    </MudAlert>
-    @foreach (var zone in _AllRecords.OrderByDescending(x => x.Item2.Count() > 0 ? x.Item2.Max(c => c.CreateDate) : DateTime.UtcNow))
-    {
-        <MudCard Class="mb-2" Elevation="0">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h5">@zone.Item1.Name</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                @if (zone.Item2.Count() > 0)
-                {
-                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderByDescending(x=> x.CreateDate)" Dense Hover Outlined Loading="false">
-                        <NoRecordsContent>
-                            <NoRecordFound />
-                        </NoRecordsContent>
-                        <Columns>
-                            <PropertyColumn Property="x=>x.Name" Title="نام" />
-                            <PropertyColumn Property="x=>x.Type" Title="نوع">
-                                <CellTemplate>
-                                    <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">@context.Item.Type</MudChip>
-                                </CellTemplate>
-                            </PropertyColumn>
-                            <PropertyColumn Property="x=>x.TTL" Title="TTL" />
-                            <PropertyColumn Property="x=>x.RData" Title="مقدار" CellClass="dnslab-ltr" Sortable="false">
-                                <CellTemplate>
-                                    <MudText Typo="Typo.body2">
-                                        @switch (context.Item.Type)
-                                        {
-                                            case Enums.RecordTypeEnum.A:
-                                                <text>IPv4 : @(context.Item.CastTo<ARecordDTO>()!.IPv4Address)</text>
-                                                break;
-                                            case Enums.RecordTypeEnum.AAAA:
-                                                <text>IPv6 : @(context.Item.CastTo<AAAARecordDTO>()!.IPv6Address)</text>
-                                                break;
-                                            case Enums.RecordTypeEnum.CNAME:
-                                                <text>CName : @(context.Item.CastTo<CNAMERecordDTO>()!.CName)</text>
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                    </MudText>
-                                </CellTemplate>
-                            </PropertyColumn>
-                            <PropertyColumn Property="x=>x.CreateDate" Title="تاریخ ثبت">
-                                <CellTemplate>
-                                    <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
-                                </CellTemplate>
-                            </PropertyColumn>
-                            <PropertyColumn Property="x=>x.LastModified" Title="آخرین تغییر">
-                                <CellTemplate>
-                                    <MudText Typo="Typo.body2">@(context.Item.LastModified.HasValue ? context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime() : "بدون تغییر")</MudText>
-                                </CellTemplate>
-                            </PropertyColumn>
-                            <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
-                        </Columns>
-                    </MudDataGrid>
-                }
-            </MudCardContent>
-        </MudCard>
-    }
-}
+<MudCard>
+    <MudCardContent>
+        <MudDataGrid T="BaseRecordDTO" ServerData="ServerReload" ExpandSingleRow Dense Hover Outlined Filterable="false">
+            <NoRecordsContent>
+                <NoRecordFound />
+            </NoRecordsContent>
+            <Columns>
+                <PropertyColumn Property="x=>x.Name" Title="نام" />
+                <PropertyColumn Property="x=>x.Type" Title="نوع">
+                    <CellTemplate>
+                        <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">@context.Item.Type</MudChip>
+                    </CellTemplate>
+                </PropertyColumn>
+                <PropertyColumn Property="x=>x.TTL" Title="TTL" />
+                <PropertyColumn Property="x=>x.RData" Title="مقدار" CellClass="dnslab-ltr" Sortable="false">
+                    <CellTemplate>
+                        <MudText Typo="Typo.body2">
+                            @switch (context.Item.Type)
+                            {
+                                case Enums.RecordTypeEnum.A:
+                                    <text>IPv4 : @(context.Item.CastTo<ARecordDTO>()!.IPv4Address)</text>
+                                    break;
+                                case Enums.RecordTypeEnum.AAAA:
+                                    <text>IPv6 : @(context.Item.CastTo<AAAARecordDTO>()!.IPv6Address)</text>
+                                    break;
+                                case Enums.RecordTypeEnum.CNAME:
+                                    <text>CName : @(context.Item.CastTo<CNAMERecordDTO>()!.CName)</text>
+                                    break;
+                                default:
+                                    break;
+                            }
+                        </MudText>
+                    </CellTemplate>
+                </PropertyColumn>
+                <PropertyColumn Property="x=>x.CreateDate" Title="تاریخ ثبت">
+                    <CellTemplate>
+                        <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
+                    </CellTemplate>
+                </PropertyColumn>
+                <PropertyColumn Property="x=>x.LastModified" Title="آخرین تغییر">
+                    <CellTemplate>
+                        <MudText Typo="Typo.body2">@(context.Item.LastModified.HasValue ? context.Item.LastModified.Value.ToLocalTime().ToPersianDateTime() : "بدون تغییر")</MudText>
+                    </CellTemplate>
+                </PropertyColumn>
+                <PropertyColumn Property="x=>x.Comment" Title="یادداشت" />
+            </Columns>
+            <PagerContent>
+                <MudDataGridPager T="BaseRecordDTO" RowsPerPageString="تعداد ردیف در هر صفحه" InfoFormat="{first_item}-{last_item} از {all_items}" />
+            </PagerContent>
+        </MudDataGrid>
+    </MudCardContent>
+</MudCard>

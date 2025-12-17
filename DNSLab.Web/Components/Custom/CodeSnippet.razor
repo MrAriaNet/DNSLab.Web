@@ -5,11 +5,9 @@
     </MudStack>
     <MudDivider DividerType="DividerType.FullWidth" Style="opacity:0.4" />
     <MudStack Class="pa-3" Style="background-color:var(--mud-palette-background)">
-        <pre class="code" style="direction:ltr;">
-<code @key=Code>
-                @Code
-    </code>
-</pre>
+        <MudText Typo="Typo.caption" Style="direction:ltr" Tag="@("pre")" @key=Code>
+            @Code
+        </MudText>
     </MudStack>
 </MudPaper>
 

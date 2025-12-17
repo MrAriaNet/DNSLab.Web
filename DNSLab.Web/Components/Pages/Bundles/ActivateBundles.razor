@@ -2,20 +2,15 @@
 @attribute [Route(AllRoutes.Bundle)]
 <SeoProvider Title="پلن ها" Meta_Description="پلن های سایت DNSLab" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تهیه اشتراک</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">
+    همه‌چیز دست خودته — فقط همون چیزی رو بخر که واقعاً لازم داری!
+    <MudFlexBreak />
+    با سیستم قیمت‌گذاری منعطف DNSLab، دیگه لازم نیست برای امکاناتی که نمی‌خوای پول بدی. هر قابلیت رو جداگانه فعال کن، هزینه رو کنترل کن، و دقیقاً همون چیزی رو بساز که کارت رو راه می‌ندازه. سریع، ساده، اقتصادی.
+</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h1">اشتراک</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
-        <MudAlert Class="mb-2" Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start">
-            <MudText Typo="Typo.body2">
-                همه‌چیز دست خودته — فقط همون چیزی رو بخر که واقعاً لازم داری!
-                <MudFlexBreak />
-                با سیستم قیمت‌گذاری منعطف DNSLab، دیگه لازم نیست برای امکاناتی که نمی‌خوای پول بدی. هر قابلیت رو جداگانه فعال کن، هزینه رو کنترل کن، و دقیقاً همون چیزی رو بساز که کارت رو راه می‌ندازه. سریع، ساده، اقتصادی.
-            </MudText>
-        </MudAlert>
         @if (_FeatureSections != null)
         {
             <MudGrid>

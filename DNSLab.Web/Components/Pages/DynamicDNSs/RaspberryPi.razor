@@ -3,22 +3,17 @@
 
 <SeoProvider Title="تنظیمات Raspberry Pi" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تنظیمات Raspberry Pi</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">برای بروزرسانی آی پی توسط Raspberry Pi مراحل زیر را به ترتیب باید انجام دهید</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">تنظیمات Raspberry Pi</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
-        <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
-            <MudText Typo="Typo.body2">برای بروزرسانی آی پی توسط Raspberry Pi مراحل زیر را به ترتیب باید انجام دهید.</MudText>
-        </MudAlert>
         <MudText Typo="Typo.h6">ساخت کلید برای بروزرسانی IP رکوردهای DNS</MudText>
         <MudText>برای بروزرسانی خودکار آی پی در میکروتیک ابتدا باید یک کلید برای بروزرسانی آی پی ایجاد نمایید.</MudText>
         <UpdateTokens IsSelectableList OnTokenSelect="SelectToken" />
         @if (_Token == null)
         {
-            <MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
+            <MudAlert Dense Icon="@DNSLabIcons.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
                 <MudText Typo="Typo.body2">برای ادامه فرآیند یک کلید را انتخاب نمایید</MudText>
             </MudAlert>
         }
@@ -37,7 +32,7 @@
             <CodeSnippet Language="bash" Code="crontab -e" />
             <MudText Typo="Typo.h6">خط زیر رو اضافه کنید تا هر 3 دقیقه اسکریپت اجرا بشه:</MudText>
             <CodeSnippet Language="bash" Code="*/3 * * * * ~/dnslab.sh" />
-            <MudAlert Dense Severity="Severity.Warning" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
+            <MudAlert Dense Icon="@DNSLabIcons.Error" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
                 <MudText Typo="Typo.body2">در صورتی که آی پی شما بعد از 3 دقیقه با آی پی عمومی سیستم بروز نشد از اجرای درست cron در سیستم عامل اطمینان حاصل فرمایید.</MudText>
             </MudAlert>
         }

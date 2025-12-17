@@ -3,6 +3,9 @@
 @attribute [Authorize]
 <SeoProvider Title="رکورد های دامنه" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">رکورد‌های دامنه</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">این بخش برای افزودن و مدیریت رکورد های دامنه از جمله A , AAAA , TXT و ... میباشد</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
@@ -15,10 +18,10 @@
                         <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Default" DropShadow="false" StartIcon="@Icons.Material.Rounded.ArrowForward" Href="@AllRoutes.AllZones">بازگشت</BaseButton>
                     </MudStack>
                     <MudStack Row Spacing="0">
-                        <MudChip T="string" Size="Size.Small" Color="Color.Info" Variant="Variant.Filled">
+                        <MudChip T="string" Size="Size.Small" Color="Color.Primary" Label="true" Variant="Variant.Filled">
                             <MudText Typo="Typo.body2">Primary</MudText>
                         </MudChip>
-                        <MudChip T="string" Size="Size.Small" Color="@(_Zone.Disable ? Color.Warning : Color.Success)" Variant="Variant.Filled">
+                        <MudChip T="string" Size="Size.Small" Color="@(_Zone.Disable ? Color.Warning : Color.Success)" Label="true" Variant="Variant.Filled">
                             <MudText Typo="Typo.body2">@(_Zone.Disable ? "غیر فعال" : "فعال")</MudText>
                         </MudChip>
                     </MudStack>
@@ -125,8 +128,8 @@
                 <TemplateColumn StickyLeft>
                     <CellTemplate>
                         <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                            <BaseIconButton OnClick="()=> EditRecord(context.Item)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
-                            <BaseIconButton OnClick="()=> DisableRecord(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
+                            <BaseIconButton OnClick="()=> EditRecord(context.Item)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
+                            <BaseIconButton OnClick="()=> DisableRecord(context.Item)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
                             <BaseIconButton OnClick="()=>  DeleteRecord(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                         </MudStack>
                     </CellTemplate>

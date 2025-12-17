@@ -19,6 +19,10 @@
     backdrop-filter: blur(2px) !important
 }
 
+.mud-input {
+    background-color: #f9f7f3 !important
+}
+
 .dnslab-ltr input,
 .dnslab-ltr textarea,
 .dnslab-ltr .mud-typography,
@@ -29,67 +33,155 @@
 
 /* Typewriter effect 1 */
 @keyframes typing {
-  0.0000%, 27.3488% { content: ""; }
-  1.1395%, 26.2093% { content: "l"; }
-  2.2791%, 25.0698% { content: "lo"; }
-  3.4186%, 23.9302% { content: "loc"; }
-  4.5581%, 22.7907% { content: "loca"; }
-  5.6977%, 21.6512% { content: "local"; }
+    0.0000%, 27.3488% {
+        content: "";
+    }
 
-  29.7674%, 52.2791% { content: ""; }
-  30.7674%, 51.2791% { content: "h"; }
-  31.9070%, 50.1395% { content: "ho"; }
-  33.0465%, 49.0000% { content: "hom"; }
-  34.1860%, 47.8605% { content: "home"; }
+    1.1395%, 26.2093% {
+        content: "l";
+    }
 
-  53.6977%, 76.2093% { content: ""; }
-  54.6977%, 75.2093% { content: "c"; }
-  55.8372%, 74.0698% { content: "ca"; }
-  56.9767%, 72.9302% { content: "cam"; }
-  58.1163%, 71.7907% { content: "came"; }
-  59.2558%, 70.6512% { content: "camer"; }
-  60.3953%, 69.5116% { content: "camera"; }
-  
-  80.3953%, 99.9000% { content: ""; }
-  81.7674%, 98.2791% { content: "m"; }
-  82.9070%, 97.1395% { content: "mi"; }
-  84.0465%, 96.0000% { content: "mik"; }
-  85.1860%, 95.8605% { content: "mikr"; }
-  86.1860%, 94.8605% { content: "mikro"; }
-  87.1860%, 94.8605% { content: "mikrot"; }
-  89.1860%, 93.8605% { content: "mikroti"; }
-  90.1860%, 93.8605% { content: "mikrotik"; }
+    2.2791%, 25.0698% {
+        content: "lo";
+    }
+
+    3.4186%, 23.9302% {
+        content: "loc";
+    }
+
+    4.5581%, 22.7907% {
+        content: "loca";
+    }
+
+    5.6977%, 21.6512% {
+        content: "local";
+    }
+
+    29.7674%, 52.2791% {
+        content: "";
+    }
+
+    30.7674%, 51.2791% {
+        content: "h";
+    }
+
+    31.9070%, 50.1395% {
+        content: "ho";
+    }
+
+    33.0465%, 49.0000% {
+        content: "hom";
+    }
+
+    34.1860%, 47.8605% {
+        content: "home";
+    }
+
+    53.6977%, 76.2093% {
+        content: "";
+    }
+
+    54.6977%, 75.2093% {
+        content: "c";
+    }
+
+    55.8372%, 74.0698% {
+        content: "ca";
+    }
+
+    56.9767%, 72.9302% {
+        content: "cam";
+    }
+
+    58.1163%, 71.7907% {
+        content: "came";
+    }
+
+    59.2558%, 70.6512% {
+        content: "camer";
+    }
+
+    60.3953%, 69.5116% {
+        content: "camera";
+    }
+
+    80.3953%, 99.9000% {
+        content: "";
+    }
+
+    81.7674%, 98.2791% {
+        content: "m";
+    }
+
+    82.9070%, 97.1395% {
+        content: "mi";
+    }
+
+    84.0465%, 96.0000% {
+        content: "mik";
+    }
+
+    85.1860%, 95.8605% {
+        content: "mikr";
+    }
+
+    86.1860%, 94.8605% {
+        content: "mikro";
+    }
+
+    87.1860%, 94.8605% {
+        content: "mikrot";
+    }
+
+    89.1860%, 93.8605% {
+        content: "mikroti";
+    }
+
+    90.1860%, 93.8605% {
+        content: "mikrotik";
+    }
 }
 
 .typewriter {
-  --caret: currentcolor;
+    --caret: currentcolor;
 }
 
-.typewriter::before {
-  content: "";
-  animation: typing 13.5s infinite;
-}
+    .typewriter::before {
+        content: "";
+        animation: typing 13.5s infinite;
+    }
 
-.typewriter::after {
-  content: "";
-  border-right: 1px solid var(--caret);
-  animation: blink 0.5s linear infinite;
-}
+    .typewriter::after {
+        content: "";
+        border-right: 1px solid var(--caret);
+        animation: blink 0.5s linear infinite;
+    }
 
 @media (prefers-reduced-motion) {
-  .typewriter::after {
-    animation: none;
-  }
-  
-  @keyframes sequencePopup {
-    0%, 100% { content: "local"; }
-    25% { content: "home"; }
-    50% { content: "camera"; }
-    75% { content: "project"; }
-  }
+    .typewriter::after {
+        animation: none;
+    }
 
-  .typewriter::before {
-    content: "developer";
-    animation: sequencePopup 12s linear infinite;
-  }
+    @keyframes sequencePopup {
+        0%, 100% {
+            content: "local";
+        }
+
+        25% {
+            content: "home";
+        }
+
+        50% {
+            content: "camera";
+        }
+
+        75% {
+            content: "project";
+        }
+    }
+
+    .typewriter::before {
+        content: "developer";
+        animation: sequencePopup 12s linear infinite;
+    }
 }

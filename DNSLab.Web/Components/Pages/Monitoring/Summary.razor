@@ -6,13 +6,10 @@
 @attribute [Authorize]
 <SeoProvider Title="مانیتورینگ" />
 
+<MudText Typo="Typo.h1" Align="MudBlazor.Align.Center">مانیتورینگ</MudText>
+<MudText Class="mt-5 mb-10" Align="MudBlazor.Align.Center">در این بخش، می‌توانید ببینید که هرکدام از نام‌های میزبان (هاست نِیم) شما چه تعداد درخواست دریافت کرده‌اند. بیشتر این درخواست ها مربوط به ارائه‌دهندگان خدمات اینترنتی (ISP) هستند</MudText>
 
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">مانیتورینگ</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
         @if (_IsSubscribeThisFeature != null)
         {
@@ -25,14 +22,11 @@
 
             @if (_IsSubscribeThisFeature == true)
             {
-                <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
-                    <MudText Typo="Typo.body2">در این بخش، می‌توانید ببینید که هرکدام از نام‌های میزبان (هاست نِیم) شما چه تعداد درخواست دریافت کرده‌اند. بیشتر این درخواست ها مربوط به ارائه‌دهندگان خدمات اینترنتی (ISP) هستند.</MudText>
-                </MudAlert>
-                <MudAlert Class="mb-2" Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Start">
+                <MudAlert Class="mb-2" Icon="@DNSLabIcons.Error" Dense ContentAlignment="HorizontalAlignment.Start">
                     <MudText Typo="Typo.body2">این اطلاعات حداکثر تا 48 ساعت در سرور های DNSLab ذخیره میگردد.</MudText>
                 </MudAlert>
                 <MudGrid>
-                    <MudItem xs="12" sm="6" md="4">
+                    <MudItem xs="12" sm="6" md="4" lg="3">
                         @if (_AllRecords != null)
                         {
                             <MudStack Row Spacing="0" AlignItems="AlignItems.Center">

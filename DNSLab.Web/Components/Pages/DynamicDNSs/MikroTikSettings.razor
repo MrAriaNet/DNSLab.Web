@@ -3,22 +3,17 @@
 @attribute [Authorize]
 <SeoProvider Title="تنظیمات میکروتیک" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تنظیمات MikroTik</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">برای بروزرسانی آی پی توسط MikroTik مراحل زیر را به ترتیب باید انجام دهید</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">تنظیمات MikroTik</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
-        <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
-            <MudText Typo="Typo.body2">برای بروزرسانی آی پی توسط MikroTik مراحل زیر را به ترتیب باید انجام دهید.</MudText>
-        </MudAlert>
         <MudText Typo="Typo.h6">ساخت کلید برای بروزرسانی IP رکوردهای DNS</MudText>
         <MudText>برای بروزرسانی خودکار آی پی در میکروتیک ابتدا باید یک کلید برای بروزرسانی آی پی ایجاد نمایید.</MudText>
         <UpdateTokens IsSelectableList OnTokenSelect="SelectToken" />
         @if (_Token == null)
         {
-            <MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
+            <MudAlert Dense Icon="@DNSLabIcons.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
                 <MudText Typo="Typo.body2">برای ادامه فرآیند یک کلید را انتخاب نمایید</MudText>
             </MudAlert>
         }
@@ -31,7 +26,7 @@
             <MudText>Policy : در اینجا فقط کافیست دسترسی Test و Read را تیک بزنید.</MudText>
             <MudText>Source : در این بخش دستور زیر را بنویسید.</MudText>
             <CodeSnippet Language="bash" Code="@($"/tool fetch url=\"https://api.dnslab.link/DDNS/U?k={_Token.Key}\"")" />
-            <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Text">
+            <MudAlert Icon="@DNSLabIcons.Error" Dense ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Text">
                 <MudText Typo="Typo.body2">نکته : در برخی مودم ها علامت (?) قابل قبول نمیباشد در این صورت از دستور زیر استفاده نمایید</MudText>
             </MudAlert>
             <CodeSnippet Language="bash" Code="@($"/tool fetch url=\"https://api.dnslab.link/DDNS/U/{_Token.Key}\"")" />

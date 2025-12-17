@@ -4,17 +4,12 @@
 @attribute [Authorize]
 <SeoProvider Title="کیف پول" />
 
-<MudAlert Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Dense Class="mb-2">
-    <MudText Typo="Typo.body2">در صورت نیاز به افزایش موجودی کیف پول از دکمه افزایش موجودی استفاده نمایید.</MudText>
-</MudAlert>
+<MudText Typo="Typo.h1" Align="MudBlazor.Align.Center">کیف پول</MudText>
+<MudText Class="mt-5 mb-10" Align="MudBlazor.Align.Center">در صورت نیاز به افزایش موجودی کیف پول از دکمه افزایش موجودی استفاده نمایید</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
-        <CardHeaderAvatar>
-            <MudIcon Icon="@DNSLabIcons.Wallet" />
-        </CardHeaderAvatar>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">کیف پول</MudText>
-        </CardHeaderContent>
+        <CardHeaderContent />
         <CardHeaderActions>
             <MudButton EndIcon="@DNSLabIcons.Add" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Size="MudBlazor.Size.Small" OnClick="IncreaseBalance">افزایش موجودی</MudButton>
         </CardHeaderActions>

@@ -7,21 +7,26 @@
     <SeoProvider Title="کلید ها" />
 }
 
+<MudText Typo="Typo.h1" Align="Align.Center">کلید ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">از کلید میتوانید به عنوان یک روش برای بروزرسانی اطلاعات یک یا چند هاست نِیم استفاده نمایید</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">کلید ها</MudText>
-        </CardHeaderContent>
-        <CardHeaderActions>
-            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="NewToken" EndIcon="@DNSLabIcons.Add">افزودن کلید</MudButton>
-        </CardHeaderActions>
-    </MudCardHeader>
     <MudCardContent>
         <MudDataGrid T="UpdateTokenDTO" Items="_Tokens" Loading="_IsLoading" Dense Hover Outlined>
             <NoRecordsContent>
                 <NoRecordFound />
             </NoRecordsContent>
             <Columns>
+                @if (IsSelectableList)
+                {
+                    <TemplateColumn>
+                        <CellTemplate>
+                            <MudStack Row Justify="Justify.FlexStart" Spacing="1">
+                                <BaseButton EndIcon="@DNSLabIcons.Check" Size="Size.Small" DropShadow="false" Color="Color.Primary" Variant="Variant.Filled" OnClick="()=> SelectToken(context.Item)">انتخاب</BaseButton>
+                            </MudStack>
+                        </CellTemplate>
+                    </TemplateColumn>
+                }
                 <PropertyColumn Property="x=>x.Name" Title="نام" />
                 <TemplateColumn Title="کلید">
                     <CellTemplate>
@@ -60,27 +65,17 @@
                 <TemplateColumn>
                     <CellTemplate>
                         <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                            <BaseIconButton OnClick="()=> EditToken(context.Item)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
-                            <BaseIconButton OnClick="()=> RevokeTokenKey(context.Item)" Color="Color.Info" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.ChangeKey" />
-                            <BaseIconButton OnClick="()=> DeleteToken(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
+                            <BaseIconButton OnClick="()=> EditToken(context.Item)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
+                            <BaseIconButton OnClick="()=> RevokeTokenKey(context.Item)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.ChangeKey" />
+                            <BaseIconButton OnClick="()=> DeleteToken(context.Item)" DropShadow="false" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                         </MudStack>
                     </CellTemplate>
                 </TemplateColumn>
-                @if (IsSelectableList)
-                {
-                    <TemplateColumn>
-                        <CellTemplate>
-                            <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                                <BaseButton EndIcon="@DNSLabIcons.Check" Size="Size.Small" Color="Color.Success" Variant="Variant.Filled" OnClick="()=> SelectToken(context.Item)">انتخاب</BaseButton>
-                            </MudStack>
-                        </CellTemplate>
-                    </TemplateColumn>
-                }
             </Columns>
         </MudDataGrid>
         @if (IsSelectableList == false)
         {
-            <MudAlert Class="mt-3" Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start">
+            <MudAlert Class="mt-3" Icon="@DNSLabIcons.Info" Dense ContentAlignment="HorizontalAlignment.Start">
                 <MudText Typo="Typo.body2">کلید های DNSLab برای بروزرسانی آی‌پی هاست نیم ها استفاده میشوند.</MudText>
                 <MudText Typo="Typo.body2">شما میتوانید از کلید بصورت مستقیم با فراخوانی لینک آن آی‌پی هاست نیم های متصل به کلید را بروزرسانی نمایید و یا از منوی تنظیمات Mikrotik از کلید برروی مودم خود استفاده نمایید.</MudText>
                 <MudText Typo="Typo.body2">همچنین شما میتوانید بصورت Task Scheduler اسکریپت کلید مورد نظر را در سیستم عامل قرار دهید تا بصورت خودکار یک بار در هنگام روشن شدن سیستم اجرا شود تا آی‌پی بروزرسانی شود.</MudText>

@@ -44,6 +44,7 @@ partial class MyWallet
     {
         Fill = new Fill { Opacity = 0 },
         Theme = new Theme { Mode = Mode.Dark, },
+        Colors = new List<string> { "#1d1e22" },
         Xaxis = new XAxis { AxisBorder = new AxisBorder { Show = false, }, Labels = new XAxisLabels { Show = false }, AxisTicks = new AxisTicks { Show = false } },
         Yaxis = new List<YAxis> { new YAxis { Show = false } },
         Grid = new Grid { Show = false },

@@ -72,6 +72,7 @@ partial class Summary
                 }
             }
         },
+        Colors = new List<string> { "#1d1e22" },
         Chart = new Chart
         {
             Type = ApexCharts.ChartType.Bar,

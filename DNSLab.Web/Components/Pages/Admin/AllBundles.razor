@@ -4,12 +4,10 @@
 @attribute [Authorize(Roles = AuthorizeRoles.Admin)]
 <SeoProvider Title="اشتراک ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">اشتراک‌ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">در این بخش اطلاعات اشتراک‌های فعال نمایش داده میشود</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">اشتراک‌ها</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
         @if (_UserBundles != null)
         {

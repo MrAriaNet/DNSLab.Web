@@ -1,12 +1,10 @@
 ﻿@attribute [Route(AllRoutes.AllBlogs)]
 <SeoProvider Title="بلاگ" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">بلاگ</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">مطالب سایت در رابطه با مفاهیم شبکه و امنیت</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">بلاگ</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
         @if (_Pages != null)
         {
@@ -18,7 +16,7 @@
                             <MudCard Outlined>
                                 <MudCardHeader>
                                     <CardHeaderAvatar>
-                                        <MudButton Size="Size.Large" Color="Color.Surface" Variant="Variant.Filled">@item.Title.Substring(0, 1)</MudButton>
+                                        <MudButton Size="Size.Large" DropShadow="false" Color="Color.Primary" Variant="Variant.Filled">@item.Title.Substring(0, 1)</MudButton>
                                     </CardHeaderAvatar>
                                     <CardHeaderContent>
                                         <MudText>@item.Title</MudText>

@@ -4,10 +4,13 @@
 @attribute [Authorize]
 <SeoProvider Title="تاریخچه تغییرات رکورد های دامنه" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تاریخچه تغییرات</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">تغییرات حداکثر برای یک ماه در دیتابیس DNSLab ذخیره خواهد شد و پس از آن قابل مشاهده نمیباشد</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h5">تاریخچه تغییرات</MudText>
+            <MudText Typo="Typo.h5"></MudText>
         </CardHeaderContent>
         <CardHeaderActions>
             @if ((_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true) || RecordId is null)
@@ -27,7 +30,7 @@
                         <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudButton>
                     </MudContainer>
                 </MudOverlay>
-                <MudAlert Class="mb-2" Dense Severity="Severity.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
+                <MudAlert Class="mb-2" Dense Icon="@DNSLabIcons.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
                     <MudText Typo="Typo.body2">در این بخش تاریخچه تغییرات رکورد ها نمایش داده میشود</MudText>
                     <MudText Typo="Typo.body2">
                         در صورت اعمال روی سرور ها با علامت

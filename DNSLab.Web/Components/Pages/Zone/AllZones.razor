@@ -86,11 +86,11 @@
                                 <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
                                     <AuthorizeView Roles="@($"{AuthorizeRoles.Admin},{AuthorizeRoles.Development}")" Context="authCTX">
                                         <MudTooltip Arrow Text="ویرایش رکورد ها">
-                                            <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
+                                            <BaseIconButton Href="@(AllRoutes.AllRecords+"/"+context.Item.Id)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
                                         </MudTooltip>
                                     </AuthorizeView>
-                                    <BaseIconButton OnClick="()=> DisableZone(context.Item)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
-                                    <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
+                                    <BaseIconButton OnClick="()=> DisableZone(context.Item)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
+                                    <BaseIconButton OnClick="()=>  DeleteZone(context.Item)" DropShadow="false" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                                 </MudStack>
                             </CellTemplate>
                         </TemplateColumn>

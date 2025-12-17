@@ -3,6 +3,12 @@
 @attribute [Authorize]
 <SeoProvider Title="هاست نیم ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">هاست‌نِیم ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">
+    از هاست‌نِیم به عنوان یک روش برای تعریف یک اسم به آی‌‌پی استفاده میشود
+    <MudFlexBreak />
+    برای شروع با توجه به دامنه مد نظر خودتون بر روی دکمه افزودن هاست‌نیم کلیک کنید
+</MudText>
 
 @if (_AllRecords == null)
 {
@@ -77,11 +83,11 @@ else
                             <TemplateColumn StickyLeft>
                                 <CellTemplate>
                                     <MudStack Row Justify="Justify.FlexEnd" Spacing="1">
-                                        <BaseIconButton OnClick="()=> CopyLink(context.Item, zone.Item1)" Color="Color.Tertiary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Copy" />
-                                        <BaseIconButton Href="@(AllRoutes.RecordsHistory+"?RecordId="+context.Item.Id)" Color="Color.Primary" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.History" />
-                                        <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" Color="Color.Warning" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
-                                        <BaseIconButton OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" Color="@(context.Item.Disable? Color.Info : Color.Secondary)" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
-                                        <BaseIconButton OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
+                                        <BaseIconButton OnClick="()=> CopyLink(context.Item, zone.Item1)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Copy" />
+                                        <BaseIconButton Href="@(AllRoutes.RecordsHistory+"?RecordId="+context.Item.Id)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.History" />
+                                        <BaseIconButton OnClick="()=> EditRecord(context.Item, zone.Item1)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Edit" />
+                                        <BaseIconButton OnClick="()=> DisableRecord(context.Item, zone.Item1.Name)" DropShadow="false" Size="Size.Small" Variant="Variant.Filled" Icon="@(context.Item.Disable? Icons.Material.Filled.ToggleOn : Icons.Material.Outlined.ToggleOff)" />
+                                        <BaseIconButton OnClick="()=> DeleteRecord(context.Item, zone.Item1.Name)" DropShadow="false" Color="Color.Error" Size="Size.Small" Variant="Variant.Filled" Icon="@DNSLabIcons.Delete" />
                                     </MudStack>
                                 </CellTemplate>
                             </TemplateColumn>

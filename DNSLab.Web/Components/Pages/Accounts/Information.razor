@@ -2,15 +2,12 @@
 @attribute [Authorize]
 <SeoProvider Title="حساب کاربری" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">حساب کاربری</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">در این صفحه میتوانید اطلاعات کاربری خود را ویرایش نمایید</MudText>
 
 @if (_CurrentUser != null)
 {
     <MudCard Elevation="0">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h3" Class="mb-2">حساب کاربری</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
         <MudCardContent>
             <MudGrid>
                 <MudItem xs="12" md="6" lg="4">
@@ -39,7 +36,7 @@
                     <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="_CurrentUser.Email" Label="آدرس ایمیل" ReadOnly AdornmentIcon="@DNSLabIcons.Edit" OnAdornmentClick="EditEmail" Adornment="Adornment.End" />
                     @if (_CurrentUser.IsEmailApproved)
                     {
-                        <MudText Typo="Typo.body2" Color="Color.Success">آدرس ایمیل تایید شده است.</MudText>
+                        <MudText Typo="Typo.body2">آدرس ایمیل تایید شده است.</MudText>
                     }
                     else
                     {
@@ -48,7 +45,7 @@
                             @if (_IsConfirmEmailLinkResend)
                             {
                                 <MudText Color="Color.Success" Typo="Typo.body2">لینک تایید ایمیل ارسال شد</MudText>
-                                            <MudText Color="Color.Success" Typo="Typo.body2">لطفا پوشه Spam نیز بررسی شود</MudText>
+                                            <MudText Typo="Typo.body2">لطفا پوشه Spam نیز بررسی شود</MudText>
                             }
                             else
                             {

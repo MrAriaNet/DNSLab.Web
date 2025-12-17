@@ -1,10 +1,11 @@
 ﻿@attribute [Route(AllRoutes.ConfirmEmail + "/{Token}")]
 <SeoProvider Title="تایید آدرس ایمیل" Meta_Description="تایید آدرس ایمیل سیستم سایت DNSLab" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تایید ایمیل</MudText>
+
 <MudStack AlignItems="AlignItems.Center">
     <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="mt-6">
         <MudCard Elevation="0" Class="pa-5">
-            <MudText Typo="Typo.h3" Class="my-3">تایید ایمیل</MudText>
             @if (_IsSuccess)
             {
                 <MudAlert ContentAlignment="HorizontalAlignment.Start" Dense Severity="Severity.Success">

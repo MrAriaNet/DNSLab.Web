@@ -2,22 +2,26 @@
 @attribute [Authorize]
 <SeoProvider Title="نتیجه پرداخت" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">نتیجه پرداخت</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">وضعیت نهایی ترانکش شما به شرح زیر میباشد</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
+        <CardHeaderContent></CardHeaderContent>
         <CardHeaderActions>
-            <MudButton EndIcon="@DNSLabIcons.Back" Variant="Variant.Filled" Color="Color.Default" Size="MudBlazor.Size.Small" Href="@AllRoutes.MyWallet">بازگشت</MudButton>
+            <MudButton EndIcon="@DNSLabIcons.Back" Variant="Variant.Filled" Color="Color.Primary" Size="MudBlazor.Size.Small" Href="@AllRoutes.MyWallet">بازگشت</MudButton>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
         @if (IsVerified == null)
         {
             <MudStack AlignItems="AlignItems.Center">
-                <MudProgressCircular Color="Color.Primary" Indeterminate />
+                <MudProgressCircular Color="Color.Primary" Size="Size.Small" Indeterminate />
             </MudStack>
         }
         else
         {
-            <MudAlert ContentAlignment="HorizontalAlignment.Start" Severity="@(IsVerified == true ? Severity.Success : Severity.Warning)">
+            <MudAlert ContentAlignment="HorizontalAlignment.Start" NoIcon Severity="@(IsVerified == true ? Severity.Success : Severity.Warning)">
                 <MudText>@(IsVerified == true ? "موفق" : "نا موفق")</MudText>
                 <MudText Typo="Typo.body2">توضیحات : @Result</MudText>
             </MudAlert>

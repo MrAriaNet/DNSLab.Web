@@ -2,17 +2,15 @@
 @using DNSLab.Web.Enums
 <SeoProvider Title="DNSLookup - پرس و جوی DNS" Meta_Description="شما میتوانید DNS خود را بررسی و پرس و جو کنید و در صورت نیاز میتوانید با نیم سرور خاصی این پرس و چو را انجام دهید" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">DNSLookup - پرس و جوی DNS</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">
+    بصورت پیشفرض DNS ها از سرور عمومی گوگل به آدرس 8.8.4.4 پرس و جو میشوند
+    <MudFlexBreak />
+    اما شما میتوانید در قسمت نیم سرور ، IP سرور مورد نظر خود را وارد نمایید
+</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h1">DNSLookup - پرس و جوی DNS</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
-        <MudAlert Dense Severity="Severity.Info" ContentAlignment="HorizontalAlignment.Start" Class="mb-2">
-            <MudText Typo="Typo.body2">بصورت پیشفرض DNS ها از سرور عمومی گوگل به آدرس 8.8.4.4 پرس و جو میشوند</MudText>
-            <MudText Typo="Typo.body2">اما شما میتوانید در قسمت نیم سرور ، IP سرور مورد نظر خود را وارد نمایید</MudText>
-        </MudAlert>
         <MudGrid>
             <MudItem sm="6" xs="12">
                 <MudTextField T="string" Label="آدرس هاست" Class="dnslab-ltr" Placeholder="dnslab.link" Variant="Variant.Outlined" @bind-Value="query" />

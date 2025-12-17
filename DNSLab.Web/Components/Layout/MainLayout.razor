@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@_theme" @ref="_MudThemeProvider" @bind-IsDarkMode="_IsDarkMode" />
+<MudThemeProvider Theme="@_theme" @ref="_MudThemeProvider" />
 
 <MudRTLProvider RightToLeft="GlobalSettings.RightToLeft">
     <MudPopoverProvider />
@@ -30,24 +30,6 @@
     private MudTheme? _theme = null;
     private NavMenu _NavMenu;
     private MudThemeProvider _MudThemeProvider;
-    bool _IsDarkMode;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            _IsDarkMode = await _MudThemeProvider.GetSystemPreference();
-            await _MudThemeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
-            StateHasChanged();
-        }
-    }
-
-    private Task OnSystemPreferenceChanged(bool newValue)
-    {
-        _IsDarkMode = newValue;
-        StateHasChanged();
-        return Task.CompletedTask;
-    }
 
     protected override void OnInitialized()
     {
@@ -99,59 +81,29 @@
                     },
                 },
                 PaletteLight = _lightPalette,
-                PaletteDark = _darkPalette,
                 LayoutProperties = new LayoutProperties()
             };
     }
 
     private readonly PaletteLight _lightPalette = new()
         {
-            Black = "#110e2d",
-            Background = "#edf0f5",
+            Black = "#1d1e22",
+            Background = "#f9f7f3",
             Surface = "#ffffff",
-            AppbarText = "#424242",
-            AppbarBackground = "rgba(255,255,255,0.8)",
-            DrawerBackground = "rgba(255,255,255,0.8)",
+            AppbarBackground = "#f9f7f3",
+            AppbarText = "#717171",
+            DrawerBackground = "#f9f7f3",
+            DrawerText = "#717171",
             GrayLight = "#e8e8e8",
             GrayLighter = "#f9f9f9",
-            Primary = "#029cf5",
-            Secondary = "#ff7c6e",
-            Info = "#2cbfc7",
-            Success = "#54d169",
-            Warning = "#ff8359",
-            Error = "#F40B48",
-        };
-
-    private readonly PaletteDark _darkPalette = new()
-        {
-            Primary = "#029cf5",
-            Secondary = "#ff7c6e",
-            Surface = "#0c101c",
-            TableStriped = "#12172b",
-            TableHover = "#1f2532",
-            Background = "#101524",
-            BackgroundGray = "#151521",
-            AppbarText = "#f2ddcc",
-            AppbarBackground = "#0c101cb3",
-            DrawerBackground = "#0c101cb3",
-            ActionDefault = "#b3b3b3",
-            ActionDisabled = "#9999994d",
-            ActionDisabledBackground = "#605f6d4d",
-            TextPrimary = "#f2ddcc",
-            TextSecondary = "#b0b3b8",
-            TextDisabled = "#ffffff33",
-            DrawerIcon = "#dccabe",
-            DrawerText = "#dccabe",
-            GrayLight = "#2a2833",
-            GrayLighter = "#353043",
-            Info = "#2cbfc7",
-            Success = "#54d169",
-            Warning = "#ff8359",
-            Error = "#F40B48",
-            LinesDefault = "#33323e",
-            TableLines = "#33323e",
-            Divider = "#b0b3b8",
-            OverlayLight = "#1e1e2d80",
+            Primary = "#1d1e22",
+            Secondary = "#ff8e5e",
+            Info = "#84d6d7",
+            Success = "#ccf095",
+            Warning = "#ebb29a",
+            Error = "#d95f5f",
+            SuccessContrastText = "#4f5f1f",
+            SuccessDarken = "#4f5f1f",
         };
 }
 

@@ -30,7 +30,7 @@ else
             <MudCardContent>
                 @if (zone.Item2.Count() > 0)
                 {
-                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderBy(x=>x.Name)" Dense Hover Outlined>
+                    <MudDataGrid T="BaseRecordDTO" Items="zone.Item2.OrderBy(x=>x.Name)" Dense Hover Elevation="0">
                         <NoRecordsContent>
                             <NoRecordFound />
                         </NoRecordsContent>

@@ -35,7 +35,7 @@
 
             @if (_IsSubscribeThisFeature == true)
             {
-                <MudDataGrid T="ZoneDTO" Items="_Zones?.OrderBy(x=>x.Name)" Loading="_IsLoading" Dense Hover Outlined>
+                <MudDataGrid T="ZoneDTO" Items="_Zones?.OrderBy(x=>x.Name)" Loading="_IsLoading" Dense Hover Elevation="0">
                     <NoRecordsContent>
                         <NoRecordFound />
                     </NoRecordsContent>

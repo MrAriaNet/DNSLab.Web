@@ -11,7 +11,7 @@
     <MudCardContent>
         @if (_UserBundles != null)
         {
-            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.CreateDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.CreateDate)" Dense Hover Elevation="0" FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>

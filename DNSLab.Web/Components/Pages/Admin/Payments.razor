@@ -10,7 +10,7 @@
     <MudCardContent>
         @if (_AllPayments != null)
         {
-            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Outlined FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
+            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Elevation="0" FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>

@@ -14,7 +14,7 @@
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        <MudDataGrid T="PageInfoDTO" Items="_Pages?.OrderByDescending(x=>x.UpdateDate?? x.CreateDate)" Loading="_IsLoading" Dense Hover Outlined HorizontalScrollbar>
+        <MudDataGrid T="PageInfoDTO" Items="_Pages?.OrderByDescending(x=>x.UpdateDate?? x.CreateDate)" Loading="_IsLoading" Dense Hover Elevation="0" HorizontalScrollbar>
             <NoRecordsContent>
                 <NoRecordFound />
             </NoRecordsContent>

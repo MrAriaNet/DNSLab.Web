@@ -43,7 +43,7 @@
             <MudItem xs="12" md="7">
                 @if (_WalletTransactions != null)
                 {
-                    <MudDataGrid T="WalletTransactionDTO" Items="_WalletTransactions.Results" Loading="_IsLoading" Dense Hover Outlined>
+                    <MudDataGrid T="WalletTransactionDTO" Items="_WalletTransactions.Results" Loading="_IsLoading" Dense Hover Elevation="0">
                         <NoRecordsContent>
                             <NoRecordFound />
                         </NoRecordsContent>

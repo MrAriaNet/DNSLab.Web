@@ -8,7 +8,7 @@
 
 <MudCard Elevation="0">
     <MudCardContent>
-        <MudDataGrid T="TicketDTO" Items="_Tickets?.OrderByDescending(x=>x.CreateDate)" Dense Hover Outlined Loading="_IsLoading">
+        <MudDataGrid T="TicketDTO" Items="_Tickets?.OrderByDescending(x=>x.CreateDate)" Dense Hover Elevation="0" Loading="_IsLoading">
             <NoRecordsContent>
                 <NoRecordFound />
             </NoRecordsContent>

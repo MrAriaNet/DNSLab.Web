@@ -43,7 +43,7 @@
             }
             @if (_IsSubscribeThisFeature == true || RecordId is null)
             {
-                <MudDataGrid @ref="_DataGrid" T="RecordChangeDTO" ServerData="ServerReload" ExpandSingleRow Dense Hover Outlined Filterable="false">
+                <MudDataGrid @ref="_DataGrid" T="RecordChangeDTO" ServerData="ServerReload" ExpandSingleRow Dense Hover Elevation="0" Filterable="false">
                     <NoRecordsContent>
                         <NoRecordFound />
                     </NoRecordsContent>

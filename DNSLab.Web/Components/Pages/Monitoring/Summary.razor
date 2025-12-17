@@ -59,7 +59,7 @@
                             <MudText Typo="Typo.body2" Class="mt-3">جدول تعداد درخواست نسبت به آی پی</MudText>
                             @if (_ClientIPAndCounts != null)
                             {
-                                <MudDataGrid T="ClientIPAndCountDTO" Items="_ClientIPAndCounts" Height="25vh" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_IsLoading">
+                                <MudDataGrid T="ClientIPAndCountDTO" Items="_ClientIPAndCounts" Height="25vh" Dense Hover Elevation="0" FixedHeader SortMode="SortMode.None" Striped Loading="_IsLoading">
                                     <NoRecordsContent>
                                         <NoRecordFound />
                                     </NoRecordsContent>

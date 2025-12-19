@@ -11,6 +11,13 @@
 <MudText Class="mt-5 mb-10" Align="Align.Center">از کلید میتوانید به عنوان یک روش برای بروزرسانی اطلاعات یک یا چند هاست نِیم استفاده نمایید</MudText>
 
 <MudCard Elevation="0">
+    <MudCardHeader>
+        <CardHeaderContent>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="NewToken" EndIcon="@DNSLabIcons.Add">افزودن کلید</MudButton>
+        </CardHeaderActions>
+    </MudCardHeader>
     <MudCardContent>
         <MudDataGrid T="UpdateTokenDTO" Items="_Tokens" Loading="_IsLoading" Dense Hover Elevation="0">
             <NoRecordsContent>

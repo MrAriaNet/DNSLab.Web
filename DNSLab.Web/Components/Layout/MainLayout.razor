@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@_theme" @ref="_MudThemeProvider" />
+<MudThemeProvider Theme="@_theme" @ref="_MudThemeProvider" IsDarkMode="_DarkMode" />
 
 <MudRTLProvider RightToLeft="GlobalSettings.RightToLeft">
     <MudPopoverProvider />
@@ -8,7 +8,7 @@
     <MudSnackbarProvider />
     <MudLayout>
         <CascadingAuthenticationState>
-            <AppBar MenuOnClick="(()=>_NavMenu.DrawerToggle())" />
+            <AppBar MenuOnClick="(()=>_NavMenu.DrawerToggle())" DarkModeChanged="DarkModeOnChange" />
             <NavMenu @ref="_NavMenu" />
             <MudMainContent>
                 <MudContainer MaxWidth="MaxWidth.Large" Class="py-5">
@@ -30,6 +30,12 @@
     private MudTheme? _theme = null;
     private NavMenu _NavMenu;
     private MudThemeProvider _MudThemeProvider;
+    private bool _DarkMode;
+
+    async Task DarkModeOnChange(bool darkMode)
+    {
+        _DarkMode = darkMode;
+    }
 
     protected override void OnInitialized()
     {

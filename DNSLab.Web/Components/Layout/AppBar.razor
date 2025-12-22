@@ -6,6 +6,7 @@
         </MudLink>
         <MudText Typo="Typo.body2" Class="mt-n2">@GlobalSettings.Version</MudText>
     </MudStack>
+    <DarkModeSwitcher IsDarkModeToggleChanged="DarkModeChanged" />
     <MudSpacer />
     <MudIconButton Href="https://github.com/AkbarAsghari/DNSLab.Web" Icon="@DNSLabIcons.Github" Color="Color.Inherit" Target="_blank" />
     <AuthorizeView>
@@ -19,4 +20,6 @@
 @code {
     [Parameter]
     public EventCallback MenuOnClick { get; set; }
+    [Parameter]
+    public EventCallback<bool> DarkModeChanged { get; set; }
 }

@@ -28,6 +28,11 @@ partial class DarkModeSwitcher
                 await HandleToggleChanged(data.Value);
                 DarkMode = data.Value;
             }
+            else
+            {
+                await HandleToggleChanged(DarkModeEnum.Auto);
+                DarkMode = DarkModeEnum.Auto;
+            }
         }
     }
 }

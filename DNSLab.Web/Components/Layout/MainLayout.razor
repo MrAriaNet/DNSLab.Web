@@ -1,6 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using DNSLab.Web.Enums
+@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@_theme" @ref="_MudThemeProvider" IsDarkMode="_DarkMode" />
+<MudThemeProvider Theme="@_theme" @ref="_MudThemeProvider" IsDarkMode="_IsDarkMode" />
 
 <MudRTLProvider RightToLeft="GlobalSettings.RightToLeft">
     <MudPopoverProvider />
@@ -30,11 +31,38 @@
     private MudTheme? _theme = null;
     private NavMenu _NavMenu;
     private MudThemeProvider _MudThemeProvider;
-    private bool _DarkMode;
+    private bool _IsDarkMode;
+    private DarkModeEnum _DarkMode;
 
-    async Task DarkModeOnChange(bool darkMode)
+    private async Task OnSystemPreferenceChanged(bool newValue)
+    {
+        if (_DarkMode == DarkModeEnum.Auto)
+        {
+            _IsDarkMode = newValue;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    async Task DarkModeOnChange(DarkModeEnum darkMode)
     {
         _DarkMode = darkMode;
+        if (darkMode == DarkModeEnum.Auto)
+        {
+            _IsDarkMode = await _MudThemeProvider.GetSystemDarkModeAsync();
+            await InvokeAsync(StateHasChanged);
+        }
+        else
+        {
+            _IsDarkMode = darkMode == DarkModeEnum.Dark;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _MudThemeProvider.WatchSystemDarkModeAsync(OnSystemPreferenceChanged);
+        }
     }
 
     protected override void OnInitialized()
@@ -112,7 +140,7 @@
             SuccessContrastText = "#4f5f1f",
             SuccessDarken = "#4f5f1f",
         };
-        
+
     private readonly PaletteDark _darkPalette = new()
         {
             Black = "#d1d5db",

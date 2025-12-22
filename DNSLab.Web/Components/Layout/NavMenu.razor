@@ -4,6 +4,17 @@
 @inject IPageRepository _PageRepository;
 
 <MudDrawer @bind-Open="_drawerOpen" Overlay="true" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
+    <MudPaper Class="mb-2 pa-3" Elevation="0">
+        <MudLink Href="@AllRoutes.Home" Underline="Underline.None" Color="Color.Inherit">
+            <MudStack Spacing="0" AlignItems="AlignItems.Center" Row Justify="Justify.SpaceAround">
+                <MudImage Src="images/Logo.png" Width="43" Fluid />
+                <MudStack AlignItems="AlignItems.Center" Spacing="0">
+                    <MudText Typo="Typo.h5">@GlobalSettings.ApplicationName</MudText>
+                    <MudText Typo="Typo.caption" Align="Align.Center" Class="mt-n2">@GlobalSettings.Version</MudText>
+                </MudStack>
+            </MudStack>
+        </MudLink>
+    </MudPaper>
     <AuthorizeView Context="_AuthCTX">
         <Authorized>
             <MudNavMenu Dense>
@@ -68,7 +79,6 @@
             </Authorized>
         </AuthorizeView>
     </MudNavMenu>
-
 </MudDrawer>
 
 @code {
@@ -116,7 +126,7 @@
         {
             child = new WikiMenuItem
                 {
-                    Title = _WikiPages.FirstOrDefault(x=>x.URL.Trim('/') == path.Trim('/'))?.Title?? String.Empty, // leaf gets page title
+                    Title = _WikiPages.FirstOrDefault(x => x.URL.Trim('/') == path.Trim('/'))?.Title ?? String.Empty, // leaf gets page title
                     URL = path
                 };
             parent.SubMenus.Add(child);

@@ -20,7 +20,7 @@
 }
 
 .mud-input {
-    background-color: #f9f7f3 !important
+    background-color: var(--mud-palette-background) !important
 }
 
 .dnslab-ltr input,

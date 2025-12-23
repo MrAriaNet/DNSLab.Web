@@ -10,13 +10,11 @@ partial class Home
     int? _AllDDNSsCount { get; set; }
     int? _AllTodayChangesCount { get; set; }
     int? _AllUsersCount { get; set; }
-    int? _AllPremiumUsersCount { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         _AllDDNSsCount = await _StaticRepository.GetAllDDNSsCount();
         _AllTodayChangesCount = await _StaticRepository.GetAllTodayChangesCount();
         _AllUsersCount = await _StaticRepository.GetAllUsersCount();
-        _AllPremiumUsersCount = await _StaticRepository.GetAllPremiumUsersCount();
     }
 }

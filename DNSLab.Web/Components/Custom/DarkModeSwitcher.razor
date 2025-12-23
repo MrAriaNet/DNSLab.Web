@@ -1,4 +1,4 @@
-﻿<MudMenu Icon="@(DarkMode == Enums.DarkModeEnum.Dark ? DNSLabIcons.LightMode : DarkMode == Enums.DarkModeEnum.Light ? DNSLabIcons.DarkMode : DNSLabIcons.AutoMode)" AnchorOrigin="Origin.TopCenter" TransformOrigin="Origin.TopCenter" Dense>
+﻿<MudMenu Icon="@(DarkMode == Enums.DarkModeEnum.Dark ? DNSLabIcons.DarkMode : DarkMode == Enums.DarkModeEnum.Light ? DNSLabIcons.LightMode : DNSLabIcons.AutoMode)" AnchorOrigin="Origin.TopCenter" TransformOrigin="Origin.TopCenter" Dense>
     <MudMenuItem Icon="@DNSLabIcons.AutoMode" Label="Auto" OnClick="()=> HandleToggleChanged(Enums.DarkModeEnum.Auto)" />
     <MudMenuItem Icon="@DNSLabIcons.DarkMode" Label="Dark" OnClick="()=> HandleToggleChanged(Enums.DarkModeEnum.Dark)" />
     <MudMenuItem Icon="@DNSLabIcons.LightMode" Label="Light" OnClick="()=> HandleToggleChanged(Enums.DarkModeEnum.Light)" />

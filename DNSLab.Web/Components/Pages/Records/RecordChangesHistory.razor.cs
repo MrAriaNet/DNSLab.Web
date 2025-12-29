@@ -21,6 +21,7 @@ partial class RecordChangesHistory
         if (firstRender)
         {
             _IsSubscribeThisFeature = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.RecordChangesHistory);
+            await InvokeAsync(StateHasChanged);
         }
     }
 

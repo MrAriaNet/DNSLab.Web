@@ -13,14 +13,14 @@
             <MudText Typo="Typo.h5"></MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            @if ((_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true) || RecordId is null)
+            @if (_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true)
             {
                 <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Refresh" OnClick="()=> _DataGrid.ReloadServerData()">بروزرسانی</BaseButton>
             }
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        @if (_IsSubscribeThisFeature != null || RecordId is null)
+        @if (_IsSubscribeThisFeature != null)
         {
             @if (RecordId is not null)
             {
@@ -41,7 +41,7 @@
                     </MudText>
                 </MudAlert>
             }
-            @if (_IsSubscribeThisFeature == true || RecordId is null)
+            @if (_IsSubscribeThisFeature == true)
             {
                 <MudDataGrid @ref="_DataGrid" T="RecordChangeDTO" ServerData="ServerReload" ExpandSingleRow Dense Hover Elevation="0" Filterable="false">
                     <NoRecordsContent>

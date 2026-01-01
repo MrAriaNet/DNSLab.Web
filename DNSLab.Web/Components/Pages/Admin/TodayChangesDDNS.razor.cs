@@ -24,6 +24,7 @@ namespace DNSLab.Web.Components.Pages.Admin
             }
 
             var totalItems = data.SelectMany(x => x.Item2).Count();
+
             data.ToList().ForEach(x =>
             {
                 x.Item2.ToList().ForEach(y =>
@@ -31,7 +32,8 @@ namespace DNSLab.Web.Components.Pages.Admin
                     y.Name = $"{y.Name}.{x.Item1.Name}";
                 });
             });
-            var pagedData = data.SelectMany(x => x.Item2).Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+
+            var pagedData = data.SelectMany(x => x.Item2).OrderByDescending(x => x.LastModified ?? x.CreateDate).Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
 
             return new GridData<BaseRecordDTO>
             {

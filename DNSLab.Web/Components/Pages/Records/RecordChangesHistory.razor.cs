@@ -48,6 +48,8 @@ partial class RecordChangesHistory
             return new GridData<RecordChangeDTO>();
         }
 
+        data = data.OrderByDescending(x => x.TimeStamp);
+
         var totalItems = data.Count();
 
         var pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();

@@ -704,7 +704,7 @@
     }
 
         .markdown-body table tr:nth-child(2n) {
-            background-color: var(--bgColor-muted);
+            background-color: var(--mud-palette-surface);
         }
 
     .markdown-body table img {
@@ -865,8 +865,8 @@
             overflow: auto;
             font-size: 85%;
             line-height: 1.45;
-            color: var(--fgColor-default);
-            background-color: var(--bgColor-muted);
+            color: var(--mud-palette-text-primary);
+            background-color: var(--mud-palette-surface);
             border-radius: 6px;
         }
 

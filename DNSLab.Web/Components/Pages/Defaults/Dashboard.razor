@@ -2,43 +2,37 @@
 @attribute [Authorize]
 <SeoProvider Title="داشبورد" />
 
-<MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">داشبورد</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudGrid>
-            <MudItem xs="12" md="6" lg="3">
-                <MudPaper Style="@($"color:{Colors.Orange.Lighten1};")" Outlined>
-                    <MudStack AlignItems="AlignItems.Center" Class="py-1" Spacing="1">
-                        <MudText>دامنه ها</MudText>
-                        <MudText Typo="Typo.h3">@ZoneCount</MudText>
-                    </MudStack>
-                </MudPaper>
-            </MudItem>
-            <MudItem xs="12" md="6" lg="3">
-                <MudPaper Style="@($"color:{Colors.Green.Lighten1};")" Outlined>
-                    <MudStack AlignItems="AlignItems.Center" Class="py-1" Spacing="1">
-                        <MudText>رکورد ها</MudText>
-                        <MudText Typo="Typo.h3">@RecordsCount</MudText>
-                    </MudStack>
-                </MudPaper>
-            </MudItem>
-            <MudItem xs="12" md="6" lg="3">
-                <MudPaper Style="@($"color:{Colors.Teal.Lighten1};")" Outlined>
-                    <MudStack AlignItems="AlignItems.Center" Class="py-1" Spacing="1">
-                        <MudText>هاست‌نِیم ها</MudText>
-                        <MudText Typo="Typo.h3">@DDNSsCount</MudText>
-                    </MudStack>
-                </MudPaper>
-            </MudItem>
-        </MudGrid>
-    </MudCardContent>
-</MudCard>
+<MudText Typo="Typo.h1" Align="Align.Center">داشبورد</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">وضعیت کلی رکورد ها و دامنه ها و هاست نیم ها</MudText>
 
-<MudAlert Class="mt-2" Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Text">
+<MudGrid>
+    <MudItem xs="12" md="6" lg="3">
+        <MudPaper Elevation="0">
+            <MudStack AlignItems="AlignItems.Center" Class="py-1" Spacing="1">
+                <MudText>دامنه ها</MudText>
+                <MudText Typo="Typo.h3">@ZoneCount</MudText>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" md="6" lg="3">
+        <MudPaper Elevation="0">
+            <MudStack AlignItems="AlignItems.Center" Class="py-1" Spacing="1">
+                <MudText>رکورد ها</MudText>
+                <MudText Typo="Typo.h3">@RecordsCount</MudText>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" md="6" lg="3">
+        <MudPaper Elevation="0">
+            <MudStack AlignItems="AlignItems.Center" Class="py-1" Spacing="1">
+                <MudText>هاست‌نِیم ها</MudText>
+                <MudText Typo="Typo.h3">@DDNSsCount</MudText>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+<MudAlert Class="mt-2" Severity="Severity.Normal" Dense ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Text">
     @if (DDNSsCount != null && DDNSsCount == 0)
     {
         <MudText Typo="Typo.body2">تا کنون هیچ هاست نِیمی ثبت نشده است.</MudText>

@@ -7,31 +7,25 @@
 {
     <SeoProvider Title="@_Page.Title" Meta_Description="@_Page.Description" />
 
-    <MudCard Elevation="0">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudGrid Justify="Justify.SpaceAround" Spacing="1">
-                    <MudItem xs="12" lg="3">
-                        <MudStack Row AlignItems="AlignItems.Center">
-                            <MudText Typo="Typo.caption">نویسنده : </MudText>
-                            @((MarkupString)ProfileImageCreator.GenerateSVG(_Page.User!.Id, 25))
-                            <MudText Typo="Typo.caption"> @_Page.User?.FullName</MudText>
-                        </MudStack>
-                    </MudItem>
-                    <MudItem xs="12" lg="3">
-                        <MudText Typo="Typo.caption">تاریخ انتشار : @_Page.PublishDate?.ToLocalTime().ToPersianDateTime()</MudText>
-                    </MudItem>
-                    <MudItem xs="12" lg="3">
-                        <MudText Typo="Typo.caption">آخرین بروزرسانی : @_Page.UpdateDate?.ToLocalTime().ToPersianDateTime()</MudText>
-                    </MudItem>
-                    <MudItem xs="12" lg="3">
-                        <MudText Typo="Typo.caption">تعداد بازدید : @_Page.VisitCount.ToString()</MudText>
-                    </MudItem>
-                </MudGrid>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <MarkdownViewer MarkdownText="@_Page.Body" />
-        </MudCardContent>
-    </MudCard>
+    <MudStack>
+        <MudGrid Justify="Justify.FlexStart" Spacing="1">
+            <MudItem xs="12" lg="3">
+                <MudStack Row AlignItems="AlignItems.Center">
+                    <MudText Typo="Typo.caption">نویسنده : </MudText>
+                    @((MarkupString)ProfileImageCreator.GenerateSVG(_Page.User!.Id, 25))
+                    <MudText Typo="Typo.caption"> @_Page.User?.FullName</MudText>
+                </MudStack>
+            </MudItem>
+            <MudItem xs="12" lg="3">
+                <MudText Typo="Typo.caption">تاریخ انتشار : @_Page.PublishDate?.ToLocalTime().ToPersianDateTime()</MudText>
+            </MudItem>
+            <MudItem xs="12" lg="3">
+                <MudText Typo="Typo.caption">آخرین بروزرسانی : @_Page.UpdateDate?.ToLocalTime().ToPersianDateTime()</MudText>
+            </MudItem>
+            <MudItem xs="12" lg="3">
+                <MudText Typo="Typo.caption">تعداد بازدید : @_Page.VisitCount.ToString()</MudText>
+            </MudItem>
+        </MudGrid>
+        <MarkdownViewer MarkdownText="@_Page.Body" />
+    </MudStack>
 }

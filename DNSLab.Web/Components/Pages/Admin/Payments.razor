@@ -3,16 +3,14 @@
 @attribute [Authorize(Roles = AuthorizeRoles.Admin)]
 <SeoProvider Title="پرداخت ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">پرداخت‌ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">تمامی پرداخت های کاربران</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">پرداخت‌ها</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
         @if (_AllPayments != null)
         {
-            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Outlined FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
+            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Elevation="0" FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>
@@ -28,7 +26,7 @@
                 </Columns>
             </MudDataGrid>
 
-            <MudPagination Rectangular="true" Variant="Variant.Filled" Count="_AllPayments.PageCount" Class="mt-2" SelectedChanged="PageChanged" />
+            <MudPagination Rectangular="true" Variant="Variant.Filled" Color="Color.Primary" DropShadow="false" Count="_AllPayments.PageCount" Class="mt-2" SelectedChanged="PageChanged" />
         }
     </MudCardContent>
 </MudCard>

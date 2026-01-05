@@ -72,6 +72,7 @@ partial class Summary
                 }
             }
         },
+        Colors = new List<string> { "var(--mud-palette-primary)" },
         Chart = new Chart
         {
             Type = ApexCharts.ChartType.Bar,

@@ -1,0 +1,101 @@
+﻿@attribute [Route(AllRoutes.Contribute)]
+
+<SeoProvider Title="مشارکت در توسعه DNSLab"
+             Meta_Description="مشارکت در توسعه DNSLab | برنامه‌نویسی، تولید محتوا، ایده‌پردازی و همکاری در پروژه متن‌باز" />
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-12">
+
+    <!-- HERO -->
+    <MudStack Spacing="2" AlignItems="AlignItems.Center">
+
+        <MudText Typo="Typo.h2" Align="Align.Center">
+            مشارکت در توسعه DNSLab
+        </MudText>
+        <MudText Typo="Typo.subtitle1"
+                 Align="Align.Center"
+                 Class="text-muted"
+                 Style="max-width:600px;">
+            جایی که هر کامیت، اینترنت رو یک قدم حرفه‌ای‌تر می‌کنه
+        </MudText>
+
+    </MudStack>
+
+    <MudDivider Class="my-10" />
+
+    <!-- SKILLS CARD -->
+    <MudPaper Outlined Class="pa-6">
+
+        <MudText Typo="Typo.h5">
+            چه تخصص‌هایی می‌تونن مشارکت کنن؟
+        </MudText>
+
+        <MudText Typo="Typo.subtitle1"
+                 Class="mt-2">
+            اگر یکی از این مهارت‌ها رو داری، DNSLab جای توئه
+        </MudText>
+
+        <MudList Dense="true"
+                 Class="mt-6"
+                 T="object">
+
+            @SkillItem("برنامه‌نویسی",
+                     "Back-End (.NET Core / API , Go)، Front-End (Blazor)، DevOps، بهینه‌سازی عملکرد و امنیت")
+
+            @SkillItem("تولید محتوا و مستندات",
+                     "راهنماهای فنی، مستندات API، مقالات آموزشی")
+
+            @SkillItem("ایده‌پردازی و طراحی محصول",
+                     "پیشنهاد فیچرهای جدید، UX/UI، مسیر رشد سرویس")
+
+            @SkillItem("تست و گزارش باگ",
+                     "تست سناریوهای واقعی و افزایش پایداری سیستم")
+
+            @SkillItem("سئو و مارکتینگ فنی",
+                     "افزایش دیده‌شدن DNSLab در جامعه فنی")
+
+        </MudList>
+
+        <MudText Typo="Typo.body2"
+                 Class="mt-4">
+            حتی اگه تازه‌کاری ولی انگیزه داری، ما کنارت هستیم
+        </MudText>
+
+    </MudPaper>
+
+    <MudDivider Class="my-10" />
+
+    <MudPaper Outlined Class="pa-6">
+
+        <MudText Typo="Typo.h6">
+            آماده‌ای برای شروع؟
+        </MudText>
+
+        <MudText Typo="Typo.body1" Class="mt-2">
+            برای شروع مشارکت، همین حالا توی تلگرام پیام بده
+        </MudText>
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Size="Size.Large"
+                   StartIcon="@DNSLabIcons.Telegram"
+                   Href="https://t.me/AkbarAsghari"
+                   Class="mt-4">
+            @("@AkbarAsghari")
+        </MudButton>
+
+    </MudPaper>
+
+</MudContainer>
+
+@code {
+    RenderFragment SkillItem(string title, string description) => @<MudListItem T="string">
+        <MudText>
+            <MudText Typo="Typo.subtitle1" Component="span">
+                @title:
+            </MudText>
+            <MudText Typo="Typo.body2" Component="span" Class="ml-1">
+                @description
+            </MudText>
+        </MudText>
+    </MudListItem>;
+}

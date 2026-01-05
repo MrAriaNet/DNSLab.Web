@@ -1,4 +1,5 @@
 ﻿using DNSLab.Web.DTOs.Repositories.Record;
+using DNSLab.Web.DTOs.Repositories.Zone;
 using DNSLab.Web.Interfaces.Repositories;
 using DNSLab.Web.Repositories;
 using Microsoft.AspNetCore.Components;
@@ -12,16 +13,25 @@ partial class RecordChangesHistory
 
     [SupplyParameterFromQuery] public Guid? RecordId { get; set; } = null;
 
-    IEnumerable<RecordChangeDTO>? _RecordChanges { get; set; }
     bool? _IsSubscribeThisFeature { get; set; } = null;
+    MudDataGrid<RecordChangeDTO> _DataGrid { get; set; }
 
-    bool _Loading = true;
-
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (firstRender)
+        {
+            _IsSubscribeThisFeature = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.RecordChangesHistory);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task<GridData<RecordChangeDTO>> ServerReload(GridState<RecordChangeDTO> state)
+    {
+        IEnumerable<RecordChangeDTO>? data = null;
+
         if (RecordId == null)
         {
-            _RecordChanges = await _RecordRepository.GetTodayRecordChangesHistory();
+            data = await _RecordRepository.GetTodayRecordChangesHistory();
         }
         else
         {
@@ -29,11 +39,26 @@ partial class RecordChangesHistory
 
             if (_IsSubscribeThisFeature is not null && _IsSubscribeThisFeature == true)
             {
-                _RecordChanges = await _RecordRepository.GetRecordChangesHistory(RecordId.Value);
+                data = await _RecordRepository.GetRecordChangesHistory(RecordId.Value);
             }
         }
 
-        _Loading = false;
+        if (data is null)
+        {
+            return new GridData<RecordChangeDTO>();
+        }
+
+        data = data.OrderByDescending(x => x.TimeStamp);
+
+        var totalItems = data.Count();
+
+        var pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+
+        return new GridData<RecordChangeDTO>
+        {
+            TotalItems = totalItems,
+            Items = pagedData
+        };
     }
 
 

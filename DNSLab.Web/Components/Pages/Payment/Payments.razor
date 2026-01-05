@@ -3,21 +3,19 @@
 @attribute [Authorize]
 <SeoProvider Title="پرداخت ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">پرداخت‌ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">لیست تمام پرداخت های شما به همراه وضعیت آن</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">پرداخت‌ها</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
         @if (_AllPayments != null)
         {
-            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Outlined FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
+            <MudDataGrid T="PaymentDTO" Items="_AllPayments!.Results" Dense Hover Elevation="0" LoadingProgressColor="Color.Primary" FixedHeader Striped SortMode="SortMode.None" Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>
                 <Columns>
-                    <PropertyColumn Property="x=>x.Amount" Title="مبلغ (ريال)" />
+                    <PropertyColumn Property="x=>x.Amount.Separate3Digits()" Title="مبلغ (ريال)" />
                     <PropertyColumn Property="x=>x.CreateDate" Title="زمان">
                         <CellTemplate>
                             <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>
@@ -27,7 +25,7 @@
                     <PropertyColumn Property="x=>x.Description" Title="توضیحات" />
                 </Columns>
             </MudDataGrid>
-            <MudPagination Rectangular="true" Variant="Variant.Filled" Count="_AllPayments.PageCount" Class="mt-2" SelectedChanged="PageChanged" />
+            <MudPagination Rectangular="true" Variant="Variant.Filled" DropShadow="false" Count="_AllPayments.PageCount" Class="mt-2" SelectedChanged="PageChanged" />
         }
     </MudCardContent>
 </MudCard>

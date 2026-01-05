@@ -64,7 +64,7 @@ builder.Services.AddMudServices(config =>
     config.SnackbarConfiguration.VisibleStateDuration = 2500;
     config.SnackbarConfiguration.HideTransitionDuration = 300;
     config.SnackbarConfiguration.ShowTransitionDuration = 100;
-    config.SnackbarConfiguration.SnackbarVariant = Variant.Text;
+    config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
 });
 
 // Add services to the container.

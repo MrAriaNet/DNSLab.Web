@@ -1,11 +1,7 @@
-﻿<MudAppBar Elevation="0" Class="baackdrop-bluered" Style="z-index: calc(var(--mud-zindex-appbar) + 2);">
+﻿@using DNSLab.Web.Enums
+<MudAppBar Elevation="0" Class="baackdrop-bluered" Style="z-index: calc(var(--mud-zindex-appbar) + 2);">
     <MudIconButton Icon="@DNSLabIcons.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="MenuOnClick" />
-    <MudStack Spacing="0" AlignItems="AlignItems.Center">
-        <MudLink Href="@AllRoutes.Home" Underline="Underline.None" Color="Color.Inherit">
-            <MudText Typo="Typo.h5">@GlobalSettings.ApplicationName</MudText>
-        </MudLink>
-        <MudText Typo="Typo.body2" Class="mt-n2">@GlobalSettings.Version</MudText>
-    </MudStack>
+    <DarkModeSwitcher DarkModeChanged="DarkModeChanged" />
     <MudSpacer />
     <MudIconButton Href="https://github.com/AkbarAsghari/DNSLab.Web" Icon="@DNSLabIcons.Github" Color="Color.Inherit" Target="_blank" />
     <AuthorizeView>
@@ -19,4 +15,6 @@
 @code {
     [Parameter]
     public EventCallback MenuOnClick { get; set; }
+    [Parameter]
+    public EventCallback<DarkModeEnum> DarkModeChanged { get; set; }
 }

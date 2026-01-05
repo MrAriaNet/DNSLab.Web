@@ -1,139 +1,126 @@
 ﻿@page "/"
 
-<SeoProvider Title="DNSLab" Meta_Description="صفحه اصلی سایت دی ان اس لب" />
+<SeoProvider Title="DNSLab | DDNS و Reverse Proxy برای سرورهای خانگی"
+             Meta_Description="بدون IP ثابت، سرور خانگی، دوربین امنیتی یا پروژه خود را در ۵ دقیقه آنلاین کنید. سرویس DDNS و Reverse Proxy امن و سریع" />
 
-<MudText Typo="Typo.h1" Align="Align.Center" Class="mt-16">همیشه آنلاین؛ حتی بدون آی‌پی ثابت</MudText>
+<MudText Typo="Typo.h1" Align="Align.Center" Class="mb-3">سرور خانگی خود را در ۵ دقیقه آنلاین کنید!</MudText>
 
-<MudText Align="Align.Center" Class="mt-5">اگه قصد داری یک سرور راه‌اندازی کنی، از راه دور کار کنی یا هر کاربرد دیگری که نیاز به اتصال پایدار داره، ما اینجا هستیم تا IP متغیرت رو ردیابی کنیم، تا دیگه هیچ‌وقت نگران تغییرات IP نباشی!</MudText>
+<MudText Typo="Typo.h5" Align="Align.Center">بدون IP ثابت، بدون پورت فورواردینگ، با اتصال امن و پایدار</MudText>
 
-<MudGrid Spacing="1" Class="mt-10">
+<MudGrid Spacing="2" Class="mt-8 mb-10" Justify="Justify.Center">
     <MudItem xs="6" md="3">
-        <MudText Align="Align.Center">کاربران</MudText>
-        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllUsersCount ?? 0).Separate3Digits())</MudText>
+        <MudText Align="Align.Center">کاربران فعال</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h4">@((_AllUsersCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
     <MudItem xs="6" md="3">
-        <MudText Align="Align.Center">کاربران پرمیوم</MudText>
-        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllPremiumUsersCount ?? 0).Separate3Digits())</MudText>
+        <MudText Align="Align.Center">هاست‌های فعال</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h4">@((_AllDDNSsCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
     <MudItem xs="6" md="3">
-        <MudText Align="Align.Center">رکورد ها</MudText>
-        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllDDNSsCount ?? 0).Separate3Digits())</MudText>
-    </MudItem>
-    <MudItem xs="6" md="3">
-        <MudText Align="Align.Center">تغییرات رکورد در 24 ساعت</MudText>
-        <MudText Align="Align.Center" Typo="Typo.h3">@((_AllTodayChangesCount ?? 0).Separate3Digits())</MudText>
+        <MudText Align="Align.Center">تغییرات IP روزانه</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h4">@((_AllTodayChangesCount ?? 0).Separate3Digits())</MudText>
     </MudItem>
 </MudGrid>
 
-<MudText Typo="Typo.h2" Class="mt-7 mb-3">📡لوکال‌هاستت رو به دنیا نشون بده!</MudText>
-<MudText>با سرویس Reverse Proxy ما، هر سرویسی که روی سیستم خودت داری رو به راحتی روی اینترنت پابلیک کن.</MudText>
-<MudGrid Class="mt-3 mb-20">
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@DNSLabIcons.Security" />
-        <MudText Typo="Typo.h3">اتصال امن و پایدار</MudText>
-        <MudText>ترافیک بین کلاینت و سرور رمزنگاری و محافظت می‌شه</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@DNSLabIcons.Public" />
-        <MudText Typo="Typo.h3">دسترسی مستقیم از اینترنت به لوکال‌هاست</MudText>
-        <MudText>بدون نیاز به آی‌پی استاتیک یا پورت فورواردینگ</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@DNSLabIcons.Computer" />
-        <MudText Typo="Typo.h3">سازگار با ویندوز و لینوکس</MudText>
-        <MudText>روی سیستم‌عامل‌های محبوب به راحتی اجرا می‌شه</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@DNSLabIcons.Terminal" />
-        <MudText Typo="Typo.h3">مناسب برای توسعه و تست</MudText>
-        <MudText>نمایش پروژه به تیم، مشتری یا استاد بدون دردسر</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@DNSLabIcons.Speed" />
-        <MudText Typo="Typo.h3">سرعت و کارایی بالا</MudText>
-        <MudText>تونل‌ها با حداقل تأخیر کار می‌کنن</MudText>
-    </MudItem>
-</MudGrid>
-
-<MudText Typo="Typo.h2" Class="mt-7 mb-3">🚀DDNS با سازگاری گسترده</MudText>
-<MudText>از روتر گرفته تا رزبری‌پای، با DNSLab دیگر هیچ تغییری در آی‌پی مانع دسترسی شما نمیشه.</MudText>
-
-<MudGrid Class="my-3">
-    <MudItem xs="6" md="3">
-        <MudPaper Class="pa-7" Outlined>
-            <MudStack AlignItems="AlignItems.Center">
-                <MudImage Width="100" Alt="script" Src="images/icons/script.svg" Fluid Class="rounded-lg" Style="background:white;padding:1rem" />
-                <MudText>Script</MudText>
-            </MudStack>
+<MudText Typo="Typo.h3" Align="Align.Center" Class="mt-12 mb-6">شروع کار در سه مرحله ساده</MudText>
+<MudGrid Class="mb-16">
+    <MudItem xs="12" md="4">
+        <MudPaper Class="pa-4 text-center" Elevation="0">
+            <MudIcon Icon="@Icons.Material.Filled.Create" Style="font-size:3rem" />
+            <MudText Typo="Typo.h5" Class="mt-3">1. ثبت نام و ساخت هاست</MudText>
+            <MudText>یک نام اختصاصی برای خود انتخاب کنید</MudText>
         </MudPaper>
     </MudItem>
-    <MudItem xs="6" md="3">
-        <MudPaper Class="pa-7" Outlined>
-            <MudStack AlignItems="AlignItems.Center">
-                <MudImage Width="100" Alt="router" Src="images/icons/router.svg" Fluid Class="rounded-lg" Style="background:white;padding:1rem" />
-                <MudText>Router</MudText>
-            </MudStack>
+    <MudItem xs="12" md="4">
+        <MudPaper Class="pa-4 text-center" Elevation="0">
+            <MudIcon Icon="@Icons.Material.Filled.Settings" Style="font-size:3rem" />
+            <MudText Typo="Typo.h5" Class="mt-3">2. تنظیم دستگاه</MudText>
+            <MudText>روی روتر، رزبری‌پای یا سیستم خود نصب کنید</MudText>
         </MudPaper>
     </MudItem>
-    <MudItem xs="6" md="3">
-        <MudPaper Class="pa-7" Outlined>
-            <MudStack AlignItems="AlignItems.Center">
-                <MudImage Width="100" Alt="mikrotik" Src="images/icons/mikrotik.svg" Fluid Class="rounded-lg" Style="background:white;padding:1rem" />
-                <MudText>Mikrotik</MudText>
-            </MudStack>
-        </MudPaper>
-    </MudItem>
-    <MudItem xs="6" md="3">
-        <MudPaper Class="pa-7" Outlined>
-            <MudStack AlignItems="AlignItems.Center">
-                <MudImage Width="100" Alt="raspberry pi" Src="images/icons/raspberry.svg" Fluid Class="rounded-lg" Style="background:white;padding:0.5rem" />
-                <MudText>Raspberry Pi</MudText>
-            </MudStack>
+    <MudItem xs="12" md="4">
+        <MudPaper Class="pa-4 text-center" Elevation="0">
+            <MudIcon Icon="@Icons.Material.Filled.Public" Style="font-size:3rem" />
+            <MudText Typo="Typo.h5" Class="mt-3">3. استفاده کنید!</MudText>
+            <MudText>همین حالا از هرجا به دستگاه‌تان دسترسی داشته باشید</MudText>
         </MudPaper>
     </MudItem>
 </MudGrid>
 
-<MudText Typo="Typo.h2" Class="mt-7 mb-3">🌎DDNS بدون مرز، حالا با دامنه اختصاصی!</MudText>
-<MudText>دیگر نیازی به محدودیت‌های دامنه‌های عمومی نیست! حالا می‌توانید روی دامنه اختصاصی خودتان، DDNS بسازید و کنترل کامل رکورد ها را به دست بگیرید.</MudText>
+<MudText Typo="Typo.h3" Class="mt-10 mb-5 text-center">راه‌حل‌های ما برای نیازهای شما</MudText>
+<MudGrid Class="mb-16">
+    <!-- Reverse Proxy -->
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="0" Class="h-100">
+            <MudCardHeader>
+                <MudText Typo="Typo.h4">Reverse Proxy</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>هر سرویس لوکال را بدون IP ثابت روی اینترنت منتشر کنید</MudText>
+                <MudGrid Class="mt-3">
+                    <MudItem xs="6">
+                        <MudIcon Icon="@DNSLabIcons.Security" Style="width:60px;height:60px" Size="Size.Medium" />
+                        <MudText Display="Display.InlineBlock">اتصال امن</MudText>
+                    </MudItem>
+                    <MudItem xs="6">
+                        <MudIcon Icon="@DNSLabIcons.Speed" Style="width:60px;height:60px" Size="Size.Medium" />
+                        <MudText Display="Display.InlineBlock">سرعت بالا</MudText>
+                    </MudItem>
+                </MudGrid>
+                <MudButton Variant="Variant.Outlined" FullWidth="true" Class="mt-3" Href="wiki/reverse-proxy">اطلاعات بیشتر</MudButton>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
 
-<MudText Typo="Typo.h2" Class="mt-10">⚡همیشه متصل بمون</MudText>
-
-<MudGrid Class="mt-3 mb-20">
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@Icons.Material.Rounded.BroadcastOnHome" />
-        <MudText Typo="Typo.h3">شبکه خانگی</MudText>
-        <MudText>با سرویس Dynamic DNS ما دسترسی DNS راه دور ساده و قابل اعتماد به دستگاه های شبکه خانگی خود را به دست آورید. این  روش تضمین می‌کند که می‌توانید از هر مکان و در هر زمان و با حداقل تلاش به شبکه خانگی خود متصل شوید.</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@Icons.Material.Rounded.VideogameAsset" />
-        <MudText Typo="Typo.h3">بازی آنلاین</MudText>
-        <MudText>یک سرور Minecraft ایجاد کنید - میزبانی کنید و به راحتی به سرور Minecraft خود متصل شوید. یک URL سفارشی را با دوستان خود به اشتراک بگذارید.</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@Icons.Material.Rounded.Videocam" />
-        <MudText Typo="Typo.h3">دوربین های امنیتی</MudText>
-        <MudText>شما میتوانید با استفاده از سرویس امن DNSLab به راحتی برای اتصال و مدیریت دوربین های مداربسته خودتون یک اسم سفارشی تهیه کنید و دیگه نیاز به وارد کردن آی پی نداشته باشید.</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@Icons.Material.Rounded.Computer" />
-        <MudText Typo="Typo.h3">دسترسی از راه دور به کامپیوتر</MudText>
-        <MudText>آدرس های IP پیچیده را فراموش کنید. از DNS پویا برای دسترسی آسان IP از راه دور به دستگاه های خود، حتی با تغییر IP استفاده کنید.</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@Icons.Material.Rounded.SupervisedUserCircle" />
-        <MudText Typo="Typo.h3">سرویس های خدماتی</MudText>
-        <MudText>امنیت مشتری را با سرویس DNS پویا، با کلیدهای DDNS ایمن، افزایش دهید. از حفاظت پیشرفته و نظارت از راه دور قابل اعتماد برای دوربین های امنیتی و سیستم های نظارت اطمینان حاصل کنید.</MudText>
-    </MudItem>
-    <MudItem xs="12" md="6" lg="4">
-        <MudIcon Style="font-size: 4rem;" Icon="@Icons.Material.Rounded.TextFields" />
-        <MudText Typo="Typo.h3">با هر اسمی که دوست داری</MudText>
-        <MudStack Row Spacing="0" Class="dnslab-ltr my-8" AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
-            <MudText Typo="Typo.h2">.iddns.ir</MudText>
-            <MudText Typo="Typo.h2" Align="Align.Center" Color="Color.Primary" Class="typewriter" />
-        </MudStack>
+    <!-- DDNS -->
+    <MudItem xs="12" md="6">
+        <MudCard Elevation="0" Class="h-100">
+            <MudCardHeader>
+                <MudText Typo="Typo.h4">DDNS پویا</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>با تغییر IP همیشه به دستگاه‌های خود متصل بمانید</MudText>
+                <MudGrid Class="mt-3">
+                    <MudItem xs="6" md="3">
+                        <MudImage Src="images/icons/router.svg" Style="background-color:floralwhite" Width="60" />
+                        <MudText>روتر</MudText>
+                    </MudItem>
+                    <MudItem xs="6" md="3">
+                        <MudImage Src="images/icons/mikrotik.svg" Style="background-color:floralwhite" Width="60" />
+                        <MudText>میکروتیک</MudText>
+                    </MudItem>
+                    <MudItem xs="6" md="3">
+                        <MudImage Src="images/icons/raspberry.svg" Style="background-color:floralwhite" Width="60" />
+                        <MudText>رزبری‌پای</MudText>
+                    </MudItem>
+                    <MudItem xs="6" md="3">
+                        <MudImage Src="images/icons/script.svg" Style="background-color:floralwhite" Width="60" />
+                        <MudText>اسکریپت</MudText>
+                    </MudItem>
+                </MudGrid>
+                <MudButton Variant="Variant.Outlined" FullWidth="true" Class="mt-3" Href="wiki/dynamic-dns">اطلاعات بیشتر</MudButton>
+            </MudCardContent>
+        </MudCard>
     </MudItem>
 </MudGrid>
-
+<MudText Typo="Typo.h3" Class="mt-10 mb-5 text-center">چرا کاربران ما DNSLab را انتخاب می‌کنند؟</MudText>
+<MudGrid Class="mb-16" Justify="Justify.Center">
+    <MudItem xs="12" md="4">
+        <MudIcon Icon="@Icons.Material.Filled.Home" Style="font-size:3rem" />
+        <MudText Typo="Typo.h5">دسترسی به شبکه خانگی</MudText>
+        <MudText>از هرجا به دستگاه‌های خانه متصل شوید</MudText>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudIcon Icon="@Icons.Material.Filled.VideogameAsset" Style="font-size:3rem" />
+        <MudText Typo="Typo.h5">سرورهای بازی</MudText>
+        <MudText>ماینکرفت و دیگر سرورهای بازی را میزبانی کنید</MudText>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudIcon Icon="@Icons.Material.Filled.Computer" Style="font-size:3rem" />
+        <MudText Typo="Typo.h5">دسترسی به کامپیوتر</MudText>
+        <MudText>کامپیوتر شخصی خود را از راه دور کنترل کنید</MudText>
+    </MudItem>
+</MudGrid>
 
 
 <MudGrid>

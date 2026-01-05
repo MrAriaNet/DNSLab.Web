@@ -4,20 +4,23 @@
 @attribute [Authorize]
 <SeoProvider Title="تاریخچه تغییرات رکورد های دامنه" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تاریخچه تغییرات</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">تغییرات حداکثر برای یک ماه در دیتابیس DNSLab ذخیره خواهد شد و پس از آن قابل مشاهده نمیباشد</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h5">تاریخچه تغییرات</MudText>
+            <MudText Typo="Typo.h5"></MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            @if ((_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true) || RecordId is null)
+            @if (_IsSubscribeThisFeature != null && _IsSubscribeThisFeature == true)
             {
-                <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Refresh" OnClick="OnInitializedAsync">بروزرسانی</BaseButton>
+                <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Refresh" OnClick="()=> _DataGrid.ReloadServerData()">بروزرسانی</BaseButton>
             }
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        @if (_IsSubscribeThisFeature != null || RecordId is null)
+        @if (_IsSubscribeThisFeature != null)
         {
             @if (RecordId is not null)
             {
@@ -27,7 +30,7 @@
                         <MudButton Variant="Variant.Filled" Size="MudBlazor.Size.Small" Color="MudBlazor.Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudButton>
                     </MudContainer>
                 </MudOverlay>
-                <MudAlert Class="mb-2" Dense Severity="Severity.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
+                <MudAlert Class="mb-2" Dense Icon="@DNSLabIcons.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Start">
                     <MudText Typo="Typo.body2">در این بخش تاریخچه تغییرات رکورد ها نمایش داده میشود</MudText>
                     <MudText Typo="Typo.body2">
                         در صورت اعمال روی سرور ها با علامت
@@ -38,9 +41,9 @@
                     </MudText>
                 </MudAlert>
             }
-            @if (_IsSubscribeThisFeature == true || RecordId is null)
+            @if (_IsSubscribeThisFeature == true)
             {
-                <MudDataGrid T="RecordChangeDTO" Items="_RecordChanges?.OrderByDescending(x=>x.TimeStamp)" Loading="_Loading" Dense Hover Outlined>
+                <MudDataGrid @ref="_DataGrid" T="RecordChangeDTO" ServerData="ServerReload" ExpandSingleRow Dense Hover Elevation="0" Filterable="false">
                     <NoRecordsContent>
                         <NoRecordFound />
                     </NoRecordsContent>
@@ -148,6 +151,9 @@
                             </CellTemplate>
                         </PropertyColumn>
                     </Columns>
+                    <PagerContent>
+                        <MudDataGridPager T="RecordChangeDTO" RowsPerPageString="تعداد ردیف در هر صفحه" InfoFormat="{first_item}-{last_item} از {all_items}" />
+                    </PagerContent>
                 </MudDataGrid>
             }
         }

@@ -3,10 +3,12 @@
 @attribute [Authorize]
 <SeoProvider Title="اشتراک ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">اشتراک‌ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">در جدول پایین تمام اشتراک‌های شما نمایش داده میشود</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h5">اشتراک‌ها</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
             <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudButton>
@@ -15,7 +17,7 @@
     <MudCardContent>
         @if (_UserBundles != null)
         {
-            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.EndDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.EndDate)" Dense Hover Elevation="0" FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>

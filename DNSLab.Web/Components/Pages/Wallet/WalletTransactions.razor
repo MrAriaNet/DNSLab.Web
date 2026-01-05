@@ -3,16 +3,14 @@
 @attribute [Authorize]
 <SeoProvider Title="تراکنش ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تراکنش‌ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">تمام تراکنش ها و وضعیت آن ها</MudText>
+
 <MudCard Elevation="0">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h5">تراکنش‌ها</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
     <MudCardContent>
         @if (_AllTransactions != null)
         {
-            <MudDataGrid T="WalletTransactionDTO" Items="_AllTransactions.Results" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+            <MudDataGrid T="WalletTransactionDTO" Items="_AllTransactions.Results" Dense Hover Elevation="0" FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>
@@ -20,7 +18,7 @@
                     <PropertyColumn Property="x=>x.TransactionType" Title="نوع" />
                     <TemplateColumn Title="مبغ(ريال)">
                         <CellTemplate>
-                            <MudText Color="@(@context.Item.Incremental ? Color.Success : Color.Error)">@context.Item.Amount.Separate3Digits()</MudText>
+                            <MudText>@context.Item.Amount.Separate3Digits()</MudText>
                         </CellTemplate>
                     </TemplateColumn>
                     <PropertyColumn Property="x=>x.Description" Title="توضیحات" />

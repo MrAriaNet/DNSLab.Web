@@ -4,17 +4,20 @@
 @attribute [Authorize]
 <SeoProvider Title="تیکت ها" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تیکت‌ها</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">برای ثبت مشکل فنی یا مطرح کردن سوال یا پیشنهاد میتوانید برای ما پیام بگذارید</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h5">تیکت ها</MudText>
+            <MudText Typo="Typo.h5"></MudText>
         </CardHeaderContent>
         <CardHeaderActions>
             <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Add" OnClick="AddTicket">ثبت تیکت جدید</MudButton>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        <MudDataGrid T="TicketDTO" Items="_Tickets?.OrderByDescending(x=>x.CreateDate)" Dense Hover Outlined Loading="_IsLoading">
+        <MudDataGrid T="TicketDTO" Items="_Tickets?.OrderByDescending(x=>x.CreateDate)" Dense Hover Elevation="0" Loading="_IsLoading">
             <NoRecordsContent>
                 <NoRecordFound />
             </NoRecordsContent>

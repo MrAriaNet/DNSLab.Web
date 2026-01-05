@@ -3,17 +3,18 @@
 @attribute [Authorize]
 <SeoProvider Title="جزئیات تیکت" />
 
+<MudText Typo="Typo.h1" Align="Align.Center" Class="mb-10">جزئیات تیکت</MudText>
+
 @if (_Ticket != null)
 {
     <MudCard Elevation="0">
         <MudCardHeader>
-            <CardHeaderContent>
-                @if (_Ticket != null)
-                {
-                            <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Default" DropShadow="false" StartIcon="@DNSLabIcons.Back" Href="@AllRoutes.MyTickets">بازگشت</BaseButton>
-                    <MudText Typo="Typo.h5">موضوع : @_Ticket.Title</MudText>
-                }
+            <CardHeaderContent >
+                <MudText Typo="Typo.h3">موضوع : @_Ticket?.Title</MudText>
             </CardHeaderContent>
+            <CardHeaderActions>
+                <BaseButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" DropShadow="false" StartIcon="@DNSLabIcons.Back" Href="@AllRoutes.MyTickets">بازگشت</BaseButton>
+            </CardHeaderActions>
         </MudCardHeader>
         <MudCardContent>
             @foreach (var item in _Ticket.Messages.OrderBy(x => x.CreateDate))

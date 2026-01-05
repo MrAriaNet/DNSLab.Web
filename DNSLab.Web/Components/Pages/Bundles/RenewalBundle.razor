@@ -3,19 +3,22 @@
 @attribute [Authorize]
 <SeoProvider Title="تمدید اشتراک" />
 
+<MudText Typo="Typo.h1" Align="Align.Center">تمدید اشتراک</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">در این بخش میتوانید اشتراک های در حال منقضی یا منقضی شده را تمدید نمایید</MudText>
+
 <MudCard Elevation="0">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h5">تمدید اشتراک</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
+            <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک جدید</MudButton>
             <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" EndIcon="@DNSLabIcons.Wallet" Href="@AllRoutes.MyWallet">کیف پول</MudButton>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
         @if (_UserBundles != null)
         {
-            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.EndDate)" Dense Hover Outlined FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
+            <MudDataGrid T="UserBundleDTO" Items="_UserBundles.OrderByDescending(x=>x.EndDate)" Dense Hover Elevation="0" FixedHeader SortMode="SortMode.None" Striped Loading="_Loading">
                 <NoRecordsContent>
                     <NoRecordFound />
                 </NoRecordsContent>
@@ -53,7 +56,7 @@
                     <PropertyColumn Property="x=>x.EndDate.ToLocalTime().ToPersianDateTime()" Title="زمان پایان" />
                     <TemplateColumn>
                         <CellTemplate>
-                            <BaseButton Color="Color.Primary" Variant="Variant.Filled" Size="Size.Small" OnClick="()=>Renewal(context.Item)">تمدید اشتراک (@CalculatePrice(context.Item))</BaseButton>
+                            <BaseButton DropShadow="false" Variant="Variant.Filled" Size="Size.Small" OnClick="()=>Renewal(context.Item)">تمدید اشتراک (@CalculatePrice(context.Item))</BaseButton>
                         </CellTemplate>
                     </TemplateColumn>
                 </Columns>

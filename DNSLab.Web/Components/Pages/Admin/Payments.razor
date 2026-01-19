@@ -15,7 +15,7 @@
                     <NoRecordFound />
                 </NoRecordsContent>
                 <Columns>
-                    <PropertyColumn Property="x=>x.Amount" Title="مبلغ (ريال)" />
+                    <PropertyColumn Property="x=>x.Amount.Separate3Digits()" Title="مبلغ (ريال)" />
                     <PropertyColumn Property="x=>x.CreateDate" Title="زمان">
                         <CellTemplate>
                             <MudText>@context.Item.CreateDate.ToLocalTime().ToPersianDateTime()</MudText>

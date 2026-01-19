@@ -3,7 +3,7 @@
 @inject IHttpContextAccessor httpContextAccessor;
 @inject IPageRepository _PageRepository;
 
-<MudDrawer @bind-Open="_drawerOpen" Overlay="true" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
+<MudDrawer @bind-Open="_drawerOpen" Overlay="true" Elevation="0" ClipMode="DrawerClipMode.Always">
     <MudPaper Class="mb-2 pa-3" Elevation="0">
         <MudLink Href="@AllRoutes.Home" Underline="Underline.None" Color="Color.Inherit">
             <MudStack Spacing="0" AlignItems="AlignItems.Center" Row Justify="Justify.SpaceAround">

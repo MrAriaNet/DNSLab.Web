@@ -135,7 +135,10 @@
 <MudGrid>
     <MudItem xs="12">
         <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.Center">
-            <MudText Typo="Typo.body2">تمامی حقوق سایت برای دی‌ان‌اس لب محفوظ است ©</MudText>
+            <MudStack>
+                <MudText Typo="Typo.body2">تمامی حقوق سایت برای دی‌ان‌اس لب محفوظ است ©</MudText>
+                <MudLink Href="@AllRoutes.Terms" Underline="Underline.None" Color="Color.Default" Typo="Typo.body2">شرایط و ضوابط استفاده</MudLink>
+            </MudStack>
             <MudStack Row Justify="Justify.Center">
                 <MudImage Src="images/enamad.png" Height="100" />
                 <MudImage Src="images/logo.png" Height="100" />

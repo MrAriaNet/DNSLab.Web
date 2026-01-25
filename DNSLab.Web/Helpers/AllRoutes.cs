@@ -65,5 +65,8 @@
         public const string SetupAndInstallation = "/reverse-proxy/setup-and-installation";
         public const string AuthToken = "/reverse-proxy/auth-token";
         public const string ActiveTunnels = "/reverse-proxy/active-tunnels";
+        public const string TcpReverseProxy = "/reverse-proxy/tcp";
+        public const string UdpReverseProxy = "/reverse-proxy/udp";
+        public const string HttpReverseProxy = "/reverse-proxy/http";
     }
 }

@@ -8,6 +8,7 @@
 
         public const string Dashboard = "/dashboard";
         public const string About = "/about";
+        public const string Terms = "/terms";
         public const string Contribute = "/contribute";
 
         public const string AllZones = "/zones/all";

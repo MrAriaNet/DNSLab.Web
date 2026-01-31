@@ -1,0 +1,17 @@
+﻿@attribute [Route(AllRoutes.HttpReverseProxy)]
+@attribute [Authorize]
+<SeoProvider Title="HTTP Tunnel" />
+
+<MudText Typo="Typo.h1" Align="Align.Center">تونل HTTP</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">از تانل HTTP برای مواردی مانند وب سایت ها یا API و سایر پروتوکل هایی که در بستر HTTP هستند میتوان استفاده کرد</MudText>
+
+<MudPaper Class="mt-5 pa-10" Outlined>
+    <MudText Typo="Typo.h4" Class="my-2">عمومی کردن یک سرویس HTTP برروی اینترنت</MudText>
+    <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان DNSLab Cli اجرا کن.</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"http 80")" />
+    <MudText Class="mb-2">برای رزرو اجرا با آدرس دلخواه میتوانید از این دستور استفاده نمایید (نیاز به تهیه اشتراک دارد).</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"http 80 example.http.dnslab.ir")" />
+    <MudText Typo="Typo.caption" Class="mb-2" Color="Color.Info">در این مثال نشانی example.http.dnslab.ir بعنوان رزرو برای شما ثبت میشود.</MudText>
+</MudPaper>

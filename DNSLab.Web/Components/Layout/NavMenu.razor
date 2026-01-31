@@ -3,7 +3,7 @@
 @inject IHttpContextAccessor httpContextAccessor;
 @inject IPageRepository _PageRepository;
 
-<MudDrawer @bind-Open="_drawerOpen" Overlay="true" Class="baackdrop-bluered" ClipMode="DrawerClipMode.Always">
+<MudDrawer @bind-Open="_drawerOpen" Overlay="true" Elevation="0" ClipMode="DrawerClipMode.Always">
     <MudPaper Class="mb-2 pa-3" Elevation="0">
         <MudLink Href="@AllRoutes.Home" Underline="Underline.None" Color="Color.Inherit">
             <MudStack Spacing="0" AlignItems="AlignItems.Center" Row Justify="Justify.SpaceAround">
@@ -41,6 +41,11 @@
                 <MudNavGroup Title="Reverse Proxy" Icon="@DNSLabIcons.NAT">
                     <MudNavLink Icon="@DNSLabIcons.Download" Href="@AllRoutes.SetupAndInstallation">راه‌اندازی و نصب</MudNavLink>
                     <MudNavLink Icon="@DNSLabIcons.Key" Href="@AllRoutes.AuthToken">توکن احراز هویت شما</MudNavLink>
+                    <MudNavGroup Title="Tunnels" Icon="@DNSLabIcons.Tunnels">
+                        <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.HttpReverseProxy">HTTP</MudNavLink>
+                        <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.TcpReverseProxy">TCP</MudNavLink>
+                        <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.UdpReverseProxy">UDP</MudNavLink>
+                    </MudNavGroup>
                     @* <MudNavLink Icon="@DNSLabIcons.ActiveTunnels" Href="@AllRoutes.ActiveTunnels">تونل های فعال</MudNavLink> *@
                 </MudNavGroup>
                 <MudNavGroup Title="کیف پول" Icon="@DNSLabIcons.Wallet">

@@ -1,0 +1,18 @@
+﻿@attribute [Route(AllRoutes.UdpReverseProxy)]
+@attribute [Authorize]
+<SeoProvider Title="UDP Tunnel" />
+
+<MudText Typo="Typo.h1" Align="Align.Center">تونل UDP</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">از تانل UDP برای مواردی مانند تماس صوتی و تصویری , بازی ها و سایر پروتوکل هایی که در بستر UDP هستند میتوان استفاده کرد</MudText>
+
+<MudPaper Class="mt-5 pa-10" Outlined>
+    <MudText Typo="Typo.h4" Class="my-2">دسترسی به پورت های UDP سیستم از طریق اینترنت</MudText>
+    <MudText Typo="Typo.caption" Class="mb-2">دستور زیر رو توی خط فرمان DNSLab Cli اجرا کن.</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"udp 53")" />
+    <MudText Typo="Typo.caption">نشانی‌های UDP شامل یک نام میزبان (hostname) و شماره پورت هستند. مثلاً: udp.dnslab.ir:12345</MudText>
+    <MudText Class="mb-2">برای رزرو پورت مورد نظر میتوانید از این دستور استفاده نمایید (نیاز به تهیه اشتراک دارد).</MudText>
+    <MudFlexBreak Class="my-3" />
+    <CodeSnippet Language="bash" Code="@($"udp 53 udp.dnslab.ir:5001")" />
+    <MudText Typo="Typo.caption" Class="mb-2" Color="Color.Info">در این مثال آدرس و پورت udp.dnslab.ir:5001 بعنوان رزرو برای شما ثبت میشود.</MudText>
+</MudPaper>

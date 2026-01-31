@@ -8,6 +8,7 @@
 
         public const string Dashboard = "/dashboard";
         public const string About = "/about";
+        public const string Terms = "/terms";
         public const string Contribute = "/contribute";
 
         public const string AllZones = "/zones/all";
@@ -65,5 +66,8 @@
         public const string SetupAndInstallation = "/reverse-proxy/setup-and-installation";
         public const string AuthToken = "/reverse-proxy/auth-token";
         public const string ActiveTunnels = "/reverse-proxy/active-tunnels";
+        public const string TcpReverseProxy = "/reverse-proxy/tcp";
+        public const string UdpReverseProxy = "/reverse-proxy/udp";
+        public const string HttpReverseProxy = "/reverse-proxy/http";
     }
 }

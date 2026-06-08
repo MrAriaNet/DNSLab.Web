@@ -43,26 +43,57 @@ partial class Information
 
     MudForm _EditMobileForm;
     string _NewMobile;
+    string _OtpToken;
     async Task SaveNewMobile()
     {
+        _OtpToken = String.Empty;
         await _EditMobileForm.Validate();
         if (_EditMobileForm.IsValid)
         {
-            if (_NewMobile.Equals(_CurrentUser!.Mobile))
+            var token = await _AccountRepository.ChangeMobileAsync(_NewMobile);
+
+            if (token is not null)
             {
-                _NewMobile = String.Empty;
-                _EditMobileDialogVisible = false;
-                return;
+                if (token == String.Empty)
+                {
+                    _CurrentUser!.Mobile = _NewMobile;
+                    _NewMobile = String.Empty;
+                    _EditMobileDialogVisible = false;
+                }
+                else
+                {
+                    _OtpToken = token;
+                }
             }
 
-            if (await _AccountRepository.ChangeMobileAsync(_NewMobile))
-            {
-                _CurrentUser!.Mobile = _NewMobile;
-                _NewMobile = String.Empty;
-                _EditMobileDialogVisible = false;
-            }
         }
     }
+
+    async Task ResendOtp()
+    {
+        var token = await _AccountRepository.ResendOtp(_OtpToken);
+        if (token is not null)
+        {
+            _OtpToken = token;
+        }
+    }
+
+    string _Otp;
+    async Task ConfirmOtp()
+    {
+        if (await _AccountRepository.ConfirmOtpAsync(_OtpToken, _Otp))
+        {
+            _CurrentUser!.Mobile = _NewMobile;
+            _NewMobile = String.Empty;
+            _EditMobileDialogVisible = false;
+            _OtpToken = String.Empty;
+            _Otp = String.Empty;
+            _EditMobileDialogVisible = false;
+            _Snackbar.Add("شماره همراه شما ثبت شد", Severity.Success);
+            await OnInitializedAsync();
+        }
+    }
+
 
 
     bool _EditPasswordDialogVisible = false;

@@ -30,9 +30,24 @@
 
     <MudFlexBreak Class="my-4" />
     <MudText Typo="Typo.caption" Class="mb-2">این دستور رو اجرا کن تا توکن احراز هویتت (token) به فایل پیکربندی پیش‌فرض dnslab اضافه بشه.</MudText>
+    <MudFlexBreak />
+    <MudText Typo="Typo.caption" Color="Color.Info" Class="mb-2">این عملیات نیازی به تکرار در هر بار اتصال ندارد و فقط کافی است یک بار انجام شود.</MudText>
     <MudFlexBreak Class="my-2" />
     <CodeSnippet Language="bash" Code="@($"token set {_Token}")" />
     <MudFlexBreak Class="my-2" />
+    @if (_IsMobileApproved is not null)
+    {
+        @if (_IsMobileApproved == false)
+        {
+            <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Start">
+                <MudText Typo="Typo.caption">
+                    برای استفاده از این قابلیت، نیاز به تأیید شماره همراه شماست. لطفاً به صفحه
+                    <BaseButton Href="@AllRoutes.MyAccount" Size="Size.Small" Color="Color.Warning" Variant="Variant.Filled">حساب کاربری</BaseButton> ,
+                    مراجعه کرده و شماره موبایل خود را ویرایش کنید
+                </MudText>
+            </MudAlert>
+        }
+    }
     <MudText Typo="Typo.h4" Class="mt-1">روش اتصال</MudText>
     <MudText Typo="Typo.caption">
         برای اتصال باید بسته به نیاز خود در منوی Tunnels از پروتوکل های
@@ -41,4 +56,5 @@
         <BaseButton Href="@AllRoutes.UdpReverseProxy" Size="Size.Small" Color="Color.Primary" Variant="Variant.Filled">UDP</BaseButton>
         را انتخاب نمایید.
     </MudText>
+    <MudText Typo="Typo.caption">لطفا قبل از اتصال <MudLink Href="@AllRoutes.Terms" Underline="Underline.None">شرایط و ضوابط استفاده</MudLink> را به دقت مطالعه ‌نمایید.</MudText>
 </MudPaper>

@@ -1,6 +1,7 @@
 ﻿
 using DNSLab.Web.Components.Dialogs;
 using DNSLab.Web.Components.Dialogs.Zone;
+using DNSLab.Web.DTOs.Repositories.Record;
 using DNSLab.Web.DTOs.Repositories.Zone;
 using DNSLab.Web.Interfaces.Repositories;
 using DNSLab.Web.Repositories;
@@ -14,34 +15,31 @@ namespace DNSLab.Web.Components.Pages.Zone
     {
         [Inject] IZoneRepository _ZoneRepository { get; set; }
         [Inject] IDialogService _DialogService { get; set; }
-        [Inject] IBudleRepository _SubscriptionRepository { get; set; }
+        [Inject] ISubscriptionRepository _SubscriptionRepository { get; set; }
 
-        IEnumerable<ZoneDTO>? _Zones { get; set; }
-        bool _IsLoading = false;
-        bool? _IsSubscribeThisFeature { get; set; } = null;
+        MudDataGrid<ZoneDTO> _Grid {  get; set; }
 
-        protected override async Task OnInitializedAsync()
+        private async Task<GridData<ZoneDTO>> ServerReload(GridState<ZoneDTO> state)
         {
-            _IsSubscribeThisFeature = await _SubscriptionRepository.CheckSbscriptionFeature(Enums.FeatureEnum.PrivateZone);
-        }
+            IEnumerable<ZoneDTO>? data = await _ZoneRepository.GetZones();
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
+            if (data is null)
             {
-                _IsLoading = true;
-
-                _Zones = await _ZoneRepository.GetZones();
-
-                _IsLoading = false;
-                await InvokeAsync(() => StateHasChanged());
+                return new GridData<ZoneDTO>();
             }
+
+            var totalItems = data.Count();
+
+            var pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+
+            return new GridData<ZoneDTO>
+            {
+                TotalItems = totalItems,
+                Items = pagedData
+            };
         }
 
-        Task Refresh()
-        {
-            return OnAfterRenderAsync(true);
-        }
+        async Task Refresh() => await _Grid.ReloadServerData();
 
         async Task NewZone()
         {
@@ -51,7 +49,7 @@ namespace DNSLab.Web.Components.Pages.Zone
             var result = await dialog.Result;
             if (!result!.Canceled)
             {
-                await Refresh();
+                await _Grid.ReloadServerData();
             }
         }
 
@@ -72,7 +70,7 @@ namespace DNSLab.Web.Components.Pages.Zone
             {
                 if (await _ZoneRepository.DeleteZone(zone.Id))
                 {
-                    await Refresh();
+                    await _Grid.ReloadServerData();
                 }
             }
         }

@@ -72,7 +72,7 @@
             </MudAlert>
         }
 
-        <MudDataGrid T="BaseRecordDTO" Items="_Records?.OrderBy(x=>x.Name)" Dense Hover Elevation="0" Loading="_IsLoading">
+        <MudDataGrid @ref="_Grid" T="BaseRecordDTO" ServerData="ServerReload" ExpandSingleRow Dense Hover Elevation="0" Filterable="false">
             <NoRecordsContent>
                 <NoRecordFound />
             </NoRecordsContent>
@@ -83,7 +83,7 @@
                         <MudChip T="string" Color="Color.Primary" Size="Size.Small" Label="true">@context.Item.Type</MudChip>
                     </CellTemplate>
                 </PropertyColumn>
-                <PropertyColumn Property="x=>x.TTL" Title="TTL" />
+                <PropertyColumn Property="x=>x.TTL" Title="TTL(s)" />
                 <PropertyColumn Property="x=>x.RData" Title="مقدار" CellClass="dnslab-ltr" Sortable="false">
                     <CellTemplate>
                         <MudText Typo="Typo.body2">
@@ -135,6 +135,9 @@
                     </CellTemplate>
                 </TemplateColumn>
             </Columns>
+            <PagerContent>
+                <MudDataGridPager T="BaseRecordDTO" RowsPerPageString="تعداد ردیف در هر صفحه" InfoFormat="{first_item}-{last_item} از {all_items}" />
+            </PagerContent>
         </MudDataGrid>
     </MudCardContent>
 </MudCard>

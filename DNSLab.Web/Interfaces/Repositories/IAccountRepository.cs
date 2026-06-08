@@ -17,7 +17,10 @@ namespace DNSLab.Web.Interfaces.Repositories
         Task<bool> UpdateAsync(UpdateUserPersonalInfoDTO model);
         Task<bool> UpdateUsernameAsync(string? username);
         Task<bool> ChangeEmailAsync(string email);
-        Task<bool> ChangeMobileAsync(string mobile);
+        Task<string?> ChangeMobileAsync(string mobile);
+        Task<string?> ResendOtp(string existingToken);
+        Task<bool> ConfirmOtpAsync(string token, string otp);
+        Task<bool> IsMobileApproved();
         Task<UserDTO?> GetCurrentUserAsync();
         Task<int> UsersCountAsync();
         Task<UserDTO?> GetUserAsync(Guid userId);

@@ -27,7 +27,7 @@
                         <MudNavLink Href="@AllRoutes.TodayChangesDDNS">تغییرات DDNS امروز</MudNavLink>
                         <MudNavLink Href="@AllRoutes.RecordsHistory">تغییرات رکورد های امروز</MudNavLink>
                         <MudNavLink Href="@AllRoutes.AllPayments">همه پرداخت ها</MudNavLink>
-                        <MudNavLink Href="@AllRoutes.AllBundles">اشتراک‌ها</MudNavLink>
+                        <MudNavLink Href="@AllRoutes.AllSubscriptions">اشتراک‌ها</MudNavLink>
                     </MudNavGroup>
                 }
                 <MudNavLink Icon="@DNSLabIcons.Domain" Href="@AllRoutes.AllZones">دامنه‌ ها</MudNavLink>
@@ -40,11 +40,13 @@
                 </MudNavGroup>
                 <MudNavGroup Title="Reverse Proxy" Icon="@DNSLabIcons.NAT">
                     <MudNavLink Icon="@DNSLabIcons.Download" Href="@AllRoutes.SetupAndInstallation">راه‌اندازی و نصب</MudNavLink>
+                    <MudNavLink Icon="@DNSLabIcons.Chart" Href="@AllRoutes.ReverseProxyTraffic">ترافیک مصرفی</MudNavLink>
                     <MudNavLink Icon="@DNSLabIcons.Key" Href="@AllRoutes.AuthToken">توکن احراز هویت شما</MudNavLink>
                     <MudNavGroup Title="Tunnels" Icon="@DNSLabIcons.Tunnels">
                         <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.HttpReverseProxy">HTTP</MudNavLink>
                         <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.TcpReverseProxy">TCP</MudNavLink>
                         <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.UdpReverseProxy">UDP</MudNavLink>
+                        <MudNavLink Icon="@DNSLabIcons.Tunnel" Href="@AllRoutes.ConfigReverseProxy">Config</MudNavLink>
                     </MudNavGroup>
                     @* <MudNavLink Icon="@DNSLabIcons.ActiveTunnels" Href="@AllRoutes.ActiveTunnels">تونل های فعال</MudNavLink> *@
                 </MudNavGroup>
@@ -55,15 +57,15 @@
                 </MudNavGroup>
                 <MudNavLink Href="@AllRoutes.Monitoring" Icon="@DNSLabIcons.Monitoring">مانیتورینگ</MudNavLink>
                 <MudNavGroup Title="اشتراک" Icon="@DNSLabIcons.Premium">
-                    <MudNavLink Href="@AllRoutes.MyBundles">اشتراک‌ها</MudNavLink>
-                    <MudNavLink Href="@AllRoutes.Renewal">تمدید اشتراک</MudNavLink>
+                    <MudNavLink Href="@AllRoutes.MySubscriptions">اشتراک‌ها</MudNavLink>
+                    @* <MudNavLink Href="@AllRoutes.Renewal">تمدید اشتراک</MudNavLink> *@
                 </MudNavGroup>
             </MudNavMenu>
             <MudSpacer />
         </Authorized>
     </AuthorizeView>
     <MudNavMenu Dense>
-        <MudNavLink Icon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Bundle">تهیه اشتراک</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Subscriptions" Href="@AllRoutes.Plans">تهیه اشتراک</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Tools" Href="@AllRoutes.AllTools">ابزار ها</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Support" Href="@AllRoutes.MyTickets">پشتیبانی</MudNavLink>
         <MudNavGroup Icon="@DNSLabIcons.Wiki" Title="Wiki">
@@ -77,6 +79,7 @@
         </MudNavGroup>
         <MudNavLink Icon="@DNSLabIcons.Blog" Href="@AllRoutes.AllBlogs">بلاگ</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Contribute" Href="@AllRoutes.Contribute">مشارکت در توسعه</MudNavLink>
+        <MudNavLink Icon="@DNSLabIcons.Campaign" Href="@AllRoutes.SocialChannel">کانال اطلاع رسانی</MudNavLink>
         <MudNavLink Icon="@DNSLabIcons.Info" Href="@AllRoutes.About">درباره ما</MudNavLink>
         <AuthorizeView>
             <Authorized>

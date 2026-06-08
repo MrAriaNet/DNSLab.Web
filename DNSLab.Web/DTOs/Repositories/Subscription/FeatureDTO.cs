@@ -1,21 +1,19 @@
-﻿using DNSLab.Shared.Enums;
-using DNSLab.Web.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DNSLab.Web.DTOs.Repositories.Bundle
+namespace DNSLab.Web.DTOs.Repositories.Subscription
 {
     public class FeatureDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public FeatureTypeEnum Type { get; set; }
+        public bool Supported { get; set; }
+        public int? FeatureValue { get; set; }
         public int Order { get; set; }
-        public FeaturePricingDTO Pricing { get; set; }
-
+        public string? Unit { get; set; }
     }
 }

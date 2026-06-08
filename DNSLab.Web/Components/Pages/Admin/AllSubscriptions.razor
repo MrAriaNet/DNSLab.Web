@@ -1,0 +1,40 @@
+﻿@using DNSLab.Web.DTOs.Repositories.Subscription
+@using DNSLab.Web.Utilities
+@attribute [Route(AllRoutes.AllSubscriptions)]
+@attribute [Authorize(Roles = AuthorizeRoles.Admin)]
+<SeoProvider Title="اشتراک ها" />
+
+<MudText Typo="Typo.h1" Align="Align.Center">تمامی اشتراک های فعال</MudText>
+<MudText Class="mt-5 mb-10" Align="Align.Center">اشتراک های تهیه شده در این بخش قابل مشاهده میباشد</MudText>
+
+<MudCard Elevation="0">
+    <MudCardContent>
+        <MudDataGrid T="SubscriptionDTO" @ref="_Grid" ServerData="ServerReload" ExpandSingleRow Dense Hover Elevation="0" Filterable="false">
+            <NoRecordsContent>
+                <MudAlert Severity="Severity.Warning" Dense ContentAlignment="HorizontalAlignment.Center" NoIcon>
+                    <MudText Typo="Typo.body2">هیچ تراکنشی یافت نشد</MudText>
+                </MudAlert>
+            </NoRecordsContent>
+            <Columns>
+                <TemplateColumn Title="کاربر">
+                    <CellTemplate>
+                        <UserIcon UserInfo="@context.Item.User" />
+                    </CellTemplate>
+                </TemplateColumn>
+                <PropertyColumn Property="x=>x.Section.Name" Title="بخش" />
+                <PropertyColumn Property="x=>x.Plan.Name" Title="پلن" />
+                <TemplateColumn Title="مبغ(ريال)">
+                    <CellTemplate>
+                        <MudText>@context.Item.TotalPrice.Separate3Digits()</MudText>
+                    </CellTemplate>
+                </TemplateColumn>
+                <PropertyColumn Property="x=>x.Duration.Description" Title="مدت" />
+                <PropertyColumn Property="x=>x.StartDate.ToLocalTime().ToPersianDateTime()" Title="زمان شروع" />
+                <PropertyColumn Property="x=>x.EndDate.ToLocalTime().ToPersianDateTime()" Title="زمان پایان" />
+            </Columns>
+            <PagerContent>
+                <MudDataGridPager T="SubscriptionDTO" RowsPerPageString="تعداد ردیف در هر صفحه" InfoFormat="{first_item}-{last_item} از {all_items}" />
+            </PagerContent>
+        </MudDataGrid>
+    </MudCardContent>
+</MudCard>

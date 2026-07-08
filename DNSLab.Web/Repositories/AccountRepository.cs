@@ -85,11 +85,6 @@ namespace DNSLab.Web.Repositories
             return await _HttpServiceProvider.Get<UserDTO>($"{APIController}/");
         }
 
-        public async Task<AuthUserDTO?> RegisterAsync(RegisterUserDTO model)
-        {
-            return await _HttpServiceProvider.Post<RegisterUserDTO, AuthUserDTO>($"{APIController}/RegisterAsync", model);
-        }
-
         public async Task<bool> ResendConfirmEmailTokenAsync()
         {
             return await _HttpServiceProvider.Post<bool>($"{APIController}/ResendConfirmEmailTokenAsync");
@@ -113,6 +108,16 @@ namespace DNSLab.Web.Repositories
         public async Task<int> UsersCountAsync()
         {
             return await _HttpServiceProvider.Get<int>($"{APIController}/");
+        }
+
+        public async Task<string?> RegisterOrAuthenticationAsync(string mobile)
+        {
+            return await _HttpServiceProvider.Post<string?>($"{APIController}/RegisterOrAuthenticationAsync?mobile={mobile}");
+        }
+
+        public async Task<AuthUserDTO?> RegisterOrAuthenticationConfirmAsync(string token, string otp)
+        {
+            return await _HttpServiceProvider.Post<AuthUserDTO?>($"{APIController}/RegisterOrAuthenticationConfirmAsync?token={token}&otp={otp}");
         }
     }
 }

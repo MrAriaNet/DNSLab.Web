@@ -35,6 +35,11 @@
     font-family: consolas !important;
 }
 
+    .dnslab-nano input::placeholder,
+    .dnslab-nano textarea::placeholder {
+        font-family: vazir-regular !important;
+    }
+
 .dnslab-ltr input,
 .dnslab-ltr textarea,
 .dnslab-ltr .mud-typography,

@@ -4,37 +4,83 @@
 <SeoProvider Title="تنظیمات Raspberry Pi" />
 
 <MudText Typo="Typo.h1" Align="Align.Center">تنظیمات Raspberry Pi</MudText>
-<MudText Class="mt-5 mb-10" Align="Align.Center">برای بروزرسانی آی پی توسط Raspberry Pi مراحل زیر را به ترتیب باید انجام دهید</MudText>
+<MudText Class="mt-5" Align="Align.Center">
+    با استفاده از Raspberry Pi می‌توانید آدرس IP عمومی خود را به‌صورت خودکار در DNSLab به‌روزرسانی کنید.
+</MudText>
+<MudText Class="mb-10" Align="Align.Center">
+    مناسب برای Raspberry Pi و سایر سیستم‌های مبتنی بر Linux
+</MudText>
 
-<MudCard Elevation="0">
-    <MudCardContent>
-        <MudText Typo="Typo.h6">ساخت کلید برای بروزرسانی IP رکوردهای DNS</MudText>
-        <MudText>برای بروزرسانی خودکار آی پی در میکروتیک ابتدا باید یک کلید برای بروزرسانی آی پی ایجاد نمایید.</MudText>
-        <UpdateTokens IsSelectableList OnTokenSelect="SelectToken" />
-        @if (_Token == null)
-        {
-            <MudAlert Dense Icon="@DNSLabIcons.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
-                <MudText Typo="Typo.body2">برای ادامه فرآیند یک کلید را انتخاب نمایید</MudText>
-            </MudAlert>
-        }
-        else
-        {
-            <MudText Typo="Typo.h6">DNSLab نیاز به نرم افزار خاصی برای بروزرسانی نیاز ندارد ، از اسکریپت زیر استفاده کنید . به Home Directory بروید:</MudText>
-            <CodeSnippet Language="bash" Code="cd ~" />
-            <MudText Typo="Typo.h6">یک اسکریپت با دستور زیر ایجاد کنید:</MudText>
-            <CodeSnippet Language="bash" Code="nano dnslab.sh" />
-            <MudText Typo="Typo.h6">محتوا زیر رو بهش اضافه کنید:</MudText>
-            <CodeSnippet Language="bash" Code="@($"echo url=\"https://api.dnslab.link/DDNS/U?k={_Token.Key}\" | curl -k -o ~/dnslab.log -K -")" />
-            <MudText Typo="Typo.h6">با دستور زیر اسکریپت رو قابل اجرا کنید (executable):</MudText>
-            <CodeSnippet Language="bash" Code="chmod +x dnslab.sh" />
-            <MudText Typo="Typo.h6">آپدیت رو با cron خودکار کنید:</MudText>
-            <MudText>cron editor رو باز کنید</MudText>
-            <CodeSnippet Language="bash" Code="crontab -e" />
-            <MudText Typo="Typo.h6">خط زیر رو اضافه کنید تا هر 3 دقیقه اسکریپت اجرا بشه:</MudText>
-            <CodeSnippet Language="bash" Code="*/3 * * * * ~/dnslab.sh" />
-            <MudAlert Dense Icon="@DNSLabIcons.Error" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
-                <MudText Typo="Typo.body2">در صورتی که آی پی شما بعد از 3 دقیقه با آی پی عمومی سیستم بروز نشد از اجرای درست cron در سیستم عامل اطمینان حاصل فرمایید.</MudText>
-            </MudAlert>
-        }
-    </MudCardContent>
-</MudCard>
+<MudPaper Class="mt-5 pa-10" Outlined>
+    <MudText Typo="Typo.h4" Class="mb-4">۱. ساخت کلید دسترسی</MudText>
+    <MudText Class="mb-4">
+        برای اینکه Raspberry Pi بتواند IP عمومی شما را در DNSLab به‌روزرسانی کند،
+        ابتدا باید یک کلید دسترسی ایجاد و انتخاب نمایید.
+    </MudText>
+
+    <UpdateTokens IsSelectableList OnTokenSelect="SelectToken" />
+
+    @if (_Token == null)
+    {
+        <MudAlert Dense Icon="@DNSLabIcons.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-4">
+            برای ادامه مراحل، ابتدا یکی از کلیدهای دسترسی را انتخاب نمایید.
+        </MudAlert>
+    }
+    else
+    {
+        <MudText Typo="Typo.h4" Class="my-6">۲. ساخت اسکریپت به‌روزرسانی</MudText>
+        <MudText Class="mb-3">
+            برای استفاده از DNSLab نیازی به نصب نرم‌افزار اضافی روی Raspberry Pi ندارید.
+            کافی است یک اسکریپت ساده ایجاد کنید که به‌صورت دوره‌ای IP عمومی سیستم را به DNSLab اعلام کند.
+        </MudText>
+
+        <MudText Typo="Typo.h6" Class="my-3">ورود به Home Directory</MudText>
+        <CodeSnippet Language="bash" Code="cd ~" />
+
+        <MudText Typo="Typo.h6" Class="my-3">ساخت اسکریپت</MudText>
+        <CodeSnippet Language="bash" Code="nano dnslab.sh" />
+
+        <MudText Typo="Typo.h6" Class="my-3">اضافه کردن محتوای اسکریپت</MudText>
+        <MudText Class="mb-2">
+            دستور زیر را داخل فایل قرار دهید:
+        </MudText>
+        <CodeSnippet Language="bash" Code="@($"echo url=\"https://api.dnslab.link/DDNS/U?k={_Token.Key}\" | curl -k -o ~/dnslab.log -K -")" />
+
+        <MudText Typo="Typo.h6" Class="my-3">قابل اجرا کردن اسکریپت</MudText>
+        <MudText Class="mb-2">
+            پس از ذخیره فایل، با دستور زیر دسترسی اجرای آن را فعال کنید:
+        </MudText>
+        <CodeSnippet Language="bash" Code="chmod +x dnslab.sh" />
+
+        <MudText Typo="Typo.h4" Class="my-6">۳. اجرای خودکار با Cron</MudText>
+        <MudText Class="mb-3">
+            برای اینکه IP شما به‌صورت خودکار به‌روزرسانی شود، اسکریپت را با استفاده از Cron
+            به‌صورت دوره‌ای اجرا کنید.
+        </MudText>
+
+        <MudText Typo="Typo.h6" Class="my-3">باز کردن تنظیمات Cron</MudText>
+        <CodeSnippet Language="bash" Code="crontab -e" />
+
+        <MudText Typo="Typo.h6" Class="my-3">
+            اجرای اسکریپت هر ۳ دقیقه
+        </MudText>
+        <MudText Class="mb-2">
+            خط زیر را به انتهای فایل Cron اضافه کنید:
+        </MudText>
+        <CodeSnippet Language="bash" Code="*/3 * * * * ~/dnslab.sh" />
+
+        <MudAlert Dense Icon="@DNSLabIcons.Error" ContentAlignment="HorizontalAlignment.Start" Class="mt-5">
+            <MudText Typo="Typo.body2">
+                پس از تنظیم Cron، ممکن است چند دقیقه زمان ببرد تا IP جدید در DNSLab ثبت شود.
+                اگر پس از چند دقیقه IP شما به‌روزرسانی نشد، از اجرای صحیح Cron و دسترسی Raspberry Pi
+                به اینترنت اطمینان حاصل کنید.
+            </MudText>
+        </MudAlert>
+
+        <MudText Typo="Typo.h4" Class="my-6">۴. پایان تنظیمات</MudText>
+        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.Start">
+            پس از انجام مراحل بالا، Raspberry Pi هر ۳ دقیقه IP عمومی خود را به DNSLab اعلام می‌کند
+            و رکورد DNS مربوط به کلید انتخاب‌شده به‌صورت خودکار به‌روزرسانی خواهد شد.
+        </MudAlert>
+    }
+</MudPaper>

@@ -4,36 +4,107 @@
 <SeoProvider Title="تنظیمات میکروتیک" />
 
 <MudText Typo="Typo.h1" Align="Align.Center">تنظیمات MikroTik</MudText>
-<MudText Class="mt-5 mb-10" Align="Align.Center">برای بروزرسانی آی پی توسط MikroTik مراحل زیر را به ترتیب باید انجام دهید</MudText>
+<MudText Class="mt-5" Align="Align.Center">
+    با استفاده از MikroTik می‌توانید آدرس IP عمومی خود را به‌صورت خودکار در DNSLab به‌روزرسانی کنید.
+</MudText>
+<MudText Class="mb-10" Align="Align.Center">
+    مناسب برای MikroTik RouterOS و شبکه‌هایی با IP عمومی متغیر
+</MudText>
 
-<MudCard Elevation="0">
-    <MudCardContent>
-        <MudText Typo="Typo.h6">ساخت کلید برای بروزرسانی IP رکوردهای DNS</MudText>
-        <MudText>برای بروزرسانی خودکار آی پی در میکروتیک ابتدا باید یک کلید برای بروزرسانی آی پی ایجاد نمایید.</MudText>
-        <UpdateTokens IsSelectableList OnTokenSelect="SelectToken" />
-        @if (_Token == null)
-        {
-            <MudAlert Dense Icon="@DNSLabIcons.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-2">
-                <MudText Typo="Typo.body2">برای ادامه فرآیند یک کلید را انتخاب نمایید</MudText>
-            </MudAlert>
-        }
-        else
-        {
-            <MudText Typo="Typo.h6">ساخت Script در میکروتیک</MudText>
-            <MudText>برای ایجاد اسکریپت ، وارد تنظیمات میکروتیک میشویم و از قسمت System زیر منوی Scripts را انتخاب مینماییم. سپس دکمه Add New را میزنیم تا یک اسکریپت جدید بنویسیم بعد از آن اطلاعات اسکریپت را وارد نمایید.</MudText>
-            <MudText>تنظیمات را به ترتیب زیر انجام دهید</MudText>
-            <MudText>Name : در این بخش یک نام دلخواه به اسکریپت خود بدهید.</MudText>
-            <MudText>Policy : در اینجا فقط کافیست دسترسی Test و Read را تیک بزنید.</MudText>
-            <MudText>Source : در این بخش دستور زیر را بنویسید.</MudText>
-            <CodeSnippet Language="bash" Code="@($"/tool fetch url=\"https://api.dnslab.link/DDNS/U?k={_Token.Key}\"")" />
-            <MudAlert Icon="@DNSLabIcons.Error" Dense ContentAlignment="HorizontalAlignment.Start" Variant="Variant.Text">
-                <MudText Typo="Typo.body2">نکته : در برخی مودم ها علامت (?) قابل قبول نمیباشد در این صورت از دستور زیر استفاده نمایید</MudText>
-            </MudAlert>
-            <CodeSnippet Language="bash" Code="@($"/tool fetch url=\"https://api.dnslab.link/DDNS/U/{_Token.Key}\"")" />
-            <MudText>مرحله بعد باید یک Job برای فراخوانی مرتب این اسکریپت ایجاد نماییم.</MudText>
-            <MudText Typo="Typo.h6">ساخت Job در میکروتیک</MudText>
-            <MudText>حالا برای این که اسکریپت ما هر سه دقیقه اجرا شود و آدرس آی‌پی میکروتیک بروزرسانی شود وارد System سپس Scheduler شده و یک scheduler جدید ایجاد میکنیم، فقط کافی در قسمت Interval تایم 3 دقیقه را مثل عکس زیر وارد کنیم و در قسمت On Event نیز اسم script خود را که در اینجا DDNS-Token هست را وارد نماییم.</MudText>
-            <MudText>از این به بعد شما فقط کافیه نام DNS های انتخابی در توکن رو در مرورگر وارد کنید تا وارد تنظیمات میکروتیک خودتون بشید.</MudText>
-        }
-    </MudCardContent>
-</MudCard>
+<MudPaper Class="mt-5 pa-10" Outlined>
+    <MudText Typo="Typo.h4" Class="mb-4">۱. ساخت کلید دسترسی</MudText>
+    <MudText Class="mb-4">
+        برای اینکه MikroTik بتواند IP عمومی شما را در DNSLab به‌روزرسانی کند،
+        ابتدا باید یک کلید دسترسی ایجاد و انتخاب نمایید.
+    </MudText>
+
+    <UpdateTokens IsSelectableList OnTokenSelect="SelectToken" />
+
+    @if (_Token == null)
+    {
+        <MudAlert Dense Icon="@DNSLabIcons.Info" ContentAlignment="HorizontalAlignment.Start" Class="mt-4">
+            برای ادامه مراحل، ابتدا یکی از کلیدهای دسترسی را انتخاب نمایید.
+        </MudAlert>
+    }
+    else
+    {
+        <MudText Typo="Typo.h4" Class="my-6">۲. ساخت Script در MikroTik</MudText>
+        <MudText Class="mb-4">
+            وارد پنل MikroTik شوید و از مسیر
+            <strong class="dnslab-ltr dnslab-nano">System &gt; Scripts</strong>
+            وارد بخش Scripts شوید. سپس با انتخاب گزینه
+            <strong class="dnslab-ltr dnslab-nano">Add New</strong>
+            یک Script جدید ایجاد کنید.
+        </MudText>
+
+        <MudText Typo="Typo.h6" Class="my-3">تنظیمات Script</MudText>
+        <MudGrid Spacing="3">
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Name</MudText>
+                <MudText>یک نام دلخواه برای Script انتخاب کنید.</MudText>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Policy</MudText>
+                <MudText>فقط دسترسی‌های <strong>Test</strong> و <strong>Read</strong> را فعال کنید.</MudText>
+            </MudItem>
+        </MudGrid>
+
+        <MudText Typo="Typo.h6" Class="my-3">Source</MudText>
+        <MudText Class="mb-2">
+            دستور زیر را در قسمت Source قرار دهید:
+        </MudText>
+        <CodeSnippet Language="bash" Code="@($"/tool fetch url=\"https://api.dnslab.link/DDNS/U?k={_Token.Key}\"")" />
+
+        <MudAlert Icon="@DNSLabIcons.Error"
+                  Dense
+                  ContentAlignment="HorizontalAlignment.Start"
+                  Variant="Variant.Text"
+                  Class="mt-3">
+            در برخی نسخه‌ها یا تنظیمات MikroTik ممکن است استفاده از علامت
+            <span class="dnslab-ltr dnslab-nano">?</span>
+            در URL با مشکل مواجه شود. در این صورت از دستور زیر استفاده کنید:
+        </MudAlert>
+
+        <CodeSnippet Language="bash" Code="@($"/tool fetch url=\"https://api.dnslab.link/DDNS/U/{_Token.Key}\"")" />
+
+        <MudText Typo="Typo.h4" Class="my-6">۳. ساخت Scheduler</MudText>
+        <MudText Class="mb-4">
+            برای اینکه Script به‌صورت خودکار اجرا شود، باید یک Scheduler ایجاد کنید.
+            از مسیر
+            <strong class="dnslab-ltr dnslab-nano">System &gt; Scheduler</strong>
+            یک Scheduler جدید ایجاد نمایید.
+        </MudText>
+
+        <MudGrid Spacing="3">
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Interval</MudText>
+                <MudText>
+                    مقدار Interval را روی
+                    <strong class="dnslab-ltr dnslab-nano">3m</strong>
+                    قرار دهید.
+                </MudText>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">On Event</MudText>
+                <MudText>
+                    نام Script ساخته‌شده در مرحله قبل را وارد کنید.
+                </MudText>
+            </MudItem>
+        </MudGrid>
+
+        <MudAlert Severity="Severity.Info"
+                  Dense
+                  ContentAlignment="HorizontalAlignment.Start"
+                  Class="mt-4">
+            با این تنظیمات، Script هر ۳ دقیقه یک‌بار اجرا می‌شود و IP عمومی MikroTik
+            به DNSLab اعلام خواهد شد.
+        </MudAlert>
+
+        <MudText Typo="Typo.h4" Class="my-6">۴. پایان تنظیمات</MudText>
+        <MudAlert Severity="Severity.Success" ContentAlignment="HorizontalAlignment.Start">
+            پس از انجام مراحل بالا، MikroTik به‌صورت خودکار IP عمومی خود را به DNSLab
+            اعلام می‌کند. از این پس می‌توانید از DNSهای انتخاب‌شده در این کلید برای
+            دسترسی به شبکه خود استفاده کنید.
+        </MudAlert>
+    }
+</MudPaper>

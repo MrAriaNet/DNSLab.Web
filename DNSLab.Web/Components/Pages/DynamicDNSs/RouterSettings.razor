@@ -3,48 +3,92 @@
 <SeoProvider Title="تنظیمات مودم (روتر)" />
 
 <MudText Typo="Typo.h1" Align="Align.Center">تنظیمات مودم (روتر)</MudText>
-<MudText Class="mt-5 mb-10" Align="Align.Center">برای بروزرسانی آی پی توسط روتر (مودم های اینترنت) مانند D-Link و TP-Link یا سایر مودم ها باید مراحل زیر را به ترتیب انجام دهید</MudText>
+<MudText Class="mt-5" Align="Align.Center">با تنظیم DNS و DDNS روی مودم، می‌توانید آدرس IP متغیر اینترنت خود را به‌صورت خودکار در DNSLab به‌روزرسانی کنید.</MudText>
+<MudText Class="mb-10" Align="Align.Center">مناسب برای: D-Link، TP-Link و سایر مودم‌های دارای قابلیت DDNS</MudText>
 
-<MudCard Elevation="0">
-    <MudCardContent>
-        <MudText Typo="Typo.h6">تنظیم DNS مودم</MudText>
-        <MudText>I. برای تنظیم DNS باید از مسیر های زیر در مودم های مختلف وارد تنظیمات DNS مودم شوید.</MudText>
-        <MudText Class="dnslab-ltr dnslab-nano" Align="Align.End" Color="Color.Primary">D-Link : ADVANCED > DNS</MudText>
-        <MudText Class="dnslab-ltr dnslab-nano" Align="Align.End" Color="Color.Primary">TP-Link : Interface Setup > LAN</MudText>
-        <MudText>II. برای تنظیم پس از ورود به تنظیمات DNS تنظیمات را بصورت زیر انجام دهید.</MudText>
-        <MudText Class="dnslab-ltr dnslab-nano" Align="Align.End" Color="Color.Primary">Primary DNS Server : 194.147.142.136</MudText>
-        <MudText Class="dnslab-ltr dnslab-nano" Align="Align.End" Color="Color.Primary">Secondary DNS Server : [یکی از دی ان اس های عمومی (8.8.8.8 - 8.8.4.4 - 1.1.1.1 - 1.0.0.1) یا دلخواه خودتان]</MudText>
-        <MudText>پس از تنظیم DNS باید وارد تنظیمات DDNS شویم.</MudText>
-        <MudText Typo="Typo.h6">تنظیم DDNS یا Dynamic DNS</MudText>
-        <MudText>III. مسیر تنظیمات DDNS در مودم های مختلف بصورت زیر میباشد.</MudText>
-        <MudText Class="dnslab-ltr dnslab-nano" Align="Align.End" Color="Color.Primary">D-Link : ADVANCED > Dynamic DNS</MudText>
-        <MudText Class="dnslab-ltr dnslab-nano" Align="Align.End" Color="Color.Primary">TP-Link : Access Management > DDNS</MudText>
-        <MudText>IV. پس از ورود به بخش تنظیمات DDNS برای ادامه لطفا هاست نِیم مورد نظر خود را انتخاب نمایید.</MudText>
-        @if (_AllRecords != null)
-        {
-            <MudItem xs="12" sm="7" md="4" lg="3">
-                <MudSelect Class="my-2" T="string" Label="هاست نِیم" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="_SelectedHostName">
-                    @foreach (var zone in _AllRecords.Where(x => x.Item2.Count() > 0))
-                    {
-                        @foreach (var record in zone.Item2)
-                        {
-                            <MudSelectItem T="string" Value="@($"{record.Name}.{zone.Item1.Name}")">@($"{record.Name}.{zone.Item1.Name}")</MudSelectItem>
-                        }
-                    }
-                </MudSelect>
+<MudPaper Class="mt-5 pa-10" Outlined>
+    <MudText Typo="Typo.h4" Class="mb-4">۱. تنظیم DNS مودم</MudText>
+    <MudText Class="mb-4">ابتدا وارد بخش تنظیمات DNS مودم شوید. محل این بخش در مودم‌های مختلف ممکن است متفاوت باشد.</MudText>
+    <MudGrid Spacing="2">
+        <MudItem xs="12" md="6">
+            <MudText Typo="Typo.body2" Color="Color.Secondary">D-Link</MudText>
+            <MudText Class="dnslab-ltr dnslab-nano">ADVANCED &gt; DNS</MudText>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudText Typo="Typo.body2" Color="Color.Secondary">TP-Link</MudText>
+            <MudText Class="dnslab-ltr dnslab-nano">Interface Setup &gt; LAN</MudText>
+        </MudItem>
+    </MudGrid>
+
+    <MudText Typo="Typo.h5" Class="my-5">مقادیر DNS</MudText>
+    <MudText Class="mb-3">پس از ورود به تنظیمات DNS، مقادیر زیر را وارد نمایید:</MudText>
+    <MudGrid Spacing="2">
+        <MudItem xs="12" md="6">
+            <MudText Typo="Typo.body2" Color="Color.Secondary">Primary DNS Server</MudText>
+            <MudText Typo="Typo.h6" Class="dnslab-ltr dnslab-nano">194.147.142.136</MudText>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudText Typo="Typo.body2" Color="Color.Secondary">Secondary DNS Server</MudText>
+            <MudText Typo="Typo.h6" Class="dnslab-ltr dnslab-nano">8.8.8.8</MudText>
+            <MudText Typo="Typo.caption" Color="Color.Secondary">می‌توانید از DNSهای عمومی دیگری مانند 8.8.4.4، 1.1.1.1 یا 1.0.0.1 نیز استفاده کنید.</MudText>
+        </MudItem>
+    </MudGrid>
+    <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start" Class="mt-4">پس از ذخیره تنظیمات DNS، به بخش DDNS مودم بروید.</MudAlert>
+
+    <MudText Typo="Typo.h4" Class="my-6">۲. تنظیم DDNS</MudText>
+    <MudText Class="mb-4">قابلیت DDNS یا Dynamic DNS به مودم اجازه می‌دهد در صورت تغییر IP عمومی، آدرس جدید را به DNSLab اعلام کند.</MudText>
+    <MudGrid Spacing="2">
+        <MudItem xs="12" md="6">
+            <MudText Typo="Typo.body2" Color="Color.Secondary">D-Link</MudText>
+            <MudText Class="dnslab-ltr dnslab-nano">ADVANCED &gt; Dynamic DNS</MudText>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudText Typo="Typo.body2" Color="Color.Secondary">TP-Link</MudText>
+            <MudText Class="dnslab-ltr dnslab-nano">Access Management &gt; DDNS</MudText>
+        </MudItem>
+    </MudGrid>
+
+    <MudText Typo="Typo.h4" Class="my-6">۳. انتخاب هاست‌نیم</MudText>
+    <MudText Class="mb-4">هاست‌نیمی را که می‌خواهید IP مودم روی آن به‌روزرسانی شود، انتخاب نمایید.</MudText>
+    @if (_AllRecords != null)
+    {
+        <MudSelect T="string" Label="هاست‌نیم" Variant="Variant.Outlined" Margin="Margin.Dense" Class="mb-2" @bind-Value="_SelectedHostName">
+            @foreach (var zone in _AllRecords.Where(x => x.Item2.Any()))
+            {
+                @foreach (var record in zone.Item2)
+                {
+                    <MudSelectItem T="string" Value="@($"{record.Name}.{zone.Item1.Name}")">@($"{record.Name}.{zone.Item1.Name}")</MudSelectItem>
+                }
+            }
+        </MudSelect>
+    }
+
+    @if (!string.IsNullOrEmpty(_SelectedHostName))
+    {
+        <MudText Typo="Typo.h4" Class="my-6">۴. اطلاعات DDNS</MudText>
+        <MudText Class="mb-4">اطلاعات زیر را در بخش DDNS مودم وارد نمایید:</MudText>
+        <MudGrid Spacing="3">
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">DDNS Provider</MudText>
+                <MudText Typo="Typo.h6" Class="dnslab-ltr dnslab-nano">dyndns.org یا no-ip.com</MudText>
+                <MudText Typo="Typo.caption" Color="Color.Secondary">یکی از این دو سرویس را به‌عنوان DDNS Provider انتخاب کنید.</MudText>
             </MudItem>
-        }
-        @if (!String.IsNullOrEmpty(_SelectedHostName))
-        {
-            <MudText Color="Color.Primary"><strong>DDNS Provider</strong> : باید یکی از سایت های dyndns.org یا no-ip.com را انتخاب نمایید.</MudText>
-            <MudText Color="Color.Primary">
-                <strong>Hostname</strong> : در این قسمت مقدار
-                <strong>@_SelectedHostName</strong>
-                را وارد نمایید.
-            </MudText>
-            <MudText Color="Color.Primary"><strong>Username</strong> : در این قسمت نام کاربری خود را وارد نمایید.</MudText>
-            <MudText Color="Color.Primary"><strong>Password</strong> : در این قسمت رمز عبور کاربری خود را وارد نمایید.</MudText>
-            <MudText>پس از تنظیمات بالا مودم شما بصورت خودکار در صورت تغییر آی پی مودم ، به سرور DNSLab اطلاع رسانی خواهد کرد و آی پی جدید جایگزین قبلی خواهد شد.</MudText>
-        }
-    </MudCardContent>
-</MudCard>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Hostname</MudText>
+                <MudText Typo="Typo.h6" Class="dnslab-ltr dnslab-nano">@_SelectedHostName</MudText>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Username</MudText>
+                <MudText>نام کاربری حساب DNSLab</MudText>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Password</MudText>
+                <MudText>رمز عبور حساب DNSLab</MudText>
+            </MudItem>
+        </MudGrid>
+        <MudAlert Severity="Severity.Info" Dense ContentAlignment="HorizontalAlignment.Start" Class="mt-5">برای مشاهده یا تغییر نام کاربری و رمز عبور، وارد <BaseButton Href="@AllRoutes.MyAccount" Size="Size.Small" Variant="Variant.Text" Color="Color.Primary">حساب کاربری</BaseButton> شوید.<MudText Typo="Typo.caption" Class="mt-2">توجه: این نام کاربری و رمز عبور مربوط به حساب شما در DNSLab است و برای احراز هویت سرویس DDNS استفاده می‌شود.</MudText></MudAlert>
+
+        <MudText Typo="Typo.h4" Class="my-6">۵. پایان تنظیمات</MudText>
+        <MudAlert Severity="Severity.Success" Dense ContentAlignment="HorizontalAlignment.Start">پس از ذخیره تنظیمات در مودم، هر زمان که IP عمومی اینترنت شما تغییر کند، مودم به‌صورت خودکار IP جدید را به DNSLab اعلام می‌کند و رکورد <strong class="dnslab-ltr dnslab-nano">@_SelectedHostName</strong> به‌روزرسانی خواهد شد.</MudAlert>
+    }
+</MudPaper>
